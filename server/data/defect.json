@@ -1,0 +1,170 @@
+{
+  "table": "defect",
+  "source": "adult_defects",
+  "description": "Master catalogue of speech, fluency, and cognitive disorders",
+  "row_count": 23,
+  "generated_at": "2025-01-01T00:00:00Z",
+  "data": [
+    {
+      "defect_id": "dbce138c-2538-5b41-ab7d-c0ddf90d18f6",
+      "code": "ART-001",
+      "name": "Rhotacism",
+      "category": "articulation",
+      "description": "Difficulty producing the /r/ phoneme; often substituted with /w/ or /l/."
+    },
+    {
+      "defect_id": "598129c1-b84b-5361-a1e1-4a6d448aaf13",
+      "code": "ART-002",
+      "name": "Lambdacism",
+      "category": "articulation",
+      "description": "Difficulty producing the /l/ phoneme correctly."
+    },
+    {
+      "defect_id": "ff9e17aa-be82-50a1-b593-84ce7e13c77f",
+      "code": "ART-003",
+      "name": "Sigmatism",
+      "category": "articulation",
+      "description": "Lisping or distortion of sibilant sounds /s/ and /z/."
+    },
+    {
+      "defect_id": "598c5b53-ccc4-58ff-9bbe-99c72419e548",
+      "code": "ART-004",
+      "name": "Voicing contrast errors",
+      "category": "articulation",
+      "description": "Confusion between voiced and voiceless cognate pairs (e.g. /p/-/b/, /t/-/d/, /k/-/g/)."
+    },
+    {
+      "defect_id": "d5dcfa59-0630-5d1b-980f-c55da5611e0f",
+      "code": "ART-005",
+      "name": "Interdental fricative error",
+      "category": "articulation",
+      "description": "Substitution of /θ/ or /ð/ with /f/, /v/, /t/, or /d/."
+    },
+    {
+      "defect_id": "7f360b52-04b4-5db3-9c13-e727bfd8086d",
+      "code": "ART-006",
+      "name": "Labiodental confusion",
+      "category": "articulation",
+      "description": "Confusion between /v/ and /w/ or /f/ and /p/."
+    },
+    {
+      "defect_id": "7739d8ae-6c75-5965-acc2-dd3ab1aaa3b5",
+      "code": "ART-007",
+      "name": "Weak syllable deletion",
+      "category": "articulation",
+      "description": "Omission of unstressed syllables in multisyllabic words."
+    },
+    {
+      "defect_id": "d539864c-ddb2-5748-800b-99dee2eaaa87",
+      "code": "ART-008",
+      "name": "Stress pattern errors",
+      "category": "articulation",
+      "description": "Incorrect placement of lexical or sentence stress affecting intelligibility."
+    },
+    {
+      "defect_id": "80cb2d93-6a06-5163-946c-8af18c99ba1f",
+      "code": "ART-009",
+      "name": "Reduced intelligibility",
+      "category": "articulation",
+      "description": "Overall speech clarity below functional threshold in connected speech."
+    },
+    {
+      "defect_id": "fcaba4cf-4bc1-5be4-a0c3-4327f3ceac52",
+      "code": "ART-010",
+      "name": "Consonant cluster reduction",
+      "category": "articulation",
+      "description": "Simplification of consonant clusters (e.g. /str/ → /st/ or /tr/)."
+    },
+    {
+      "defect_id": "25983845-0af3-5791-a347-280a2ad16b0e",
+      "code": "FLU-001",
+      "name": "Stuttering",
+      "category": "fluency",
+      "description": "Disruptions in the forward flow of speech including repetitions, prolongations, and blocks."
+    },
+    {
+      "defect_id": "c150dd49-e40e-56be-86c6-65ee1e0b3306",
+      "code": "FLU-002",
+      "name": "Cluttering",
+      "category": "fluency",
+      "description": "Excessively rapid or irregular speech rate with reduced clarity."
+    },
+    {
+      "defect_id": "b5c262d0-03ee-50ee-ad0a-11b7cb4af728",
+      "code": "FLU-003",
+      "name": "Dysprosody",
+      "category": "fluency",
+      "description": "Abnormal prosodic patterns: disrupted rhythm, intonation, or stress."
+    },
+    {
+      "defect_id": "a190ffea-bae6-5a44-8a98-5a70e6d5b785",
+      "code": "FLU-004",
+      "name": "Dysphonia",
+      "category": "fluency",
+      "description": "Voice quality disorder including breathiness, hoarseness, or pitch breaks."
+    },
+    {
+      "defect_id": "3f7b20b7-51a2-5b56-9ae2-32ff14808193",
+      "code": "FLU-005",
+      "name": "Impaired breath support",
+      "category": "fluency",
+      "description": "Insufficient respiratory control for sustained phonation in connected speech."
+    },
+    {
+      "defect_id": "84233fb5-95b7-511f-ae67-34e800190e8d",
+      "code": "FLU-006",
+      "name": "Abnormal speech rate",
+      "category": "fluency",
+      "description": "Speech rate significantly above (tachylalia) or below (bradylalia) normal range."
+    },
+    {
+      "defect_id": "b2afaf12-a26c-50e1-aa94-fa39ba7abc95",
+      "code": "FLU-007",
+      "name": "Impaired pausing control",
+      "category": "fluency",
+      "description": "Inability to use syntactically appropriate pauses; either excessive or absent."
+    },
+    {
+      "defect_id": "e6fb06d5-6701-5419-8f82-7cbc6e8507e5",
+      "code": "FLU-008",
+      "name": "Flat intonation",
+      "category": "fluency",
+      "description": "Reduced pitch variation producing monotone speech."
+    },
+    {
+      "defect_id": "1c9b8f09-c4e5-517c-95e4-1ac21031af7f",
+      "code": "COG-001",
+      "name": "Word retrieval difficulty",
+      "category": "cognition",
+      "description": "Difficulty accessing target lexical items during spontaneous speech (anomia)."
+    },
+    {
+      "defect_id": "d0094041-0234-5e8c-a7a0-4c379ccdcf0c",
+      "code": "COG-002",
+      "name": "Reduced discourse coherence",
+      "category": "cognition",
+      "description": "Difficulty maintaining topic or logical structure in extended utterances."
+    },
+    {
+      "defect_id": "b6b9f71b-75db-5a91-a45e-6a1e7a3cfc49",
+      "code": "COG-003",
+      "name": "Pragmatic communication deficit",
+      "category": "cognition",
+      "description": "Impaired use of language in social/functional contexts (greetings, requests, turn-taking)."
+    },
+    {
+      "defect_id": "65b51fe4-25b9-5829-b3d9-333006f322a3",
+      "code": "COG-004",
+      "name": "Reduced working memory for speech",
+      "category": "cognition",
+      "description": "Difficulty holding and producing longer utterances due to working memory limitations."
+    },
+    {
+      "defect_id": "45e3e0aa-7ac8-58de-9a09-994d675c3225",
+      "code": "COG-005",
+      "name": "Impaired self-monitoring",
+      "category": "cognition",
+      "description": "Reduced ability to detect and self-correct errors in real time."
+    }
+  ]
+}

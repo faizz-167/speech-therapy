@@ -1,0 +1,117 @@
+{
+  "table": "baseline_assessment",
+  "source": "adult_baseline",
+  "description": "Standardized clinical assessment instruments",
+  "row_count": 12,
+  "generated_at": "2025-01-01T00:00:00Z",
+  "data": [
+    {
+      "baseline_id": "1bbdb90d-7919-5979-a954-96fcf827143b",
+      "code": "SSI-4",
+      "name": "Stuttering Severity Instrument, 4th Ed.",
+      "domain": "fluency",
+      "description": "Standardised instrument measuring stuttering frequency, duration, and physical concomitants.",
+      "administration_method": "clinician-administered",
+      "created_at": "2025-01-01T00:00:00Z"
+    },
+    {
+      "baseline_id": "aaeff3e9-f0b1-5296-b345-814b4d90ceab",
+      "code": "GFTA-3",
+      "name": "Goldman-Fristoe Test of Articulation, 3rd Ed.",
+      "domain": "articulation",
+      "description": "Assesses articulation of consonant sounds in initial, medial, and final word positions.",
+      "administration_method": "clinician-administered",
+      "created_at": "2025-01-01T00:00:00Z"
+    },
+    {
+      "baseline_id": "85d65f45-d0e8-5340-bf42-3743f55b660c",
+      "code": "GRBAS",
+      "name": "GRBAS Voice Scale",
+      "domain": "voice",
+      "description": "Perceptual rating scale for voice quality: Grade, Roughness, Breathiness, Asthenia, Strain.",
+      "administration_method": "clinician-rated",
+      "created_at": "2025-01-01T00:00:00Z"
+    },
+    {
+      "baseline_id": "123732a8-4a39-577d-822f-3c080860d374",
+      "code": "CAPE-V",
+      "name": "Consensus Auditory-Perceptual Evaluation of Voice",
+      "domain": "voice",
+      "description": "Standardised perceptual evaluation of voice attributes for clinical and research use.",
+      "administration_method": "clinician-rated",
+      "created_at": "2025-01-01T00:00:00Z"
+    },
+    {
+      "baseline_id": "bb59dd6f-cc70-514f-975f-189774b5d350",
+      "code": "CASANA-PSI",
+      "name": "Palin Parent/Child Interaction Rating",
+      "domain": "fluency",
+      "description": "Assesses communication style and interaction patterns relevant to stuttering in adults.",
+      "administration_method": "self-report",
+      "created_at": "2025-01-01T00:00:00Z"
+    },
+    {
+      "baseline_id": "48d1972b-4f16-5c03-8796-1fff4233d930",
+      "code": "PROP",
+      "name": "Percentage of Responses with Optimal Production",
+      "domain": "articulation",
+      "description": "Measures proportion of target phonemes produced correctly across a speech sample.",
+      "administration_method": "clinician-administered",
+      "created_at": "2025-01-01T00:00:00Z"
+    },
+    {
+      "baseline_id": "016e71ac-f039-5d88-bb88-e3e845e08880",
+      "code": "PRAAT-SPR",
+      "name": "Praat Speech Rate Analysis",
+      "domain": "fluency",
+      "description": "Acoustic analysis of syllable rate, articulation rate, and pause duration using Praat software.",
+      "administration_method": "software-assisted",
+      "created_at": "2025-01-01T00:00:00Z"
+    },
+    {
+      "baseline_id": "3b63d8a1-f1d9-5298-8e8f-befe445b0f3e",
+      "code": "CELF-5",
+      "name": "Clinical Evaluation of Language Fundamentals, 5th Ed.",
+      "domain": "cognition",
+      "description": "Comprehensive assessment of language and cognitive-communication abilities.",
+      "administration_method": "clinician-administered",
+      "created_at": "2025-01-01T00:00:00Z"
+    },
+    {
+      "baseline_id": "edfbe3b0-1055-5a4b-b6dd-76c224ab557f",
+      "code": "BNT-2",
+      "name": "Boston Naming Test, 2nd Ed.",
+      "domain": "cognition",
+      "description": "Assesses confrontation naming ability as a measure of word retrieval capacity.",
+      "administration_method": "clinician-administered",
+      "created_at": "2025-01-01T00:00:00Z"
+    },
+    {
+      "baseline_id": "afa16463-b916-5b60-8e39-ef3e88d4dbb9",
+      "code": "INTSCORE",
+      "name": "Intelligibility in Context Scale",
+      "domain": "articulation",
+      "description": "Parent/self-report measure of speech intelligibility across communicative contexts.",
+      "administration_method": "self-report",
+      "created_at": "2025-01-01T00:00:00Z"
+    },
+    {
+      "baseline_id": "8c1cf6f2-4dd1-5b27-bc2b-6829019606be",
+      "code": "OASES",
+      "name": "Overall Assessment of the Speaker's Experience of Stuttering",
+      "domain": "fluency",
+      "description": "Captures the impact of stuttering on daily life across four sections of self-report.",
+      "administration_method": "self-report",
+      "created_at": "2025-01-01T00:00:00Z"
+    },
+    {
+      "baseline_id": "13b01411-3806-5aeb-842b-2f2e11245cbd",
+      "code": "DEMSS",
+      "name": "Diagnostic Evaluation of Motor Speech Severity",
+      "domain": "articulation",
+      "description": "Evaluates motor speech control, articulation precision, and prosodic accuracy.",
+      "administration_method": "clinician-administered",
+      "created_at": "2025-01-01T00:00:00Z"
+    }
+  ]
+}

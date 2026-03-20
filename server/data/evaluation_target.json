@@ -1,0 +1,2191 @@
+{
+  "table": "evaluation_target",
+  "source": "adult_tasks_v3.json",
+  "description": "Phoneme targets and substitution error rules per prompt",
+  "row_count": 180,
+  "generated_at": "2025-01-01T00:00:00Z",
+  "data": [
+    {
+      "eval_target_id": "092ed923-6b86-5d73-b6e7-7dfe7feb79ee",
+      "prompt_id": "3ba2e236-b230-5d66-b41a-d8e80a1741c4",
+      "scope": "word_onset",
+      "target_phonemes": [
+        "/r/",
+        "/l/"
+      ],
+      "check_on_words": [
+        "rock",
+        "lock"
+      ],
+      "substitution_errors": {
+        "rock": [
+          "/w/",
+          "/l/"
+        ],
+        "lock": [
+          "/r/",
+          "/w/"
+        ]
+      },
+      "pass_rule": "both_correct",
+      "fail_rule": "any_substitution",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "d537fb25-1541-528a-90d8-fd6d7af0c6b2",
+      "prompt_id": "64d4fd47-f779-59ce-9fc8-839714d33a49",
+      "scope": "word_onset",
+      "target_phonemes": [
+        "/p/",
+        "/b/"
+      ],
+      "check_on_words": [
+        "pan",
+        "ban"
+      ],
+      "substitution_errors": {
+        "pan": [
+          "/b/"
+        ],
+        "ban": [
+          "/p/"
+        ]
+      },
+      "pass_rule": "both_correct",
+      "fail_rule": "any_substitution",
+      "partial_pass": "1_of_2_correct"
+    },
+    {
+      "eval_target_id": "cb5d91e9-e42f-5774-8f20-f2fa137aa734",
+      "prompt_id": "9fc7a8d8-b581-5ad9-a75f-9fd9cf4d1502",
+      "scope": "word_onset",
+      "target_phonemes": [
+        "/r/",
+        "/l/"
+      ],
+      "check_on_words": [
+        "rice",
+        "lice"
+      ],
+      "substitution_errors": {
+        "rice": [
+          "/w/",
+          "/l/"
+        ],
+        "lice": [
+          "/r/",
+          "/w/"
+        ]
+      },
+      "pass_rule": "both_correct",
+      "fail_rule": "any_substitution",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "d33a0a71-88d8-585b-91eb-9580eb6718f2",
+      "prompt_id": "5d003ed6-8d70-57a4-919f-e8bc936e34a4",
+      "scope": "target_word_in_sentence",
+      "target_phonemes": {
+        "vine": "/v/",
+        "wine": "/w/"
+      },
+      "check_on_words": [
+        "vine",
+        "wine"
+      ],
+      "substitution_errors": {
+        "vine": [
+          "/w/",
+          "/b/"
+        ],
+        "wine": [
+          "/v/"
+        ]
+      },
+      "pass_rule": "both_words_used_in_sentences_with_correct_onset",
+      "fail_rule": "any_substitution_on_target_words",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "678ec4fe-de82-539c-814c-760880b34a82",
+      "prompt_id": "0ea81e87-ffa8-5169-8b04-569a2eb4e076",
+      "scope": "word_onset",
+      "target_phonemes": [
+        "/r/",
+        "/l/"
+      ],
+      "check_on_words": [
+        "right",
+        "light"
+      ],
+      "substitution_errors": {
+        "right": [
+          "/w/",
+          "/l/"
+        ],
+        "light": [
+          "/r/",
+          "/w/"
+        ]
+      },
+      "pass_rule": "both_correct",
+      "fail_rule": "any_substitution",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "c4602e0e-1f7e-588b-9df7-84cdce671c4d",
+      "prompt_id": "f1966b26-37b9-5d6e-84e2-276382960284",
+      "scope": "all_target_phonemes_in_sentence",
+      "target_phonemes": {
+        "theta_words": {
+          "words": [
+            "think",
+            "three",
+            "things",
+            "further"
+          ],
+          "phoneme": "/θ/",
+          "substitution_errors": [
+            "/f/",
+            "/d/",
+            "/t/"
+          ]
+        },
+        "f_words": {
+          "words": [
+            "free",
+            "from",
+            "further"
+          ],
+          "phoneme": "/f/",
+          "substitution_errors": [
+            "/θ/",
+            "/p/",
+            "/v/"
+          ]
+        }
+      },
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_theta_correct_AND_all_f_correct",
+      "fail_rule": "cross_substitution_detected",
+      "partial_pass": "one_group_correct"
+    },
+    {
+      "eval_target_id": "e3205878-acc6-5b65-aa2c-9800b7ce56c8",
+      "prompt_id": "d66910eb-cec2-5511-9bd1-7930318779b2",
+      "scope": "word_onset",
+      "target_phonemes": null,
+      "check_on_words": [
+        "road",
+        "red",
+        "run"
+      ],
+      "substitution_errors": [
+        "/w/",
+        "/l/"
+      ],
+      "pass_rule": "all_3_correct",
+      "fail_rule": "any_substitution",
+      "partial_pass": "2_of_3_correct"
+    },
+    {
+      "eval_target_id": "6813d571-0446-54f4-9ea4-48e2debdc80c",
+      "prompt_id": "2b613ec6-4edc-528f-95a3-9f4ad3599c4d",
+      "scope": "word_onset",
+      "target_phonemes": null,
+      "check_on_words": [
+        "map",
+        "mop",
+        "mud"
+      ],
+      "substitution_errors": [
+        "/n/",
+        "/b/"
+      ],
+      "pass_rule": "all_3_correct",
+      "fail_rule": "any_substitution",
+      "partial_pass": "2_of_3_correct"
+    },
+    {
+      "eval_target_id": "c5b104d3-540c-51a5-997c-88a6ffb5522f",
+      "prompt_id": "496086b3-4a6f-5906-88cc-adfd017a79af",
+      "scope": "word_onset_and_syllables",
+      "target_phonemes": null,
+      "check_on_words": [
+        "rain",
+        "rocket",
+        "rabbit"
+      ],
+      "substitution_errors": [
+        "/w/",
+        "/l/"
+      ],
+      "pass_rule": "all_3_correct_onset_and_syllables",
+      "fail_rule": "any_substitution_or_omission",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "048f3441-cd95-5c75-b7d5-01f975330690",
+      "prompt_id": "935e331a-3b93-5899-b076-f2f76fd427a7",
+      "scope": "word_onset_cluster",
+      "target_phonemes": null,
+      "check_on_words": [
+        "storm",
+        "strong",
+        "street"
+      ],
+      "substitution_errors": {
+        "storm": [
+          "/t/",
+          "/s/"
+        ],
+        "strong": [
+          "/tr/",
+          "/r/"
+        ],
+        "street": [
+          "/tr/",
+          "/r/"
+        ]
+      },
+      "pass_rule": "all_clusters_intact",
+      "fail_rule": "any_cluster_reduction",
+      "partial_pass": "2_of_3_clusters_correct"
+    },
+    {
+      "eval_target_id": "053256cc-8d78-599e-9c7e-4548c5070c99",
+      "prompt_id": "11ae2c0b-5d84-5888-bbbc-98e2c1e9144c",
+      "scope": "full_word",
+      "target_phonemes": null,
+      "check_on_words": [
+        "refrigerator",
+        "remarkable",
+        "restaurant"
+      ],
+      "substitution_errors": null,
+      "pass_rule": "all_syllables_present_and_r_consistent",
+      "fail_rule": "syllable_collapse_or_r_substitution",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "85879bab-3c87-51c1-acf7-78011b1c803b",
+      "prompt_id": "91bcebce-d8bc-5c34-aa95-94c3403af5d5",
+      "scope": "word_onset_cluster",
+      "target_phonemes": null,
+      "check_on_words": [
+        "thrill",
+        "through",
+        "throughout"
+      ],
+      "substitution_errors": [
+        "/dr/",
+        "/fr/",
+        "/tr/",
+        "/r/"
+      ],
+      "pass_rule": "all_3_theta_r_clusters_correct",
+      "fail_rule": "any_substitution_of_theta_r",
+      "partial_pass": "2_of_3_correct"
+    },
+    {
+      "eval_target_id": "12e235b7-a818-56cf-8133-b66ef5732d2c",
+      "prompt_id": "5eefe7e0-ee8f-57a2-9e5d-457b1910aceb",
+      "scope": "all_words_in_sentence",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_words_intelligible_at_slow_rate",
+      "fail_rule": "more_than_1_word_unintelligible",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "a2105291-9a36-5ee4-b0de-5d8cbd2b0d05",
+      "prompt_id": "739925f1-ef9e-5252-928f-7a09a9c21a43",
+      "scope": "all_words_in_sentence",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_words_intelligible_at_natural_rate",
+      "fail_rule": "highlighted_words_unintelligible_or_mispronounced",
+      "partial_pass": "highlighted_words_correct_even_if_carrier_words_mildly_reduced"
+    },
+    {
+      "eval_target_id": "6e89448b-1e80-53c6-b373-0c567dcd3adc",
+      "prompt_id": "d0e7ad55-5e1d-5bb0-9876-4264ea8f45ba",
+      "scope": "all_words",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_words_present_at_both_rates",
+      "fail_rule": "word_omitted_at_normal_rate",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "98a84c25-19b1-5a46-875a-a02e5138283c",
+      "prompt_id": "f79f02b8-b6e2-58da-9b13-870bed33ef2a",
+      "scope": "all_words",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_words_intelligible_at_both_rates",
+      "fail_rule": "word_omission_or_cluster_reduction_at_normal_rate",
+      "partial_pass": "no_word_omissions_but_mild_reduction_on_unstressed_syllables"
+    },
+    {
+      "eval_target_id": "3a58ce21-9ffb-5d5f-a398-98f8fb595207",
+      "prompt_id": "52c0448d-11c1-5eae-bb32-96a52fdd9b49",
+      "scope": "all_words",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_words_present_at_all_3_speeds",
+      "fail_rule": "syllable_collapse_at_fast_rate",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "bcd984a9-5236-58fb-be47-dd13e2c53fa7",
+      "prompt_id": "a3d25075-b89f-54ea-9634-078c39dc6872",
+      "scope": "all_words",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_syllables_present_at_all_3_speeds",
+      "fail_rule": "syllable_collapse_at_fast_or_normal_rate",
+      "partial_pass": "correct_at_slow_and_normal_but_reduced_at_fast"
+    },
+    {
+      "eval_target_id": "032f8df6-d6fd-5bf0-b887-c1d98f83070f",
+      "prompt_id": "6978e090-6648-5352-bb4a-96feef81b561",
+      "scope": "vocal_quality_across_sentence",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "voice_steady_from_first_to_last_word",
+      "fail_rule": "voice_breaks_or_fades_before_end",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "9a86254f-f529-5524-a710-4db07994cc5a",
+      "prompt_id": "239eea25-7a7b-590e-b66e-6eec9b5701f7",
+      "scope": "vocal_quality_full_sentence",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "voice_clear_and_steady_to_end",
+      "fail_rule": "volume_drops_below_threshold_or_voice_breaks",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "2f0d350c-14e4-5c6a-9b55-7a8f0ce4d51e",
+      "prompt_id": "a9dc05f2-0905-5d4f-9a09-2d14d385219e",
+      "scope": "vocal_consistency_paragraph",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "voice_consistent_across_all_3_sentences",
+      "fail_rule": "audible_fade_or_break",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "b52b1b57-9222-5983-b3ca-d8278c1634dd",
+      "prompt_id": "7897eacc-cc53-51dd-a0bd-7ac5740f01f3",
+      "scope": "articulation_and_voice_paragraph",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "highlighted_words_clear_and_voice_varied",
+      "fail_rule": "highlighted_words_reduced_or_voice_breaks",
+      "partial_pass": "words_clear_but_delivery_monotone"
+    },
+    {
+      "eval_target_id": "788975e2-7944-557d-8515-e896a60d4111",
+      "prompt_id": "e9db6938-11de-55a5-8c09-9177d01b45a5",
+      "scope": "full_paragraph_intelligibility",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_words_present_natural_grouping",
+      "fail_rule": "word_omissions_or_collapsed_syllables",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "f2f9b6ba-995f-5b12-99cc-066e22049acc",
+      "prompt_id": "52d22c40-eb28-56f0-8e05-c351accc3dd1",
+      "scope": "contrastive_stress",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_3_stress_targets_receive_emphasis",
+      "fail_rule": "monotone_delivery_no_emphasis",
+      "partial_pass": "2_of_3_stressed"
+    },
+    {
+      "eval_target_id": "b02e117e-f15f-5a66-a3b1-58aa889ab5e6",
+      "prompt_id": "52e47da0-d5bc-5a98-97d7-1e83ed0718c7",
+      "scope": "word_stress",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "correct_stress_on_both",
+      "fail_rule": "wrong_syllable_stressed",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "a18d399e-478d-5006-a715-ce2dda1dc6f7",
+      "prompt_id": "64c9fca5-5009-5518-95bf-dbbab0c4c86c",
+      "scope": "phrase_stress_naturalness",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "content_words_stressed_function_words_reduced",
+      "fail_rule": "all_words_equal_stress_or_wrong_words_stressed",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "e3585d46-6d90-5161-8ddc-0e285547365e",
+      "prompt_id": "7b15cfd3-04b4-576e-b159-f3adae73b372",
+      "scope": "stress_shift_noun_vs_verb",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "stress_shifts_correctly_between_pair",
+      "fail_rule": "same_stress_on_both",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "bb39c3f8-d454-5086-b388-464e9c1b89cf",
+      "prompt_id": "af0ba412-4f7b-5473-bd67-fc65f2ae86ec",
+      "scope": "compound_modifier_stress",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "both_target_words_correctly_stressed",
+      "fail_rule": "stress_on_wrong_syllable_of_either_word",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "2e91388c-2943-59fa-b33d-567885e10aa2",
+      "prompt_id": "0e5e3646-acfb-59b4-a79b-2d79dd358ad9",
+      "scope": "derivative_stress_correction",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "both_words_correctly_stressed",
+      "fail_rule": "any_original_error_retained",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "c0605140-6ef4-5449-8f11-189e5a373003",
+      "prompt_id": "8298c51c-e5db-5fcb-8ced-f8d1d97b92cc",
+      "scope": "four_word_stress_correction",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_4_correctly_stressed",
+      "fail_rule": "2_or_more_wrong",
+      "partial_pass": "3_of_4_correct"
+    },
+    {
+      "eval_target_id": "678df07f-26ee-5444-8df6-336e7b05426a",
+      "prompt_id": "912e8eb0-d694-5ba3-b749-2810ec1e8e1e",
+      "scope": "word_onset",
+      "target_phonemes": null,
+      "check_on_words": [
+        "sun",
+        "sit",
+        "song",
+        "set",
+        "safe"
+      ],
+      "substitution_errors": [
+        "/ʃ/",
+        "/z/",
+        "/θ/"
+      ],
+      "pass_rule": "all_5_correct",
+      "fail_rule": "any_substitution",
+      "partial_pass": "4_of_5_correct"
+    },
+    {
+      "eval_target_id": "098b4570-2364-5ebe-b34a-df823d853a59",
+      "prompt_id": "3fe8ab99-a1e2-5fe9-887a-927f6f455b3a",
+      "scope": "word_onset",
+      "target_phonemes": null,
+      "check_on_words": [
+        "light",
+        "lamp",
+        "lake",
+        "lid",
+        "leap"
+      ],
+      "substitution_errors": [
+        "/r/",
+        "/w/",
+        "/j/"
+      ],
+      "pass_rule": "all_5_correct",
+      "fail_rule": "any_substitution",
+      "partial_pass": "4_of_5_correct"
+    },
+    {
+      "eval_target_id": "c2e4b22e-e27b-58ce-a7de-0e7f5bb21164",
+      "prompt_id": "43f01c1c-af9c-5bba-9f42-a02c7972cb0b",
+      "scope": "word_onset_cluster",
+      "target_phonemes": null,
+      "check_on_words": [
+        "sprint",
+        "spread",
+        "spring",
+        "sprout"
+      ],
+      "substitution_errors": [
+        "/pr/",
+        "/sp/",
+        "/r/"
+      ],
+      "pass_rule": "all_4_spr_clusters_intact",
+      "fail_rule": "any_cluster_reduction",
+      "partial_pass": "3_of_4_correct"
+    },
+    {
+      "eval_target_id": "a174414f-3c2c-56e0-9025-8649cc1e5e66",
+      "prompt_id": "08cfa595-4766-5659-9e44-b737308f3b3d",
+      "scope": "word_onset_cluster",
+      "target_phonemes": null,
+      "check_on_words": [
+        "through",
+        "throw",
+        "thread",
+        "thrive"
+      ],
+      "substitution_errors": [
+        "/dr/",
+        "/fr/",
+        "/tr/"
+      ],
+      "pass_rule": "all_4_theta_r_correct",
+      "fail_rule": "any_substitution",
+      "partial_pass": "3_of_4_correct"
+    },
+    {
+      "eval_target_id": "a8117e68-e768-5f91-8933-8a0df6d3ac19",
+      "prompt_id": "8c21a438-cdef-590b-894e-a6686c06fac9",
+      "scope": "word_final_cluster",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_final_clusters_complete",
+      "fail_rule": "any_epenthetic_vowel_or_omission",
+      "partial_pass": "3_of_4_correct"
+    },
+    {
+      "eval_target_id": "fc3e34df-3115-59ff-8f4e-90e628f6a7f3",
+      "prompt_id": "94f28c90-2762-59f3-a85c-10c240385e01",
+      "scope": "word_final_cluster",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_3_final_clusters_complete",
+      "fail_rule": "any_omission_or_epenthesis",
+      "partial_pass": "2_of_3_correct"
+    },
+    {
+      "eval_target_id": "e7b73200-8d55-53fa-8266-9e4eb83878b8",
+      "prompt_id": "2c6ed137-5cf2-575a-8054-87addccedd45",
+      "scope": "all_words_intelligibility",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_9_words_intelligible",
+      "fail_rule": "any_word_unintelligible",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "8147df9b-743c-54f0-b5c9-aa86bd982a97",
+      "prompt_id": "43057b6d-7f37-5eea-b4a6-5990602fe655",
+      "scope": "target_phoneme_in_sentence",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": [
+        "/r/",
+        "/w/"
+      ],
+      "pass_rule": "all_5_l_words_correct",
+      "fail_rule": "any_substitution",
+      "partial_pass": "4_of_5_correct"
+    },
+    {
+      "eval_target_id": "fc73a7e4-57a1-5ad5-b898-6a8d949c4880",
+      "prompt_id": "9d5ea709-1ba4-5f7a-ba95-a2437796aca9",
+      "scope": "target_phoneme_across_positions",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": [
+        "/w/",
+        "/l/"
+      ],
+      "pass_rule": "all_7_r_words_correct",
+      "fail_rule": "more_than_2_substitutions",
+      "partial_pass": "5_of_7_correct"
+    },
+    {
+      "eval_target_id": "b1e8163e-271a-533a-ac56-0283762f904c",
+      "prompt_id": "ae929ccc-c9da-522a-af5c-32a5da5f987f",
+      "scope": "target_phoneme_throughout_sentence",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": [
+        "/f/",
+        "/d/",
+        "/t/"
+      ],
+      "pass_rule": "all_8_theta_words_correct",
+      "fail_rule": "more_than_2_substitutions",
+      "partial_pass": "6_of_8_correct"
+    },
+    {
+      "eval_target_id": "e158b6e1-8fb3-5c59-a09b-cc3fe5aed422",
+      "prompt_id": "a85ee302-0da2-5240-b4e2-40fcd7aded43",
+      "scope": "phoneme_contrast_in_sentence",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "no_s_sh_confusion_across_sentence",
+      "fail_rule": "any_cross_substitution",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "1b35f745-7281-58e2-8f79-f14df96d2ea0",
+      "prompt_id": "bf4dfe0b-9f8d-54fc-b37c-b4ef11a82270",
+      "scope": "target_phoneme_in_connected_speech",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": [
+        "/w/",
+        "/l/"
+      ],
+      "pass_rule": "all_9_r_words_correct",
+      "fail_rule": "more_than_2_substitutions",
+      "partial_pass": "7_of_9_correct"
+    },
+    {
+      "eval_target_id": "0485c34d-cdcc-56fc-933c-068f31146b9b",
+      "prompt_id": "581d7b9e-fe14-5e0a-826c-7c3f9ab949f7",
+      "scope": "word_by_word_intelligibility",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "each_word_individually_distinct",
+      "fail_rule": "words_blurred_together",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "548511bb-e7e0-583a-abe9-ba63b062e481",
+      "prompt_id": "970fdb21-794b-5cd9-be95-e50d69503cb1",
+      "scope": "intelligibility_at_natural_rate",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_6_words_intelligible_at_natural_rate",
+      "fail_rule": "any_word_unintelligible_at_natural_rate",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "add1b6a6-d70d-54f6-9658-a16e47243f47",
+      "prompt_id": "72a70215-29f5-5948-8af4-d688940dd81b",
+      "scope": "clarity_comparison_two_speeds",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "highlighted_words_clear_at_both_speeds",
+      "fail_rule": "word_dropped_at_normal_that_was_present_slow",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "356224aa-be35-51bc-ac39-341e3adf02d7",
+      "prompt_id": "a0c5a4f4-66f3-5380-ae56-70f8f27fccc8",
+      "scope": "syllable_integrity_two_speeds",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_syllables_present_at_both_speeds",
+      "fail_rule": "syllable_dropped_at_normal_rate",
+      "partial_pass": "words_present_but_mildly_reduced"
+    },
+    {
+      "eval_target_id": "42233fea-2b76-5e13-8e71-61f921ed77c8",
+      "prompt_id": "0520c2fd-c95f-5c93-ac22-f569974737d7",
+      "scope": "syllable_integrity_three_speeds",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_syllables_at_all_3_speeds",
+      "fail_rule": "syllable_collapse_at_fast",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "0900caaa-ad84-55c5-8a16-03884394f972",
+      "prompt_id": "de9eb791-eebb-5803-bd4e-e3a3bb81a60c",
+      "scope": "syllable_integrity_three_speeds",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_syllables_present_at_all_3_speeds",
+      "fail_rule": "syllable_collapse_at_normal_or_fast",
+      "partial_pass": "correct_at_slow_normal_reduced_at_fast"
+    },
+    {
+      "eval_target_id": "729c6207-3257-5f2e-bab2-02e893f07fe0",
+      "prompt_id": "ed6a15ff-37a8-5905-994a-5f3c87e7496f",
+      "scope": "word_stress",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "stress_on_second_syllable",
+      "fail_rule": "stress_on_first_syllable",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "327a5e18-8356-5cb3-8e38-17d169bed8ef",
+      "prompt_id": "dd9bc295-f91f-5266-a916-f30dc52eb8ed",
+      "scope": "word_stress_in_sentence",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "stress_on_second_syllable_in_sentence",
+      "fail_rule": "stress_on_first_syllable",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "3a1be00c-fd76-5378-81d1-87c0525301f5",
+      "prompt_id": "82c5322b-887b-567f-9f87-805d34189ea7",
+      "scope": "compound_modifier_stress",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "stress_on_second_syllable_of_record",
+      "fail_rule": "stress_on_first_syllable",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "100be92c-9511-59ff-8ff5-cf76a990e9ff",
+      "prompt_id": "19d4dcda-aaf8-576f-b2e5-66dbaec4e153",
+      "scope": "two_word_stress_in_sentence",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "both_words_correctly_stressed",
+      "fail_rule": "both_wrong",
+      "partial_pass": "1_of_2_correct"
+    },
+    {
+      "eval_target_id": "de2181ac-f887-5277-8d4f-94206ed41469",
+      "prompt_id": "4a68a5b6-961f-5bc9-9c19-38e543e6c7dc",
+      "scope": "derivative_stress_two_words",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "both_words_correctly_stressed",
+      "fail_rule": "either_word_wrong",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "b42a7ea1-b17c-5bdb-aa58-c34972f23e2d",
+      "prompt_id": "f51c4c9b-9737-5623-a932-5da8c7894218",
+      "scope": "four_word_stress_correction",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_4_correctly_stressed",
+      "fail_rule": "2_or_more_wrong",
+      "partial_pass": "3_of_4_correct"
+    },
+    {
+      "eval_target_id": "0bb8ec05-ded6-5c18-afd6-28b3016ced06",
+      "prompt_id": "342c1ebe-428e-5a5a-b5a7-58398199f032",
+      "scope": "paragraph_phrasing_and_intonation",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_3_sentences_with_falling_intonation",
+      "fail_rule": "flat_delivery_or_word_omissions",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "e743ea4f-5b6a-5909-98d7-33132657e316",
+      "prompt_id": "8d69ad72-c76c-5871-a24e-3e0794dbb4f1",
+      "scope": "paragraph_intonation_and_clarity",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_3_sentences_clear_with_natural_intonation",
+      "fail_rule": "monotone_or_words_merged",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "d18cdc28-ea45-5772-b298-571b561631e7",
+      "prompt_id": "187aa662-ef6a-5132-91d0-3f7bf626f198",
+      "scope": "professional_paragraph_prosody",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "content_words_emphasised_natural_delivery",
+      "fail_rule": "flat_monotone_delivery",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "7653fff5-b6c6-51e7-a3ae-d65816170b4d",
+      "prompt_id": "56104aab-24f1-5c25-9e24-9f58d98aeee9",
+      "scope": "articulation_and_prosody_paragraph",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "highlighted_words_fully_produced_and_delivery_varied",
+      "fail_rule": "highlighted_words_reduced_or_omitted",
+      "partial_pass": "words_complete_but_monotone"
+    },
+    {
+      "eval_target_id": "66c93808-3227-588b-98dc-1531a1b74c6e",
+      "prompt_id": "70232ccf-e1d4-534e-81e6-2ff1be9b210f",
+      "scope": "complex_paragraph_intelligibility",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_highlighted_words_fully_produced",
+      "fail_rule": "more_than_2_highlighted_reduced",
+      "partial_pass": "5_of_7_highlighted_correct"
+    },
+    {
+      "eval_target_id": "27f6331d-03d6-5eec-a94a-ee930391b309",
+      "prompt_id": "bc5bd8fa-6042-56a0-94b2-0245b2d0a272",
+      "scope": "contrastive_stress_emphasis",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_3_stress_targets_clearly_emphasised",
+      "fail_rule": "flat_no_contrast",
+      "partial_pass": "2_of_3_emphasised"
+    },
+    {
+      "eval_target_id": "2df8e419-d2f9-5562-8f76-c55135291fc9",
+      "prompt_id": "c6c668de-fd53-51ed-a75a-49c7edbb9feb",
+      "scope": "spontaneous_speech_rate",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": null,
+      "fail_rule": null,
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "eeca3ec2-9299-502b-90e8-57f16ae815e9",
+      "prompt_id": "f016d3bc-4422-5076-ac63-2b7ac781e3a3",
+      "scope": "timed_structured_speech",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_3_elements_covered_within_60_seconds",
+      "fail_rule": "elements_missing_or_significant_overtime",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "e082e379-f573-5723-a576-bc9630b7471d",
+      "prompt_id": "806b5b70-ca19-5753-a6f4-5f024bc0384e",
+      "scope": "instructional_speech_rate_and_structure",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "steps_ordered_with_connectives_at_measured_pace",
+      "fail_rule": "no_sequence_or_rate_inappropriate",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "41741e2c-f2d8-5101-8f3a-b883ec716eb9",
+      "prompt_id": "8ae78667-10cf-5ca8-b73b-e84e5b51f4db",
+      "scope": "professional_structured_speech",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_3_update_elements_covered_at_professional_pace",
+      "fail_rule": "elements_missing_or_rate_inappropriate",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "a5695140-4b0b-542d-aa3c-94d2e36ac6dd",
+      "prompt_id": "353b8326-7599-59c2-bd1d-dabf3eaa5f79",
+      "scope": "pause_placement_at_punctuation",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "pauses_at_punctuation_only_no_mid_clause_pauses",
+      "fail_rule": "mid_clause_pauses_detected",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "4e783c74-60c9-5bfd-97af-76ba0a4ffe26",
+      "prompt_id": "596b1959-afba-5e4a-9d06-f5be05613a06",
+      "scope": "timed_professional_introduction",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_3_elements_in_30_seconds_at_professional_pace",
+      "fail_rule": "elements_missing_or_significant_over_or_undertime",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "a57da60c-8bda-57af-b610-673eb8468130",
+      "prompt_id": "ed6ad020-d8a3-57ff-a577-ae531fb7e450",
+      "scope": "breath_support",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "full_sentence_on_one_breath_voice_strong_to_end",
+      "fail_rule": "audible_breath_mid_sentence_or_voice_fades",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "0d5f601b-7598-53a9-9498-13f041b51655",
+      "prompt_id": "7ffc6b86-1034-556c-87a6-8a8c8266c02d",
+      "scope": "breath_support_voicemail",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "full_voicemail_on_one_breath_number_paced",
+      "fail_rule": "mid_message_gasp_or_voice_fades_before_thank_you",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "1f70b843-437d-5faf-8897-d664fca9647d",
+      "prompt_id": "1f24d891-905e-5b89-b430-6a52cea8d89b",
+      "scope": "breath_support_long_sentence",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "full_18_word_sentence_on_one_breath_even_volume",
+      "fail_rule": "audible_breath_gap_or_volume_drop_over_40_percent",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "fbda6597-c09d-50ca-bf78-12f815418ad5",
+      "prompt_id": "16690f99-ac1f-5b94-8637-efe21f0cbc46",
+      "scope": "controlled_breathing_two_sentences",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "breath_only_between_two_sentences_none_within",
+      "fail_rule": "breath_detected_within_either_sentence",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "eac31613-8d41-5c0d-9808-59e6703f0a9f",
+      "prompt_id": "2f21aac9-553e-59e7-aee1-47b30824af40",
+      "scope": "paragraph_breath_control",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "exactly_2_breath_points_one_between_s1_s2_none_within_any_sentence",
+      "fail_rule": "more_than_2_breaths_or_breath_mid_sentence",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "3793547d-b8af-5f14-8f4f-49790c0a6e8b",
+      "prompt_id": "2463e728-ea6e-559a-b5d5-c3cfdd5ff2ad",
+      "scope": "phrase_boundary_breathing_monologue",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "no_mid_phrase_breaths_natural_grouping",
+      "fail_rule": "mid_phrase_breath_detected_more_than_twice",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "39572dea-c5a1-5173-953e-e1be764aafc2",
+      "prompt_id": "81d9bf2a-e842-50d3-9bed-6baf7385db6e",
+      "scope": "pause_at_commas_only",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "3_pauses_at_comma_positions_none_elsewhere",
+      "fail_rule": "extra_pause_mid_phrase",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "1f038028-08af-5b72-bafc-27c94482ce96",
+      "prompt_id": "b2a19fbf-9961-595b-a98f-bc521d54ec9f",
+      "scope": "pause_at_full_stops_only",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "clean_pause_after_each_sentence_none_within",
+      "fail_rule": "extra_mid_sentence_pause",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "63092b8f-6496-5336-ae21-610134709660",
+      "prompt_id": "1b4a0a36-c267-5d6c-8449-1d050fd3a7d9",
+      "scope": "deliberate_pause_at_marked_positions",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "pauses_of_approximately_0.5s_at_both_markers",
+      "fail_rule": "no_pause_at_markers_or_pause_too_long",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "ad816e96-754a-5e8a-a6ee-be008db9a854",
+      "prompt_id": "313e2f58-93b4-5d44-9dfb-460e82c2ae5f",
+      "scope": "filler_word_elimination",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "zero_filler_words_detected",
+      "fail_rule": "2_or_more_filler_words",
+      "partial_pass": "1_filler_word"
+    },
+    {
+      "eval_target_id": "1650cee3-3695-5bba-9003-626bbc96631b",
+      "prompt_id": "70564d45-5f4b-56d8-93a7-7c9452e98ea0",
+      "scope": "filler_free_spontaneous_speech",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "zero_filler_words_in_60_second_retell",
+      "fail_rule": "3_or_more_fillers",
+      "partial_pass": "1_to_2_fillers"
+    },
+    {
+      "eval_target_id": "3e265003-e215-5fb0-8812-9ce7cecf48bc",
+      "prompt_id": "68f4530d-542d-54fa-88e6-8d42326d66d1",
+      "scope": "strategic_pausing_in_argument",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "at_least_3_deliberate_pauses_before_key_points",
+      "fail_rule": "no_deliberate_pauses_or_rushed_delivery",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "bb5b8381-a3a7-57e2-a044-43fee449cdfe",
+      "prompt_id": "47096741-8b5a-5bc0-8d36-acf94312109f",
+      "scope": "sentence_final_intonation",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "pitch_rises_on_final_word",
+      "fail_rule": "flat_or_falling_at_end",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "0073ad3a-0de4-5bc4-93ef-ec2fcf3cd0a8",
+      "prompt_id": "e57e045b-88db-5006-8525-653981f784c3",
+      "scope": "sentence_final_intonation",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "pitch_falls_on_final_word",
+      "fail_rule": "rising_or_flat_at_end",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "0773d516-a6b7-58bc-bb6d-c2d3e3ef75e0",
+      "prompt_id": "2d484da2-f3d9-50af-842d-8ae0d462ff6b",
+      "scope": "list_intonation_pattern",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "rise_on_schedule_and_budget_fall_on_timeline",
+      "fail_rule": "all_flat_or_wrong_pattern",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "3e0ff446-94f7-5c40-be8c-28a29b32232f",
+      "prompt_id": "affd300a-c633-5ef1-9970-b8e8ce92823b",
+      "scope": "surprise_intonation",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "notable_pitch_jump_on_day",
+      "fail_rule": "flat_or_mild_rise_only",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "08dd9faa-7328-58b8-a68e-6d8cd726cbc1",
+      "prompt_id": "5ab4601b-5448-5bbd-b99e-260fc448268d",
+      "scope": "intonation_contrast_same_sentence",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "audible_contrast_between_statement_and_question",
+      "fail_rule": "both_versions_sound_the_same",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "89e46374-7dcf-5f15-86a4-c898c29f6371",
+      "prompt_id": "e15f5d06-0768-5d35-bc5a-684bc5a4b203",
+      "scope": "contrastive_stress_meaning_shift",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "stress_on_SHE_in_v1_and_NEVER_in_v2_both_audible",
+      "fail_rule": "both_flat_no_contrast",
+      "partial_pass": "one_stress_correct"
+    },
+    {
+      "eval_target_id": "edb5f8ca-a3ac-5ab9-96cd-c39d1390776c",
+      "prompt_id": "b023ebe2-7f68-573f-b9c8-00460fbc4640",
+      "scope": "emotional_prosody",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "warmth_audible_in_prosody",
+      "fail_rule": "flat_monotone_delivery",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "0cabf1f2-7bae-5530-b732-edcb1c4a5199",
+      "prompt_id": "f51c69db-b7be-506b-ae98-058ef48e291f",
+      "scope": "empathetic_prosody",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "empathy_audible_delivery_measured_and_warm",
+      "fail_rule": "rushed_or_flat_delivery",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "469412f0-3f7d-56c4-b2ca-4f5980f31d38",
+      "prompt_id": "e0efc9b4-c8c7-56a3-9cea-016b0eb9e9a6",
+      "scope": "urgent_prosody",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "urgency_audible_but_calm_controlled",
+      "fail_rule": "panic_or_flat_delivery",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "20180909-1e8b-52a7-b138-19a7b12a98e7",
+      "prompt_id": "84268a10-0ba5-5281-a637-d2c4d89104e2",
+      "scope": "enthusiastic_prosody",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "wide_pitch_range_key_words_emphasised_genuine_energy",
+      "fail_rule": "flat_mechanical_reading",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "f831d78a-a2db-511a-b60d-e8d84d173407",
+      "prompt_id": "ac6d18a9-23e8-5252-948f-9857bf5848f7",
+      "scope": "emotional_contrast_same_sentence",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "audible_contrast_between_two_versions",
+      "fail_rule": "both_versions_sound_identical",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "b847aa12-a02a-53a4-ae05-cbff48297a89",
+      "prompt_id": "35a996db-f2c1-5209-ac21-ec90503407b4",
+      "scope": "emotional_arc_in_monologue",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "3_distinct_emotional_sections_audible",
+      "fail_rule": "flat_no_arc",
+      "partial_pass": "2_of_3_sections_distinct"
+    },
+    {
+      "eval_target_id": "cf37022d-017f-523f-9807-606efce7934f",
+      "prompt_id": "d4944bcf-b1ee-5d66-85d0-35f0981920c0",
+      "scope": "speech_rate_control",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "wpm_in_target_range_all_words_clear",
+      "fail_rule": "wpm_outside_range_or_words_unclear",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "00525675-69dd-56e5-bc61-7f72780239e5",
+      "prompt_id": "c80a427c-5e59-56c0-99ac-9a478b005465",
+      "scope": "speech_rate_control",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "wpm_in_range_intelligibility_maintained",
+      "fail_rule": "wpm_outside_range",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "1eb2fd5f-bbef-5703-8845-3592262a796c",
+      "prompt_id": "15f755d9-1cc3-5174-89b0-9785f175eed9",
+      "scope": "speech_rate_control",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "wpm_in_range_natural_grouping",
+      "fail_rule": "wpm_outside_range_or_unnatural_grouping",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "89831604-20dd-5251-abe3-a2f9096eb152",
+      "prompt_id": "2252a2c9-a121-5283-90d3-edf148b767e1",
+      "scope": "speech_rate_control",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "wpm_in_range_all_20_words_clear",
+      "fail_rule": "wpm_outside_range_or_words_unclear",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "3baf39c1-1829-5eca-b882-b1fbaf218edb",
+      "prompt_id": "c2d3a942-7f5c-5df0-8947-4740b1be13c6",
+      "scope": "speech_rate_control",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "wpm_in_range_all_22_words_intelligible",
+      "fail_rule": "wpm_outside_range_or_intelligibility_drops",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "2a93222c-285b-5fe0-8500-b8e670ace0a3",
+      "prompt_id": "1e14cb76-07a1-528a-af2f-b0e76e639a4a",
+      "scope": "natural_rate_spontaneous_speech",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "wpm_140_160_sustained_for_60_seconds",
+      "fail_rule": "wpm_outside_120_180_for_majority_of_speech",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "6cab5e08-2880-562c-b345-eed575b914c2",
+      "prompt_id": "87f5d971-406c-5599-951f-67e20b1b210e",
+      "scope": "word_linking",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "no_glottal_stop_between_words_natural_linking",
+      "fail_rule": "glottal_stop_or_word_by_word_delivery",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "685b8912-a4d9-5272-8d0e-0a2673ca7aba",
+      "prompt_id": "280e30dd-235d-59d0-beb6-b04168c9ae40",
+      "scope": "connected_speech_features",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "natural_connected_speech_flap_and_linking",
+      "fail_rule": "word_by_word_with_full_stops",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "f226e2fe-3114-5699-99f3-9e67df1fe62d",
+      "prompt_id": "04ddbf64-8b70-5f9a-a292-709fe326ebca",
+      "scope": "contractions_and_reductions",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "natural_contractions_and_function_word_reductions",
+      "fail_rule": "all_words_full_forms_robotic",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "aa876485-44d3-5687-be02-61bad9b5679a",
+      "prompt_id": "70efb3ab-131a-522c-886b-0d38bafe7eee",
+      "scope": "contractions_natural",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "both_contractions_natural_not_forced",
+      "fail_rule": "contractions_sound_laboured_or_expanded",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "9a32118e-267e-524f-8988-67dc29fd5cc9",
+      "prompt_id": "2ec82394-ad3f-5701-ac86-a8063905c693",
+      "scope": "full_connected_speech",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "natural_reductions_contractions_elisions_all_present",
+      "fail_rule": "formal_full_forms_throughout",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "7dcf1c4e-1ae5-5d77-9e9f-d7b6b4479068",
+      "prompt_id": "e2a7239c-a6bf-55bd-94e3-f71d2c015456",
+      "scope": "rhythm_naturalness_spontaneous",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "rhythm_naturalness_score_above_80",
+      "fail_rule": "rhythm_score_below_60",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "b1384cb5-a83e-5ed1-8b6e-f7ffcdb01dc5",
+      "prompt_id": "fbc842e0-f8ed-5680-9625-7ebe856fae69",
+      "scope": "gentle_onset_technique",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "soft_voicing_onset_no_hard_glottal_attack",
+      "fail_rule": "hard_glottal_attack_on_m",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "43c3e2bb-8d21-5d39-9c7b-a46852301da1",
+      "prompt_id": "e1c731f2-a2b3-5c35-ae52-231df7359313",
+      "scope": "prolonged_onset_technique",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "first_phoneme_prolonged_1_to_2_seconds_then_smooth_completion",
+      "fail_rule": "hard_onset_or_block_or_abrupt_start",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "e9ebc8d7-bfd8-56a3-aeed-e96c26939205",
+      "prompt_id": "c9bce959-c30f-5a32-9ea0-96190dc96442",
+      "scope": "voluntary_stuttering_and_cancellation",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "voluntary_repetition_produced_then_pause_then_clean_production",
+      "fail_rule": "no_pause_between_stutter_and_clean_or_neither_produced",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "a58f16c4-514c-5ae0-b848-7e9746a1fe70",
+      "prompt_id": "dd4e9110-bc33-5411-8561-9ad6256c5232",
+      "scope": "pull_out_technique",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "forward_movement_maintained_no_full_stops_smooth_release_from_any_block",
+      "fail_rule": "full_stop_and_restart_more_than_once",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "327a9439-da25-57e2-8a56-fad6e826cb20",
+      "prompt_id": "064645e0-6346-5b97-8c71-21f975848592",
+      "scope": "all_three_techniques_phone_roleplay",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "at_most_2_unmanaged_stutters_in_60_seconds",
+      "fail_rule": "more_than_4_unmanaged_stutters",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "b6692fd7-6976-5d17-86bd-6fca5365187e",
+      "prompt_id": "2c7a0820-c7b3-5ef4-a108-4170ba092858",
+      "scope": "preparatory_set_technique_use",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "proactive_technique_use_before_feared_words_at_most_3_unmanaged_blocks",
+      "fail_rule": "no_technique_use_or_more_than_5_unmanaged_blocks",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "bf7a6950-ae4a-52d7-b586-c439437c649c",
+      "prompt_id": "1745c335-d74b-5e7c-a08f-2d9dbebe8dd5",
+      "scope": "breath_at_marked_positions",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "breath_at_both_pipe_positions_none_elsewhere",
+      "fail_rule": "extra_breath_mid_phrase",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "afcf0a73-3c7b-5111-829e-5998eec7e5e1",
+      "prompt_id": "911de5cc-3dea-5096-ae9f-d4d93f9f32c8",
+      "scope": "breath_at_marked_positions",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "breath_at_both_positions_none_elsewhere",
+      "fail_rule": "extra_breath_or_missing_at_marked",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "27d5ced0-ad35-5583-9fc5-6679bf4506e4",
+      "prompt_id": "d4c2217e-40b9-589b-adeb-61bc47839991",
+      "scope": "self_selected_breath_groups",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "breath_groups_7_to_10_words_semantically_complete",
+      "fail_rule": "groups_too_short_under_4_or_too_long_over_14",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "bd621dc4-1362-5523-9d8b-a7f4ba63bd52",
+      "prompt_id": "177e41b5-4299-5392-8cbc-e7c1d5cb3cce",
+      "scope": "event_based_breath_grouping",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "3_events_each_on_one_breath_group_breath_between_events",
+      "fail_rule": "mid_event_breathing",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "7cc6fc62-46c9-5f9d-aacf-70461b5e09af",
+      "prompt_id": "a78eb46e-5e6d-54d1-aa43-c5b1fa556b2f",
+      "scope": "natural_breath_grouping_paragraph",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "groups_semantically_coherent_no_gasping",
+      "fail_rule": "over_long_groups_causing_gasping_or_over_short_choppy_groups",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "efd321fe-c80a-5c99-bfb1-0e79274c2e45",
+      "prompt_id": "61585775-98e0-5da8-a906-cd9d52ddd73a",
+      "scope": "phrase_boundary_breathing_90s",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "no_mid_phrase_breaths_natural_grouping_throughout",
+      "fail_rule": "mid_phrase_breath_more_than_3_times",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "8ef4cfc1-c339-5e67-9ba0-3a64a3d2b2d1",
+      "prompt_id": "313e3447-578f-5a22-a630-0f9c2db4b916",
+      "scope": "greeting_prosody",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "warmth_and_natural_varied_delivery",
+      "fail_rule": "flat_or_robotic",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "04221014-7555-5bb8-a083-22b6584daa0c",
+      "prompt_id": "4924e17b-cd8a-552f-852e-f851b2a884ac",
+      "scope": "list_intonation_prosody",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "rise_on_first_two_fall_on_third",
+      "fail_rule": "all_flat",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "d8ad34dd-9ef2-5e1b-ade0-310fba6b71c6",
+      "prompt_id": "62a08283-1958-5b18-a5d6-fd9471506ce5",
+      "scope": "expressive_prosody",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "pitch_range_above_8_semitones_key_words_emphasised",
+      "fail_rule": "pitch_range_below_4_semitones_monotone",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "76764412-2b5a-5241-a826-a95467a56d93",
+      "prompt_id": "7d3f5f4c-68ef-5774-93e8-66446603fc95",
+      "scope": "natural_prosody_spontaneous",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "varied_prosody_no_monotone_stretches",
+      "fail_rule": "flat_throughout_or_single_pitch",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "fc6f12f3-d5e6-5b42-b786-9dd2d03b59f0",
+      "prompt_id": "6da1e99d-ac9f-563a-84ee-0d496152b90e",
+      "scope": "prosodic_naturalness_persuasive",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "prosodic_naturalness_score_above_85",
+      "fail_rule": "score_below_65",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "2323fd34-0682-5354-b9d4-042077da5056",
+      "prompt_id": "d48069f1-277b-5eb9-87d5-219c57042753",
+      "scope": "broadcast_prosody",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "professional_broadcast_quality_all_checks_pass",
+      "fail_rule": "monotone_or_rate_outside_range",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "fc8de377-00c0-56c2-b9af-6357bb63b00f",
+      "prompt_id": "c5e33c9c-e88a-5d11-b8bf-c54bfe6afa30",
+      "scope": "structured_introduction",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_3_elements_in_3_sentences",
+      "fail_rule": "elements_missing",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "cc3d7dc7-dc00-523d-9b95-edf2e089baea",
+      "prompt_id": "0240c612-d8ef-52c9-bd44-e945a2f5c605",
+      "scope": "structured_3_part_introduction",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_3_elements_present_clear_delivery",
+      "fail_rule": "any_element_absent",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "0c86a623-6808-565a-9c8d-abd1df7579f8",
+      "prompt_id": "04d7c958-06d6-5fac-ac53-256719980227",
+      "scope": "6_element_introduction",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_6_elements_logical_flow",
+      "fail_rule": "3_or_more_missing",
+      "partial_pass": "5_of_6_covered"
+    },
+    {
+      "eval_target_id": "5b3c6dd2-de84-58eb-9989-717d678ac67c",
+      "prompt_id": "e1118412-6fe0-58dd-a566-4f2ddbfe25ea",
+      "scope": "professional_roleplay_introduction",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_3_elements_professional_warm_tone_45_seconds",
+      "fail_rule": "elements_missing_or_tone_inappropriate",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "9b89d99c-f02e-562d-936e-74a77f823b05",
+      "prompt_id": "c177db70-add1-5635-b11e-47d0022a5c4b",
+      "scope": "4_part_elevator_pitch",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_4_sections_audible_in_90_seconds",
+      "fail_rule": "2_or_more_sections_absent",
+      "partial_pass": "3_of_4_sections"
+    },
+    {
+      "eval_target_id": "50503211-26dc-5111-996a-4e30313f4363",
+      "prompt_id": "9eb89c16-0351-5ae9-8972-9b368a138111",
+      "scope": "panel_introduction_all_elements",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_4_elements_varied_delivery_120_seconds",
+      "fail_rule": "2_or_more_missing_or_flat",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "4e8f53da-1f0b-5e7d-afd4-30839b932a02",
+      "prompt_id": "ec561a01-0bed-5725-9d96-fa414dcc93c9",
+      "scope": "simple_order_intelligibility",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_order_details_intelligible_polite_tone",
+      "fail_rule": "critical_details_unclear",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "c4c7949a-aac0-565a-9083-2f1c6829ebe9",
+      "prompt_id": "401fab5a-a5ce-5bdb-98ae-e394faa81cc6",
+      "scope": "meal_order_intelligibility",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "dish_and_modifications_intelligible",
+      "fail_rule": "dish_name_unclear",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "d5ad03d7-fe92-5d13-b0a1-d98958693324",
+      "prompt_id": "a027da86-91dd-50d1-af0f-ee007056efa9",
+      "scope": "repetition_with_improved_clarity",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "second_attempt_louder_and_more_articulated",
+      "fail_rule": "second_attempt_same_or_quieter",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "c4929fa4-e4d8-5bae-9107-6056b0c3ced7",
+      "prompt_id": "ecc07efb-c69b-51ab-bb03-8a52bc043cd9",
+      "scope": "4_item_order_one_turn",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_4_items_in_one_fluent_turn",
+      "fail_rule": "2_or_fewer_items",
+      "partial_pass": "3_of_4_items"
+    },
+    {
+      "eval_target_id": "82bb49d2-7c78-5e4a-a970-930d30cb807a",
+      "prompt_id": "a1760db3-adf5-5cf9-a30d-5c39ad6de5f6",
+      "scope": "complaint_content_and_tone",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "error_described_resolution_requested_polite_tone",
+      "fail_rule": "aggressive_or_unclear",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "41b836fc-f7cd-5b5a-abb0-0379f66ad251",
+      "prompt_id": "c8ca4005-ef36-5a9b-a7d0-48a9a6eadb16",
+      "scope": "allergy_communication_clarity",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "both_restrictions_stated_question_asked_appropriately",
+      "fail_rule": "restriction_unclear_or_question_absent",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "0b443531-d920-5241-97d1-2890d08882e5",
+      "prompt_id": "30e8435c-b3a5-58eb-b59e-65a35dc00643",
+      "scope": "emergency_phrase_urgency",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "both_sentences_intelligible_urgency_in_prosody",
+      "fail_rule": "any_word_unclear_or_flat_delivery",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "18be67bb-12f3-57ce-a8f9-897d088a0c0a",
+      "prompt_id": "937a3d87-969d-56c6-90b3-fd3ff64634e7",
+      "scope": "emergency_warning_intelligibility",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_3_highlighted_words_intelligible_and_urgent",
+      "fail_rule": "any_highlighted_word_unclear",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "9d56721f-655f-5465-99ef-531ca0bab6cb",
+      "prompt_id": "02faa1f9-6e91-51cd-9f7e-7e62f1d85a1c",
+      "scope": "emergency_call_all_3_elements",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_3_elements_calm_and_clear",
+      "fail_rule": "location_or_emergency_unclear",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "04e8d1f4-fa12-53fc-bc2e-a19ded3e45ea",
+      "prompt_id": "46255667-e94e-5dd5-8c92-f4cc49b98feb",
+      "scope": "directions_intelligibility",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_landmarks_intelligible",
+      "fail_rule": "any_landmark_unclear",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "836355b5-3ca3-5eb1-876a-d2e87e886fca",
+      "prompt_id": "af06d23c-0a92-55e8-b8e3-5c24091cc705",
+      "scope": "emergency_relay_all_5_elements",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "5_elements_most_important_first_calm_delivery",
+      "fail_rule": "location_or_scene_absent",
+      "partial_pass": "4_of_5_elements"
+    },
+    {
+      "eval_target_id": "4ca9d61f-8d0a-59f4-815e-9e35d7370ece",
+      "prompt_id": "17d375de-cf87-505a-8184-3a6b7b3b47ea",
+      "scope": "emergency_group_briefing_3_sections",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_3_sections_authoritative_calm_90_seconds",
+      "fail_rule": "required_action_absent_or_unclear",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "7b96848a-ef23-5762-9979-97cca4d6343a",
+      "prompt_id": "a8dd9a37-9827-5ca0-b828-b728d2c3c5cd",
+      "scope": "voicemail_3_elements",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_3_elements_clear_number_paced",
+      "fail_rule": "name_or_number_unclear",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "a4a57083-2dab-5dfa-9bfe-9a28a84cd96c",
+      "prompt_id": "26eb2b0a-67ef-5a15-af63-875d57b0e2d3",
+      "scope": "transfer_request_intelligibility",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "department_name_intelligible_polite_tone",
+      "fail_rule": "department_name_unclear",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "6428e711-c3a0-53ff-9a7a-b0b4bf6ecdca",
+      "prompt_id": "90e74f1e-de4c-5cd2-8ca5-8587ee189350",
+      "scope": "voicemail_3_elements_paced",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_3_elements_dates_paced_clearly",
+      "fail_rule": "any_element_absent_or_dates_unclear",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "00244fd0-0039-5f3c-9e09-f8344a9f5666",
+      "prompt_id": "d22e2054-1454-51c9-bbf2-b5dd65ab849f",
+      "scope": "nato_spelling_accuracy",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_letters_in_correct_sequence_nato_terms_correct",
+      "fail_rule": "wrong_nato_term_or_letter_sequence_error",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "b8a9bb6e-e2cc-5f33-8d43-b1c28eabae89",
+      "prompt_id": "23f5e1d9-3af6-5ff4-a7b0-40c2db5c2a24",
+      "scope": "extended_call_composure_and_clarity",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "information_repeated_after_transfer_issue_resolved",
+      "fail_rule": "composure_lost_or_issue_unresolved",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "6979590f-ac36-5956-8408-bd70b6750f9e",
+      "prompt_id": "4528f983-fa8d-56e3-9390-ee0f4fbade79",
+      "scope": "formal_complaint_3_parts",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_3_elements_assertive_professional_90_seconds",
+      "fail_rule": "any_element_absent_or_aggressive_tone",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "fc6d41a7-832f-59ac-bc2a-95d4046e3289",
+      "prompt_id": "45e41407-9f4c-5336-919d-8f2571be21c3",
+      "scope": "polite_direction_request",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "opener_and_location_intelligible_polite",
+      "fail_rule": "location_unclear",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "5e86af79-cae2-5bf9-ba24-fc02e9303dd2",
+      "prompt_id": "ee025625-de96-51e2-bd7e-4981938ba619",
+      "scope": "item_request_clarity",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "specific_item_intelligible_polite_register",
+      "fail_rule": "item_unclear",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "68d90a73-e783-558f-bed1-018bd77fbd42",
+      "prompt_id": "9ce951a5-a2f8-55ba-8470-d2be2f596f9d",
+      "scope": "3_part_help_request",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "problem_request_thanks_all_clear",
+      "fail_rule": "request_absent_or_problem_unclear",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "6e748646-a29b-501d-81f2-8e3cd2c31596",
+      "prompt_id": "22be928c-08d1-5307-8cfd-56720236dcd2",
+      "scope": "medical_consultation_3_elements",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "symptom_duration_referral_all_clear",
+      "fail_rule": "referral_not_explicitly_requested",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "05a574af-6a93-5457-8cdf-93367e863fb1",
+      "prompt_id": "db4e1a7b-05ce-5963-9641-88efb45f52f6",
+      "scope": "professional_disclosure_request",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "disclosure_and_request_professional_confident",
+      "fail_rule": "excessive_apology_or_unclear_request",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "57b427f8-9b12-5093-a11e-e0229f2f9b7e",
+      "prompt_id": "2718c23d-aa76-5001-83c0-8d6f31cef177",
+      "scope": "assertive_communication",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "polite_interruption_then_clear_restatement",
+      "fail_rule": "aggressive_or_unclear_restatement",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "ed38fec3-d8a2-585a-9695-0f1aba629bb2",
+      "prompt_id": "27db500c-c725-56e8-a89b-af6a443a7b0a",
+      "scope": "rephrasing_same_meaning",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "same_meaning_different_words",
+      "fail_rule": "same_words_or_meaning_changed",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "49d35073-53ca-5f1f-96b1-8dd944cffac7",
+      "prompt_id": "b0d09bad-6703-54e6-9281-9f55a2ba5ff2",
+      "scope": "register_elevation",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "meaning_preserved_register_raised",
+      "fail_rule": "same_register_or_meaning_changed",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "6f0c8b14-2672-57d4-bb95-72d7d9cace94",
+      "prompt_id": "176dcda8-93fd-5730-9983-be5d81fd4604",
+      "scope": "simplification_accessibility",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "same_meaning_in_everyday_language",
+      "fail_rule": "technical_terms_retained",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "779233da-2186-5ccd-b87d-60e9b43d01b5",
+      "prompt_id": "7e31effc-e7b8-56ef-abc0-8aaed2354104",
+      "scope": "formal_register",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "formal_professional_same_meaning",
+      "fail_rule": "informal_words_retained",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "d3221932-2749-5af0-b41d-b01bdd8f6a1d",
+      "prompt_id": "20293ea8-b2c5-540c-9ee5-904ca9a3337c",
+      "scope": "register_variation_3_audiences",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "3_distinct_registers_all_same_concept",
+      "fail_rule": "all_same_register",
+      "partial_pass": "2_of_3_registers_distinct"
+    },
+    {
+      "eval_target_id": "4405933c-f25b-5ea3-9c9a-fbad4fd58474",
+      "prompt_id": "cd417a2e-5b26-5272-9763-c12893ee5182",
+      "scope": "3_progressive_simplifications",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "each_version_simpler_than_previous_third_universally_clear",
+      "fail_rule": "no_simplification_or_meaning_changed",
+      "partial_pass": "two_progressively_simpler"
+    },
+    {
+      "eval_target_id": "5b7dc652-2b28-51f6-bc59-de4aec3aec67",
+      "prompt_id": "bcf0d116-3d90-5ec0-9bf0-5afcca477350",
+      "scope": "timed_description_minimum_observations",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "3_or_more_observations_20_seconds",
+      "fail_rule": "fewer_than_3_observations",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "2f016d19-c8f2-5f77-870e-ec3e2fd2a580",
+      "prompt_id": "03e1704e-336c-5fdc-80f9-5730286602ea",
+      "scope": "opinion_2_reasons_timed",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "season_and_2_reasons_in_20_seconds",
+      "fail_rule": "fewer_than_2_reasons",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "612bf304-45ac-5ae0-8842-9a82625ee894",
+      "prompt_id": "c03e4ba8-6f34-5aed-9831-90c38d4934de",
+      "scope": "point_reason_example_structure",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_3_parts_in_45_seconds",
+      "fail_rule": "any_part_absent",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "0b597deb-9ed3-59cd-9c65-370aa34f54c7",
+      "prompt_id": "05b6e21c-0c55-58f6-8395-9695099cb876",
+      "scope": "sequenced_process_3_connectives",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "3_or_more_sequencing_words_process_in_order",
+      "fail_rule": "fewer_than_2_sequencing_words",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "6d3e677a-fe78-5bd0-bc9c-30430853af33",
+      "prompt_id": "96e20cd3-f87f-5b15-91b5-b31bf3a11b1b",
+      "scope": "4_part_presentation_structure",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "title_3_points_conclusion_in_90_seconds",
+      "fail_rule": "3_or_more_missing",
+      "partial_pass": "4_of_5_sections"
+    },
+    {
+      "eval_target_id": "5761a9a4-d42a-5477-8cb9-2a821be44ffb",
+      "prompt_id": "44a96de1-4138-5c86-aaf5-5fd77d769a65",
+      "scope": "presentation_plus_qa",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "structured_solution_presented_qa_answered_directly",
+      "fail_rule": "solution_vague_or_qa_avoided",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "2c7c3db1-8fca-57e6-9f86-74baeda12107",
+      "prompt_id": "714024ca-c042-55d6-8e68-d34ac2f8ca1c",
+      "scope": "3_steps_with_connectives",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "3_steps_with_connectives_logical_order",
+      "fail_rule": "steps_out_of_order_or_connectives_absent",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "ff866493-f007-56f9-add0-74f123ce10d0",
+      "prompt_id": "6036162e-1cd3-500c-9fe7-06bf0ef31478",
+      "scope": "practical_solution_3_steps",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "3_practical_steps_logical_calm",
+      "fail_rule": "fewer_than_3_steps",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "e626f141-ba9c-53d5-8de7-1ae0853edaab",
+      "prompt_id": "e4c9027e-0d43-5183-b8b3-34fc979156a3",
+      "scope": "5_step_technical_process",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "5_or_more_steps_correct_sequence",
+      "fail_rule": "fewer_than_4_steps",
+      "partial_pass": "4_steps"
+    },
+    {
+      "eval_target_id": "ed9268fd-1338-5c41-9af3-da304663de71",
+      "prompt_id": "c9a6786d-a987-5181-8755-d2c311618974",
+      "scope": "4_step_ethical_decision",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "4_steps_with_ethical_reasoning",
+      "fail_rule": "fewer_than_4_steps_or_unethical_solution",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "2482eae4-ab9c-514d-9721-c2bce95d6761",
+      "prompt_id": "91644466-3374-5597-8ce1-90e0d2ddba66",
+      "scope": "prioritised_calm_problem_solving",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "most_urgent_actions_first_calm_delivery",
+      "fail_rule": "panic_or_no_prioritisation",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "541b961d-88b4-5dda-8024-0cc3db551e55",
+      "prompt_id": "6f7a5f73-db1a-5c54-8151-b847377cfe40",
+      "scope": "4_step_diplomatic_conflict_resolution",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "4_steps_diplomatic_language_structured",
+      "fail_rule": "aggressive_language_or_fewer_than_3_steps",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "65179b86-6708-5c00-81f0-2bd5d2cdddb4",
+      "prompt_id": "c9f02b92-6dc2-5885-bca8-12908664af8e",
+      "scope": "opinion_with_reason_one_sentence",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "clear_position_and_reason_expressed",
+      "fail_rule": "no_clear_position",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "38a2bb35-69c3-5255-99cf-4d43937b1af7",
+      "prompt_id": "0e6d7046-51e7-5a06-83d7-cb7c92442129",
+      "scope": "position_with_reason",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "position_stated_and_reason_given",
+      "fail_rule": "no_position_or_no_reason",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "ce733a86-43f0-555a-94ac-6e2751d51bd7",
+      "prompt_id": "eb044fa0-c74a-50da-b3d0-f440ee929a94",
+      "scope": "3_signposted_reasons_60_seconds",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "3_reasons_with_signposting_in_60_seconds",
+      "fail_rule": "fewer_than_2_reasons",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "43419edc-2ae2-5112-8ca6-ab43032d9818",
+      "prompt_id": "3a8433b1-a20d-5c82-825c-77dacf0ca0ec",
+      "scope": "balanced_argument_both_sides",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "30s_each_side_transition_used",
+      "fail_rule": "one_side_dominant_or_no_transition",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "7608c34b-879c-5fc3-a4c9-a2e845d95f07",
+      "prompt_id": "c7d3b6e5-803a-52ea-b6f4-2df5677b3693",
+      "scope": "argument_and_rebuttal_structure",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "90s_argument_structured_30s_rebuttal_addresses_counter",
+      "fail_rule": "rebuttal_absent_or_evasive",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "5225349f-78bd-5312-9860-485886e6d698",
+      "prompt_id": "4a219a6f-f717-58a3-a5a7-4b08575f90a6",
+      "scope": "sustained_counter_argument_2_minutes",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "structured_evidence_based_2_minute_argument",
+      "fail_rule": "argument_collapses_or_unsupported",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "78a71765-94bd-514b-bce0-6eba1df76e31",
+      "prompt_id": "5de5c33d-02ff-5501-9f3a-6da5808ff548",
+      "scope": "diary_2_3_sentences_past_tense",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "activity_and_reason_in_past_tense",
+      "fail_rule": "no_activity_or_no_reason",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "f8d71b91-213a-5b15-8ada-4ab5a94da574",
+      "prompt_id": "c044367c-8a31-5688-94b5-d5abfb80d950",
+      "scope": "best_part_plus_because_clause",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "best_part_stated_and_because_clause_present",
+      "fail_rule": "because_clause_absent",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "e466c2d6-c406-513f-b04a-6ea6979b2ec4",
+      "prompt_id": "47675bc9-cb0f-5e78-b438-946b7794b633",
+      "scope": "3_part_60_second_diary",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_3_parts_in_60_seconds",
+      "fail_rule": "any_part_absent",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "067e2d1b-8852-5c35-91ca-ec6850f56d95",
+      "prompt_id": "765a7ac2-9c44-5e5e-a32a-b9ddea373509",
+      "scope": "conversation_retell_3_elements",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "who_topic_outcome_all_present",
+      "fail_rule": "any_element_absent",
+      "partial_pass": null
+    },
+    {
+      "eval_target_id": "e18db47c-bea7-520d-bde6-76190b49cdfc",
+      "prompt_id": "e6fa9b68-3b16-5f82-8a39-f2fdfbe15fd4",
+      "scope": "4_part_reflective_diary",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "all_4_parts_in_2_minutes",
+      "fail_rule": "2_or_fewer_parts",
+      "partial_pass": "3_of_4_parts"
+    },
+    {
+      "eval_target_id": "48d93f06-03c9-5053-b484-7303255ec839",
+      "prompt_id": "3f4b8405-26ac-5087-963f-cac1835737ae",
+      "scope": "diary_plus_meta_evaluation",
+      "target_phonemes": null,
+      "check_on_words": null,
+      "substitution_errors": null,
+      "pass_rule": "diary_and_self_evaluation_both_present_and_specific",
+      "fail_rule": "evaluation_absent_or_vague",
+      "partial_pass": null
+    }
+  ]
+}

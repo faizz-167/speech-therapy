@@ -1,0 +1,1269 @@
+{
+  "table": "feedback_rule",
+  "source": "adult_tasks_v3.json",
+  "description": "Pass/partial/fail feedback messages per prompt",
+  "row_count": 180,
+  "generated_at": "2025-01-01T00:00:00Z",
+  "data": [
+    {
+      "feedback_id": "f6a72523-348c-51ca-88fe-fa5ebe34695f",
+      "prompt_id": "3ba2e236-b230-5d66-b41a-d8e80a1741c4",
+      "pass_message": "Good attempt — both words clearly different.",
+      "partial_message": null,
+      "fail_message": "Try again — focus on the first sound of each word."
+    },
+    {
+      "feedback_id": "c384dbb4-a58b-5c5b-ba32-83bbf52cccb3",
+      "prompt_id": "64d4fd47-f779-59ce-9fc8-839714d33a49",
+      "pass_message": "Excellent — 'pan' and 'ban' sounded clearly different. The /p/ and /b/ contrast was clear.",
+      "partial_message": "One word was clear. Try saying them again — the difference is voicing: /p/ has no voice, /b/ has voice.",
+      "fail_message": "Try again. Say 'pan' and 'ban' — your lips do the same shape but 'b' has a buzz in your throat."
+    },
+    {
+      "feedback_id": "78e52ced-2fb8-5292-9695-bf02d87ca354",
+      "prompt_id": "9fc7a8d8-b581-5ad9-a75f-9fd9cf4d1502",
+      "pass_message": "Good — both words clearly different.",
+      "partial_message": null,
+      "fail_message": "Focus on making the first sound of each word different."
+    },
+    {
+      "feedback_id": "74fdac4f-8b4f-563c-b1b0-f0b1619028eb",
+      "prompt_id": "5d003ed6-8d70-57a4-919f-e8bc936e34a4",
+      "pass_message": "Both sentences were clear — 'vine' and 'wine' sounded unmistakably different in context.",
+      "partial_message": "One word was correct. Make sure the other contrast is clear too.",
+      "fail_message": "The two words sounded too similar. 'vine' needs /v/ — teeth on lower lip. 'wine' needs /w/ — rounded lips."
+    },
+    {
+      "feedback_id": "f5fb06a0-b6f3-5936-9768-9b001809e132",
+      "prompt_id": "0ea81e87-ffa8-5169-8b04-569a2eb4e076",
+      "pass_message": "Good — both words distinct.",
+      "partial_message": null,
+      "fail_message": "Make sure right and light sound different from each other."
+    },
+    {
+      "feedback_id": "c7dc0d68-b68f-50c1-8021-54c599838a1f",
+      "prompt_id": "f1966b26-37b9-5d6e-84e2-276382960284",
+      "pass_message": "Excellent — every /th/ and /f/ sound was clear and distinct throughout the sentence.",
+      "partial_message": "Most sounds were correct. Check the words where /th/ and /f/ might have swapped.",
+      "fail_message": "Some /th/ and /f/ sounds were confused. /th/ needs tongue between teeth — /f/ needs teeth on lower lip."
+    },
+    {
+      "feedback_id": "04c0b657-b8e9-55d0-80ba-ed8e3daf8af9",
+      "prompt_id": "d66910eb-cec2-5511-9bd1-7930318779b2",
+      "pass_message": "Good — all three words started clearly.",
+      "partial_message": null,
+      "fail_message": "Focus on the /r/ sound at the start of each word."
+    },
+    {
+      "feedback_id": "d22e6f62-1805-5373-b83c-d3a1c80473d6",
+      "prompt_id": "2b613ec6-4edc-528f-95a3-9f4ad3599c4d",
+      "pass_message": "All three words were clear — great /m/ onset and distinct vowel sounds.",
+      "partial_message": "Most words were clear. Check that the vowels in map/mop/mud sound different from each other.",
+      "fail_message": "Focus on starting each word with /m/ — lips together, then open for the vowel."
+    },
+    {
+      "feedback_id": "17fe7019-11e4-5ab3-964a-8a61ba0d8e74",
+      "prompt_id": "496086b3-4a6f-5906-88cc-adfd017a79af",
+      "pass_message": "Good — all three started clearly and had all their syllables.",
+      "partial_message": null,
+      "fail_message": "Make sure to say every part of each word — especially the longer ones."
+    },
+    {
+      "feedback_id": "5e16b603-8c75-532b-82f3-8a2f4a091312",
+      "prompt_id": "935e331a-3b93-5899-b076-f2f76fd427a7",
+      "pass_message": "All clusters were intact — you said every consonant at the start of each word.",
+      "partial_message": "Most clusters were correct. One word had its first sound dropped.",
+      "fail_message": "Each word starts with two or three consonants — say ALL of them: st-orm, str-ong, str-eet."
+    },
+    {
+      "feedback_id": "c925f4ed-a614-54c3-a917-e4c6d26fb5f2",
+      "prompt_id": "11ae2c0b-5d84-5888-bbbc-98e2c1e9144c",
+      "pass_message": "Good — all syllables were present in each word.",
+      "partial_message": null,
+      "fail_message": "These are long words — say every syllable. Try them slowly first."
+    },
+    {
+      "feedback_id": "cb95b649-0c7b-514e-bede-1a0187396fba",
+      "prompt_id": "91bcebce-d8bc-5c34-aa95-94c3403af5d5",
+      "pass_message": "All three /θr/ clusters were correct — excellent control of a difficult combination.",
+      "partial_message": "Most were correct. On the problem word, make sure tongue touches between teeth before the /r/.",
+      "fail_message": "All three words need /θr/ at the start — tongue between teeth, then /r/. Try 'thrill' first slowly."
+    },
+    {
+      "feedback_id": "9360dc1a-6817-5f62-85cf-89093b9d0483",
+      "prompt_id": "5eefe7e0-ee8f-57a2-9e5d-457b1910aceb",
+      "pass_message": "Good — all words were clear at a slow pace.",
+      "partial_message": null,
+      "fail_message": "Try again at a slow, deliberate pace — say each word separately."
+    },
+    {
+      "feedback_id": "263f2f77-cd1b-5375-8591-6089e12931af",
+      "prompt_id": "739925f1-ef9e-5252-928f-7a09a9c21a43",
+      "pass_message": "Clear at natural pace — 'appointment' and 'Thursday' were both fully produced.",
+      "partial_message": "Most words were clear. One key word was slightly reduced at natural pace.",
+      "fail_message": "Slow down slightly. 'Thursday' needs a /th/ — tongue between teeth. 'Appointment' needs all 4 syllables."
+    },
+    {
+      "feedback_id": "d1c38818-a508-53fd-ac27-0a74bfbc8972",
+      "prompt_id": "d0e7ad55-5e1d-5bb0-9876-4264ea8f45ba",
+      "pass_message": "Good — all words present at both speeds.",
+      "partial_message": null,
+      "fail_message": "Some words were dropped at normal pace. Try again."
+    },
+    {
+      "feedback_id": "b95cd0f7-d519-5598-b968-f00a5b105bd5",
+      "prompt_id": "f79f02b8-b6e2-58da-9b13-870bed33ef2a",
+      "pass_message": "No words were lost at natural pace — 'carefully', 'fragile', and 'documents' were all clear.",
+      "partial_message": "Most words were intact. One complex word lost a syllable at faster pace.",
+      "fail_message": "Some words were shortened at normal pace. Focus on keeping 'carefully' (4 syllables) and 'fragile' complete."
+    },
+    {
+      "feedback_id": "443054d3-9685-5d4d-8e6c-c08245a6fed0",
+      "prompt_id": "52c0448d-11c1-5eae-bb32-96a52fdd9b49",
+      "pass_message": "Good — all three speed versions were present.",
+      "partial_message": null,
+      "fail_message": "Try again — make sure the long words stay complete even when reading fast."
+    },
+    {
+      "feedback_id": "3e6a2f61-7c1c-59d9-b5ac-2ee14623c66a",
+      "prompt_id": "a3d25075-b89f-54ea-9634-078c39dc6872",
+      "pass_message": "Impressive — both complex words were fully produced at all three speeds.",
+      "partial_message": "Correct at slow and normal — the fast rate caused a syllable to drop. That is expected; aim to maintain at normal pace.",
+      "fail_message": "The long words collapsed at faster rates. Practice 'sta-tis-ti-cian' and 'pre-lim-i-na-ry' at medium pace first."
+    },
+    {
+      "feedback_id": "52552a3a-ea69-5b9b-abf4-2c7ac26550f7",
+      "prompt_id": "6978e090-6648-5352-bb4a-96feef81b561",
+      "pass_message": "Good — voice was steady throughout.",
+      "partial_message": null,
+      "fail_message": "Your voice faded before the end. Support your breath to the last word."
+    },
+    {
+      "feedback_id": "09e068eb-0a38-522d-a062-af15cece2d1b",
+      "prompt_id": "239eea25-7a7b-590e-b66e-6eec9b5701f7",
+      "pass_message": "Voice was steady and projected clearly throughout the whole announcement.",
+      "partial_message": "Most of the sentence was clear but the final words faded slightly.",
+      "fail_message": "Your voice dropped before the end. Take a full breath before starting and support it to 'Conference Room B'."
+    },
+    {
+      "feedback_id": "0cc4e686-1103-5e14-86ca-69db860789ad",
+      "prompt_id": "a9dc05f2-0905-5d4f-9a09-2d14d385219e",
+      "pass_message": "Good — voice stayed consistent across all three sentences.",
+      "partial_message": null,
+      "fail_message": "Voice faded on one of the sentences. Support your breath at the start of each sentence."
+    },
+    {
+      "feedback_id": "6300764f-c1cd-51f9-835e-ffbeddbd0a2e",
+      "prompt_id": "7897eacc-cc53-51dd-a0bd-7ac5740f01f3",
+      "pass_message": "All complex words were clear and your delivery had natural pitch variation.",
+      "partial_message": "Words were clear but the delivery was quite flat. Vary your pitch to make the meaning come through.",
+      "fail_message": "Some complex words lost syllables. Say 'tech-nol-o-gy' and 'sig-nif-i-cant' carefully."
+    },
+    {
+      "feedback_id": "884e1783-a044-5674-994d-82c2c1cd3802",
+      "prompt_id": "e9db6938-11de-55a5-8c09-9177d01b45a5",
+      "pass_message": "Good — all words were present with natural phrasing.",
+      "partial_message": null,
+      "fail_message": "Some words were shortened. Say each syllable carefully."
+    },
+    {
+      "feedback_id": "ceee307c-cf40-55f8-99ef-1adcdc074eb3",
+      "prompt_id": "52d22c40-eb28-56f0-8e05-c351accc3dd1",
+      "pass_message": "The contrastive stress was clear — NOT, remarkable, and unprecedented all stood out.",
+      "partial_message": "Two out of three stress points were clear. Push the emphasis on the remaining word.",
+      "fail_message": "The sentence sounded flat. Stress NOT heavily and slow down on remarkable and unprecedented."
+    },
+    {
+      "feedback_id": "3da13f8e-c730-5b88-82cf-a9cec6e8a443",
+      "prompt_id": "52e47da0-d5bc-5a98-97d7-1e83ed0718c7",
+      "pass_message": "Good — stress was on the correct syllable for both words.",
+      "partial_message": null,
+      "fail_message": "Try again — focus on which syllable is louder and longer."
+    },
+    {
+      "feedback_id": "abd8452f-dd87-549a-8dde-33c0bdaca81c",
+      "prompt_id": "64c9fca5-5009-5518-95bf-dbbab0c4c86c",
+      "pass_message": "Natural phrase rhythm — 'like', 'order', and 'coffee' all stood out correctly.",
+      "partial_message": "Most of the stress was right. Make sure the small words like 'to' and 'a' are said lightly.",
+      "fail_message": "Stress the important words: 'like', 'order', 'coffee'. The smaller words should be said quickly and lightly."
+    },
+    {
+      "feedback_id": "1febdbf0-710b-5326-a90b-2f34a839572f",
+      "prompt_id": "7b15cfd3-04b4-576e-b159-f3adae73b372",
+      "pass_message": "Good — the stress shift between noun and verb was clear.",
+      "partial_message": null,
+      "fail_message": "The noun has stress on PER-, the verb on -MIT. Try again."
+    },
+    {
+      "feedback_id": "9a79968c-4269-5cc8-854f-688c511c0efe",
+      "prompt_id": "af0ba412-4f7b-5473-bd67-fc65f2ae86ec",
+      "pass_message": "Both words were correctly stressed — 're-CORD-breaking' and 'per-FORM-ance' sounded natural.",
+      "partial_message": "One word had the right stress. Check the other.",
+      "fail_message": "Say: re-CORD-breaking (not RE-cord) and per-FORM-ance (not PER-formance)."
+    },
+    {
+      "feedback_id": "38028d39-b2ea-58ca-8e2b-ef7c888dce37",
+      "prompt_id": "0e5e3646-acfb-59b4-a79b-2d79dd358ad9",
+      "pass_message": "Good — both derivative stress patterns were correct.",
+      "partial_message": null,
+      "fail_message": "Check pho-TOG-ra-pher and pho-to-GRAPH-ic again."
+    },
+    {
+      "feedback_id": "a4246ddd-c7da-5fb4-afe1-c581d893016b",
+      "prompt_id": "8298c51c-e5db-5fcb-8ced-f8d1d97b92cc",
+      "pass_message": "All four words were correctly stressed — the whole sentence sounded professional.",
+      "partial_message": "Most stress was correct. One word still has the stress on the wrong syllable.",
+      "fail_message": "Focus on: ad-VER-tise-ment / con-TAINED / mis-LEAD-ing / in-FOR-ma-tion. Say each one slowly first."
+    },
+    {
+      "feedback_id": "a828acf7-0adb-5508-93fe-fa324f67db42",
+      "prompt_id": "912e8eb0-d694-5ba3-b749-2810ec1e8e1e",
+      "pass_message": "Good — all five /s/ sounds were clear.",
+      "partial_message": null,
+      "fail_message": "Focus on the /s/ sound — sharp and unvoiced at the start of each word."
+    },
+    {
+      "feedback_id": "15f38678-5d67-5366-bc15-173f32b6bd61",
+      "prompt_id": "3fe8ab99-a1e2-5fe9-887a-927f6f455b3a",
+      "pass_message": "All five /l/ sounds were clear and consistent — tongue tip up on every word.",
+      "partial_message": "Most were correct. One word had a slightly different onset.",
+      "fail_message": "Tongue tip must touch behind your top teeth for /l/. Try each word slowly: l-ight, l-amp."
+    },
+    {
+      "feedback_id": "18532869-2e36-5ce4-8473-3383f946d664",
+      "prompt_id": "43f01c1c-af9c-5bba-9f42-a02c7972cb0b",
+      "pass_message": "Good — all /spr/ clusters were intact.",
+      "partial_message": null,
+      "fail_message": "Say all three sounds: s-p-r. Don't drop any of them."
+    },
+    {
+      "feedback_id": "7c649cc0-3559-5d90-9131-e9da518f29aa",
+      "prompt_id": "08cfa595-4766-5659-9e44-b737308f3b3d",
+      "pass_message": "All four /θr/ clusters were correct — excellent.",
+      "partial_message": "Most correct. One word had the cluster replaced.",
+      "fail_message": "/θr/ needs tongue between teeth then /r/ immediately. Try 'through' first."
+    },
+    {
+      "feedback_id": "8caf2710-a7aa-5722-904d-9cf9b81d3716",
+      "prompt_id": "8c21a438-cdef-590b-894e-a6686c06fac9",
+      "pass_message": "Good — all final consonant clusters were present.",
+      "partial_message": null,
+      "fail_message": "Don't add a vowel between the final consonants. Say them as one run."
+    },
+    {
+      "feedback_id": "1f30aac7-76ef-54ad-b4bc-2b9aa9e6ff77",
+      "prompt_id": "94f28c90-2762-59f3-a85c-10c240385e01",
+      "pass_message": "All three complex final clusters were complete — very impressive precision.",
+      "partial_message": "Two clusters were correct. One word had a consonant dropped at the end.",
+      "fail_message": "Say each cluster as a run without a vowel: str-ENGTHS, l-ENGTHS, br-EADTHS."
+    },
+    {
+      "feedback_id": "70ce7037-5368-57c9-8a3f-7d9e825eb744",
+      "prompt_id": "2c6ed137-5cf2-575a-8054-87addccedd45",
+      "pass_message": "Good — all nine words were clear.",
+      "partial_message": null,
+      "fail_message": "Try again — say every word clearly."
+    },
+    {
+      "feedback_id": "e7c8a57c-33f2-509b-8d8d-d8b6adc98b8a",
+      "prompt_id": "43057b6d-7f37-5eea-b4a6-5990602fe655",
+      "pass_message": "All five /l/ sounds were clear in connected speech — great consistency.",
+      "partial_message": "Four out of five /l/ sounds were correct. One word had a slight substitution.",
+      "fail_message": "In the sentence, keep the /l/ clear on Larry, likes, lemon, lime, and late."
+    },
+    {
+      "feedback_id": "4babb5fe-4f76-53ac-beb6-e66240c9f43c",
+      "prompt_id": "9d5ea709-1ba4-5f7a-ba95-a2437796aca9",
+      "pass_message": "Good — /r/ was consistent across all positions.",
+      "partial_message": null,
+      "fail_message": "Keep the /r/ clear — no /w/ sounds on any of the words."
+    },
+    {
+      "feedback_id": "8e295144-4a52-5710-975e-def0db0b23eb",
+      "prompt_id": "ae929ccc-c9da-522a-af5c-32a5da5f987f",
+      "pass_message": "All eight /θ/ sounds were correct across the full sentence — excellent.",
+      "partial_message": "Most /θ/ sounds were correct. A couple were replaced. Check 'think', 'those', and 'worth'.",
+      "fail_message": "Several /θ/ sounds were substituted. Remember: tongue between or near teeth for every /th/ word."
+    },
+    {
+      "feedback_id": "08bdfd9b-7c06-5e8b-b63e-87c99c95d2f2",
+      "prompt_id": "a85ee302-0da2-5240-b4e2-40fcd7aded43",
+      "pass_message": "Good — /s/ and /ʃ/ were distinct throughout.",
+      "partial_message": null,
+      "fail_message": "Some /s/ and /sh/ sounds were confused. /sh/ pulls the tongue slightly back."
+    },
+    {
+      "feedback_id": "eace55bd-7cd5-53e5-8aca-56c979637531",
+      "prompt_id": "bf4dfe0b-9f8d-54fc-b37c-b4ef11a82270",
+      "pass_message": "Excellent — all nine /r/ sounds were clear at natural pace. No /w/ substitutions.",
+      "partial_message": "Most /r/ sounds were correct at natural pace. One or two lost clarity at speed.",
+      "fail_message": "Some /r/ sounds became /w/ at natural pace. Slow down slightly and focus on tongue position."
+    },
+    {
+      "feedback_id": "ded7fdf0-a6f4-5d76-8fd8-99502f20fb73",
+      "prompt_id": "581d7b9e-fe14-5e0a-826c-7c3f9ab949f7",
+      "pass_message": "Good — each word was clear and separate.",
+      "partial_message": null,
+      "fail_message": "Slow down more — each word should sound distinct."
+    },
+    {
+      "feedback_id": "9e1b7c95-cb3c-5c14-ba74-99e331e2e911",
+      "prompt_id": "970fdb21-794b-5cd9-be95-e50d69503cb1",
+      "pass_message": "Same clarity at natural pace as at slow pace — great consistency.",
+      "partial_message": "Mostly clear. One word was slightly less intelligible at speed.",
+      "fail_message": "Some words were lost at natural pace. Slow down slightly — clarity comes before speed."
+    },
+    {
+      "feedback_id": "6298583c-c187-5590-b9b6-86ab416a63bc",
+      "prompt_id": "72a70215-29f5-5948-8af4-d688940dd81b",
+      "pass_message": "Good — all words were clear at both speeds.",
+      "partial_message": null,
+      "fail_message": "Some words were lost at normal pace. Focus on keeping the longer words complete."
+    },
+    {
+      "feedback_id": "cadc1470-3693-5582-81f3-5ecca527e5d4",
+      "prompt_id": "a0c5a4f4-66f3-5380-ae56-70f8f27fccc8",
+      "pass_message": "No syllables lost at normal pace — carefully, fragile, and documents were all complete.",
+      "partial_message": "One word lost a syllable at natural pace. Practice that word separately.",
+      "fail_message": "Several words were shortened at normal pace. Slow down slightly — you are rushing the longer words."
+    },
+    {
+      "feedback_id": "2589dc8d-672c-5b17-bf61-9815f4a95cf9",
+      "prompt_id": "0520c2fd-c95f-5c93-ac22-f569974737d7",
+      "pass_message": "Good — long words were intact at all three speeds.",
+      "partial_message": null,
+      "fail_message": "At fast rate some syllables collapsed. Practice the long words at medium pace first."
+    },
+    {
+      "feedback_id": "89b71de9-9c82-5b99-8691-6a89d9bd7dab",
+      "prompt_id": "de9eb791-eebb-5803-bd4e-e3a3bb81a60c",
+      "pass_message": "Both complex words were fully produced at all three speeds — excellent control.",
+      "partial_message": "Correct at slow and normal. Syllables dropped at fast rate — that is acceptable; aim for normal pace accuracy.",
+      "fail_message": "The long words lost syllables at faster rates. Practice sta-tis-ti-cian (5 syllables) and pre-lim-i-na-ry (5 syllables) at medium pace."
+    },
+    {
+      "feedback_id": "e979e45f-a484-504b-98f5-bd71fed49ea1",
+      "prompt_id": "ed6a15ff-37a8-5905-994a-5f3c87e7496f",
+      "pass_message": "Correct stress — to-MA-to.",
+      "partial_message": null,
+      "fail_message": "Stress should be on the middle syllable: to-MA-to, not TO-ma-to."
+    },
+    {
+      "feedback_id": "366a20a5-c33c-51c3-aa62-6d07f0663970",
+      "prompt_id": "dd9bc295-f91f-5266-a916-f30dc52eb8ed",
+      "pass_message": "Correct — ho-TEL with stress on the second syllable, naturally embedded in the sentence.",
+      "partial_message": "The isolated word was correct but stress shifted in the sentence.",
+      "fail_message": "Say ho-TEL — the second syllable is louder. Not HO-tel."
+    },
+    {
+      "feedback_id": "5c6cb9ca-88d8-5b3b-8e29-4865b6791635",
+      "prompt_id": "82c5322b-887b-567f-9f87-805d34189ea7",
+      "pass_message": "Correct — re-CORD-breaking.",
+      "partial_message": null,
+      "fail_message": "As a modifier it is re-CORD-breaking, not RE-cord-breaking."
+    },
+    {
+      "feedback_id": "b1efe32e-1bed-55e3-a9be-3fcaab8c156b",
+      "prompt_id": "19d4dcda-aaf8-576f-b2e5-66dbaec4e153",
+      "pass_message": "Both words correctly stressed — e-CON-o-my and un-PREC-e-dent-ed.",
+      "partial_message": "One word was correct. The other still has stress on the wrong syllable.",
+      "fail_message": "e-CON-o-my (not ECO-no-my) and un-PREC-e-dent-ed (not un-prece-DENT-ed)."
+    },
+    {
+      "feedback_id": "96de32cf-d672-5fc7-9855-06414ada8436",
+      "prompt_id": "4a68a5b6-961f-5bc9-9c19-38e543e6c7dc",
+      "pass_message": "Both derivative stress patterns were correct.",
+      "partial_message": null,
+      "fail_message": "pho-TOG-ra-pher (stress on 2nd) and pho-to-GRAPH-ic (stress on 3rd)."
+    },
+    {
+      "feedback_id": "e70b9ce0-4bad-5145-a3e8-f3e8c38ebf53",
+      "prompt_id": "f51c4c9b-9737-5623-a932-5da8c7894218",
+      "pass_message": "All four words were correctly stressed — the sentence sounded professional and natural.",
+      "partial_message": "Three correct. One target word still has stress on the wrong syllable.",
+      "fail_message": "Focus on: ad-VER-tise-ment / con-TAINED / mis-LEAD-ing / in-FOR-ma-tion. Say each slowly first."
+    },
+    {
+      "feedback_id": "00be5cf3-fac6-511a-915b-64a4da487c73",
+      "prompt_id": "342c1ebe-428e-5a5a-b5a7-58398199f032",
+      "pass_message": "Good — natural phrasing with sentence-final falls.",
+      "partial_message": null,
+      "fail_message": "Let your voice fall at the end of each sentence."
+    },
+    {
+      "feedback_id": "3e7fc21a-e2d9-530b-a29f-1f47045395f1",
+      "prompt_id": "8d69ad72-c76c-5871-a24e-3e0794dbb4f1",
+      "pass_message": "Natural phrasing and intonation — voice fell correctly at each sentence end.",
+      "partial_message": "Most sentences had correct intonation. One sentence stayed flat at the end.",
+      "fail_message": "Let your voice fall at the full stop. It should drop, not stay flat or rise."
+    },
+    {
+      "feedback_id": "2fbd5d94-66be-5d84-9096-e4b0385a3a2e",
+      "prompt_id": "187aa662-ef6a-5132-91d0-3f7bf626f198",
+      "pass_message": "Good — key words stood out and delivery was natural.",
+      "partial_message": null,
+      "fail_message": "Stress the important words more. Let your voice vary."
+    },
+    {
+      "feedback_id": "17c81dc8-4834-5917-854f-2f08300d4bfb",
+      "prompt_id": "56104aab-24f1-5c25-9e24-9f58d98aeee9",
+      "pass_message": "All complex words were complete and your delivery had natural variation.",
+      "partial_message": "Words were clear but delivery was quite flat. Add more variation to make the meaning come alive.",
+      "fail_message": "Check 'technology' (4 syllables), 'significant' (4), 'challenges' (3). Say each clearly."
+    },
+    {
+      "feedback_id": "c91536be-f30d-5064-8e60-58008d3eda43",
+      "prompt_id": "70232ccf-e1d4-534e-81e6-2ff1be9b210f",
+      "pass_message": "Good — all long words were fully produced with natural grouping.",
+      "partial_message": null,
+      "fail_message": "Some multisyllabic words lost syllables. Slow down slightly on the complex words."
+    },
+    {
+      "feedback_id": "d73d8183-7e0e-5a54-9fb5-8321c01508d2",
+      "prompt_id": "bc5bd8fa-6042-56a0-94b2-0245b2d0a272",
+      "pass_message": "Contrastive stress was clear — NOT, remarkable, and unprecedented all stood out strongly.",
+      "partial_message": "Two of three stress points were clear. Push harder on the remaining word.",
+      "fail_message": "The sentence sounded flat. Punch NOT strongly, and slow down on remarkable and unprecedented."
+    },
+    {
+      "feedback_id": "fd76e11d-4754-59a4-ae5c-bf24ce3523b3",
+      "prompt_id": "c6c668de-fd53-51ed-a75a-49c7edbb9feb",
+      "pass_message": "Good — natural relaxed pace.",
+      "partial_message": null,
+      "fail_message": "Try to speak more naturally — not too rushed or too slow."
+    },
+    {
+      "feedback_id": "e8366078-a351-5a78-beb4-e125ba00c273",
+      "prompt_id": "f016d3bc-4422-5076-ac63-2b7ac781e3a3",
+      "pass_message": "All three points covered at a natural, measured pace within 60 seconds.",
+      "partial_message": "Two out of three points were covered. Make sure to include all three.",
+      "fail_message": "You missed one of the key points. Cover: how you travel, how long it takes, what you do on the way."
+    },
+    {
+      "feedback_id": "176ac5a2-04ea-5373-91d3-38e75bfcbc2a",
+      "prompt_id": "806b5b70-ca19-5753-a6f4-5f024bc0384e",
+      "pass_message": "Good — clear steps at a good instructional pace.",
+      "partial_message": null,
+      "fail_message": "Order the steps clearly and use connecting words like first, then, finally."
+    },
+    {
+      "feedback_id": "de17bda7-4cec-5538-9dc3-062ce3012d79",
+      "prompt_id": "8ae78667-10cf-5ca8-b73b-e84e5b51f4db",
+      "pass_message": "Structured and professional — all three update sections covered at the right pace.",
+      "partial_message": "Two sections were clear. The third section was missing or unclear.",
+      "fail_message": "Cover all three: what is done, what is in progress, and what comes next. Keep a professional pace."
+    },
+    {
+      "feedback_id": "85249043-dafb-57cd-b3a7-36e8190d4628",
+      "prompt_id": "353b8326-7599-59c2-bd1d-dabf3eaa5f79",
+      "pass_message": "Good — pauses only at commas and full stops.",
+      "partial_message": null,
+      "fail_message": "Do not pause in the middle of a phrase — only at punctuation."
+    },
+    {
+      "feedback_id": "ba3e772f-15da-53da-8c39-7f4121d52bd5",
+      "prompt_id": "596b1959-afba-5e4a-9d06-f5be05613a06",
+      "pass_message": "Professional pace and all three points covered in 30 seconds.",
+      "partial_message": "All points covered but timing was off — aim for exactly 30 seconds.",
+      "fail_message": "Cover all three: your name, your role, and one skill — in 30 seconds at a measured pace."
+    },
+    {
+      "feedback_id": "18f84dec-c4ce-5c34-b9e8-ec9cae7f46d7",
+      "prompt_id": "ed6ad020-d8a3-57ff-a577-ae531fb7e450",
+      "pass_message": "Good — full sentence on one breath with strong voice to the end.",
+      "partial_message": null,
+      "fail_message": "Take a bigger breath before starting. Support the voice all the way to 'every day'."
+    },
+    {
+      "feedback_id": "6a0266f3-d710-5bf8-a715-637e025ee0d0",
+      "prompt_id": "7ffc6b86-1034-556c-87a6-8a8c8266c02d",
+      "pass_message": "Full voicemail on one breath — number was clear and voice stayed strong throughout.",
+      "partial_message": "Most of the message was clear on one breath. The number sequence was slightly rushed.",
+      "fail_message": "Take a full breath before starting. The whole voicemail must be on one breath — pace the number clearly."
+    },
+    {
+      "feedback_id": "14c63485-8462-565b-9169-ff281cce5e67",
+      "prompt_id": "1f24d891-905e-5b89-b430-6a52cea8d89b",
+      "pass_message": "Good — even volume throughout the full sentence on one breath.",
+      "partial_message": null,
+      "fail_message": "Volume dropped before the end. Take a bigger breath and support it all the way."
+    },
+    {
+      "feedback_id": "f8a9a7af-1ed3-5ad0-adc2-dfd4107728dd",
+      "prompt_id": "16690f99-ac1f-5b94-8637-efe21f0cbc46",
+      "pass_message": "Excellent — one breath per sentence with the breath taken only between them.",
+      "partial_message": "One sentence was clean. The other had a mid-sentence breath.",
+      "fail_message": "Each sentence needs to be on one breath. Take the breath only when the full stop appears."
+    },
+    {
+      "feedback_id": "b4ca4ea5-e0cc-5cda-96e0-b71bceb728ad",
+      "prompt_id": "2f21aac9-553e-59e7-aee1-47b30824af40",
+      "pass_message": "Good — exactly two breath points and none mid-sentence.",
+      "partial_message": null,
+      "fail_message": "You took extra breaths. Only breathe at the paragraph midpoint."
+    },
+    {
+      "feedback_id": "f8a27abe-1904-590d-af15-18da4a6855df",
+      "prompt_id": "2463e728-ea6e-559a-b5d5-c3cfdd5ff2ad",
+      "pass_message": "Natural phrase-boundary breathing throughout — speech flowed without interruption.",
+      "partial_message": "Mostly correct. One or two breaths fell in the middle of a phrase.",
+      "fail_message": "You breathed mid-phrase more than twice. Plan your breath points at the end of clauses, not inside them."
+    },
+    {
+      "feedback_id": "9059f6a8-1b39-500a-8414-814e7cd1bd0a",
+      "prompt_id": "81d9bf2a-e842-50d3-9bed-6baf7385db6e",
+      "pass_message": "Good — pauses exactly at commas and nowhere else.",
+      "partial_message": null,
+      "fail_message": "You paused where there was no comma. Only pause at the marked commas."
+    },
+    {
+      "feedback_id": "3b5fb55d-7d93-545d-becb-4016f0a16d50",
+      "prompt_id": "b2a19fbf-9961-595b-a98f-bc521d54ec9f",
+      "pass_message": "Clean sentence-level pauses — each sentence sounded complete before moving on.",
+      "partial_message": "Most pauses were correct. One sentence had an extra pause inside it.",
+      "fail_message": "Only pause at the full stop — not in the middle of a sentence."
+    },
+    {
+      "feedback_id": "33064e86-39b1-594b-b040-203416d5b5c7",
+      "prompt_id": "1b4a0a36-c267-5d6c-8449-1d050fd3a7d9",
+      "pass_message": "Good — deliberate pauses at the right positions and the right length.",
+      "partial_message": null,
+      "fail_message": "Insert a natural 0.5-second pause at the marked positions."
+    },
+    {
+      "feedback_id": "85c304dc-14f7-574f-9c7e-8d75ef45f4dd",
+      "prompt_id": "313e2f58-93b4-5d44-9dfb-460e82c2ae5f",
+      "pass_message": "Zero filler words — the sentence was delivered cleanly with intentional pauses instead.",
+      "partial_message": "One filler word appeared. Use a silent pause instead of 'um' or 'uh'.",
+      "fail_message": "Several filler words appeared. Replace every 'um' and 'uh' with a brief silent pause."
+    },
+    {
+      "feedback_id": "6e244032-0227-56bc-bc2a-631a5154df53",
+      "prompt_id": "70564d45-5f4b-56d8-93a7-7c9452e98ea0",
+      "pass_message": "Excellent — zero filler words in 60 seconds of spontaneous speech.",
+      "partial_message": null,
+      "fail_message": "Some filler words appeared. Use silent pauses instead."
+    },
+    {
+      "feedback_id": "1d8c0321-2744-5a7e-8ce6-b1881d8957ba",
+      "prompt_id": "68f4530d-542d-54fa-88e6-8d42326d66d1",
+      "pass_message": "Strategic pausing was effective — key points were set up with deliberate pre-pauses.",
+      "partial_message": "Two deliberate pauses detected. Aim for at least three to give weight to your main arguments.",
+      "fail_message": "The argument was rushed with no deliberate pauses. Pause before your main points to give them emphasis."
+    },
+    {
+      "feedback_id": "4209a16d-d1da-5ed0-a1cf-bd0f67738533",
+      "prompt_id": "47096741-8b5a-5bc0-8d36-acf94312109f",
+      "pass_message": "Good — voice rose at the end to signal a question.",
+      "partial_message": null,
+      "fail_message": "Let your voice go up on 'this' — that signals it is a question."
+    },
+    {
+      "feedback_id": "7040fd04-b911-5e5a-9955-437b31001295",
+      "prompt_id": "e57e045b-88db-5006-8525-653981f784c3",
+      "pass_message": "Definitive statement delivery — voice fell correctly at the end.",
+      "partial_message": null,
+      "fail_message": "Let your voice drop at 'three'. A falling tone makes it sound certain and final."
+    },
+    {
+      "feedback_id": "f56402bf-ceb4-5790-a15c-f3004fd085dc",
+      "prompt_id": "2d484da2-f3d9-50af-842d-8ae0d462ff6b",
+      "pass_message": "Good — correct rise-rise-fall pattern on the three list items.",
+      "partial_message": null,
+      "fail_message": "Rise on 'schedule' and 'budget', then fall on 'timeline' — that signals the list is complete."
+    },
+    {
+      "feedback_id": "a8f655ff-a6a1-5f33-a239-c8b5d82abdac",
+      "prompt_id": "affd300a-c633-5ef1-9970-b8e8ce92823b",
+      "pass_message": "Genuine surprise was audible — the pitch jumped high on 'day'.",
+      "partial_message": null,
+      "fail_message": "Exaggerate the surprise more — pitch should jump high on 'day'. Think: really?! He did it in ONE DAY?"
+    },
+    {
+      "feedback_id": "69e47a78-8f2c-5f5d-bc81-a875c339cb0c",
+      "prompt_id": "5ab4601b-5448-5bbd-b99e-260fc448268d",
+      "pass_message": "Good — the two versions were clearly different in intonation.",
+      "partial_message": null,
+      "fail_message": "The statement needs to fall at the end; the question needs to rise. Make the difference bigger."
+    },
+    {
+      "feedback_id": "657b48ac-df19-55b3-8cf1-b9b25a380a3c",
+      "prompt_id": "e15f5d06-0768-5d35-bc5a-684bc5a4b203",
+      "pass_message": "Both contrastive stress points were clear — the meaning shift was audible.",
+      "partial_message": "One sentence was correct. In the other, the wrong word received the stress.",
+      "fail_message": "Sentence 1: push SHE very hard (implying someone else said it). Sentence 2: push NEVER very hard (implying you absolutely didn't)."
+    },
+    {
+      "feedback_id": "3319d088-92c9-55c0-bc55-d52f8f2f8d65",
+      "prompt_id": "b023ebe2-7f68-573f-b9c8-00460fbc4640",
+      "pass_message": "Good — warmth came through in your delivery.",
+      "partial_message": null,
+      "fail_message": "Add more warmth. Let your pitch range open up and put energy into the words."
+    },
+    {
+      "feedback_id": "30ebd32a-8ab1-52a1-9820-2a2aee4a2462",
+      "prompt_id": "f51c69db-b7be-506b-ae98-058ef48e291f",
+      "pass_message": "Genuine empathy came through — measured, warm, and caring.",
+      "partial_message": "Words were clear but the delivery was slightly clinical. Slow down and lower your pitch slightly.",
+      "fail_message": "This needs to sound like you genuinely care. Take it slower and let warmth into your voice."
+    },
+    {
+      "feedback_id": "7764fdaa-7936-5a5f-bd41-665cc218de32",
+      "prompt_id": "e0efc9b4-c8c7-56a3-9cea-016b0eb9e9a6",
+      "pass_message": "Good — urgent but calm. Key words stood out clearly.",
+      "partial_message": null,
+      "fail_message": "Slightly faster and stress 'change', 'carefully', and 'soon'. Stay calm — no panic."
+    },
+    {
+      "feedback_id": "625bc789-8221-566f-a56b-0f078568209b",
+      "prompt_id": "84268a10-0ba5-5281-a637-d2c4d89104e2",
+      "pass_message": "Genuine enthusiasm — wide pitch range and all three key words stood out.",
+      "partial_message": "Energy was there but pitch range was a little narrow. Open your voice more on 'delighted' and 'honoured'.",
+      "fail_message": "This sounded flat. Exaggerate the enthusiasm — 'absolutely DELIGHTED', 'truly SPECIAL', 'greatly HONOURED'."
+    },
+    {
+      "feedback_id": "7f4b6e04-d3c8-562b-969c-cd4a1d4ccde0",
+      "prompt_id": "ac6d18a9-23e8-5252-948f-9857bf5848f7",
+      "pass_message": "Good contrast — genuine and sarcastic were clearly different.",
+      "partial_message": null,
+      "fail_message": "Make the contrast bigger. Genuine: warm rising tone. Sarcastic: flat, deadpan, possibly slower."
+    },
+    {
+      "feedback_id": "27b9563b-7818-5cf4-a7f7-3b72127f0cd8",
+      "prompt_id": "35a996db-f2c1-5209-ac21-ec90503407b4",
+      "pass_message": "Beautiful arc — calm opening, confident build, warm close. Natural and engaging.",
+      "partial_message": "Two of three emotional sections were distinct. One section didn't change enough.",
+      "fail_message": "The delivery was flat throughout. Structure it: calm start → build energy → land warmly at the close."
+    },
+    {
+      "feedback_id": "220ee2ab-eba1-5ed1-a22c-aa72728a2fa8",
+      "prompt_id": "d4944bcf-b1ee-5d66-85d0-35f0981920c0",
+      "pass_message": "Good pace — slow and deliberate at around 80 WPM.",
+      "partial_message": null,
+      "fail_message": "Try to slow down more. Aim for one word every three-quarters of a second."
+    },
+    {
+      "feedback_id": "70f71085-1679-5145-893e-b484348dd454",
+      "prompt_id": "c80a427c-5e59-56c0-99ac-9a478b005465",
+      "pass_message": "Good — ~90 WPM with all words clear.",
+      "partial_message": "Rate was right but one word was slightly unclear.",
+      "fail_message": "Aim for about 90 WPM — count to yourself or listen to the target pace."
+    },
+    {
+      "feedback_id": "c9baad13-a016-5098-ae2e-a288fcb094a7",
+      "prompt_id": "15f755d9-1cc3-5174-89b0-9785f175eed9",
+      "pass_message": "Good — natural conversational pace at ~120 WPM.",
+      "partial_message": null,
+      "fail_message": "Aim for 120 WPM — a natural conversational pace, not too slow or too fast."
+    },
+    {
+      "feedback_id": "f19c95f5-3c93-506e-a359-710fa95b1e82",
+      "prompt_id": "2252a2c9-a121-5283-90d3-edf148b767e1",
+      "pass_message": "Professional speaking rate with full intelligibility — excellent.",
+      "partial_message": "Rate was right but a word or two were slightly unclear at that pace.",
+      "fail_message": "~130 WPM is the target — confident professional pace. Record yourself and compare."
+    },
+    {
+      "feedback_id": "473f5303-4945-5b34-992c-821e0cdd2a3e",
+      "prompt_id": "c2d3a942-7f5c-5df0-8947-4740b1be13c6",
+      "pass_message": "Good — 150 WPM with all words clear.",
+      "partial_message": null,
+      "fail_message": "Aim for 150 WPM — push the pace but keep every word clear."
+    },
+    {
+      "feedback_id": "aa0b425d-ac5a-52c8-af89-e9fb41369e14",
+      "prompt_id": "1e14cb76-07a1-528a-af2f-b0e76e639a4a",
+      "pass_message": "Natural conversational rate — 140–160 WPM sustained naturally throughout.",
+      "partial_message": "Rate was mostly right. A few sections were slightly outside the target range.",
+      "fail_message": "Aim for 140–160 WPM — your natural comfortable speaking pace for conversation."
+    },
+    {
+      "feedback_id": "a99435e8-f94e-52f1-813f-4d8f8d4c029f",
+      "prompt_id": "87f5d971-406c-5599-951f-67e20b1b210e",
+      "pass_message": "Good — words linked naturally without gaps.",
+      "partial_message": null,
+      "fail_message": "Let the words flow together: hear_and_there. No stops between them."
+    },
+    {
+      "feedback_id": "0931e7cd-c34b-55b7-bca4-7f9d44f3adb3",
+      "prompt_id": "280e30dd-235d-59d0-beb6-b04168c9ae40",
+      "pass_message": "Natural connected speech — flap and linking both present.",
+      "partial_message": null,
+      "fail_message": "Say it as one flowing phrase: tur-nit-off. No stops between words."
+    },
+    {
+      "feedback_id": "5a94d8ee-68d3-516f-93bc-500a1b7342fc",
+      "prompt_id": "04ddbf64-8b70-5f9a-a292-709fe326ebca",
+      "pass_message": "Good — natural contractions and reduced function words.",
+      "partial_message": null,
+      "fail_message": "Say 'he'd' as one sound and reduce the small words. It should flow naturally."
+    },
+    {
+      "feedback_id": "f2aaa355-954f-5144-92d4-da3700b3147c",
+      "prompt_id": "70efb3ab-131a-522c-886b-0d38bafe7eee",
+      "pass_message": "Natural contractions and flowing connected speech.",
+      "partial_message": "Contractions were present but delivery was slightly stiff.",
+      "fail_message": "Let 'I've' and 'it's' flow naturally — don't say 'I have' and 'it is' as separate words."
+    },
+    {
+      "feedback_id": "cd0decc1-064a-54da-9b83-841fac133346",
+      "prompt_id": "2ec82394-ad3f-5701-ac86-a8063905c693",
+      "pass_message": "Good — full connected speech features present.",
+      "partial_message": null,
+      "fail_message": "Say 'wanna' and let 'I'd' and 'you'd' flow — do not say formal full forms."
+    },
+    {
+      "feedback_id": "f28931e5-a03e-5701-a113-c41e66f0134c",
+      "prompt_id": "e2a7239c-a6bf-55bd-94e3-f71d2c015456",
+      "pass_message": "Natural rhythm — connected speech features present throughout spontaneous speech.",
+      "partial_message": "Mostly natural. Some sections were slightly formal or staccato.",
+      "fail_message": "Your speech sounds word-by-word. Let words connect and use contractions naturally."
+    },
+    {
+      "feedback_id": "cf7c29ec-65bd-5f59-a55a-3da712bcaedd",
+      "prompt_id": "fbc842e0-f8ed-5680-9625-7ebe856fae69",
+      "pass_message": "Good gentle onset — soft contact on /m/ with no glottal attack.",
+      "partial_message": null,
+      "fail_message": "Start 'My' with a very soft /m/ — no hard push or squeeze at the start."
+    },
+    {
+      "feedback_id": "04c950cd-d110-5bcd-bedf-678f0a4f4334",
+      "prompt_id": "e1c731f2-a2b3-5c35-ae52-231df7359313",
+      "pass_message": "Good technique — prolonged gentle onset then smooth flow into the rest of the word.",
+      "partial_message": "Onset was prolonged but the transition into the word was tense.",
+      "fail_message": "Hold the very first sound softly for 1–2 seconds, then ease into the rest of the word."
+    },
+    {
+      "feedback_id": "17cee27f-73ce-52f2-a5d6-ba2bcdbebd03",
+      "prompt_id": "c9bce959-c30f-5a32-9ea0-96190dc96442",
+      "pass_message": "Good control — voluntary stutter followed by a clean production.",
+      "partial_message": null,
+      "fail_message": "Say 'to-to-today' deliberately, then pause, then say 'today' cleanly."
+    },
+    {
+      "feedback_id": "f60f584f-0fc9-5aad-ab7d-2566ab9afad5",
+      "prompt_id": "dd4e9110-bc33-5411-8561-9ad6256c5232",
+      "pass_message": "Good technique — forward movement throughout. Pull-out was applied and you kept going.",
+      "partial_message": "Mostly forward movement. One restart was noticed.",
+      "fail_message": "When you stutter, slow out of it — do not stop and start again. Keep moving forward."
+    },
+    {
+      "feedback_id": "f5a48bfd-dc81-5723-91ca-c2f60e6f9e3d",
+      "prompt_id": "064645e0-6346-5b97-8c71-21f975848592",
+      "pass_message": "Good technique use — the call was managed effectively with at most 2 unmanaged moments.",
+      "partial_message": null,
+      "fail_message": "Use gentle onset at the start, pull-out during any stutter, and cancellation if you restart."
+    },
+    {
+      "feedback_id": "e540cfd4-915e-5ee5-9338-0f2784dd9e5c",
+      "prompt_id": "2c7a0820-c7b3-5ef4-a108-4170ba092858",
+      "pass_message": "Proactive technique use throughout — preparatory sets visible before difficult words.",
+      "partial_message": "Some technique use detected. Aim to apply it more consistently.",
+      "fail_message": "Before any word that feels difficult: pause, plan your onset, then speak smoothly. Be proactive."
+    },
+    {
+      "feedback_id": "ba0ce432-7e09-53ee-997d-3655ecc9d468",
+      "prompt_id": "1745c335-d74b-5e7c-a08f-2d9dbebe8dd5",
+      "pass_message": "Good — breath exactly at the two marked positions.",
+      "partial_message": null,
+      "fail_message": "Only breathe where marked. Do not add extra pauses."
+    },
+    {
+      "feedback_id": "9d7e1ba2-d192-5305-8730-2a76eb47438a",
+      "prompt_id": "911de5cc-3dea-5096-ae9f-d4d93f9f32c8",
+      "pass_message": "Breath exactly at the right places — sentence groups sounded complete.",
+      "partial_message": "One breath was in the right place. The other was either missing or in the wrong spot.",
+      "fail_message": "Breathe after 'said' and after 'week' — not anywhere else in the sentence."
+    },
+    {
+      "feedback_id": "b3419539-3ddc-520f-a66c-ffcb8c296182",
+      "prompt_id": "d4c2217e-40b9-589b-adeb-61bc47839991",
+      "pass_message": "Good self-selected groups — 7 to 10 words each, all semantically complete.",
+      "partial_message": null,
+      "fail_message": "Your breath groups were either too short or too long. Aim for 7–10 words per group."
+    },
+    {
+      "feedback_id": "df9a32d0-468a-57f1-a46f-ccc91c813f30",
+      "prompt_id": "177e41b5-4299-5392-8cbc-e7c1d5cb3cce",
+      "pass_message": "Each story event was on one breath group — natural and well-organised.",
+      "partial_message": "Two events were grouped correctly. One had a mid-event breath.",
+      "fail_message": "Plan one breath group per event — finish the whole event before breathing."
+    },
+    {
+      "feedback_id": "a5b683b7-7d5a-5e9b-8f8a-fc26d87a2401",
+      "prompt_id": "a78eb46e-5e6d-54d1-aa43-c5b1fa556b2f",
+      "pass_message": "Natural breath grouping — groups were coherent and no gasping.",
+      "partial_message": null,
+      "fail_message": "Your groups were either too long (gasping) or too short (choppy). Aim for natural phrase boundaries."
+    },
+    {
+      "feedback_id": "68526ed0-28ec-53cc-a62c-5df45f4a1a72",
+      "prompt_id": "61585775-98e0-5da8-a906-cd9d52ddd73a",
+      "pass_message": "Excellent breath organisation — natural phrase boundaries used throughout 90 seconds.",
+      "partial_message": "Mostly good. Two or three breaths fell mid-phrase.",
+      "fail_message": "Plan your breath points at the end of clauses and phrases — never in the middle of a thought."
+    },
+    {
+      "feedback_id": "aa68c521-ae9f-51ab-bb79-273761069af5",
+      "prompt_id": "313e3447-578f-5a22-a630-0f9c2db4b916",
+      "pass_message": "Good — warm professional greeting.",
+      "partial_message": null,
+      "fail_message": "Add warmth — let your voice open up on 'Good morning'."
+    },
+    {
+      "feedback_id": "cea44a5f-0118-557f-99fc-185577b9b2b9",
+      "prompt_id": "4924e17b-cd8a-552f-852e-f851b2a884ac",
+      "pass_message": "Perfect list intonation — rise-rise-fall. The three items sounded naturally listed.",
+      "partial_message": "Two items had correct intonation. The third did not follow the pattern.",
+      "fail_message": "Use rise-rise-fall: schedule↗ budget↗ goals↘. The fall signals the list is complete."
+    },
+    {
+      "feedback_id": "cd082aa1-3a61-5599-b762-cabb75cc72a2",
+      "prompt_id": "62a08283-1958-5b18-a5d6-fd9471506ce5",
+      "pass_message": "Good — wide pitch range and key words emphasised.",
+      "partial_message": null,
+      "fail_message": "Let your pitch open up more. The word 'incredible' should reach the top of your range."
+    },
+    {
+      "feedback_id": "fa7d3cd2-6160-5180-8eb3-8da4d72e6887",
+      "prompt_id": "7d3f5f4c-68ef-5774-93e8-66446603fc95",
+      "pass_message": "Natural varied prosody — no monotone sections throughout the description.",
+      "partial_message": "Mostly varied. One section became slightly flat.",
+      "fail_message": "Your description was too flat. Vary your pitch — some words should go up, some should come down."
+    },
+    {
+      "feedback_id": "016781ac-9bb6-5794-8be5-58d460b93bb4",
+      "prompt_id": "6da1e99d-ac9f-563a-84ee-0d496152b90e",
+      "pass_message": "Prosodic naturalness above 85 — convincing and well-modulated delivery.",
+      "partial_message": null,
+      "fail_message": "Aim for natural pitch variation, appropriate emphasis, and a varied rate."
+    },
+    {
+      "feedback_id": "b23ecd25-ab9a-56d0-af96-fcb52e5f3f6d",
+      "prompt_id": "d48069f1-277b-5eb9-87d5-219c57042753",
+      "pass_message": "Broadcast quality — professional rate, natural intonation, and appropriate emphasis.",
+      "partial_message": "Rate and words were correct but delivery was slightly flat or intonation was off at a sentence end.",
+      "fail_message": "Aim for 140–165 WPM with falling intonation at each full stop and clear emphasis on key facts."
+    },
+    {
+      "feedback_id": "6b434d46-1262-5b3a-b69f-d1b9b5d65acf",
+      "prompt_id": "c5e33c9c-e88a-5d11-b8bf-c54bfe6afa30",
+      "pass_message": "Good — name, role, and interest all clearly introduced.",
+      "partial_message": null,
+      "fail_message": "Cover all three: your name, what you do, and one thing you enjoy."
+    },
+    {
+      "feedback_id": "ae281a6b-adb2-5a00-a72f-fba98be8ac71",
+      "prompt_id": "0240c612-d8ef-52c9-bd44-e945a2f5c605",
+      "pass_message": "All three elements were clear — name, reason for therapy, and your goal.",
+      "partial_message": "Two elements were clear. One was missing or unclear.",
+      "fail_message": "Cover all three: your name, why you are here, and what you want to achieve."
+    },
+    {
+      "feedback_id": "923a2f0d-4f8d-51f2-901d-209479ec708e",
+      "prompt_id": "04d7c958-06d6-5fac-ac53-256719980227",
+      "pass_message": "Good — all 6 elements covered with logical flow.",
+      "partial_message": null,
+      "fail_message": "Make sure to cover all 6 parts in order."
+    },
+    {
+      "feedback_id": "626e03e4-c305-54b9-9fe2-be7fd6436239",
+      "prompt_id": "e1118412-6fe0-58dd-a566-4f2ddbfe25ea",
+      "pass_message": "Professional and warm — all three elements covered naturally in 45 seconds.",
+      "partial_message": "Elements were covered but tone was slightly formal or cold.",
+      "fail_message": "Cover name, background, and why you joined — with a warm and professional tone."
+    },
+    {
+      "feedback_id": "aef17963-8bef-59fa-b945-647ea4df29b6",
+      "prompt_id": "c177db70-add1-5635-b11e-47d0022a5c4b",
+      "pass_message": "Good 90-second pitch — hook, skills, value, and close all present.",
+      "partial_message": null,
+      "fail_message": "Structure it: Hook → Skills → Value → Closing."
+    },
+    {
+      "feedback_id": "7ec287ff-f8d2-5a1c-85e0-b73f2ebe8be4",
+      "prompt_id": "9eb89c16-0351-5ae9-8972-9b368a138111",
+      "pass_message": "Professional panel introduction — all elements present with varied, engaging delivery.",
+      "partial_message": "Most elements were there. One was missing or delivery was slightly flat.",
+      "fail_message": "Cover all four: name, background, a key strength, and a closing statement. Vary your voice."
+    },
+    {
+      "feedback_id": "13d36763-3635-5f49-b53b-45bcf98b02d5",
+      "prompt_id": "ec561a01-0bed-5725-9d96-fa414dcc93c9",
+      "pass_message": "Good — all order details were clear.",
+      "partial_message": null,
+      "fail_message": "Make sure all the details of your order are clearly audible."
+    },
+    {
+      "feedback_id": "6f67ec71-a595-5adc-abc7-3e2d9828d1d2",
+      "prompt_id": "401fab5a-a5ce-5bdb-98ae-e394faa81cc6",
+      "pass_message": "Order was clear — dish and any modifications audible.",
+      "partial_message": null,
+      "fail_message": "Make the dish name very clear — that is the most important part of an order."
+    },
+    {
+      "feedback_id": "382da27a-dc3e-550d-97de-5c44b70eb2fe",
+      "prompt_id": "a027da86-91dd-50d1-af0f-ee007056efa9",
+      "pass_message": "Good — louder and more clearly articulated on the repeat.",
+      "partial_message": null,
+      "fail_message": "The second attempt should be louder AND more precisely articulated."
+    },
+    {
+      "feedback_id": "e9e71458-fbf6-50ea-938d-f2bee6534c56",
+      "prompt_id": "ecc07efb-c69b-51ab-bb03-8a52bc043cd9",
+      "pass_message": "All four items in one fluent turn — starter, main, drink, and dessert.",
+      "partial_message": "Three items were covered. One category was missed.",
+      "fail_message": "Cover all four: starter, main, drink, dessert — all in one go."
+    },
+    {
+      "feedback_id": "ae245961-5fd4-5124-a12d-c7d9c19f52bb",
+      "prompt_id": "a1760db3-adf5-5cf9-a30d-5c39ad6de5f6",
+      "pass_message": "Good — polite but clear complaint with a resolution request.",
+      "partial_message": null,
+      "fail_message": "Explain what went wrong and what you need — stay polite but clear."
+    },
+    {
+      "feedback_id": "548a93e2-6a88-5524-8fdd-9cbab8a554b6",
+      "prompt_id": "c8ca4005-ef36-5a9b-a7d0-48a9a6eadb16",
+      "pass_message": "Both restrictions were clear and you asked the right question.",
+      "partial_message": "One restriction was clear. The other or the question was missing.",
+      "fail_message": "State both restrictions clearly and ask explicitly which dishes are safe."
+    },
+    {
+      "feedback_id": "d470c98e-0e43-59f8-8f0a-e4c99f26ca37",
+      "prompt_id": "30e8435c-b3a5-58eb-b59e-65a35dc00643",
+      "pass_message": "Good — both sentences were clear and urgent.",
+      "partial_message": null,
+      "fail_message": "Both sentences must be very clear. Add urgency to your voice."
+    },
+    {
+      "feedback_id": "c631491d-249b-5f2d-91c3-95d5fd75d05a",
+      "prompt_id": "937a3d87-969d-56c6-90b3-fd3ff64634e7",
+      "pass_message": "Clear and urgent — all key words were audible and the urgency was real.",
+      "partial_message": "Words were clear but the urgency was not fully conveyed. Add more energy.",
+      "fail_message": "'fire', 'evacuate', and 'immediately' must be crystal clear. Raise your energy and project."
+    },
+    {
+      "feedback_id": "d32c5009-da1f-5643-9347-1a9d9c91994b",
+      "prompt_id": "02faa1f9-6e91-51cd-9f7e-7e62f1d85a1c",
+      "pass_message": "Good — name, location, and emergency all clear and calm.",
+      "partial_message": null,
+      "fail_message": "Cover all three: your name, where you are, and what has happened."
+    },
+    {
+      "feedback_id": "f75538b3-f66b-5c56-94c6-16014f9d2292",
+      "prompt_id": "46255667-e94e-5dd5-8c92-f4cc49b98feb",
+      "pass_message": "All landmarks were clear — the directions could be followed.",
+      "partial_message": "Most landmarks were clear. One direction word was missed.",
+      "fail_message": "Make every landmark word very clear: straight / left / traffic lights / third / right / blue door."
+    },
+    {
+      "feedback_id": "d352ffcb-283c-518f-a975-01651c03f13e",
+      "prompt_id": "af06d23c-0a92-55e8-b8e3-5c24091cc705",
+      "pass_message": "Good relay — all 5 elements covered with the most critical information first.",
+      "partial_message": null,
+      "fail_message": "Cover: what happened, where, how many affected, injuries, and hazards — most important first."
+    },
+    {
+      "feedback_id": "b2104a4a-1822-5040-8e71-68443a28815c",
+      "prompt_id": "17d375de-cf87-505a-8184-3a6b7b3b47ea",
+      "pass_message": "All three sections covered clearly — the bystanders could act on your instructions.",
+      "partial_message": "Two sections were clear. The action section was missing or vague.",
+      "fail_message": "Tell people: what happened, who is affected, and exactly what to do NOW."
+    },
+    {
+      "feedback_id": "758948c2-401c-52f3-9245-7698b2e2f356",
+      "prompt_id": "a8dd9a37-9827-5ca0-b828-b728d2c3c5cd",
+      "pass_message": "Good — name, request, and number were all clear.",
+      "partial_message": null,
+      "fail_message": "Make sure your name and number are clearly audible — pace the digits."
+    },
+    {
+      "feedback_id": "d6043bab-15b9-5d2b-ba93-886ef661dbcb",
+      "prompt_id": "26eb2b0a-67ef-5a15-af63-875d57b0e2d3",
+      "pass_message": "Clear transfer request — department name and polite tone both correct.",
+      "partial_message": null,
+      "fail_message": "Make the department name very clear — that is the key information."
+    },
+    {
+      "feedback_id": "84f4675c-5b80-5e73-ace7-5a9af2a5d04b",
+      "prompt_id": "90e74f1e-de4c-5cd2-8ca5-8587ee189350",
+      "pass_message": "Good — name, original date, and two alternatives were all clear.",
+      "partial_message": null,
+      "fail_message": "Include all three: your name, the original date, and two alternative dates."
+    },
+    {
+      "feedback_id": "5c1051dd-c470-5769-b124-ac54dccd73b2",
+      "prompt_id": "d22e2054-1454-51c9-bbf2-b5dd65ab849f",
+      "pass_message": "All letters correctly spelled using NATO alphabet in the right sequence.",
+      "partial_message": "Most letters correct. One NATO term was wrong or a letter was out of sequence.",
+      "fail_message": "Learn the NATO alphabet — Alpha/Bravo/Charlie/Delta etc. Then say your surname letter by letter."
+    },
+    {
+      "feedback_id": "4512ae6e-7f64-5a78-8e8c-238931d8f0ec",
+      "prompt_id": "23f5e1d9-3af6-5ff4-a7b0-40c2db5c2a24",
+      "pass_message": "Good — composure maintained and information repeated clearly after transfer.",
+      "partial_message": null,
+      "fail_message": "Stay calm and repeat your key information clearly after being transferred."
+    },
+    {
+      "feedback_id": "64262ba7-7874-5b19-8ff4-c12e249076b4",
+      "prompt_id": "4528f983-fa8d-56e3-9390-ee0f4fbade79",
+      "pass_message": "Structured formal complaint — reference, issue, and resolution all present with the right tone.",
+      "partial_message": "Two elements were covered. The third was missing or unclear.",
+      "fail_message": "Cover all three: your reference number, the issue clearly, and exactly what you want done about it."
+    },
+    {
+      "feedback_id": "2920a431-3fd8-5017-b12c-f82c4123d7a0",
+      "prompt_id": "45e41407-9f4c-5336-919d-8f2571be21c3",
+      "pass_message": "Good — polite opener and location name were clear.",
+      "partial_message": null,
+      "fail_message": "Start with 'Excuse me' and make the location name very clear."
+    },
+    {
+      "feedback_id": "0488bc6f-81f6-5fe1-84d1-18168daf54e5",
+      "prompt_id": "ee025625-de96-51e2-bd7e-4981938ba619",
+      "pass_message": "Clear and polite — the specific item was unmistakably audible.",
+      "partial_message": null,
+      "fail_message": "Make the item name very clear — that is the key piece of information."
+    },
+    {
+      "feedback_id": "29505dd0-3685-5c8c-95a0-1b5138c38e60",
+      "prompt_id": "9ce951a5-a2f8-55ba-8470-d2be2f596f9d",
+      "pass_message": "Good — problem, request, and thanks were all clear.",
+      "partial_message": null,
+      "fail_message": "Include all three: what the problem is, what you need, and thank them."
+    },
+    {
+      "feedback_id": "4568ab03-d320-543c-b39b-398fbc2500e5",
+      "prompt_id": "22be928c-08d1-5307-8cfd-56720236dcd2",
+      "pass_message": "Symptom, duration, and referral request were all clear.",
+      "partial_message": "Two elements were clear. Make sure to explicitly ask for the referral.",
+      "fail_message": "Describe your symptom, say how long you have had it, and explicitly ask for a referral."
+    },
+    {
+      "feedback_id": "923695eb-b211-5501-a51a-e49abcc7b2ee",
+      "prompt_id": "db4e1a7b-05ce-5963-9641-88efb45f52f6",
+      "pass_message": "Professional and confident — disclosure and request both clear.",
+      "partial_message": null,
+      "fail_message": "State your need professionally and make a specific request — no excessive apologising."
+    },
+    {
+      "feedback_id": "03a3383a-09ac-58ec-b9b5-8a03260a9943",
+      "prompt_id": "2718c23d-aa76-5001-83c0-8d6f31cef177",
+      "pass_message": "Polite, clear, and assertive — interruption and restatement both done well.",
+      "partial_message": "One element was missing — either the polite opener or the clear restatement.",
+      "fail_message": "Start with 'Could I just clarify...' then state your original point clearly."
+    },
+    {
+      "feedback_id": "389cfd3e-baeb-5caf-ab5b-58bcd6390497",
+      "prompt_id": "27db500c-c725-56e8-a89b-af6a443a7b0a",
+      "pass_message": "Good — same meaning expressed in different words.",
+      "partial_message": null,
+      "fail_message": "Use completely different words but keep the same meaning."
+    },
+    {
+      "feedback_id": "42214e84-f31b-5135-a015-370d260b61e0",
+      "prompt_id": "b0d09bad-6703-54e6-9281-9f55a2ba5ff2",
+      "pass_message": "Meaning preserved and register raised — more professional sounding.",
+      "partial_message": null,
+      "fail_message": "Use more formal words: 'scheduled to commence' instead of 'starts'."
+    },
+    {
+      "feedback_id": "1a25c6aa-0a8a-57bb-89d5-351fa6e22571",
+      "prompt_id": "176dcda8-93fd-5730-9983-be5d81fd4604",
+      "pass_message": "Good — everyday language, same meaning.",
+      "partial_message": null,
+      "fail_message": "Remove the technical terms — say it as you would to a non-technical friend."
+    },
+    {
+      "feedback_id": "f2e6541a-664e-5f7f-9b7e-0ad12c7cffcf",
+      "prompt_id": "7e31effc-e7b8-56ef-abc0-8aaed2354104",
+      "pass_message": "Professional register — suitable for a formal workplace request.",
+      "partial_message": null,
+      "fail_message": "Replace 'boss' with 'manager', 'pay' with 'salary' or 'remuneration'."
+    },
+    {
+      "feedback_id": "d17f10db-d85d-5c80-bfb8-cd056e9c405e",
+      "prompt_id": "20293ea8-b2c5-540c-9ee5-904ca9a3337c",
+      "pass_message": "Good — three clearly different registers for three different audiences.",
+      "partial_message": null,
+      "fail_message": "Each version should use vocabulary appropriate for that specific audience."
+    },
+    {
+      "feedback_id": "ceb4b01f-f630-504a-adf4-6c18cc542133",
+      "prompt_id": "cd417a2e-5b26-5272-9763-c12893ee5182",
+      "pass_message": "Progressive simplification achieved — third version would be clear to anyone.",
+      "partial_message": "Simplification happened for two versions but the third was still complex.",
+      "fail_message": "Each version must be simpler. By version 3 it should be something anyone could understand immediately."
+    },
+    {
+      "feedback_id": "c68c4667-4c66-53b6-8ad9-a02cba4ee182",
+      "prompt_id": "bcf0d116-3d90-5ec0-9bf0-5afcca477350",
+      "pass_message": "Good — 3+ observations in 20 seconds.",
+      "partial_message": null,
+      "fail_message": "Mention at least 3 specific things you can picture."
+    },
+    {
+      "feedback_id": "10f8c46d-67f3-55b0-8e5c-ca9d2ade344e",
+      "prompt_id": "03e1704e-336c-5fdc-80f9-5730286602ea",
+      "pass_message": "Season and two clear reasons — all in 20 seconds.",
+      "partial_message": "Season was stated but only one reason was given.",
+      "fail_message": "State your season and give two clear reasons why you like it — in 20 seconds."
+    },
+    {
+      "feedback_id": "7d75a363-9b64-570b-a5e7-9427bc0d0384",
+      "prompt_id": "c03e4ba8-6f34-5aed-9831-90c38d4934de",
+      "pass_message": "Good — point, reason, and example all present in 45 seconds.",
+      "partial_message": null,
+      "fail_message": "Structure it: make a point, give a reason, give an example."
+    },
+    {
+      "feedback_id": "f03416d0-da2e-5573-a0a6-8e3f4096a788",
+      "prompt_id": "05b6e21c-0c55-58f6-8395-9695099cb876",
+      "pass_message": "Well-sequenced — 3 or more connective words and logical order throughout.",
+      "partial_message": "Steps were in order but sequencing words were underused. Add first/then/finally.",
+      "fail_message": "Use connecting words: 'First... then... after that... finally...' to organise your steps."
+    },
+    {
+      "feedback_id": "ef47ee19-2e93-5df3-bf18-2f7524bf95a6",
+      "prompt_id": "96e20cd3-f87f-5b15-91b5-b31bf3a11b1b",
+      "pass_message": "Good — title, 3 key points, and conclusion all present in 90 seconds.",
+      "partial_message": null,
+      "fail_message": "Structure it: title → 3 key points → conclusion."
+    },
+    {
+      "feedback_id": "625b0b3a-8bbc-5431-aab3-60dd75965cfa",
+      "prompt_id": "44a96de1-4138-5c86-aaf5-5fd77d769a65",
+      "pass_message": "Structured presentation and direct Q&A response — professional throughout.",
+      "partial_message": "Presentation was good but Q&A response was slightly vague.",
+      "fail_message": "Structure your solution clearly and answer the Q&A question directly and specifically."
+    },
+    {
+      "feedback_id": "6602a6cb-3332-53d0-98a4-1c4a43514968",
+      "prompt_id": "714024ca-c042-55d6-8e68-d34ac2f8ca1c",
+      "pass_message": "Good — 3 clear steps with connecting words.",
+      "partial_message": null,
+      "fail_message": "Say: First... Then... Finally... for each step."
+    },
+    {
+      "feedback_id": "73d487fa-f182-53ee-8116-57d589f3a4e5",
+      "prompt_id": "6036162e-1cd3-500c-9fe7-06bf0ef31478",
+      "pass_message": "Three practical steps in logical order — clear problem-solving.",
+      "partial_message": "Two steps were given. Add one more practical action.",
+      "fail_message": "Think through at least 3 practical steps: what is the first thing to do, then what, then what."
+    },
+    {
+      "feedback_id": "85981fb7-6d0c-582a-a081-d06a8ce734f5",
+      "prompt_id": "e4c9027e-0d43-5183-b8b3-34fc979156a3",
+      "pass_message": "Good — 5+ steps in the correct sequence.",
+      "partial_message": null,
+      "fail_message": "You need at least 5 steps — think through the complete process from start to finish."
+    },
+    {
+      "feedback_id": "4822a0f5-b025-5128-bb7a-75fc8f3ee439",
+      "prompt_id": "c9a6786d-a987-5181-8755-d2c311618974",
+      "pass_message": "Four ethical steps with clear reasoning — professional decision-making.",
+      "partial_message": "Steps were ethical but one step was missing.",
+      "fail_message": "Think through 4 steps: check the wallet, decide what to do, act on it, follow up."
+    },
+    {
+      "feedback_id": "868f648f-04c0-5dea-bc18-8d78b4ae730e",
+      "prompt_id": "91644466-3374-5597-8ce1-90e0d2ddba66",
+      "pass_message": "Good — most urgent step first, calm and decisive.",
+      "partial_message": null,
+      "fail_message": "Start with the most urgent action. Stay calm and prioritise."
+    },
+    {
+      "feedback_id": "224ab629-cf64-5c44-8852-00d891c40e39",
+      "prompt_id": "6f7a5f73-db1a-5c54-8151-b847377cfe40",
+      "pass_message": "Four diplomatic steps — professional conflict resolution approach.",
+      "partial_message": "Steps were diplomatic but one was missing.",
+      "fail_message": "Give 4 steps: acknowledge the issue, listen to both sides, find common ground, agree next steps."
+    },
+    {
+      "feedback_id": "0e4ee10c-bdc9-53ea-819e-fa311f391642",
+      "prompt_id": "c9f02b92-6dc2-5885-bca8-12908664af8e",
+      "pass_message": "Good — clear position and reason in one sentence.",
+      "partial_message": null,
+      "fail_message": "State yes or no and give one clear reason."
+    },
+    {
+      "feedback_id": "6864f370-ab33-507c-bf66-2a5d91153574",
+      "prompt_id": "0e6d7046-51e7-5a06-83d7-cb7c92442129",
+      "pass_message": "Clear position and a logical supporting reason.",
+      "partial_message": "Position was clear but the reason was vague.",
+      "fail_message": "State agree or disagree clearly, then give your reason."
+    },
+    {
+      "feedback_id": "53b4df76-c082-558d-b63d-a37d97f1f530",
+      "prompt_id": "eb044fa0-c74a-50da-b3d0-f440ee929a94",
+      "pass_message": "Good — 3 signposted reasons in 60 seconds.",
+      "partial_message": null,
+      "fail_message": "Give 3 reasons using firstly/secondly/finally."
+    },
+    {
+      "feedback_id": "2ccada94-dc08-5c1f-bb02-3aab6ad4e42b",
+      "prompt_id": "3a8433b1-a20d-5c82-825c-77dacf0ca0ec",
+      "pass_message": "Both sides presented equally with a clear transition between them.",
+      "partial_message": "One side was longer than the other. Balance them more evenly.",
+      "fail_message": "Spend 30 seconds on each side and use 'on the other hand' or 'however' to transition."
+    },
+    {
+      "feedback_id": "3d7e7c9b-de1b-5fcd-a4c7-4f66fb2938a3",
+      "prompt_id": "c7d3b6e5-803a-52ea-b6f4-2df5677b3693",
+      "pass_message": "Good — structured 90-second argument and direct 30-second rebuttal.",
+      "partial_message": null,
+      "fail_message": "Make your argument, listen to the counter-argument, then directly address it."
+    },
+    {
+      "feedback_id": "e8427578-70c9-5377-834b-6c1d259d93af",
+      "prompt_id": "4a219a6f-f717-58a3-a5a7-4b08575f90a6",
+      "pass_message": "Sustained, structured, and evidence-based argument for 2 minutes.",
+      "partial_message": "Good start but the argument weakened after the first minute.",
+      "fail_message": "Give at least 2 distinct counter-arguments with examples or evidence to support each."
+    },
+    {
+      "feedback_id": "110daf83-0964-540b-8839-3e3dfeb96c15",
+      "prompt_id": "5de5c33d-02ff-5501-9f3a-6da5808ff548",
+      "pass_message": "Good — activity and reason clearly expressed in past tense.",
+      "partial_message": null,
+      "fail_message": "Describe one activity you did today and say why it was good or notable."
+    },
+    {
+      "feedback_id": "7baacf39-856c-52ce-b40a-2a783dd1bba7",
+      "prompt_id": "c044367c-8a31-5688-94b5-d5abfb80d950",
+      "pass_message": "Both halves complete — best part and because clause both clear.",
+      "partial_message": null,
+      "fail_message": "Complete the full sentence: 'The best part of my day was [X] because [reason].'"
+    },
+    {
+      "feedback_id": "4c2d4cca-8f22-548b-a798-51347dd44c08",
+      "prompt_id": "47675bc9-cb0f-5e78-b438-946b7794b633",
+      "pass_message": "Good — activity, feeling, and anticipation all covered in 60 seconds.",
+      "partial_message": null,
+      "fail_message": "Cover all three: what you did, how you felt, and something you are looking forward to."
+    },
+    {
+      "feedback_id": "3c081c08-fa8a-575f-bdc7-cecc25f5ac29",
+      "prompt_id": "765a7ac2-9c44-5e5e-a32a-b9ddea373509",
+      "pass_message": "All three elements clear — who, what was discussed, and what happened.",
+      "partial_message": "Two elements were clear. One was missing.",
+      "fail_message": "Include who you spoke to, what it was about, and what the outcome was."
+    },
+    {
+      "feedback_id": "bf9d538a-11ab-5d8a-988f-c661346744cc",
+      "prompt_id": "e6fa9b68-3b16-5f82-8a39-f2fdfbe15fd4",
+      "pass_message": "Good — all 4 reflective diary sections present in 2 minutes.",
+      "partial_message": null,
+      "fail_message": "Cover all four: events, feelings, reflections, and plans for tomorrow."
+    },
+    {
+      "feedback_id": "e206563d-536d-5c9d-8337-beb8c28a222e",
+      "prompt_id": "3f4b8405-26ac-5087-963f-cac1835737ae",
+      "pass_message": "Diary and self-evaluation both done — strength and improvement area were specific.",
+      "partial_message": "Diary was good but the evaluation was vague. Be specific about what you did well and what to work on.",
+      "fail_message": "After the diary, listen back and say one specific thing you did well and one specific thing to improve."
+    }
+  ]
+}

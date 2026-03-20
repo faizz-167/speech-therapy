@@ -1,0 +1,33 @@
+{
+  "table": "baseline_item_result",
+  "source": "runtime",
+  "description": "Per-item patient scores recorded during assessment sessions. Populated at runtime — 3 sample rows included for schema reference.",
+  "row_count": 3,
+  "generated_at": "2025-01-01T00:00:00Z",
+  "data": [
+    {
+      "item_result_id": "24fe28e2-ec46-5147-9c88-dfde0cd2af7f",
+      "result_id": "0a75b5f7-e61b-5f8d-b3eb-684c26d93329",
+      "item_id": "dd827593-8888-52d1-b735-1f359def2059",
+      "score_given": 0,
+      "error_noted": "/w/ substitution — patient produced \"wabbit\"",
+      "clinician_note": "Consistent /r/ → /w/ in initial position across all trials"
+    },
+    {
+      "item_result_id": "36a569af-a4c3-569a-9a48-36ef18df6324",
+      "result_id": "0a75b5f7-e61b-5f8d-b3eb-684c26d93329",
+      "item_id": "6871b0a2-2ab9-5208-a2d8-ffb5419f9d24",
+      "score_given": 1,
+      "error_noted": null,
+      "clinician_note": "Clean /l/ production"
+    },
+    {
+      "item_result_id": "d4d694d8-2cb7-58d4-a166-3453efe8780e",
+      "result_id": "0a75b5f7-e61b-5f8d-b3eb-684c26d93329",
+      "item_id": "f972c45f-3874-5843-9d30-27b5197c17ea",
+      "score_given": 1,
+      "error_noted": null,
+      "clinician_note": null
+    }
+  ]
+}

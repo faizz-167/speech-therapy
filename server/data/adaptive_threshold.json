@@ -1,0 +1,819 @@
+{
+  "table": "adaptive_threshold",
+  "source": "adult_tasks_v3.json",
+  "description": "Advance/stay/drop thresholds for exercise prompts only",
+  "row_count": 90,
+  "generated_at": "2025-01-01T00:00:00Z",
+  "data": [
+    {
+      "threshold_id": "cabca496-fe3b-5313-be15-7dfb80364d30",
+      "scoring_id": "ea1fc91e-6790-5f54-b723-452e7a911ce1",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "2e8525ee-8291-5a55-8a6c-de1951d74fd0",
+      "scoring_id": "ccfba3a5-1685-5e93-852a-7122d1829fe8",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "56560c0c-3d54-591c-97f0-7f19b0d751c0",
+      "scoring_id": "6c0cbd47-9678-5553-b640-0d4ea8747c15",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "50bdbade-41d4-5f1b-8cf8-c28070e66745",
+      "scoring_id": "49452cc9-61b1-5cc2-9786-3905bf686de5",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "7cbb3905-b188-546d-8991-4900fa04f43a",
+      "scoring_id": "31d4e6bf-5dab-5f94-965c-5091d300c73a",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "818e21d7-e86a-5357-9ea5-85fd691d7d17",
+      "scoring_id": "10570db0-a104-5765-868f-f8f2f976595e",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "1b2bc7df-ac4a-56fc-beb6-b436c04c1fa0",
+      "scoring_id": "6514b8ad-a618-5f52-834e-7e58dddf5623",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "b764cd16-73b2-5b77-b569-149aeed79394",
+      "scoring_id": "11a57f13-2a26-5642-8bb7-cf36caccd7c1",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "e8053247-2e09-529e-93f2-2436550805f4",
+      "scoring_id": "bd962589-af1a-5cc4-be23-001cadf2b984",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "f938dc36-df2f-5b90-af9a-745973a2e4c0",
+      "scoring_id": "a2d5822d-6358-5b10-a9f6-88a38db00b55",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "7ab43696-3030-5354-9a2e-077369506ced",
+      "scoring_id": "50be45fe-da67-5ef6-b351-0bfcc57e4d33",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "8f41007d-8795-5c8c-b61e-9a56c0d89caf",
+      "scoring_id": "caab5f08-a0f1-5bb2-874a-d65802e25e5b",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "e2efe5f5-5852-51d4-ba2b-3e55ae8270e2",
+      "scoring_id": "8ed23272-0589-5ac8-a1b2-25851c70b324",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "bb992b53-61bd-5f78-9dbc-e843dfcc34b7",
+      "scoring_id": "59d727eb-c9d3-5dc2-a4a2-1750225d0e49",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "708efbee-8b84-500d-b25b-6873c2627d13",
+      "scoring_id": "28833ab1-b085-5751-8110-4fb1afc6664f",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "b79a02c6-9b95-5447-828c-887913518f6e",
+      "scoring_id": "3611ec01-4df9-5a7e-a9a9-c5ef658954df",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "28ec4872-fd97-5194-b4c1-9976990d61d0",
+      "scoring_id": "8b095490-8eb5-582f-8a6c-2d74c52ae8d5",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "92de1354-1459-5559-981e-8cecd1e0a57d",
+      "scoring_id": "0d6c6e2f-5036-5432-8aa7-c770d68bf816",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "c579d106-e095-5e82-a758-784d72d832bf",
+      "scoring_id": "e2591c69-f83d-5a14-888e-d9e13a66c00a",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "91f6283c-0041-5989-a964-35cc6d85aa82",
+      "scoring_id": "a1d626ed-3b75-50bd-b34c-6b36f488bcea",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "92fe388c-aec7-5f20-97b7-ca007bc83a4f",
+      "scoring_id": "39fdcbfb-67d5-5bfa-9aaf-2fd1a1b0afe6",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "cd56a123-952b-5287-97fe-ab1d8cf6313f",
+      "scoring_id": "2f9d53f1-296b-559a-87ea-0035370ab280",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "25452146-8523-5088-8e64-080a77b9cd1d",
+      "scoring_id": "e373185a-861c-54f2-9a7d-9a1bfb9ca337",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "db95cd01-4932-50f1-8eff-acd7abade922",
+      "scoring_id": "67947060-0ad7-5cad-baf9-0ca6ec45058d",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "9eeea662-db6f-53d9-b72c-ac221d38f51b",
+      "scoring_id": "fa34e84b-2334-5e1a-b205-488c473219d1",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "1f46b041-3692-5d82-ade3-750d9af714c9",
+      "scoring_id": "93e0550b-2b93-5b73-a618-0728ef2f4b71",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "8418e70e-f9ed-5b45-b9dd-a09bdc400752",
+      "scoring_id": "6dde1d9f-5f68-58cd-96e8-b9dc10c62b9f",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "39a127a8-a611-59b6-bd03-8b5ef07020ad",
+      "scoring_id": "ef0de9a6-6cb3-5f90-b237-632e6a33b8d1",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "65cfcf6a-12ea-56e4-957a-6ecea9dc71d1",
+      "scoring_id": "1b1f8075-ec27-58bf-85e2-cd8f8f552cdc",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "d5a65832-9e7f-5220-afb3-3a2bc9a59d46",
+      "scoring_id": "c0967ac4-1f89-54c8-b337-4b27047d49f8",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "3e0671fd-dbee-53bc-a36e-40900c8497e7",
+      "scoring_id": "96f1d791-40ea-587f-8d60-b52d642e4d9c",
+      "advance_to_next_level": 72,
+      "stay_at_current_level": "55–71",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "c07d6869-4b3e-5c92-85a1-ed5b68828de3",
+      "scoring_id": "d92129be-29eb-59eb-831e-8e57683b4712",
+      "advance_to_next_level": 72,
+      "stay_at_current_level": "55–71",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "245f3550-039e-54f3-96bd-b0a1b8bfbb2c",
+      "scoring_id": "a0b59e8a-2970-5863-b3b9-a9e620355e6b",
+      "advance_to_next_level": 72,
+      "stay_at_current_level": "55–71",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "b1e1845f-6aa7-5804-a74f-2e36b31cf121",
+      "scoring_id": "854ef855-6cdc-5613-a107-437df28b897e",
+      "advance_to_next_level": 72,
+      "stay_at_current_level": "55–71",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "876ee530-a950-5350-9c5f-cbab4470ed37",
+      "scoring_id": "d52e3106-5a10-57cc-9300-823d1223c981",
+      "advance_to_next_level": 72,
+      "stay_at_current_level": "55–71",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "2771c065-7b9e-50e1-97f6-31a5034f603a",
+      "scoring_id": "607fe011-7452-5b9f-ad4f-8537b3bfc6c9",
+      "advance_to_next_level": 72,
+      "stay_at_current_level": "55–71",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "e59838a4-c1aa-5df3-8c83-91e6ef75c6fd",
+      "scoring_id": "788d6353-f1e2-5b70-912e-9b8cc2277c44",
+      "advance_to_next_level": 72,
+      "stay_at_current_level": "55–71",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "cd091304-c2bc-50e7-9abd-01a8ab07576a",
+      "scoring_id": "d8d9632c-4619-5f82-b763-44073a819d53",
+      "advance_to_next_level": 72,
+      "stay_at_current_level": "55–71",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "c2dd7c62-797b-5409-ae94-ac7f98d18351",
+      "scoring_id": "656d2844-053b-5ac1-88a0-34d51cd4f29e",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "817f7ea4-b7c4-55a5-b370-47cbd8de05fa",
+      "scoring_id": "797e8c76-fb4a-5b97-90b4-ec16a6a2432e",
+      "advance_to_next_level": 72,
+      "stay_at_current_level": "55–71",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "f00c54c8-25c5-5e55-b6e3-3a32f7d2a8b1",
+      "scoring_id": "bf0a2b7a-4f23-5283-8712-878d60d4be90",
+      "advance_to_next_level": 72,
+      "stay_at_current_level": "55–71",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "98513d52-f4ec-576f-8aec-b8c52fbe9327",
+      "scoring_id": "d5e0ddab-e73d-5c01-9241-9fcc418cff81",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "003f603e-7131-5840-b621-58cc2579f125",
+      "scoring_id": "bed741aa-86f7-574c-8e00-09c0935297ec",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "8de44322-18e1-5ac6-ae81-df4f12437c2c",
+      "scoring_id": "85ef9ee8-9950-55aa-a548-e9c46a755d09",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "fd9c7b10-7caa-53f2-b900-777f6a6cd66c",
+      "scoring_id": "60bd252b-4302-5176-b44a-62f3bb036048",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "d16f8ad5-a960-5a9b-b94e-ea581097ad7a",
+      "scoring_id": "a94a6157-b02a-5335-96d8-c544e775e55f",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "f356797e-c92f-5531-a732-78bff6fb5cbe",
+      "scoring_id": "0e6d223f-97d0-5c28-add5-58723706966d",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "46993c59-8e51-5a54-be80-aa29349aefb5",
+      "scoring_id": "2439e452-e3d6-5c94-a59d-49ca79dc08a2",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "0ab35561-476d-5cc8-a300-99961ea330b9",
+      "scoring_id": "d0d37f70-fe5f-5916-b840-4cc8a1ce64f7",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "b1909710-b5fb-5670-a7da-613233a9f048",
+      "scoring_id": "f7823345-d98e-594d-bb1c-67d8e7ff7e6e",
+      "advance_to_next_level": 75,
+      "stay_at_current_level": "55–74",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "1e3dcf05-1f79-506e-b1d7-9ecec2716d42",
+      "scoring_id": "f5bf77a6-26cf-59c5-b5c9-87e80c51af36",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "4a4e2126-21e6-5de6-a97f-e16638a4a3a8",
+      "scoring_id": "711ce558-b06c-59d9-8be7-4855843a55a8",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "a0e1a940-c668-53cd-a8de-04809f9a4f39",
+      "scoring_id": "563f23c2-3ae8-5331-bcee-b12f3d0580bd",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "820151da-9d00-5ac0-b0bb-006191416d9d",
+      "scoring_id": "7d663b6c-4c93-5c90-b105-4517e6826f76",
+      "advance_to_next_level": 68,
+      "stay_at_current_level": "55–67",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "f6ba6b40-9b6a-5def-8045-da598eadc14f",
+      "scoring_id": "a8827844-b403-5c78-a77d-cf99976ada4a",
+      "advance_to_next_level": 72,
+      "stay_at_current_level": "55–71",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "c25dac2f-6465-5495-ad5b-f992bc3a7cb2",
+      "scoring_id": "4a5462eb-06c7-5253-a1d8-eaf21a29ec00",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "3be49393-1a99-5257-b283-30eb2217a0b9",
+      "scoring_id": "8cd42f73-c231-586e-a9ae-9bb6e5d8cc8c",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "ee658cd5-b953-5623-86d8-4915cfb218c7",
+      "scoring_id": "4b4de60a-8555-5940-abaa-49ab80359aef",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "c9efed5e-b0e3-57d9-bef9-a26cd113d0c5",
+      "scoring_id": "37c52689-0eac-5765-8854-859a07225070",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "3ab9fc30-6517-5585-ad4a-3b7eaf41afe0",
+      "scoring_id": "f210ce53-8c59-5b94-a914-a1f04be4fcde",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "1003b303-bd19-545a-a7fd-0aa0ffaa0d93",
+      "scoring_id": "e0300d0d-96d4-5e49-b344-73997d77a9d9",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "544cbc86-4cae-5c3c-b00e-5db6c776b8ef",
+      "scoring_id": "ac709875-09e2-5822-b7e7-b4c4794635a6",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "ef15dd59-da12-5204-8ced-332051b164bc",
+      "scoring_id": "685ce5e5-e370-51b5-94c0-36a9364fba63",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "3535058d-b554-55a0-a2d1-4557f62b368b",
+      "scoring_id": "be079487-4290-5ba8-9569-70f93d6f4e3c",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "7fa909e4-e820-5968-bc6b-73968660533e",
+      "scoring_id": "367b9455-7553-557d-af77-c4aeae578666",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "4e4382fc-fb2f-5fe5-89c3-519a13747fbe",
+      "scoring_id": "b421259f-f516-5fa4-918c-9e777bf57bac",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "aaff8197-a62a-50c4-89d0-c301120c39f2",
+      "scoring_id": "463d39b8-ce4e-51e7-bd48-182e97185aea",
+      "advance_to_next_level": 72,
+      "stay_at_current_level": "55–71",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "c20da5ed-a164-55f1-81ac-85b4a7355112",
+      "scoring_id": "6c9a3a0e-c6e5-5a99-9675-5bd3480dc740",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "9adb4b1c-e293-5e6d-959d-b26f023870b6",
+      "scoring_id": "fd6f19e0-a36c-55c9-a3a6-55d63ed4669d",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "12df0d93-869e-5dfc-84f3-53706c609e42",
+      "scoring_id": "bbb422cb-1f2a-5543-90a1-38de713e9ba5",
+      "advance_to_next_level": 72,
+      "stay_at_current_level": "55–71",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "6e6b539b-76f2-57a6-bed4-857e423b4c70",
+      "scoring_id": "1435804e-51b4-50c3-8b08-3608a106ec86",
+      "advance_to_next_level": 72,
+      "stay_at_current_level": "55–71",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "de7fe32d-a419-5cfd-87dc-0db40c82ebdb",
+      "scoring_id": "02a5631d-58bd-51c4-96aa-2b3a6e0060e7",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "87e952d8-2c33-5cc1-8212-2d3ccecd3096",
+      "scoring_id": "f10f0909-8200-56b7-b69b-e43c180ad17e",
+      "advance_to_next_level": 72,
+      "stay_at_current_level": "55–71",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "cb6cd2bd-0135-5477-82bb-a2b7d8279a42",
+      "scoring_id": "e7c4877c-e48e-5808-9dec-b6a854183e2c",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "dd69e845-c6d3-5bfb-a742-a7a0d525956e",
+      "scoring_id": "76e01adf-9e54-5db3-bc4d-eb546db0fdd1",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "ff29d67b-41e9-5633-b3d1-76fdab87e3d7",
+      "scoring_id": "b080e60f-677b-596b-884a-7e21b25164b5",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "9d790397-85f5-5a93-815e-d76c9bd18209",
+      "scoring_id": "fbc1badc-676e-5fc4-9f4f-15c5465feeef",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "7d545bcb-fcb0-582f-99cb-e7c63199beec",
+      "scoring_id": "9053b31f-b11c-558c-b3c9-238ff88d8216",
+      "advance_to_next_level": 68,
+      "stay_at_current_level": "55–67",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "755b07a9-c686-58fe-a4a2-df411075fa8d",
+      "scoring_id": "d0c5835c-7799-5922-a78e-7c203713c410",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "99d2271f-0627-5784-a0cf-fc0ae6eda504",
+      "scoring_id": "d35c2934-98a7-5885-8bc9-b6a5b031aeb1",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "660c0d46-670d-5090-98f7-f7381b6cedc3",
+      "scoring_id": "de27d27c-fcb5-5585-aed0-57c66f06972f",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "a77f192e-932a-5860-b7a2-b92e15e53945",
+      "scoring_id": "e1893369-e2fb-5f11-8d64-36bd02be894b",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "aed6cf9c-53f8-524b-8efb-d212b14d073e",
+      "scoring_id": "9017c29e-ad77-5271-821c-d82bfc03003f",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "c5bdfe6c-017c-5e0f-9d6e-85b8949d244d",
+      "scoring_id": "cfae1ab7-267d-5dd1-bfb4-bdc692ef2ba4",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "cd5b25bf-04c5-5cae-8953-a8abcfc0b661",
+      "scoring_id": "79c03dde-4cf2-5052-a668-75bcb5e9b81a",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "ed6534bb-27be-53ad-beae-94a33c83cea7",
+      "scoring_id": "be4cfb89-661b-528c-9907-b8212a33af27",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "165ab1ce-c96e-5ae5-9a0f-0a63a15deab1",
+      "scoring_id": "c056dd22-2ca1-549e-9176-323026dd4ff1",
+      "advance_to_next_level": 68,
+      "stay_at_current_level": "55–67",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "7b8b1e6d-3827-5494-a2fc-a2a07a6eb2d7",
+      "scoring_id": "cb983787-3c5b-5b5c-b8ff-5ec8fe41678f",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "c7a91e38-a09c-5fe8-9c23-f37c57ce442e",
+      "scoring_id": "f53868af-6e94-5109-84ed-ca48a4dcb2da",
+      "advance_to_next_level": 70,
+      "stay_at_current_level": "55–69",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    },
+    {
+      "threshold_id": "8c02b9f5-8fb1-5be7-98cd-9bcd1556eb6f",
+      "scoring_id": "c4a6ee71-2dd2-5c98-83c3-5d40a15f09f8",
+      "advance_to_next_level": 68,
+      "stay_at_current_level": "55–67",
+      "drop_to_easier_level": 55,
+      "consecutive_to_advance": 2,
+      "consecutive_to_drop": 3
+    }
+  ]
+}

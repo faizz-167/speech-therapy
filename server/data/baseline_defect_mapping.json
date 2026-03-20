@@ -1,0 +1,247 @@
+{
+  "table": "baseline_defect_mapping",
+  "source": "task_mapping",
+  "description": "Which baseline instruments identify which defects",
+  "row_count": 34,
+  "generated_at": "2025-01-01T00:00:00Z",
+  "data": [
+    {
+      "mapping_id": "862771e1-4bdc-52cd-8cb1-b470b64fca3e",
+      "baseline_id": "1bbdb90d-7919-5979-a954-96fcf827143b",
+      "defect_id": "25983845-0af3-5791-a347-280a2ad16b0e",
+      "relevance_level": "primary",
+      "clinical_notes": "Core instrument for stuttering severity profiling."
+    },
+    {
+      "mapping_id": "c8110126-1f2d-54fa-b198-320738d325dc",
+      "baseline_id": "1bbdb90d-7919-5979-a954-96fcf827143b",
+      "defect_id": "84233fb5-95b7-511f-ae67-34e800190e8d",
+      "relevance_level": "secondary",
+      "clinical_notes": "Measures rate-related disfluency patterns."
+    },
+    {
+      "mapping_id": "dfb062ff-0a1e-5161-90e2-8f96c38f95a8",
+      "baseline_id": "1bbdb90d-7919-5979-a954-96fcf827143b",
+      "defect_id": "b2afaf12-a26c-50e1-aa94-fa39ba7abc95",
+      "relevance_level": "secondary",
+      "clinical_notes": "Assesses pause disruptions associated with blocking."
+    },
+    {
+      "mapping_id": "0d933bf7-0749-5e58-8466-d0d7ce13b421",
+      "baseline_id": "aaeff3e9-f0b1-5296-b345-814b4d90ceab",
+      "defect_id": "dbce138c-2538-5b41-ab7d-c0ddf90d18f6",
+      "relevance_level": "primary",
+      "clinical_notes": "Specifically probes /r/ production across positions."
+    },
+    {
+      "mapping_id": "6b0fa5f1-f65d-5864-8960-efcd5f2c2a29",
+      "baseline_id": "aaeff3e9-f0b1-5296-b345-814b4d90ceab",
+      "defect_id": "598129c1-b84b-5361-a1e1-4a6d448aaf13",
+      "relevance_level": "primary",
+      "clinical_notes": "Probes /l/ production across word positions."
+    },
+    {
+      "mapping_id": "c83ef8ee-dd19-54ab-97e8-046c8d7a0cda",
+      "baseline_id": "aaeff3e9-f0b1-5296-b345-814b4d90ceab",
+      "defect_id": "ff9e17aa-be82-50a1-b593-84ce7e13c77f",
+      "relevance_level": "primary",
+      "clinical_notes": "Identifies sibilant distortions."
+    },
+    {
+      "mapping_id": "66aac65a-daf3-5350-836f-e5add5d53aad",
+      "baseline_id": "aaeff3e9-f0b1-5296-b345-814b4d90ceab",
+      "defect_id": "598c5b53-ccc4-58ff-9bbe-99c72419e548",
+      "relevance_level": "primary",
+      "clinical_notes": "Detects voicing errors on cognate pairs."
+    },
+    {
+      "mapping_id": "cf6070eb-63cd-51c3-9df2-4a1db1377314",
+      "baseline_id": "aaeff3e9-f0b1-5296-b345-814b4d90ceab",
+      "defect_id": "d5dcfa59-0630-5d1b-980f-c55da5611e0f",
+      "relevance_level": "primary",
+      "clinical_notes": "Flags /θ/ and /ð/ substitutions."
+    },
+    {
+      "mapping_id": "827c4ce2-9116-5af4-a3fb-4884a72b6c91",
+      "baseline_id": "aaeff3e9-f0b1-5296-b345-814b4d90ceab",
+      "defect_id": "7f360b52-04b4-5db3-9c13-e727bfd8086d",
+      "relevance_level": "primary",
+      "clinical_notes": "Identifies /v/-/w/ and /f/-/p/ confusion."
+    },
+    {
+      "mapping_id": "abe70173-5a90-534b-bd90-e067f00be3db",
+      "baseline_id": "aaeff3e9-f0b1-5296-b345-814b4d90ceab",
+      "defect_id": "7739d8ae-6c75-5965-acc2-dd3ab1aaa3b5",
+      "relevance_level": "secondary",
+      "clinical_notes": "Can reveal weak-syllable deletion in longer probe words."
+    },
+    {
+      "mapping_id": "76438154-f766-5a3c-8226-bcd7d0d371cd",
+      "baseline_id": "aaeff3e9-f0b1-5296-b345-814b4d90ceab",
+      "defect_id": "fcaba4cf-4bc1-5be4-a0c3-4327f3ceac52",
+      "relevance_level": "primary",
+      "clinical_notes": "Directly tests consonant cluster production."
+    },
+    {
+      "mapping_id": "a94eecd3-a944-5116-a5af-2201aad156e3",
+      "baseline_id": "85d65f45-d0e8-5340-bf42-3743f55b660c",
+      "defect_id": "a190ffea-bae6-5a44-8a98-5a70e6d5b785",
+      "relevance_level": "primary",
+      "clinical_notes": "Perceptual rating of voice quality dimensions."
+    },
+    {
+      "mapping_id": "24d38fd6-e9a7-59a1-8550-fb7ba194fe0a",
+      "baseline_id": "85d65f45-d0e8-5340-bf42-3743f55b660c",
+      "defect_id": "3f7b20b7-51a2-5b56-9ae2-32ff14808193",
+      "relevance_level": "secondary",
+      "clinical_notes": "Breathiness rating indirectly reflects breath support."
+    },
+    {
+      "mapping_id": "4cf1bfd0-6fca-583f-8b01-938f5be58036",
+      "baseline_id": "123732a8-4a39-577d-822f-3c080860d374",
+      "defect_id": "a190ffea-bae6-5a44-8a98-5a70e6d5b785",
+      "relevance_level": "primary",
+      "clinical_notes": "Standardised perceptual evaluation of dysphonia."
+    },
+    {
+      "mapping_id": "9add8177-c581-58d0-aca4-e2af1e79ce97",
+      "baseline_id": "123732a8-4a39-577d-822f-3c080860d374",
+      "defect_id": "b5c262d0-03ee-50ee-ad0a-11b7cb4af728",
+      "relevance_level": "secondary",
+      "clinical_notes": "Captures strain and roughness relevant to dysprosody."
+    },
+    {
+      "mapping_id": "7e65cbcf-d5d6-5e3c-a15e-41015dfea7ce",
+      "baseline_id": "48d1972b-4f16-5c03-8796-1fff4233d930",
+      "defect_id": "80cb2d93-6a06-5163-946c-8af18c99ba1f",
+      "relevance_level": "primary",
+      "clinical_notes": "Proportion measure captures overall intelligibility."
+    },
+    {
+      "mapping_id": "d494e28b-c4bf-58c1-bef0-d3d58a3e26e0",
+      "baseline_id": "48d1972b-4f16-5c03-8796-1fff4233d930",
+      "defect_id": "d539864c-ddb2-5748-800b-99dee2eaaa87",
+      "relevance_level": "secondary",
+      "clinical_notes": "Stress errors reduce PROP score in connected speech."
+    },
+    {
+      "mapping_id": "717e61d4-8ba1-5f52-98bb-a0358c15894e",
+      "baseline_id": "016e71ac-f039-5d88-bb88-e3e845e08880",
+      "defect_id": "84233fb5-95b7-511f-ae67-34e800190e8d",
+      "relevance_level": "primary",
+      "clinical_notes": "Acoustic measurement of speech and articulation rate."
+    },
+    {
+      "mapping_id": "3806619f-abfe-5c91-9260-3348c18db6d0",
+      "baseline_id": "016e71ac-f039-5d88-bb88-e3e845e08880",
+      "defect_id": "b2afaf12-a26c-50e1-aa94-fa39ba7abc95",
+      "relevance_level": "primary",
+      "clinical_notes": "Pause duration and frequency extracted directly."
+    },
+    {
+      "mapping_id": "81e1adf5-8452-5cdf-800a-f451e202fb9d",
+      "baseline_id": "016e71ac-f039-5d88-bb88-e3e845e08880",
+      "defect_id": "c150dd49-e40e-56be-86c6-65ee1e0b3306",
+      "relevance_level": "primary",
+      "clinical_notes": "Irregular rate patterns indicate cluttering."
+    },
+    {
+      "mapping_id": "6afb0ee2-b004-5a03-b58c-fa1d8a05f3f4",
+      "baseline_id": "016e71ac-f039-5d88-bb88-e3e845e08880",
+      "defect_id": "3f7b20b7-51a2-5b56-9ae2-32ff14808193",
+      "relevance_level": "secondary",
+      "clinical_notes": "Pause-to-speech ratio reflects breath support."
+    },
+    {
+      "mapping_id": "a49c6dff-b5ec-51fc-a88b-1ee9e095cdf8",
+      "baseline_id": "3b63d8a1-f1d9-5298-8e8f-befe445b0f3e",
+      "defect_id": "1c9b8f09-c4e5-517c-95e4-1ac21031af7f",
+      "relevance_level": "primary",
+      "clinical_notes": "Includes word retrieval and naming tasks."
+    },
+    {
+      "mapping_id": "42cbb6c9-58c0-59a4-8f40-68797d19fa4f",
+      "baseline_id": "3b63d8a1-f1d9-5298-8e8f-befe445b0f3e",
+      "defect_id": "d0094041-0234-5e8c-a7a0-4c379ccdcf0c",
+      "relevance_level": "primary",
+      "clinical_notes": "Discourse and formulation subtests."
+    },
+    {
+      "mapping_id": "a9670038-5a9b-5412-9e35-21631cd892ea",
+      "baseline_id": "3b63d8a1-f1d9-5298-8e8f-befe445b0f3e",
+      "defect_id": "b6b9f71b-75db-5a91-a45e-6a1e7a3cfc49",
+      "relevance_level": "primary",
+      "clinical_notes": "Pragmatic profile component."
+    },
+    {
+      "mapping_id": "318ec642-5698-5ab4-9ecc-2a3a0e12a392",
+      "baseline_id": "3b63d8a1-f1d9-5298-8e8f-befe445b0f3e",
+      "defect_id": "65b51fe4-25b9-5829-b3d9-333006f322a3",
+      "relevance_level": "primary",
+      "clinical_notes": "Working memory subtests included."
+    },
+    {
+      "mapping_id": "37655542-c019-5131-8eac-f4d280e6eb55",
+      "baseline_id": "edfbe3b0-1055-5a4b-b6dd-76c224ab557f",
+      "defect_id": "1c9b8f09-c4e5-517c-95e4-1ac21031af7f",
+      "relevance_level": "primary",
+      "clinical_notes": "Gold-standard confrontation naming assessment."
+    },
+    {
+      "mapping_id": "b15d104b-3153-5a64-8bfe-be244842824d",
+      "baseline_id": "edfbe3b0-1055-5a4b-b6dd-76c224ab557f",
+      "defect_id": "45e3e0aa-7ac8-58de-9a09-994d675c3225",
+      "relevance_level": "secondary",
+      "clinical_notes": "Self-correction behaviour observable during naming."
+    },
+    {
+      "mapping_id": "f39394ce-e41a-5a31-88f3-509722d50ebd",
+      "baseline_id": "afa16463-b916-5b60-8e39-ef3e88d4dbb9",
+      "defect_id": "80cb2d93-6a06-5163-946c-8af18c99ba1f",
+      "relevance_level": "primary",
+      "clinical_notes": "Direct self-report measure of intelligibility."
+    },
+    {
+      "mapping_id": "6b92ebdf-b93c-5c81-9f7c-f5d8cd2c88c0",
+      "baseline_id": "afa16463-b916-5b60-8e39-ef3e88d4dbb9",
+      "defect_id": "7739d8ae-6c75-5965-acc2-dd3ab1aaa3b5",
+      "relevance_level": "secondary",
+      "clinical_notes": "Weak-syllable deletion reduces intelligibility ratings."
+    },
+    {
+      "mapping_id": "016edfec-dc97-5b4a-8c56-b3f1c82efad1",
+      "baseline_id": "8c1cf6f2-4dd1-5b27-bc2b-6829019606be",
+      "defect_id": "25983845-0af3-5791-a347-280a2ad16b0e",
+      "relevance_level": "primary",
+      "clinical_notes": "Measures psychosocial impact and avoidance in stuttering."
+    },
+    {
+      "mapping_id": "908ae15d-e044-50dc-bfda-7433400e11c5",
+      "baseline_id": "13b01411-3806-5aeb-842b-2f2e11245cbd",
+      "defect_id": "d539864c-ddb2-5748-800b-99dee2eaaa87",
+      "relevance_level": "primary",
+      "clinical_notes": "Directly assesses prosodic and stress accuracy."
+    },
+    {
+      "mapping_id": "f70e8596-f20d-54f4-ad2a-684631a71e5e",
+      "baseline_id": "13b01411-3806-5aeb-842b-2f2e11245cbd",
+      "defect_id": "7739d8ae-6c75-5965-acc2-dd3ab1aaa3b5",
+      "relevance_level": "primary",
+      "clinical_notes": "Motor coordination for multisyllabic production."
+    },
+    {
+      "mapping_id": "90eaaa29-8f00-5c52-a1d1-5a80db23747f",
+      "baseline_id": "13b01411-3806-5aeb-842b-2f2e11245cbd",
+      "defect_id": "80cb2d93-6a06-5163-946c-8af18c99ba1f",
+      "relevance_level": "primary",
+      "clinical_notes": "Overall motor speech severity contributes to intelligibility."
+    },
+    {
+      "mapping_id": "7d934b6a-ea14-51ed-9af3-af5acc4e74e1",
+      "baseline_id": "13b01411-3806-5aeb-842b-2f2e11245cbd",
+      "defect_id": "b5c262d0-03ee-50ee-ad0a-11b7cb4af728",
+      "relevance_level": "secondary",
+      "clinical_notes": "Prosodic accuracy is a core DEMSS subscale."
+    }
+  ]
+}

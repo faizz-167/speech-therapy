@@ -1,0 +1,457 @@
+{
+  "table": "task_defect_mapping",
+  "source": "task_mapping",
+  "description": "Which tasks address which defects",
+  "row_count": 64,
+  "generated_at": "2025-01-01T00:00:00Z",
+  "data": [
+    {
+      "mapping_id": "e6a8999d-93c4-5a53-8950-c2869a9a92c2",
+      "task_id": "29fd612e-77cc-59c9-a5b6-af1f7dbd2736",
+      "defect_id": "598c5b53-ccc4-58ff-9bbe-99c72419e548",
+      "relevance_level": "primary",
+      "clinical_notes": "Minimal pairs drill directly targets voicing contrast errors."
+    },
+    {
+      "mapping_id": "587720d6-5788-57f7-a1bf-7c2e32f4da8f",
+      "task_id": "29fd612e-77cc-59c9-a5b6-af1f7dbd2736",
+      "defect_id": "dbce138c-2538-5b41-ab7d-c0ddf90d18f6",
+      "relevance_level": "secondary",
+      "clinical_notes": "Includes /r/-/l/ minimal pairs."
+    },
+    {
+      "mapping_id": "f8cd1719-6c0e-5dfe-83ea-7fe860863be1",
+      "task_id": "f38a89bf-16da-56ca-a64e-cda9c63a7ca2",
+      "defect_id": "dbce138c-2538-5b41-ab7d-c0ddf90d18f6",
+      "relevance_level": "primary",
+      "clinical_notes": "Phoneme drills include /r/ targets."
+    },
+    {
+      "mapping_id": "cfd3e0bf-11e0-5d84-8be7-e721c75dbf75",
+      "task_id": "f38a89bf-16da-56ca-a64e-cda9c63a7ca2",
+      "defect_id": "598129c1-b84b-5361-a1e1-4a6d448aaf13",
+      "relevance_level": "primary",
+      "clinical_notes": "Phoneme drills include /l/ targets."
+    },
+    {
+      "mapping_id": "bec6ac8d-098f-5f00-80ac-17d71efb1ba5",
+      "task_id": "f38a89bf-16da-56ca-a64e-cda9c63a7ca2",
+      "defect_id": "ff9e17aa-be82-50a1-b593-84ce7e13c77f",
+      "relevance_level": "primary",
+      "clinical_notes": "Sibilant phoneme drills addressed."
+    },
+    {
+      "mapping_id": "df910564-cee2-57b1-a0cb-382be75e70a7",
+      "task_id": "f38a89bf-16da-56ca-a64e-cda9c63a7ca2",
+      "defect_id": "d5dcfa59-0630-5d1b-980f-c55da5611e0f",
+      "relevance_level": "primary",
+      "clinical_notes": "Interdental fricative drills in words."
+    },
+    {
+      "mapping_id": "d193be8a-0c88-5cf9-ba73-aca010dc6953",
+      "task_id": "f38a89bf-16da-56ca-a64e-cda9c63a7ca2",
+      "defect_id": "7f360b52-04b4-5db3-9c13-e727bfd8086d",
+      "relevance_level": "primary",
+      "clinical_notes": "Labiodental contrast drills."
+    },
+    {
+      "mapping_id": "7fad6c66-36ff-523e-9e0f-5ca1adde9c33",
+      "task_id": "a5a09054-4d41-50f9-bc6b-f479f51dce88",
+      "defect_id": "80cb2d93-6a06-5163-946c-8af18c99ba1f",
+      "relevance_level": "primary",
+      "clinical_notes": "Sentence reading measures connected-speech intelligibility."
+    },
+    {
+      "mapping_id": "eb27248c-bfad-57f5-bc35-9785e7d7eecb",
+      "task_id": "a5a09054-4d41-50f9-bc6b-f479f51dce88",
+      "defect_id": "d539864c-ddb2-5748-800b-99dee2eaaa87",
+      "relevance_level": "secondary",
+      "clinical_notes": "Sentence stress is practiced in context."
+    },
+    {
+      "mapping_id": "fb6bdd79-c87a-5fab-9801-ace8254a98f1",
+      "task_id": "61edc9e0-b822-588a-a1eb-d5d8176af524",
+      "defect_id": "a190ffea-bae6-5a44-8a98-5a70e6d5b785",
+      "relevance_level": "primary",
+      "clinical_notes": "Sustained voice exercises address dysphonia."
+    },
+    {
+      "mapping_id": "349e6fa8-d216-5d81-9957-6ea89d424a26",
+      "task_id": "61edc9e0-b822-588a-a1eb-d5d8176af524",
+      "defect_id": "3f7b20b7-51a2-5b56-9ae2-32ff14808193",
+      "relevance_level": "primary",
+      "clinical_notes": "Breath management underpins sustained phonation."
+    },
+    {
+      "mapping_id": "7ae0f7f7-12e7-584e-b147-c01d43f5bee7",
+      "task_id": "1efcf537-8f59-5d1b-9890-6de22a81d418",
+      "defect_id": "7739d8ae-6c75-5965-acc2-dd3ab1aaa3b5",
+      "relevance_level": "primary",
+      "clinical_notes": "Weak syllable stress correction is the primary goal."
+    },
+    {
+      "mapping_id": "56fa883d-5c48-5e80-86cc-eb7cc909bcaf",
+      "task_id": "1efcf537-8f59-5d1b-9890-6de22a81d418",
+      "defect_id": "d539864c-ddb2-5748-800b-99dee2eaaa87",
+      "relevance_level": "primary",
+      "clinical_notes": "Stress placement accuracy directly practiced."
+    },
+    {
+      "mapping_id": "18155c50-1876-5775-9c7f-8fd18732c4fc",
+      "task_id": "812fd889-6e76-50a3-82de-3ce385a23e7c",
+      "defect_id": "80cb2d93-6a06-5163-946c-8af18c99ba1f",
+      "relevance_level": "primary",
+      "clinical_notes": "Word list reading builds articulation consistency."
+    },
+    {
+      "mapping_id": "4083946e-20ac-5f60-a5aa-bcd3b417dba3",
+      "task_id": "812fd889-6e76-50a3-82de-3ce385a23e7c",
+      "defect_id": "ff9e17aa-be82-50a1-b593-84ce7e13c77f",
+      "relevance_level": "secondary",
+      "clinical_notes": "Sibilants appear in word list targets."
+    },
+    {
+      "mapping_id": "61582900-ab0f-58b5-bff6-4d5f2a6146ae",
+      "task_id": "c01b22b1-c7c7-52d7-87a2-525f1b785470",
+      "defect_id": "80cb2d93-6a06-5163-946c-8af18c99ba1f",
+      "relevance_level": "primary",
+      "clinical_notes": "Sentence drills build articulatory precision in context."
+    },
+    {
+      "mapping_id": "e5059bc9-244d-5cb9-b377-94442c006423",
+      "task_id": "c01b22b1-c7c7-52d7-87a2-525f1b785470",
+      "defect_id": "598c5b53-ccc4-58ff-9bbe-99c72419e548",
+      "relevance_level": "secondary",
+      "clinical_notes": "Voiced/voiceless contrasts occur in sentences."
+    },
+    {
+      "mapping_id": "cb56bfea-08a9-53c3-9d01-a43b298d8165",
+      "task_id": "ba2d9d41-7ccc-582e-9ce7-fbb2c3b1fa08",
+      "defect_id": "d5dcfa59-0630-5d1b-980f-c55da5611e0f",
+      "relevance_level": "primary",
+      "clinical_notes": "Contrast sentences specifically target /θ/ vs /f/."
+    },
+    {
+      "mapping_id": "60d352b8-bd44-510a-bb9f-a8e7f83a4d3a",
+      "task_id": "ba2d9d41-7ccc-582e-9ce7-fbb2c3b1fa08",
+      "defect_id": "7f360b52-04b4-5db3-9c13-e727bfd8086d",
+      "relevance_level": "secondary",
+      "clinical_notes": "Labiodental errors captured in contrast reading."
+    },
+    {
+      "mapping_id": "0cef1ae4-fa2a-5d66-8e00-17050b368228",
+      "task_id": "60be56ab-c109-5495-b942-dd7a8e27f1cc",
+      "defect_id": "d539864c-ddb2-5748-800b-99dee2eaaa87",
+      "relevance_level": "primary",
+      "clinical_notes": "Stress pattern correction is the task objective."
+    },
+    {
+      "mapping_id": "e3a46850-34e8-537d-ad9d-3425dc09a621",
+      "task_id": "60be56ab-c109-5495-b942-dd7a8e27f1cc",
+      "defect_id": "7739d8ae-6c75-5965-acc2-dd3ab1aaa3b5",
+      "relevance_level": "secondary",
+      "clinical_notes": "Syllable structure awareness supports stress correction."
+    },
+    {
+      "mapping_id": "54aabf6e-1f5d-5b55-9395-363a0d39e448",
+      "task_id": "518311f9-6b3e-5b7b-bd90-5244de3e0667",
+      "defect_id": "80cb2d93-6a06-5163-946c-8af18c99ba1f",
+      "relevance_level": "primary",
+      "clinical_notes": "Paragraph reading assesses naturalistic intelligibility."
+    },
+    {
+      "mapping_id": "fc34cc0d-e8be-5b5a-8679-11019b5f1725",
+      "task_id": "518311f9-6b3e-5b7b-bd90-5244de3e0667",
+      "defect_id": "b5c262d0-03ee-50ee-ad0a-11b7cb4af728",
+      "relevance_level": "secondary",
+      "clinical_notes": "Prosodic naturalness is evaluated during paragraph reading."
+    },
+    {
+      "mapping_id": "7ab3e83a-cbae-59c3-9db0-bdf3aaf81e80",
+      "task_id": "622c53d9-115e-5683-b726-3744db7a3548",
+      "defect_id": "84233fb5-95b7-511f-ae67-34e800190e8d",
+      "relevance_level": "primary",
+      "clinical_notes": "Pacing control directly targets abnormal speech rate."
+    },
+    {
+      "mapping_id": "25fe7fc0-a4ed-582e-9d65-95bc90a7ff9e",
+      "task_id": "622c53d9-115e-5683-b726-3744db7a3548",
+      "defect_id": "c150dd49-e40e-56be-86c6-65ee1e0b3306",
+      "relevance_level": "primary",
+      "clinical_notes": "Cluttering addressed through rate monitoring."
+    },
+    {
+      "mapping_id": "0742ea95-63fc-538b-b881-2f2cb42f114c",
+      "task_id": "50c3b00b-d99c-5b6e-8159-de97523bd9f2",
+      "defect_id": "3f7b20b7-51a2-5b56-9ae2-32ff14808193",
+      "relevance_level": "primary",
+      "clinical_notes": "Breath management exercises target respiratory support."
+    },
+    {
+      "mapping_id": "518c3bab-dbf1-5c0f-874c-0376e752e6c6",
+      "task_id": "50c3b00b-d99c-5b6e-8159-de97523bd9f2",
+      "defect_id": "25983845-0af3-5791-a347-280a2ad16b0e",
+      "relevance_level": "secondary",
+      "clinical_notes": "Breath control is a core technique in stuttering management."
+    },
+    {
+      "mapping_id": "a51d062a-8b42-5a15-804e-101ab4e9f3f3",
+      "task_id": "ccbe973b-eb1a-5ddb-88a3-69a3512ea84a",
+      "defect_id": "b2afaf12-a26c-50e1-aa94-fa39ba7abc95",
+      "relevance_level": "primary",
+      "clinical_notes": "Pausing control directly trains appropriate pause placement."
+    },
+    {
+      "mapping_id": "a60884cf-3814-5bce-bfd4-ef69ef23e7a5",
+      "task_id": "ccbe973b-eb1a-5ddb-88a3-69a3512ea84a",
+      "defect_id": "25983845-0af3-5791-a347-280a2ad16b0e",
+      "relevance_level": "secondary",
+      "clinical_notes": "Pause insertion is used as a stuttering management strategy."
+    },
+    {
+      "mapping_id": "bd665687-ddfa-5731-a0e7-76f0329be198",
+      "task_id": "0bcc7d5a-7182-574b-af11-95e42e818908",
+      "defect_id": "e6fb06d5-6701-5419-8f82-7cbc6e8507e5",
+      "relevance_level": "primary",
+      "clinical_notes": "Intonation training addresses flat or abnormal pitch."
+    },
+    {
+      "mapping_id": "1bc57cd5-7c26-5f95-8280-9a054fff3be0",
+      "task_id": "0bcc7d5a-7182-574b-af11-95e42e818908",
+      "defect_id": "b5c262d0-03ee-50ee-ad0a-11b7cb4af728",
+      "relevance_level": "primary",
+      "clinical_notes": "Dysprosody improved through intonation work."
+    },
+    {
+      "mapping_id": "ae1eec39-e5b4-5cee-98c0-a869fcd4bf32",
+      "task_id": "f78b2e6c-e79f-51a6-be20-6a2301abe71a",
+      "defect_id": "b5c262d0-03ee-50ee-ad0a-11b7cb4af728",
+      "relevance_level": "primary",
+      "clinical_notes": "Reading with emotion targets prosodic variation."
+    },
+    {
+      "mapping_id": "a0a81d2c-675d-5783-8bca-a60c68041601",
+      "task_id": "f78b2e6c-e79f-51a6-be20-6a2301abe71a",
+      "defect_id": "e6fb06d5-6701-5419-8f82-7cbc6e8507e5",
+      "relevance_level": "secondary",
+      "clinical_notes": "Pitch modulation is practiced through emotional expression."
+    },
+    {
+      "mapping_id": "712d3f7e-01e3-50dc-8642-121fa5326f6e",
+      "task_id": "e65af4bf-1e1e-5b77-866a-edb5e4d8d924",
+      "defect_id": "84233fb5-95b7-511f-ae67-34e800190e8d",
+      "relevance_level": "primary",
+      "clinical_notes": "Speech rate training is the direct objective."
+    },
+    {
+      "mapping_id": "21e2c76f-0119-594d-84bd-653d413769c7",
+      "task_id": "e65af4bf-1e1e-5b77-866a-edb5e4d8d924",
+      "defect_id": "c150dd49-e40e-56be-86c6-65ee1e0b3306",
+      "relevance_level": "primary",
+      "clinical_notes": "Cluttering remediation relies on rate training."
+    },
+    {
+      "mapping_id": "1441c370-b1d5-5ef0-851a-d0d47eb59c16",
+      "task_id": "f42fa363-f515-599a-9c83-234985948c32",
+      "defect_id": "b5c262d0-03ee-50ee-ad0a-11b7cb4af728",
+      "relevance_level": "primary",
+      "clinical_notes": "Rhythmic phrase practice targets prosodic structure."
+    },
+    {
+      "mapping_id": "de347b2d-088c-565a-9ec6-583fbf381fc8",
+      "task_id": "f42fa363-f515-599a-9c83-234985948c32",
+      "defect_id": "b2afaf12-a26c-50e1-aa94-fa39ba7abc95",
+      "relevance_level": "secondary",
+      "clinical_notes": "Rhythmic phrasing incorporates pause structure."
+    },
+    {
+      "mapping_id": "3612c0ff-cbda-51cb-912b-11303a14009c",
+      "task_id": "b56cef70-6eff-5b3d-9638-3b002c932a74",
+      "defect_id": "25983845-0af3-5791-a347-280a2ad16b0e",
+      "relevance_level": "primary",
+      "clinical_notes": "Stuttering management technique task directly addresses stuttering."
+    },
+    {
+      "mapping_id": "b87144a6-bfb5-52b4-89a8-791e29161048",
+      "task_id": "b56cef70-6eff-5b3d-9638-3b002c932a74",
+      "defect_id": "3f7b20b7-51a2-5b56-9ae2-32ff14808193",
+      "relevance_level": "secondary",
+      "clinical_notes": "Airflow management is a component of stuttering techniques."
+    },
+    {
+      "mapping_id": "696c9a77-a9ef-5128-8624-d4bbe968f75d",
+      "task_id": "0d7eafb1-3fe4-54bd-8395-088c99ed2a4c",
+      "defect_id": "3f7b20b7-51a2-5b56-9ae2-32ff14808193",
+      "relevance_level": "primary",
+      "clinical_notes": "Breath-group phrasing requires respiratory planning."
+    },
+    {
+      "mapping_id": "3ac1d5a5-47f6-574d-a4d9-232a16713ccb",
+      "task_id": "0d7eafb1-3fe4-54bd-8395-088c99ed2a4c",
+      "defect_id": "b2afaf12-a26c-50e1-aa94-fa39ba7abc95",
+      "relevance_level": "primary",
+      "clinical_notes": "Pause placement is integral to breath-group phrasing."
+    },
+    {
+      "mapping_id": "efd05452-a1d2-5055-a25b-48c522c2a07a",
+      "task_id": "5c40a9db-126d-518f-a133-72027f8928e1",
+      "defect_id": "b5c262d0-03ee-50ee-ad0a-11b7cb4af728",
+      "relevance_level": "primary",
+      "clinical_notes": "Prosody and naturalness scoring assesses dysprosody."
+    },
+    {
+      "mapping_id": "03bbd373-a43f-5d1b-bb84-4c21c19c2c56",
+      "task_id": "5c40a9db-126d-518f-a133-72027f8928e1",
+      "defect_id": "84233fb5-95b7-511f-ae67-34e800190e8d",
+      "relevance_level": "secondary",
+      "clinical_notes": "Speech rate contributes to naturalness score."
+    },
+    {
+      "mapping_id": "03f90a99-247d-5e58-a13a-ef4189b9e7a3",
+      "task_id": "c6651d6e-0f69-5293-acaa-58f4d97f1491",
+      "defect_id": "b6b9f71b-75db-5a91-a45e-6a1e7a3cfc49",
+      "relevance_level": "primary",
+      "clinical_notes": "Self-introduction is a core pragmatic communication task."
+    },
+    {
+      "mapping_id": "c985a2fd-1617-5015-9b95-06cb2d533a2a",
+      "task_id": "c6651d6e-0f69-5293-acaa-58f4d97f1491",
+      "defect_id": "d0094041-0234-5e8c-a7a0-4c379ccdcf0c",
+      "relevance_level": "secondary",
+      "clinical_notes": "Discourse organisation is required for coherent self-introduction."
+    },
+    {
+      "mapping_id": "7aab409a-b0ef-5e0c-a7bb-c66a3c805124",
+      "task_id": "c4a921fb-f7a0-528c-93bd-2332f8827f2f",
+      "defect_id": "b6b9f71b-75db-5a91-a45e-6a1e7a3cfc49",
+      "relevance_level": "primary",
+      "clinical_notes": "Roleplay addresses functional communication in social contexts."
+    },
+    {
+      "mapping_id": "db515427-3b76-5193-9ba9-b263826336f4",
+      "task_id": "c4a921fb-f7a0-528c-93bd-2332f8827f2f",
+      "defect_id": "1c9b8f09-c4e5-517c-95e4-1ac21031af7f",
+      "relevance_level": "secondary",
+      "clinical_notes": "Word retrieval demands arise in roleplay scenarios."
+    },
+    {
+      "mapping_id": "3b49903c-5d76-5b71-b035-e033256cfaf3",
+      "task_id": "bcd388b9-59d0-5bfe-8339-707b78c9c0ab",
+      "defect_id": "b6b9f71b-75db-5a91-a45e-6a1e7a3cfc49",
+      "relevance_level": "primary",
+      "clinical_notes": "Emergency phrase practice is a critical pragmatic task."
+    },
+    {
+      "mapping_id": "3e0a0446-6d17-5a5a-979f-45038ee8335a",
+      "task_id": "bcd388b9-59d0-5bfe-8339-707b78c9c0ab",
+      "defect_id": "1c9b8f09-c4e5-517c-95e4-1ac21031af7f",
+      "relevance_level": "secondary",
+      "clinical_notes": "Rapid word access is needed for emergency communication."
+    },
+    {
+      "mapping_id": "befbc6d3-d4a8-5e50-8247-89656ba95063",
+      "task_id": "7e9cce9e-9644-5b5d-8495-598f33abb0db",
+      "defect_id": "b6b9f71b-75db-5a91-a45e-6a1e7a3cfc49",
+      "relevance_level": "primary",
+      "clinical_notes": "Telephone task simulates real-world pragmatic communication."
+    },
+    {
+      "mapping_id": "d1bfbef3-35a8-5d3c-a5cd-85d1ee7e6b1d",
+      "task_id": "7e9cce9e-9644-5b5d-8495-598f33abb0db",
+      "defect_id": "1c9b8f09-c4e5-517c-95e4-1ac21031af7f",
+      "relevance_level": "secondary",
+      "clinical_notes": "Naming and word retrieval are challenged in telephone tasks."
+    },
+    {
+      "mapping_id": "7a868d25-4f8f-5454-8c06-7a207131f212",
+      "task_id": "d4e1d802-1ff6-5cd1-8e70-b5d81e8a78c3",
+      "defect_id": "b6b9f71b-75db-5a91-a45e-6a1e7a3cfc49",
+      "relevance_level": "primary",
+      "clinical_notes": "Asking for help is a direct pragmatic communication function."
+    },
+    {
+      "mapping_id": "37a9b541-bcb8-57c5-aa4f-d47be3a18f36",
+      "task_id": "d4e1d802-1ff6-5cd1-8e70-b5d81e8a78c3",
+      "defect_id": "45e3e0aa-7ac8-58de-9a09-994d675c3225",
+      "relevance_level": "secondary",
+      "clinical_notes": "Self-monitoring of effectiveness is practiced."
+    },
+    {
+      "mapping_id": "439bb45a-a614-5989-9210-aa5f4e6035e7",
+      "task_id": "f5ad3d4a-ead0-52d6-a488-cdd5a423b3df",
+      "defect_id": "1c9b8f09-c4e5-517c-95e4-1ac21031af7f",
+      "relevance_level": "primary",
+      "clinical_notes": "Rephrasing task exercises alternative word retrieval strategies."
+    },
+    {
+      "mapping_id": "d1c9c3ec-db8d-5d37-bfe6-b8264c8c2915",
+      "task_id": "f5ad3d4a-ead0-52d6-a488-cdd5a423b3df",
+      "defect_id": "45e3e0aa-7ac8-58de-9a09-994d675c3225",
+      "relevance_level": "primary",
+      "clinical_notes": "Self-monitoring and repair are central to rephrasing."
+    },
+    {
+      "mapping_id": "04927f6a-72ed-5709-9b47-179c06db2cf8",
+      "task_id": "81513371-9902-5e9e-952c-9e9bb8791ab4",
+      "defect_id": "d0094041-0234-5e8c-a7a0-4c379ccdcf0c",
+      "relevance_level": "primary",
+      "clinical_notes": "Short presentation requires sustained discourse organisation."
+    },
+    {
+      "mapping_id": "4e9a2655-8a9f-5628-9f46-a70102f6cbb7",
+      "task_id": "81513371-9902-5e9e-952c-9e9bb8791ab4",
+      "defect_id": "65b51fe4-25b9-5829-b3d9-333006f322a3",
+      "relevance_level": "primary",
+      "clinical_notes": "Working memory load is high in presentation tasks."
+    },
+    {
+      "mapping_id": "088af836-95d6-524b-9818-3b8211288678",
+      "task_id": "5e1315dc-c221-5bdb-b165-9d6c80f8f402",
+      "defect_id": "d0094041-0234-5e8c-a7a0-4c379ccdcf0c",
+      "relevance_level": "primary",
+      "clinical_notes": "Problem-solving speech requires coherent extended discourse."
+    },
+    {
+      "mapping_id": "2143af66-10fd-5229-88e4-fde6be69a453",
+      "task_id": "5e1315dc-c221-5bdb-b165-9d6c80f8f402",
+      "defect_id": "65b51fe4-25b9-5829-b3d9-333006f322a3",
+      "relevance_level": "secondary",
+      "clinical_notes": "Holding multiple propositions taxes working memory."
+    },
+    {
+      "mapping_id": "3eeac33c-7371-50ec-9b02-c8db4165a26d",
+      "task_id": "69041e5b-ef1f-5a94-95e2-7b36aa8081a9",
+      "defect_id": "d0094041-0234-5e8c-a7a0-4c379ccdcf0c",
+      "relevance_level": "primary",
+      "clinical_notes": "Debate task demands real-time discourse management."
+    },
+    {
+      "mapping_id": "9180af25-3b01-5c04-968c-1fdf7f8eccda",
+      "task_id": "69041e5b-ef1f-5a94-95e2-7b36aa8081a9",
+      "defect_id": "45e3e0aa-7ac8-58de-9a09-994d675c3225",
+      "relevance_level": "primary",
+      "clinical_notes": "Self-monitoring of argument quality is practiced."
+    },
+    {
+      "mapping_id": "ff479bdf-47d9-5217-9719-0d12e6db304d",
+      "task_id": "37c5d4f0-9259-5272-b4db-2167ada9dd2d",
+      "defect_id": "1c9b8f09-c4e5-517c-95e4-1ac21031af7f",
+      "relevance_level": "secondary",
+      "clinical_notes": "Daily diary encourages spontaneous word retrieval."
+    },
+    {
+      "mapping_id": "80977944-c246-5b63-aa79-f5ff8aba3d90",
+      "task_id": "37c5d4f0-9259-5272-b4db-2167ada9dd2d",
+      "defect_id": "b6b9f71b-75db-5a91-a45e-6a1e7a3cfc49",
+      "relevance_level": "primary",
+      "clinical_notes": "Daily diary builds functional self-expression habits."
+    },
+    {
+      "mapping_id": "92343ad3-5cd3-5be5-87e5-7f75b437fddc",
+      "task_id": "37c5d4f0-9259-5272-b4db-2167ada9dd2d",
+      "defect_id": "d0094041-0234-5e8c-a7a0-4c379ccdcf0c",
+      "relevance_level": "secondary",
+      "clinical_notes": "Extended monologue develops discourse coherence."
+    }
+  ]
+}

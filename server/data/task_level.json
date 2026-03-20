@@ -1,0 +1,639 @@
+{
+  "table": "task_level",
+  "source": "adult_tasks_v3.json",
+  "description": "Three difficulty levels per task (easy, medium, advanced)",
+  "row_count": 90,
+  "generated_at": "2025-01-01T00:00:00Z",
+  "data": [
+    {
+      "level_id": "4f5fcddc-b06d-5b07-af44-e68887ec8864",
+      "task_id": "29fd612e-77cc-59c9-a5b6-af1f7dbd2736",
+      "source_level_id": 1,
+      "level_name": "easy",
+      "difficulty_score": 1
+    },
+    {
+      "level_id": "6b164882-e2dc-558c-ab3a-dee87915d485",
+      "task_id": "29fd612e-77cc-59c9-a5b6-af1f7dbd2736",
+      "source_level_id": 2,
+      "level_name": "medium",
+      "difficulty_score": 2
+    },
+    {
+      "level_id": "dc663772-4a3d-5276-a294-74c2e41d3cd4",
+      "task_id": "29fd612e-77cc-59c9-a5b6-af1f7dbd2736",
+      "source_level_id": 3,
+      "level_name": "advanced",
+      "difficulty_score": 3
+    },
+    {
+      "level_id": "8c488d61-e07e-5641-90c1-b3a13d5ceb00",
+      "task_id": "f38a89bf-16da-56ca-a64e-cda9c63a7ca2",
+      "source_level_id": 4,
+      "level_name": "easy",
+      "difficulty_score": 1
+    },
+    {
+      "level_id": "c8931c27-da1f-5074-9cea-5fc2788021dd",
+      "task_id": "f38a89bf-16da-56ca-a64e-cda9c63a7ca2",
+      "source_level_id": 5,
+      "level_name": "medium",
+      "difficulty_score": 2
+    },
+    {
+      "level_id": "cea50554-17ac-55cf-b36f-60e4f9d4dc51",
+      "task_id": "f38a89bf-16da-56ca-a64e-cda9c63a7ca2",
+      "source_level_id": 6,
+      "level_name": "advanced",
+      "difficulty_score": 3
+    },
+    {
+      "level_id": "aa98ab90-2a51-5f74-be66-521bcc652433",
+      "task_id": "a5a09054-4d41-50f9-bc6b-f479f51dce88",
+      "source_level_id": 7,
+      "level_name": "easy",
+      "difficulty_score": 1
+    },
+    {
+      "level_id": "3d656f24-1dd9-5bc0-97e4-d75c4f045784",
+      "task_id": "a5a09054-4d41-50f9-bc6b-f479f51dce88",
+      "source_level_id": 8,
+      "level_name": "medium",
+      "difficulty_score": 2
+    },
+    {
+      "level_id": "a2d27645-fe6a-58dc-b5ad-eed7e0b14067",
+      "task_id": "a5a09054-4d41-50f9-bc6b-f479f51dce88",
+      "source_level_id": 9,
+      "level_name": "advanced",
+      "difficulty_score": 3
+    },
+    {
+      "level_id": "e900d5a9-d288-5e98-9be3-53bd6a7e0847",
+      "task_id": "61edc9e0-b822-588a-a1eb-d5d8176af524",
+      "source_level_id": 10,
+      "level_name": "easy",
+      "difficulty_score": 1
+    },
+    {
+      "level_id": "ccaba295-4649-511b-baf1-da9d05fe7119",
+      "task_id": "61edc9e0-b822-588a-a1eb-d5d8176af524",
+      "source_level_id": 11,
+      "level_name": "medium",
+      "difficulty_score": 2
+    },
+    {
+      "level_id": "b7343cab-42d3-5540-b73c-710dbc8bee76",
+      "task_id": "61edc9e0-b822-588a-a1eb-d5d8176af524",
+      "source_level_id": 12,
+      "level_name": "advanced",
+      "difficulty_score": 3
+    },
+    {
+      "level_id": "9604e9f5-0889-538d-8300-800dd01602db",
+      "task_id": "1efcf537-8f59-5d1b-9890-6de22a81d418",
+      "source_level_id": 13,
+      "level_name": "easy",
+      "difficulty_score": 1
+    },
+    {
+      "level_id": "10142f4d-6178-50ae-9bae-ce77728c0e18",
+      "task_id": "1efcf537-8f59-5d1b-9890-6de22a81d418",
+      "source_level_id": 14,
+      "level_name": "medium",
+      "difficulty_score": 2
+    },
+    {
+      "level_id": "8bde8503-0cb6-567d-a2ef-6bd2538d0060",
+      "task_id": "1efcf537-8f59-5d1b-9890-6de22a81d418",
+      "source_level_id": 15,
+      "level_name": "advanced",
+      "difficulty_score": 3
+    },
+    {
+      "level_id": "27566c11-c72c-5889-8d83-8999990facde",
+      "task_id": "812fd889-6e76-50a3-82de-3ce385a23e7c",
+      "source_level_id": 16,
+      "level_name": "easy",
+      "difficulty_score": 1
+    },
+    {
+      "level_id": "72945acf-ae79-5221-bf4b-f003202b003e",
+      "task_id": "812fd889-6e76-50a3-82de-3ce385a23e7c",
+      "source_level_id": 17,
+      "level_name": "medium",
+      "difficulty_score": 2
+    },
+    {
+      "level_id": "6c1d787b-25a7-50ca-8b24-e20816f04500",
+      "task_id": "812fd889-6e76-50a3-82de-3ce385a23e7c",
+      "source_level_id": 18,
+      "level_name": "advanced",
+      "difficulty_score": 3
+    },
+    {
+      "level_id": "b91d3949-68c8-55b8-9f17-bb3e07214fe9",
+      "task_id": "c01b22b1-c7c7-52d7-87a2-525f1b785470",
+      "source_level_id": 19,
+      "level_name": "easy",
+      "difficulty_score": 1
+    },
+    {
+      "level_id": "1d42beb7-aff4-5f3f-bbee-b926949ad769",
+      "task_id": "c01b22b1-c7c7-52d7-87a2-525f1b785470",
+      "source_level_id": 20,
+      "level_name": "medium",
+      "difficulty_score": 2
+    },
+    {
+      "level_id": "86ec0c53-135c-5c4a-a4a2-f18e4acaf95d",
+      "task_id": "c01b22b1-c7c7-52d7-87a2-525f1b785470",
+      "source_level_id": 21,
+      "level_name": "advanced",
+      "difficulty_score": 3
+    },
+    {
+      "level_id": "e07e4360-7829-5f80-8335-668500271f53",
+      "task_id": "ba2d9d41-7ccc-582e-9ce7-fbb2c3b1fa08",
+      "source_level_id": 22,
+      "level_name": "easy",
+      "difficulty_score": 1
+    },
+    {
+      "level_id": "374899a1-ce47-50dd-bd13-ae93fe0f1c5a",
+      "task_id": "ba2d9d41-7ccc-582e-9ce7-fbb2c3b1fa08",
+      "source_level_id": 23,
+      "level_name": "medium",
+      "difficulty_score": 2
+    },
+    {
+      "level_id": "02119756-b5ae-5187-8f5c-74a24f071bd0",
+      "task_id": "ba2d9d41-7ccc-582e-9ce7-fbb2c3b1fa08",
+      "source_level_id": 24,
+      "level_name": "advanced",
+      "difficulty_score": 3
+    },
+    {
+      "level_id": "f4e86437-a15d-581a-9654-ea8ae88e7d95",
+      "task_id": "60be56ab-c109-5495-b942-dd7a8e27f1cc",
+      "source_level_id": 25,
+      "level_name": "easy",
+      "difficulty_score": 1
+    },
+    {
+      "level_id": "9eb5957e-20b3-5657-99a7-7f4654393c0d",
+      "task_id": "60be56ab-c109-5495-b942-dd7a8e27f1cc",
+      "source_level_id": 26,
+      "level_name": "medium",
+      "difficulty_score": 2
+    },
+    {
+      "level_id": "89ce010a-ca54-5a78-822a-3e178d13e959",
+      "task_id": "60be56ab-c109-5495-b942-dd7a8e27f1cc",
+      "source_level_id": 27,
+      "level_name": "advanced",
+      "difficulty_score": 3
+    },
+    {
+      "level_id": "ea8baaa4-f36c-5fd5-8f90-818e93ede3b9",
+      "task_id": "518311f9-6b3e-5b7b-bd90-5244de3e0667",
+      "source_level_id": 28,
+      "level_name": "easy",
+      "difficulty_score": 1
+    },
+    {
+      "level_id": "1d7d2501-b132-5a41-a4f2-773e9ea8a81a",
+      "task_id": "518311f9-6b3e-5b7b-bd90-5244de3e0667",
+      "source_level_id": 29,
+      "level_name": "medium",
+      "difficulty_score": 2
+    },
+    {
+      "level_id": "2a54eebd-b3a3-5e4c-83ec-84ea85303ca8",
+      "task_id": "518311f9-6b3e-5b7b-bd90-5244de3e0667",
+      "source_level_id": 30,
+      "level_name": "advanced",
+      "difficulty_score": 3
+    },
+    {
+      "level_id": "016ef50a-fd4e-5f56-ac40-62c3b9229477",
+      "task_id": "622c53d9-115e-5683-b726-3744db7a3548",
+      "source_level_id": 31,
+      "level_name": "easy",
+      "difficulty_score": 1
+    },
+    {
+      "level_id": "edf35ba2-6029-5358-ba6a-eae4530eaa69",
+      "task_id": "622c53d9-115e-5683-b726-3744db7a3548",
+      "source_level_id": 32,
+      "level_name": "medium",
+      "difficulty_score": 2
+    },
+    {
+      "level_id": "cbaa2f11-cae0-5168-95aa-0df479202f14",
+      "task_id": "622c53d9-115e-5683-b726-3744db7a3548",
+      "source_level_id": 33,
+      "level_name": "advanced",
+      "difficulty_score": 3
+    },
+    {
+      "level_id": "d835e221-fe8d-5cce-b065-e442f6ad520f",
+      "task_id": "50c3b00b-d99c-5b6e-8159-de97523bd9f2",
+      "source_level_id": 34,
+      "level_name": "easy",
+      "difficulty_score": 1
+    },
+    {
+      "level_id": "f286c11f-aff0-5aa4-add8-cb2aaac5df12",
+      "task_id": "50c3b00b-d99c-5b6e-8159-de97523bd9f2",
+      "source_level_id": 35,
+      "level_name": "medium",
+      "difficulty_score": 2
+    },
+    {
+      "level_id": "ad645e6d-1f79-5540-af3d-bed3059c369c",
+      "task_id": "50c3b00b-d99c-5b6e-8159-de97523bd9f2",
+      "source_level_id": 36,
+      "level_name": "advanced",
+      "difficulty_score": 3
+    },
+    {
+      "level_id": "ba7956d0-4e0d-53b8-a21b-7879353debee",
+      "task_id": "ccbe973b-eb1a-5ddb-88a3-69a3512ea84a",
+      "source_level_id": 37,
+      "level_name": "easy",
+      "difficulty_score": 1
+    },
+    {
+      "level_id": "03ff69ce-610d-57c2-a361-4ebd0a1228bd",
+      "task_id": "ccbe973b-eb1a-5ddb-88a3-69a3512ea84a",
+      "source_level_id": 38,
+      "level_name": "medium",
+      "difficulty_score": 2
+    },
+    {
+      "level_id": "e41f74ee-18a3-5021-8ac4-e7f96df99107",
+      "task_id": "ccbe973b-eb1a-5ddb-88a3-69a3512ea84a",
+      "source_level_id": 39,
+      "level_name": "advanced",
+      "difficulty_score": 3
+    },
+    {
+      "level_id": "a9f13c55-dc4a-5f91-b6b5-3e9392bb759c",
+      "task_id": "0bcc7d5a-7182-574b-af11-95e42e818908",
+      "source_level_id": 40,
+      "level_name": "easy",
+      "difficulty_score": 1
+    },
+    {
+      "level_id": "e27edebd-4e5e-5195-8785-ebc03f835fe8",
+      "task_id": "0bcc7d5a-7182-574b-af11-95e42e818908",
+      "source_level_id": 41,
+      "level_name": "medium",
+      "difficulty_score": 2
+    },
+    {
+      "level_id": "7c98d972-0252-51de-84c4-4313daadb542",
+      "task_id": "0bcc7d5a-7182-574b-af11-95e42e818908",
+      "source_level_id": 42,
+      "level_name": "advanced",
+      "difficulty_score": 3
+    },
+    {
+      "level_id": "359695dd-b319-5fea-b588-355f04b5e12b",
+      "task_id": "f78b2e6c-e79f-51a6-be20-6a2301abe71a",
+      "source_level_id": 43,
+      "level_name": "easy",
+      "difficulty_score": 1
+    },
+    {
+      "level_id": "6ac468a4-7aa7-57c4-a0a1-3ef343e6dcc1",
+      "task_id": "f78b2e6c-e79f-51a6-be20-6a2301abe71a",
+      "source_level_id": 44,
+      "level_name": "medium",
+      "difficulty_score": 2
+    },
+    {
+      "level_id": "6c286dad-6187-5929-a109-76618bec33aa",
+      "task_id": "f78b2e6c-e79f-51a6-be20-6a2301abe71a",
+      "source_level_id": 45,
+      "level_name": "advanced",
+      "difficulty_score": 3
+    },
+    {
+      "level_id": "43585582-d2c9-56e9-99dd-ea5256bf2d5a",
+      "task_id": "e65af4bf-1e1e-5b77-866a-edb5e4d8d924",
+      "source_level_id": 46,
+      "level_name": "easy",
+      "difficulty_score": 1
+    },
+    {
+      "level_id": "421e4f55-d849-5361-847d-faf7dded5763",
+      "task_id": "e65af4bf-1e1e-5b77-866a-edb5e4d8d924",
+      "source_level_id": 47,
+      "level_name": "medium",
+      "difficulty_score": 2
+    },
+    {
+      "level_id": "4f0df364-55a0-521e-898a-bd8cf2b7efc7",
+      "task_id": "e65af4bf-1e1e-5b77-866a-edb5e4d8d924",
+      "source_level_id": 48,
+      "level_name": "advanced",
+      "difficulty_score": 3
+    },
+    {
+      "level_id": "08537c67-a061-58c0-8078-4e79efa1ddde",
+      "task_id": "f42fa363-f515-599a-9c83-234985948c32",
+      "source_level_id": 49,
+      "level_name": "easy",
+      "difficulty_score": 1
+    },
+    {
+      "level_id": "82230c66-126f-5860-91cd-c9756e8add2c",
+      "task_id": "f42fa363-f515-599a-9c83-234985948c32",
+      "source_level_id": 50,
+      "level_name": "medium",
+      "difficulty_score": 2
+    },
+    {
+      "level_id": "08688360-8331-558c-bf96-25705b76d1f5",
+      "task_id": "f42fa363-f515-599a-9c83-234985948c32",
+      "source_level_id": 51,
+      "level_name": "advanced",
+      "difficulty_score": 3
+    },
+    {
+      "level_id": "ca1a4de2-f740-5897-9b45-37f60ac94f4d",
+      "task_id": "b56cef70-6eff-5b3d-9638-3b002c932a74",
+      "source_level_id": 52,
+      "level_name": "easy",
+      "difficulty_score": 1
+    },
+    {
+      "level_id": "5a7a93a6-490d-5aef-96df-be58de77275b",
+      "task_id": "b56cef70-6eff-5b3d-9638-3b002c932a74",
+      "source_level_id": 53,
+      "level_name": "medium",
+      "difficulty_score": 2
+    },
+    {
+      "level_id": "e72381a2-0895-58b9-93f6-d2f676a4099f",
+      "task_id": "b56cef70-6eff-5b3d-9638-3b002c932a74",
+      "source_level_id": 54,
+      "level_name": "advanced",
+      "difficulty_score": 3
+    },
+    {
+      "level_id": "993f600b-132a-5de0-ba44-36010d2966c7",
+      "task_id": "0d7eafb1-3fe4-54bd-8395-088c99ed2a4c",
+      "source_level_id": 55,
+      "level_name": "easy",
+      "difficulty_score": 1
+    },
+    {
+      "level_id": "2562cf7c-8e06-5a09-aeb0-5bca0632e365",
+      "task_id": "0d7eafb1-3fe4-54bd-8395-088c99ed2a4c",
+      "source_level_id": 56,
+      "level_name": "medium",
+      "difficulty_score": 2
+    },
+    {
+      "level_id": "4bdb6f5d-5a13-52b7-8ae6-7c6a1a00cf82",
+      "task_id": "0d7eafb1-3fe4-54bd-8395-088c99ed2a4c",
+      "source_level_id": 57,
+      "level_name": "advanced",
+      "difficulty_score": 3
+    },
+    {
+      "level_id": "23dc8fba-cac0-5e9f-b0f4-62cfe4741437",
+      "task_id": "5c40a9db-126d-518f-a133-72027f8928e1",
+      "source_level_id": 58,
+      "level_name": "easy",
+      "difficulty_score": 1
+    },
+    {
+      "level_id": "36770af9-acf1-5d6f-a7b2-05e25210dc5f",
+      "task_id": "5c40a9db-126d-518f-a133-72027f8928e1",
+      "source_level_id": 59,
+      "level_name": "medium",
+      "difficulty_score": 2
+    },
+    {
+      "level_id": "5b746bfc-70ef-58a6-9dc8-cade90a5df08",
+      "task_id": "5c40a9db-126d-518f-a133-72027f8928e1",
+      "source_level_id": 60,
+      "level_name": "advanced",
+      "difficulty_score": 3
+    },
+    {
+      "level_id": "2aef736f-8197-5f46-82f5-b11b136f9c69",
+      "task_id": "c6651d6e-0f69-5293-acaa-58f4d97f1491",
+      "source_level_id": 61,
+      "level_name": "easy",
+      "difficulty_score": 1
+    },
+    {
+      "level_id": "c48ca244-d597-517c-950d-6f2ec4dc6ab7",
+      "task_id": "c6651d6e-0f69-5293-acaa-58f4d97f1491",
+      "source_level_id": 62,
+      "level_name": "medium",
+      "difficulty_score": 2
+    },
+    {
+      "level_id": "6600c994-a5bf-5169-9dfa-45c636cf6558",
+      "task_id": "c6651d6e-0f69-5293-acaa-58f4d97f1491",
+      "source_level_id": 63,
+      "level_name": "advanced",
+      "difficulty_score": 3
+    },
+    {
+      "level_id": "8ec3b7c4-f0f4-5713-87ce-facdaeeed4f7",
+      "task_id": "c4a921fb-f7a0-528c-93bd-2332f8827f2f",
+      "source_level_id": 64,
+      "level_name": "easy",
+      "difficulty_score": 1
+    },
+    {
+      "level_id": "b3de155c-96a9-566f-b61f-2f6f2d45fec9",
+      "task_id": "c4a921fb-f7a0-528c-93bd-2332f8827f2f",
+      "source_level_id": 65,
+      "level_name": "medium",
+      "difficulty_score": 2
+    },
+    {
+      "level_id": "05be6cec-3f4c-5119-ba27-9841973ccf3d",
+      "task_id": "c4a921fb-f7a0-528c-93bd-2332f8827f2f",
+      "source_level_id": 66,
+      "level_name": "advanced",
+      "difficulty_score": 3
+    },
+    {
+      "level_id": "a7a452a4-d739-5972-a5e6-019b5cadaf49",
+      "task_id": "bcd388b9-59d0-5bfe-8339-707b78c9c0ab",
+      "source_level_id": 67,
+      "level_name": "easy",
+      "difficulty_score": 1
+    },
+    {
+      "level_id": "8ba1ef7d-3c3c-51e2-b6c1-3875e4eb6295",
+      "task_id": "bcd388b9-59d0-5bfe-8339-707b78c9c0ab",
+      "source_level_id": 68,
+      "level_name": "medium",
+      "difficulty_score": 2
+    },
+    {
+      "level_id": "8235984a-4ea0-5a8a-afae-8d2221820529",
+      "task_id": "bcd388b9-59d0-5bfe-8339-707b78c9c0ab",
+      "source_level_id": 69,
+      "level_name": "advanced",
+      "difficulty_score": 3
+    },
+    {
+      "level_id": "d3f9fa12-2886-50cc-8394-75aa8bbbc7be",
+      "task_id": "7e9cce9e-9644-5b5d-8495-598f33abb0db",
+      "source_level_id": 70,
+      "level_name": "easy",
+      "difficulty_score": 1
+    },
+    {
+      "level_id": "f8cae3dc-edb4-5ad4-816e-41469358b289",
+      "task_id": "7e9cce9e-9644-5b5d-8495-598f33abb0db",
+      "source_level_id": 71,
+      "level_name": "medium",
+      "difficulty_score": 2
+    },
+    {
+      "level_id": "340969c4-8df8-5559-aeaa-f1ec1e610039",
+      "task_id": "7e9cce9e-9644-5b5d-8495-598f33abb0db",
+      "source_level_id": 72,
+      "level_name": "advanced",
+      "difficulty_score": 3
+    },
+    {
+      "level_id": "bf16696a-c3ec-5382-a3a1-00afa006bf9a",
+      "task_id": "d4e1d802-1ff6-5cd1-8e70-b5d81e8a78c3",
+      "source_level_id": 73,
+      "level_name": "easy",
+      "difficulty_score": 1
+    },
+    {
+      "level_id": "0439f0c0-783e-532e-b5db-450b32c670d2",
+      "task_id": "d4e1d802-1ff6-5cd1-8e70-b5d81e8a78c3",
+      "source_level_id": 74,
+      "level_name": "medium",
+      "difficulty_score": 2
+    },
+    {
+      "level_id": "65ca6e17-fba6-58c4-bccc-f1588c821f2a",
+      "task_id": "d4e1d802-1ff6-5cd1-8e70-b5d81e8a78c3",
+      "source_level_id": 75,
+      "level_name": "advanced",
+      "difficulty_score": 3
+    },
+    {
+      "level_id": "779157b8-8c88-5af4-afdf-d19926f686e5",
+      "task_id": "f5ad3d4a-ead0-52d6-a488-cdd5a423b3df",
+      "source_level_id": 76,
+      "level_name": "easy",
+      "difficulty_score": 1
+    },
+    {
+      "level_id": "0c7e75f2-c885-54f5-97ba-ef2a61a11e8a",
+      "task_id": "f5ad3d4a-ead0-52d6-a488-cdd5a423b3df",
+      "source_level_id": 77,
+      "level_name": "medium",
+      "difficulty_score": 2
+    },
+    {
+      "level_id": "3753fbbe-2c4f-5881-a27f-8d236e415a3f",
+      "task_id": "f5ad3d4a-ead0-52d6-a488-cdd5a423b3df",
+      "source_level_id": 78,
+      "level_name": "advanced",
+      "difficulty_score": 3
+    },
+    {
+      "level_id": "00f2ce99-3fef-59b9-9fe4-7a9c0b928bfa",
+      "task_id": "81513371-9902-5e9e-952c-9e9bb8791ab4",
+      "source_level_id": 79,
+      "level_name": "easy",
+      "difficulty_score": 1
+    },
+    {
+      "level_id": "6465a51a-1d57-5352-a628-29bfbe266db4",
+      "task_id": "81513371-9902-5e9e-952c-9e9bb8791ab4",
+      "source_level_id": 80,
+      "level_name": "medium",
+      "difficulty_score": 2
+    },
+    {
+      "level_id": "218ef9b4-7540-5669-9431-72da8544f3ce",
+      "task_id": "81513371-9902-5e9e-952c-9e9bb8791ab4",
+      "source_level_id": 81,
+      "level_name": "advanced",
+      "difficulty_score": 3
+    },
+    {
+      "level_id": "7bdf7403-fc3e-5e20-9f7f-cda3fdf6ab92",
+      "task_id": "5e1315dc-c221-5bdb-b165-9d6c80f8f402",
+      "source_level_id": 82,
+      "level_name": "easy",
+      "difficulty_score": 1
+    },
+    {
+      "level_id": "bc88966b-feb0-578d-8b1f-79306a4e031d",
+      "task_id": "5e1315dc-c221-5bdb-b165-9d6c80f8f402",
+      "source_level_id": 83,
+      "level_name": "medium",
+      "difficulty_score": 2
+    },
+    {
+      "level_id": "60035dad-9f7d-58e1-a6bd-d2fe45761b43",
+      "task_id": "5e1315dc-c221-5bdb-b165-9d6c80f8f402",
+      "source_level_id": 84,
+      "level_name": "advanced",
+      "difficulty_score": 3
+    },
+    {
+      "level_id": "40639550-7514-5c79-8993-e87773a618e2",
+      "task_id": "69041e5b-ef1f-5a94-95e2-7b36aa8081a9",
+      "source_level_id": 85,
+      "level_name": "easy",
+      "difficulty_score": 1
+    },
+    {
+      "level_id": "7cf0d350-8f83-5d26-bc36-c200c2ee4604",
+      "task_id": "69041e5b-ef1f-5a94-95e2-7b36aa8081a9",
+      "source_level_id": 86,
+      "level_name": "medium",
+      "difficulty_score": 2
+    },
+    {
+      "level_id": "5d19a590-0288-560e-a99a-8479b3516801",
+      "task_id": "69041e5b-ef1f-5a94-95e2-7b36aa8081a9",
+      "source_level_id": 87,
+      "level_name": "advanced",
+      "difficulty_score": 3
+    },
+    {
+      "level_id": "10e0bb15-1a28-542b-a184-dc88c897bf99",
+      "task_id": "37c5d4f0-9259-5272-b4db-2167ada9dd2d",
+      "source_level_id": 88,
+      "level_name": "easy",
+      "difficulty_score": 1
+    },
+    {
+      "level_id": "a0515966-f201-51d5-a881-01ef31964adb",
+      "task_id": "37c5d4f0-9259-5272-b4db-2167ada9dd2d",
+      "source_level_id": 89,
+      "level_name": "medium",
+      "difficulty_score": 2
+    },
+    {
+      "level_id": "5f1aff67-0939-5590-aa59-168d2072ab34",
+      "task_id": "37c5d4f0-9259-5272-b4db-2167ada9dd2d",
+      "source_level_id": 90,
+      "level_name": "advanced",
+      "difficulty_score": 3
+    }
+  ]
+}
