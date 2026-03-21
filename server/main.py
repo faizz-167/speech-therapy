@@ -2,8 +2,8 @@ import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
-from routes import auth, therapists, reports, notes, defects, patients as old_patients
-from routers import baseline, tasks as new_tasks, patients as v3_patients, plans, sessions, progress
+from routes import auth, therapists, reports, notes, defects, patients as old_patients, tasks as old_tasks, plans as old_plans
+from routers import baseline, tasks as new_tasks, patients as v3_patients, plans as v3_plans, sessions, progress
 from contextlib import asynccontextmanager
 from services.asr_service import asr_service
 from services.ser_service import ser_service
@@ -28,18 +28,23 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Old routers — these serve the frontend directly at root paths
 app.include_router(auth.router)
 app.include_router(therapists.router)
 app.include_router(old_patients.router)
-app.include_router(v3_patients.router, prefix="/api/v1")
-app.include_router(plans.router)
-app.include_router(sessions.router)
-app.include_router(progress.router)
-app.include_router(new_tasks.router)
-app.include_router(baseline.router)
+app.include_router(old_tasks.router)
+app.include_router(old_plans.router)
 app.include_router(reports.router)
 app.include_router(notes.router)
 app.include_router(defects.router)
+
+# V3 routers — new schema, under /api/v1 to avoid conflicts
+app.include_router(v3_patients.router, prefix="/api/v1")
+app.include_router(v3_plans.router, prefix="/api/v1")
+app.include_router(new_tasks.router, prefix="/api/v1")
+app.include_router(sessions.router)
+app.include_router(progress.router)
+app.include_router(baseline.router)
 
 @app.get("/health")
 async def health_check():

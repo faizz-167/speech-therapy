@@ -1,653 +1,477 @@
-# System Prompt — Speech Therapy Platform: Complete Database Design & JSON Migration
-**Version**: 2.0  
-**PostgreSQL**: 17  
-**Tables**: 22  
-**Total seed rows**: ~1,500 across all tables
+# Architecture Audit Prompt — AI-Assisted Speech Therapy Platform
+## Purpose: Verify correct implementation of task metrics and formula analysis system
 
 ---
 
-## Your Role
+You are a senior AI systems auditor reviewing a speech therapy platform built with
+FastAPI + PostgreSQL + React 19. Your job is to verify whether the implementation
+matches the defined clinical scoring architecture exactly.
 
-You are a senior PostgreSQL database engineer for an AI-assisted adaptive speech therapy platform for adult patients. Your job is to:
-
-1. Generate the complete, production-ready DDL (schema creation)
-2. Generate a complete JSON-to-PostgreSQL migration script that reads the provided JSON files and inserts all rows in the correct FK dependency order
-3. Ensure everything runs in a single transaction — fully idempotent and re-runnable
-
----
-
-## Platform Overview
-
-The system manages:
-- **Clinical defect catalogue** — 23 speech/fluency/cognitive disorders
-- **Baseline assessment instruments** — 12 standardised tests (SSI-4, GFTA-3, CELF-5, etc.), each with sections and individual stimulus items
-- **Therapy task library** — 30 tasks × 3 levels × 2 prompts = 180 prompts, each with full AI scoring config
-- **Clinical workflow** — therapist → patient → baseline results → therapy plan → task assignments
-- **Session execution** — per-prompt attempt recording, ASR scoring, adaptive difficulty progression
+Work through every checkpoint below. For each one:
+- READ the relevant file or function
+- STATE what you found
+- VERDICT: PASS / FAIL / PARTIAL
+- If FAIL or PARTIAL: state exactly what is wrong and what the fix is
 
 ---
 
-## Complete Table Catalogue (22 tables)
+## SECTION 1 — Database Schema Verification
 
-### Domain 1 — Clinical Reference
-| Table | Rows | JSON File | Description |
-|---|---|---|---|
-| `defect` | 23 | `defect.json` | Master disorder catalogue |
-| `baseline_assessment` | 12 | `baseline_assessment.json` | Standardised test instruments |
-| `baseline_defect_mapping` | 34 | `baseline_defect_mapping.json` | Which tests detect which defects |
-| `baseline_section` | 37 | `baseline_section.json` | Sub-sections within each instrument |
-| `baseline_item` | 217 | `baseline_item.json` | Individual stimulus items per section |
+**1.1** Open your database schema (schema.sql or models/).
+Verify these 22 tables exist:
+defect, baseline_assessment, baseline_defect_mapping, baseline_section,
+baseline_item, task, task_level, prompt, speech_target, evaluation_target,
+prompt_scoring, adaptive_threshold, feedback_rule, task_defect_mapping,
+therapist, patient, patient_baseline_result, baseline_item_result,
+therapy_plan, plan_task_assignment, session, session_prompt_attempt,
+patient_task_progress
+EXPECTED: 22 tables. Missing any = FAIL.
 
-### Domain 2 — Task Library
-| Table | Rows | JSON File | Description |
-|---|---|---|---|
-| `task` | 30 | `task.json` | Top-level therapy exercises |
-| `task_level` | 90 | `task_level.json` | Easy / medium / advanced per task |
-| `prompt` | 180 | `prompt.json` | Individual prompts per level |
-| `speech_target` | 180 | `speech_target.json` | Words/sentences patient must produce |
-| `evaluation_target` | 180 | `evaluation_target.json` | Phoneme targets and substitution rules |
-| `prompt_scoring` | 180 | `prompt_scoring.json` | Layer 1 ASR + Layer 2 clinical config |
-| `adaptive_threshold` | 90 | `adaptive_threshold.json` | Advance/stay/drop rules (exercise prompts only) |
-| `feedback_rule` | 180 | `feedback_rule.json` | Pass/partial/fail feedback messages |
-| `task_defect_mapping` | 64 | `task_defect_mapping.json` | Which tasks address which defects |
+**1.2** Open the patient_task_progress model/table.
+Verify these columns exist:
+consecutive_passes, consecutive_fails, overall_accuracy, current_level_id,
+clinician_alert (BOOLEAN DEFAULT FALSE), progress_delta (NUMERIC 5,2)
+EXPECTED: All 6 columns present. Missing clinician_alert or progress_delta = FAIL.
+These are required by the adaptive logic and regression detection.
 
-### Domain 3 — Clinical Workflow (runtime, no seed data)
-| Table | Rows | JSON File | Description |
-|---|---|---|---|
-| `therapist` | runtime | — | Clinician accounts |
-| `patient` | runtime | — | Patient records |
-| `patient_baseline_result` | runtime | — | Scored assessment sessions |
-| `baseline_item_result` | runtime | `baseline_item_result.json` (3 sample rows for schema ref) | Per-item patient scores |
-| `therapy_plan` | runtime | — | Course of treatment |
-| `plan_task_assignment` | runtime | — | Therapist-approved task selections |
+**1.3** Open the feedback_rule model/table.
+Verify column retry_message TEXT exists alongside pass_message, partial_message, fail_message.
+EXPECTED: 4 message columns. Missing retry_message = FAIL.
+retry_message is used for the STAY adaptive action (not the same as fail_message).
 
-### Domain 4 — Session & Progress (runtime, no seed data)
-| Table | Rows | JSON File | Description |
-|---|---|---|---|
-| `session` | runtime | — | Individual therapy appointments |
-| `session_prompt_attempt` | runtime | — | Every prompt attempt with score + transcript |
-| `patient_task_progress` | runtime | — | Adaptive difficulty state per patient per task |
+**1.4** Open the session_prompt_attempt model/table.
+Verify these raw signal columns exist:
+audio_file_ref, emotion_label, behavioral_score, wpm, disfluency_count,
+phoneme_accuracy, nlp_score
+EXPECTED: All 7 columns present. These store per-component AI output alongside
+the final accuracy_score. Missing = PARTIAL.
+
+**1.5** Check the prompt table.
+Verify prompt_type column accepts exactly: warmup | exercise
+Verify task_mode column accepts exactly:
+word_drill | sentence_read | paragraph_read | free_speech | roleplay | stuttering
+EXPECTED: Both enums correct. Wrong values or missing enum = FAIL.
 
 ---
 
-## JSON File Structure
+## SECTION 2 — Data Migration Verification
 
-Every JSON file follows this envelope:
-```json
-{
-  "table": "table_name",
-  "source": "source_file",
-  "description": "...",
-  "row_count": 23,
-  "generated_at": "2025-01-01T00:00:00Z",
-  "data": [ { ...row... }, ... ]
-}
-```
-
-All UUIDs in the data are deterministic (UUID v5, DNS namespace). FK references are consistent across files — the same UUID used as a PK in one file is used as an FK in another.
-
----
-
-## Field Type Reference (from actual JSON data)
-
-```
-defect:
-  defect_id          TEXT (UUID)   PK
-  code               TEXT          UNIQUE NOT NULL  e.g. "ART-001"
-  name               TEXT          NOT NULL
-  category           TEXT          NOT NULL  values: articulation | fluency | cognition
-  description        TEXT
-
-baseline_assessment:
-  baseline_id        TEXT (UUID)   PK
-  code               TEXT          UNIQUE NOT NULL  e.g. "GFTA-3"
-  name               TEXT          NOT NULL
-  domain             TEXT          NOT NULL  values: articulation | fluency | cognition | voice
-  description        TEXT
-  administration_method TEXT       NOT NULL  values: clinician-administered | clinician-rated | self-report | software-assisted
-  created_at         TIMESTAMPTZ
-
-baseline_defect_mapping:
-  mapping_id         TEXT (UUID)   PK
-  baseline_id        TEXT (UUID)   FK → baseline_assessment
-  defect_id          TEXT (UUID)   FK → defect
-  relevance_level    TEXT          values: primary | secondary
-  clinical_notes     TEXT
-
-baseline_section:
-  section_id         TEXT (UUID)   PK
-  baseline_id        TEXT (UUID)   FK → baseline_assessment
-  section_name       TEXT          NOT NULL
-  instructions       TEXT
-  target_defect_id   TEXT (UUID)   FK → defect
-  order_index        INTEGER       NOT NULL
-
-baseline_item:
-  item_id            TEXT (UUID)   PK
-  section_id         TEXT (UUID)   FK → baseline_section
-  item_label         TEXT          NOT NULL
-  stimulus_content   TEXT
-  target_phoneme     TEXT          NULLABLE
-  position           TEXT          NULLABLE  values: initial | medial | final | NULL
-  response_type      TEXT          e.g. picture_naming | read_aloud | free_speech | clinician_rated | self_report | sustained_phonation | diadochokinesis | word_repetition | sentence_repetition | clinician_timed | story_retell
-  scoring_method     TEXT          e.g. correct_incorrect | 0_to_3_scale | 0_to_5_scale | 100mm_VAS | 1_to_5_likert | true_false | duration_seconds | praat_acoustic_analysis
-  max_score          INTEGER       NULLABLE
-  order_index        INTEGER       NOT NULL
-
-task:
-  task_id            TEXT (UUID)   PK
-  source_id          INTEGER       UNIQUE NOT NULL  (original JSON id 1–30)
-  name               TEXT          NOT NULL
-  type               TEXT          NOT NULL  values: articulation | fluency | cognition
-  description        TEXT
-  created_at         TIMESTAMPTZ
-
-task_level:
-  level_id           TEXT (UUID)   PK
-  task_id            TEXT (UUID)   FK → task
-  source_level_id    INTEGER
-  level_name         TEXT          NOT NULL  values: easy | medium | advanced
-  difficulty_score   INTEGER       NOT NULL  values: 1 | 2 | 3
-
-prompt:
-  prompt_id          TEXT (UUID)   PK
-  level_id           TEXT (UUID)   FK → task_level
-  source_prompt_id   INTEGER       UNIQUE NOT NULL
-  prompt_type        TEXT          NOT NULL  values: warmup | exercise
-  scenario_context   TEXT
-  instruction        TEXT
-  display_content    TEXT
-  target_response    TEXT
-  evaluation_criteria TEXT         values: pronunciation | fluency | accuracy | memory
-  accuracy_check     TEXT
-  task_mode          TEXT          values: word_drill | sentence_read | paragraph_read | free_speech | roleplay | stuttering
-
-speech_target:
-  speech_target_id   TEXT (UUID)   PK
-  prompt_id          TEXT (UUID)   FK → prompt
-  raw_speech_target  JSONB         NOT NULL  (full JSON object from source — structure varies by task_mode)
-
-evaluation_target:
-  eval_target_id     TEXT (UUID)   PK
-  prompt_id          TEXT (UUID)   FK → prompt
-  scope              TEXT
-  target_phonemes    JSONB         NULLABLE  (list or object depending on prompt)
-  check_on_words     JSONB         NULLABLE
-  substitution_errors JSONB        NULLABLE
-  pass_rule          TEXT
-  fail_rule          TEXT
-  partial_pass       TEXT          NULLABLE
-
-prompt_scoring:
-  scoring_id                 TEXT (UUID)   PK
-  prompt_id                  TEXT (UUID)   FK → prompt
-  active                     BOOLEAN       NOT NULL DEFAULT FALSE
-  note                       TEXT          NULLABLE
-  response_latency_max_sec   INTEGER       NULLABLE  (warmup prompts only)
-  minimum_speech_detected    BOOLEAN       NULLABLE  (warmup prompts only)
-  task_completion_min_percent INTEGER      NULLABLE  (warmup prompts only)
-  layer1_what                TEXT          NULLABLE  (exercise prompts only)
-  layer1_method              TEXT          NULLABLE
-  layer1_pass                TEXT          NULLABLE
-  layer2_what                TEXT          NULLABLE
-  layer2_method              TEXT          NULLABLE
-  layer2_target_pairs        JSONB         NULLABLE
-  layer2_pass_threshold      TEXT          NULLABLE
-  layer2_fail_condition      TEXT          NULLABLE
-
-adaptive_threshold:
-  threshold_id           TEXT (UUID)   PK
-  scoring_id             TEXT (UUID)   FK → prompt_scoring
-  advance_to_next_level  INTEGER       NOT NULL  e.g. 75
-  stay_at_current_level  TEXT          NOT NULL  e.g. "55–74"
-  drop_to_easier_level   INTEGER       NOT NULL  e.g. 55
-  consecutive_to_advance INTEGER       NOT NULL  e.g. 2
-  consecutive_to_drop    INTEGER       NOT NULL  e.g. 3
-
-feedback_rule:
-  feedback_id      TEXT (UUID)   PK
-  prompt_id        TEXT (UUID)   FK → prompt
-  pass_message     TEXT
-  partial_message  TEXT          NULLABLE
-  fail_message     TEXT
-
-task_defect_mapping:
-  mapping_id        TEXT (UUID)   PK
-  task_id           TEXT (UUID)   FK → task
-  defect_id         TEXT (UUID)   FK → defect
-  relevance_level   TEXT          values: primary | secondary
-  clinical_notes    TEXT
-
-therapist:           (runtime — no seed data)
-  therapist_id       UUID          PK DEFAULT gen_random_uuid()
-  full_name          TEXT          NOT NULL
-  license_number     TEXT          UNIQUE NOT NULL
-  specialization     TEXT
-  email              TEXT          UNIQUE NOT NULL
-  created_at         TIMESTAMPTZ   DEFAULT NOW()
-
-patient:             (runtime — no seed data)
-  patient_id         UUID          PK DEFAULT gen_random_uuid()
-  full_name          TEXT          NOT NULL
-  date_of_birth      DATE          NOT NULL
-  gender             TEXT
-  primary_diagnosis  TEXT
-  assigned_therapist_id UUID       FK → therapist ON DELETE SET NULL
-  created_at         TIMESTAMPTZ   DEFAULT NOW()
-
-patient_baseline_result:
-  result_id          UUID          PK DEFAULT gen_random_uuid()
-  patient_id         UUID          FK → patient ON DELETE RESTRICT
-  baseline_id        TEXT (UUID)   FK → baseline_assessment ON DELETE RESTRICT
-  therapist_id       UUID          FK → therapist ON DELETE RESTRICT
-  assessed_on        DATE          NOT NULL
-  raw_score          INTEGER
-  percentile         NUMERIC(5,2)
-  severity_rating    TEXT          values: mild | moderate | severe | profound
-  notes              TEXT
-  created_at         TIMESTAMPTZ   DEFAULT NOW()
-
-baseline_item_result:
-  item_result_id     UUID          PK DEFAULT gen_random_uuid()
-  result_id          UUID          FK → patient_baseline_result ON DELETE CASCADE
-  item_id            TEXT (UUID)   FK → baseline_item ON DELETE RESTRICT
-  score_given        INTEGER
-  error_noted        TEXT          NULLABLE
-  clinician_note     TEXT          NULLABLE
-
-therapy_plan:
-  plan_id            UUID          PK DEFAULT gen_random_uuid()
-  patient_id         UUID          FK → patient ON DELETE RESTRICT
-  therapist_id       UUID          FK → therapist ON DELETE RESTRICT
-  plan_name          TEXT          NOT NULL
-  start_date         DATE          NOT NULL
-  end_date           DATE
-  status             TEXT          values: draft | active | completed | paused | cancelled
-  goals              TEXT
-  created_at         TIMESTAMPTZ   DEFAULT NOW()
-
-plan_task_assignment:
-  assignment_id      UUID          PK DEFAULT gen_random_uuid()
-  plan_id            UUID          FK → therapy_plan ON DELETE CASCADE
-  task_id            TEXT (UUID)   FK → task ON DELETE RESTRICT
-  therapist_id       UUID          FK → therapist ON DELETE RESTRICT
-  status             TEXT          values: pending | approved | active | completed
-  clinical_rationale TEXT
-  assigned_on        DATE          DEFAULT CURRENT_DATE
-  created_at         TIMESTAMPTZ   DEFAULT NOW()
-
-session:
-  session_id         UUID          PK DEFAULT gen_random_uuid()
-  plan_id            UUID          FK → therapy_plan ON DELETE RESTRICT
-  patient_id         UUID          FK → patient ON DELETE RESTRICT
-  therapist_id       UUID          FK → therapist ON DELETE SET NULL
-  session_date       TIMESTAMPTZ   NOT NULL
-  duration_minutes   INTEGER
-  session_type       TEXT          values: initial_assessment | therapy | review | discharge
-  session_notes      TEXT
-  created_at         TIMESTAMPTZ   DEFAULT NOW()
-
-session_prompt_attempt:
-  attempt_id         UUID          PK DEFAULT gen_random_uuid()
-  session_id         UUID          FK → session ON DELETE CASCADE
-  prompt_id          TEXT (UUID)   FK → prompt ON DELETE RESTRICT
-  attempt_number     INTEGER       NOT NULL DEFAULT 1
-  result             TEXT          values: pass | partial | fail | skipped
-  accuracy_score     NUMERIC(5,2)  CHECK (accuracy_score BETWEEN 0 AND 100)
-  response_latency_sec INTEGER
-  speech_detected    BOOLEAN
-  asr_transcript     TEXT
-  therapist_override_note TEXT
-  attempted_at       TIMESTAMPTZ   DEFAULT NOW()
-
-patient_task_progress:
-  progress_id        UUID          PK DEFAULT gen_random_uuid()
-  patient_id         UUID          FK → patient ON DELETE CASCADE
-  task_id            TEXT (UUID)   FK → task ON DELETE RESTRICT
-  current_level_id   TEXT (UUID)   FK → task_level ON DELETE RESTRICT
-  consecutive_passes INTEGER       NOT NULL DEFAULT 0 CHECK (consecutive_passes >= 0)
-  consecutive_fails  INTEGER       NOT NULL DEFAULT 0 CHECK (consecutive_fails >= 0)
-  overall_accuracy   NUMERIC(5,2)
-  last_attempted_at  TIMESTAMPTZ
-  updated_at         TIMESTAMPTZ   DEFAULT NOW()
-```
-
----
-
-## DDL Requirements
-
-### Extensions
+**2.1** Run this SQL and verify row counts exactly:
 ```sql
-CREATE EXTENSION IF NOT EXISTS "pgcrypto";
+SELECT
+  (SELECT COUNT(*) FROM defect)                  AS defect,           -- expected 23
+  (SELECT COUNT(*) FROM baseline_assessment)     AS baseline_assess,  -- expected 12
+  (SELECT COUNT(*) FROM baseline_defect_mapping) AS bdmap,            -- expected 34
+  (SELECT COUNT(*) FROM baseline_section)        AS b_section,        -- expected 37
+  (SELECT COUNT(*) FROM baseline_item)           AS b_item,           -- expected 149
+  (SELECT COUNT(*) FROM task)                    AS task,             -- expected 30
+  (SELECT COUNT(*) FROM task_level)              AS task_level,       -- expected 90
+  (SELECT COUNT(*) FROM prompt)                  AS prompt,           -- expected 180
+  (SELECT COUNT(*) FROM speech_target)           AS speech_target,    -- expected 180
+  (SELECT COUNT(*) FROM evaluation_target)       AS eval_target,      -- expected 180
+  (SELECT COUNT(*) FROM prompt_scoring)          AS scoring,          -- expected 180
+  (SELECT COUNT(*) FROM adaptive_threshold)      AS adaptive,         -- expected 90
+  (SELECT COUNT(*) FROM feedback_rule)           AS feedback,         -- expected 180
+  (SELECT COUNT(*) FROM task_defect_mapping)     AS tdmap;            -- expected 64
+```
+Any mismatch = FAIL for that table.
+
+**2.2** Run this SQL to verify warmup vs exercise split:
+```sql
+SELECT prompt_type, COUNT(*) FROM prompt GROUP BY prompt_type;
+-- expected: warmup=90, exercise=90
 ```
 
-### UUID Strategy
-- **Seed tables** (loaded from JSON): use `TEXT` for PK/FK columns and store the UUID string directly. This preserves the deterministic UUIDs from the JSON files exactly.
-- **Runtime tables** (therapist, patient, session, etc.): use `UUID` type with `DEFAULT gen_random_uuid()`.
-- **Cross-domain FKs** (runtime tables referencing seed tables, e.g. `patient_baseline_result.baseline_id → baseline_assessment.baseline_id`): use `TEXT` on the FK column to match the seed table PK type.
-
-### Enum Types — define before all tables
+**2.3** Run this SQL to verify adaptive_threshold only covers exercise prompts:
 ```sql
-CREATE TYPE defect_category_enum      AS ENUM ('articulation','fluency','cognition');
-CREATE TYPE baseline_domain_enum      AS ENUM ('articulation','fluency','cognition','voice');
-CREATE TYPE admin_method_enum         AS ENUM ('clinician-administered','clinician-rated','self-report','software-assisted');
-CREATE TYPE relevance_enum            AS ENUM ('primary','secondary');
-CREATE TYPE item_position_enum        AS ENUM ('initial','medial','final');
-CREATE TYPE task_type_enum            AS ENUM ('articulation','fluency','cognition');
-CREATE TYPE level_name_enum           AS ENUM ('easy','medium','advanced');
-CREATE TYPE prompt_type_enum          AS ENUM ('warmup','exercise');
-CREATE TYPE task_mode_enum            AS ENUM ('word_drill','sentence_read','paragraph_read','free_speech','roleplay','stuttering');
-CREATE TYPE eval_criteria_enum        AS ENUM ('pronunciation','fluency','accuracy','memory');
-CREATE TYPE severity_enum             AS ENUM ('mild','moderate','severe','profound');
-CREATE TYPE plan_status_enum          AS ENUM ('draft','active','completed','paused','cancelled');
-CREATE TYPE assignment_status_enum    AS ENUM ('pending','approved','active','completed');
-CREATE TYPE session_type_enum         AS ENUM ('initial_assessment','therapy','review','discharge');
-CREATE TYPE attempt_result_enum       AS ENUM ('pass','partial','fail','skipped');
+SELECT COUNT(*) FROM adaptive_threshold at
+JOIN prompt_scoring ps ON at.scoring_id = ps.scoring_id
+WHERE ps.active = false;
+-- expected: 0 rows. Any warmup with adaptive_threshold = FAIL.
 ```
 
-### Table Creation Order (strict FK dependency order)
-1. `defect`
-2. `baseline_assessment`
-3. `baseline_defect_mapping`
-4. `baseline_section`
-5. `baseline_item`
-6. `task`
-7. `task_level`
-8. `prompt`
-9. `speech_target`
-10. `evaluation_target`
-11. `prompt_scoring`
-12. `adaptive_threshold`
-13. `feedback_rule`
-14. `task_defect_mapping`
-15. `therapist`
-16. `patient`
-17. `patient_baseline_result`
-18. `baseline_item_result`
-19. `therapy_plan`
-20. `plan_task_assignment`
-21. `session`
-22. `session_prompt_attempt`
-23. `patient_task_progress`
-
-### ON DELETE Rules
-| Relationship | Rule |
-|---|---|
-| `baseline_section` → `baseline_assessment` | CASCADE |
-| `baseline_item` → `baseline_section` | CASCADE |
-| `baseline_defect_mapping` → both parents | CASCADE |
-| `task_level` → `task` | CASCADE |
-| `prompt` → `task_level` | CASCADE |
-| `speech_target`, `evaluation_target`, `prompt_scoring`, `feedback_rule` → `prompt` | CASCADE |
-| `adaptive_threshold` → `prompt_scoring` | CASCADE |
-| `task_defect_mapping` → both parents | CASCADE |
-| `patient` → `therapist` | SET NULL |
-| `patient_baseline_result` → `patient`, `baseline_assessment`, `therapist` | RESTRICT |
-| `baseline_item_result` → `patient_baseline_result` | CASCADE |
-| `baseline_item_result` → `baseline_item` | RESTRICT |
-| `therapy_plan` → `patient`, `therapist` | RESTRICT |
-| `plan_task_assignment` → `therapy_plan` | CASCADE |
-| `plan_task_assignment` → `task`, `therapist` | RESTRICT |
-| `session` → `therapy_plan`, `patient` | RESTRICT |
-| `session` → `therapist` | SET NULL |
-| `session_prompt_attempt` → `session` | CASCADE |
-| `session_prompt_attempt` → `prompt` | RESTRICT |
-| `patient_task_progress` → `patient` | CASCADE |
-| `patient_task_progress` → `task`, `task_level` | RESTRICT |
-
-### Required Indexes
+**2.4** Run this SQL to verify baseline_item formula fields are populated:
 ```sql
--- Domain 1
-CREATE INDEX ON baseline_section(baseline_id);
-CREATE INDEX ON baseline_section(target_defect_id);
-CREATE INDEX ON baseline_item(section_id);
-CREATE INDEX ON baseline_defect_mapping(defect_id);
-CREATE INDEX ON baseline_defect_mapping(baseline_id);
-
--- Domain 2
-CREATE INDEX ON task(type);
-CREATE INDEX ON task_level(task_id);
-CREATE INDEX ON prompt(level_id);
-CREATE INDEX ON prompt(prompt_type);
-CREATE INDEX ON task_defect_mapping(defect_id);
-CREATE INDEX ON task_defect_mapping(task_id);
-
--- Domain 3
-CREATE INDEX ON patient(assigned_therapist_id);
-CREATE INDEX ON patient_baseline_result(patient_id);
-CREATE INDEX ON patient_baseline_result(baseline_id);
-CREATE INDEX ON baseline_item_result(result_id);
-CREATE INDEX ON therapy_plan(patient_id, status);
-CREATE INDEX ON plan_task_assignment(plan_id);
-CREATE INDEX ON plan_task_assignment(task_id);
-
--- Domain 4 (high-volume)
-CREATE INDEX ON session(plan_id);
-CREATE INDEX ON session(patient_id);
-CREATE INDEX ON session(session_date DESC);
-CREATE INDEX ON session_prompt_attempt(session_id);
-CREATE INDEX ON session_prompt_attempt(prompt_id);
-CREATE INDEX ON session_prompt_attempt(result);
-CREATE INDEX ON session_prompt_attempt(attempted_at DESC);
-CREATE INDEX ON patient_task_progress(patient_id);
-CREATE INDEX ON patient_task_progress(last_attempted_at DESC);
+SELECT
+  COUNT(*) FILTER (WHERE formula_weights IS NULL) AS missing_fw,   -- expected 0
+  COUNT(*) FILTER (WHERE wpm_range IS NULL)       AS missing_wpm,  -- expected 0
+  COUNT(*) FILTER (WHERE fusion_weights IS NULL)  AS missing_fus,  -- expected 0
+  COUNT(*) FILTER (WHERE formula_mode IS NULL)    AS missing_mode  -- expected 0
+FROM baseline_item;
 ```
 
-### Unique Constraints
+**2.5** Run this SQL to verify task_mode distribution:
 ```sql
-ALTER TABLE patient_task_progress ADD CONSTRAINT uq_patient_task UNIQUE (patient_id, task_id);
-ALTER TABLE plan_task_assignment  ADD CONSTRAINT uq_plan_task    UNIQUE (plan_id, task_id);
-```
-
-### Check Constraints
-```sql
--- therapy_plan
-ADD CONSTRAINT chk_plan_dates CHECK (end_date IS NULL OR end_date > start_date)
-
--- patient
-ADD CONSTRAINT chk_dob CHECK (date_of_birth < CURRENT_DATE)
-
--- adaptive_threshold
-ADD CONSTRAINT chk_thresholds CHECK (advance_to_next_level > drop_to_easier_level)
-
--- session_prompt_attempt
-ADD CONSTRAINT chk_accuracy CHECK (accuracy_score IS NULL OR accuracy_score BETWEEN 0 AND 100)
-
--- patient_task_progress
-ADD CONSTRAINT chk_consec CHECK (consecutive_passes >= 0 AND consecutive_fails >= 0)
+SELECT task_mode, COUNT(*) FROM prompt GROUP BY task_mode ORDER BY COUNT(*) DESC;
+-- expected: sentence_read=71, free_speech=51, roleplay=20,
+--           word_drill=19, paragraph_read=13, stuttering=6
 ```
 
 ---
 
-## JSON Migration Script Requirements
+## SECTION 3 — Backend: Formula Config Lookup
 
-The migration script must:
+**3.1** Open services/analysis_service.py.
+Verify a FORMULA_CONFIG dict exists at module level (not inside a function).
+Verify it has exactly 6 keys: word_drill, sentence_read, paragraph_read,
+free_speech, stuttering, roleplay.
+EXPECTED: All 6 present. Missing any = FAIL.
 
-### Language & approach
-- Use **Python 3** with `psycopg2` (standard PostgreSQL adapter)
-- Accept database connection parameters via environment variables or a config dict at the top
-- Read each JSON file from a configurable `DATA_DIR` path
-- Insert all rows inside a **single transaction** — any error rolls back everything
-- Be fully **idempotent** — use `INSERT ... ON CONFLICT DO NOTHING` for all seed tables so re-running never duplicates data
+**3.2** For each task_mode, verify these exact values:
 
-### Script structure
-```python
-import json, os, psycopg2
-from psycopg2.extras import execute_values
+word_drill:
+  formula_weights: {phoneme_accuracy:0.65, word_accuracy:0.25, confidence_score:0.10, fluency_score:0.00, speech_rate:0.00}
+  wpm_range: {min:60, max:90, tolerance:15}
+  fusion_weights: {speech:0.95, engagement:0.05}
 
-DB = {
-    "host":     os.getenv("DB_HOST", "localhost"),
-    "port":     int(os.getenv("DB_PORT", 5432)),
-    "dbname":   os.getenv("DB_NAME", "speech_therapy"),
-    "user":     os.getenv("DB_USER", "postgres"),
-    "password": os.getenv("DB_PASSWORD", ""),
-}
-DATA_DIR = os.getenv("DATA_DIR", "./data")
+sentence_read:
+  formula_weights: {phoneme_accuracy:0.45, word_accuracy:0.25, fluency_score:0.20, speech_rate:0.10, confidence_score:0.00}
+  wpm_range: {min:80, max:100, tolerance:15}
+  fusion_weights: {speech:0.90, engagement:0.10}
 
-def load(filename):
-    with open(os.path.join(DATA_DIR, filename)) as f:
-        return json.load(f)["data"]
+paragraph_read:
+  formula_weights: {phoneme_accuracy:0.35, word_accuracy:0.25, fluency_score:0.25, speech_rate:0.15, confidence_score:0.00}
+  wpm_range: {min:130, max:150, tolerance:20}
+  fusion_weights: {speech:0.85, engagement:0.15}
 
-def migrate(conn):
-    cur = conn.cursor()
-    # insert functions here — one per table in FK dependency order
-    cur.close()
+free_speech:
+  formula_weights: {phoneme_accuracy:0.40, fluency_score:0.35, speech_rate:0.15, confidence_score:0.10, word_accuracy:0.00}
+  wpm_range: {min:130, max:160, tolerance:25}
+  fusion_weights: {speech:0.75, engagement:0.25}
 
-conn = psycopg2.connect(**DB)
-try:
-    with conn:          # context manager: commits on success, rolls back on exception
-        migrate(conn)
-    print("Migration complete.")
-except Exception as e:
-    print(f"Migration failed — rolled back. Error: {e}")
-    raise
-finally:
-    conn.close()
-```
+stuttering:
+  formula_weights: {fluency_score:0.55, phoneme_accuracy:0.25, speech_rate:0.20, word_accuracy:0.00, confidence_score:0.00}
+  wpm_range: {min:80, max:120, tolerance:20}
+  fusion_weights: {speech:0.60, engagement:0.40}
 
-### Insert pattern for each table
-Use `execute_values` for batch inserts. Example for `defect`:
-```python
-rows = load("defect.json")
-execute_values(cur,
-    """
-    INSERT INTO defect (defect_id, code, name, category, description)
-    VALUES %s
-    ON CONFLICT (defect_id) DO NOTHING
-    """,
-    [(r["defect_id"], r["code"], r["name"], r["category"], r["description"])
-     for r in rows]
-)
-print(f"  defect: {len(rows)} rows")
-```
+roleplay:
+  formula_weights: {phoneme_accuracy:0.25, fluency_score:0.35, speech_rate:0.15, nlp_score:0.25, word_accuracy:0.00}
+  wpm_range: {min:110, max:150, tolerance:25}
+  fusion_weights: {speech:0.70, engagement:0.30}
 
-### JSONB field handling
-Fields stored as JSONB must be serialised with `json.dumps()` before passing to psycopg2:
-```python
-import json as _json
-from psycopg2.extras import Json
+Any wrong value = FAIL. All weights in formula_weights must sum to 1.0.
 
-# Option A — use psycopg2 Json wrapper (recommended):
-Json(r["raw_speech_target"])
+**3.3** Verify get_formula_config(task_mode) raises ValueError for unknown task_mode.
+Test by calling get_formula_config("unknown_mode") — should raise, not return None.
+Returning None = FAIL. Silent failure would use wrong weights.
 
-# Option B — manual serialisation:
-_json.dumps(r["raw_speech_target"])
-```
-
-Use `Json(value) if value is not None else None` for all JSONB fields that are nullable.
-
-### NULL handling
-JSON `null` becomes Python `None` — psycopg2 maps `None` to SQL `NULL` automatically. No special handling needed.
-
-### Exact insert order with column lists
-
-Generate INSERT statements in this exact order:
-
-```
-1.  defect                  — defect.json
-2.  baseline_assessment     — baseline_assessment.json
-3.  baseline_defect_mapping — baseline_defect_mapping.json
-4.  baseline_section        — baseline_section.json
-5.  baseline_item           — baseline_item.json
-6.  task                    — task.json
-7.  task_level              — task_level.json
-8.  prompt                  — prompt.json
-9.  speech_target           — speech_target.json       (raw_speech_target is JSONB)
-10. evaluation_target       — evaluation_target.json   (target_phonemes, check_on_words, substitution_errors are JSONB)
-11. prompt_scoring          — prompt_scoring.json       (layer2_target_pairs is JSONB)
-12. adaptive_threshold      — adaptive_threshold.json
-13. feedback_rule           — feedback_rule.json
-14. task_defect_mapping     — task_defect_mapping.json
-```
-
-Tables 15–22 (therapist through patient_task_progress) are runtime — do not seed them. Print a note that they are created empty.
-
-### Post-migration verification
-After all inserts, run and print counts:
-```python
-tables = ["defect","baseline_assessment","baseline_defect_mapping",
-          "baseline_section","baseline_item","task","task_level",
-          "prompt","speech_target","evaluation_target","prompt_scoring",
-          "adaptive_threshold","feedback_rule","task_defect_mapping"]
-for t in tables:
-    cur.execute(f"SELECT COUNT(*) FROM {t}")
-    count = cur.fetchone()[0]
-    print(f"  {t:35s}: {count:>5} rows")
-```
-
-### Expected row counts
-```
-defect                    :    23
-baseline_assessment       :    12
-baseline_defect_mapping   :    34
-baseline_section          :    37
-baseline_item             :   217
-task                      :    30
-task_level                :    90
-prompt                    :   180
-speech_target             :   180
-evaluation_target         :   180
-prompt_scoring            :   180
-adaptive_threshold         :    90
-feedback_rule             :   180
-task_defect_mapping       :    64
-```
+**3.4** Verify the lookup is called ONLY for adult task exercise prompts.
+For baseline items, the code must read formula_weights, wpm_range, fusion_weights
+directly from the database row — NOT from FORMULA_CONFIG.
+Check score_attempt() or equivalent function: it must branch on source type.
+If baseline items use the lookup table instead of the DB row = FAIL.
 
 ---
 
-## Output Structure
+## SECTION 4 — Backend: Warmup Gate
 
-Produce output in exactly this order:
+**4.1** Open the submit-attempt endpoint or score_attempt() function.
+Verify the FIRST check reads prompt_scoring.active.
+If active == False → warmup path runs, full AI pipeline is skipped entirely.
+If active == True → exercise path runs full pipeline.
+EXPECTED: active check is first. If it is checked after any AI model runs = FAIL.
 
-### Part 1 — `schema.sql`
-```
--- 1. Header comment block
--- 2. CREATE EXTENSION
--- 3. DROP TYPE IF EXISTS + CREATE TYPE (all 15 enums)
--- 4. DROP TABLE IF EXISTS in reverse FK order (for clean re-runs)
--- 5. CREATE TABLE statements (22 tables, in FK dependency order)
--- 6. All index DDL
--- 7. All unique constraint DDL
--- 8. All check constraint DDL
-```
+**4.2** Verify the warmup path checks exactly 3 behavioural signals:
+  response_latency_sec <= prompt_scoring.response_latency_max_sec (10 seconds)
+  speech_detected == True (minimum speech above noise floor)
+  completion_percent >= prompt_scoring.task_completion_min_percent (50%)
+EXPECTED: All 3 checked. Missing any = PARTIAL.
 
-### Part 2 — `migrate.py`
-```
--- Complete Python migration script following the structure above
--- Reads JSON files from DATA_DIR
--- Inserts all 14 seed tables in order
--- Verifies row counts
--- Single transaction, idempotent
-```
+**4.3** Verify warmup result is NOT stored in session_prompt_attempt with a scored
+accuracy_score. The result column should be "skipped" or attempt is stored with
+accuracy_score = NULL and no adaptive decision made.
+If warmup sets accuracy_score to a number = FAIL. It would corrupt progress tracking.
+
+**4.4** Verify patient_task_progress is NOT updated after a warmup attempt.
+consecutive_passes, consecutive_fails must not change on warmup.
+EXPECTED: No write to patient_task_progress after warmup = PASS.
 
 ---
 
-## Behavioural Rules
+## SECTION 5 — Backend: AI Pipeline Components
 
-1. **Never truncate column values** — use TEXT for all variable-length fields unless a strict ENUM applies
-2. **Preserve IPA characters** — fields like `target_phoneme` contain `/θ/`, `/ð/`, `/r̥/` — these must survive the JSON → Python → psycopg2 → PostgreSQL round-trip unchanged (UTF-8 throughout)
-3. **JSONB fields** — `raw_speech_target`, `target_phonemes`, `check_on_words`, `substitution_errors`, `layer2_target_pairs` — always wrap with `Json()` from `psycopg2.extras`; never insert as a raw string
-4. **Warmup prompt rule** — `prompt_scoring` rows where `active = false` have NULL for all `layer1_*` and `layer2_*` fields; `adaptive_threshold` has NO row for these prompts
-5. **Exercise prompt rule** — `prompt_scoring` rows where `active = true` have NULL for `response_latency_max_sec`, `minimum_speech_detected`, `task_completion_min_percent`; `adaptive_threshold` DOES have a row
-6. **Re-runnable** — all INSERTs use `ON CONFLICT (pk_column) DO NOTHING`; schema uses `CREATE TABLE IF NOT EXISTS` and `CREATE TYPE IF NOT EXISTS`
-7. **Single transaction** — the entire migration is wrapped in one `with conn:` block; any error aborts and rolls back all inserts
-8. **Connection config at top** — DB credentials in a single dict at the top of `migrate.py`, overridable via environment variables
-9. **Print progress** — after each table insert, print the table name and row count to stdout
-10. **No ORM** — use raw psycopg2 with `execute_values` only; no SQLAlchemy, no Django ORM
+**5.1** Open services/asr_service.py (or equivalent).
+Verify Whisper returns ALL of these values per attempt:
+  transcript (string), wpm (float), disfluency_count (int),
+  token_confidence_scores (list of floats), fluency_score (float 0-100)
+EXPECTED: All 5 outputs. Missing wpm or disfluency_count = FAIL.
+
+**5.2** Verify disfluency detection counts these exact categories:
+  repetitions ("I I want"), revisions ("I mean"), interjections (um, uh, er, like, you know)
+EXPECTED: All 3 categories. Only counting "um/uh" = PARTIAL.
+
+**5.3** Verify Fluency Score uses this exact formula:
+  DR = (repetitions + revisions + interjections) / total_words × 100
+  PS = 100 − sum(pause_penalties) where penalties are:
+       mid-phrase <0.5s = -2, mid-phrase 0.5-1s = -4, mid-phrase >1s = -8
+       at punctuation boundary any duration = 0 penalty
+  FS = 0.60 × (100 − DR×3) + 0.40 × PS   floor=0 ceiling=100
+EXPECTED: Exact formula. Using only pause penalties without disfluency rate = FAIL (v1 bug).
+
+**5.4** Open services/phoneme_service.py (or equivalent).
+Verify HuBERT CTC aligns against the TARGET PHONEME SEQUENCE from the DB,
+NOT against the Whisper transcript.
+This is the critical v1 fix: alignment must be against evaluation_target.target_phonemes
+from the database, bypassing Whisper's auto-correction.
+If aligning against transcript = FAIL. This is the most common v1 error.
+
+**5.5** Verify per-phoneme scoring uses:
+  correct production = 1.0
+  distortion (right phoneme, wrong quality) = 0.5
+  substitution (wrong phoneme) = 0.0
+  omission = 0.0
+EXPECTED: All 4 values. Binary correct/wrong only = PARTIAL.
+
+**5.6** Verify Speech Rate Score uses:
+  WPM = (word_count / duration_seconds) × 60
+  midpoint = (wpm_range.min + wpm_range.max) / 2
+  deviation = |WPM − midpoint| − wpm_range.tolerance
+  SRS = 100 − max(0, deviation × 1.5)   floor=0 ceiling=100
+EXPECTED: Exact formula with per-task wpm_range. Fixed ideal WPM for all tasks = FAIL (v1 bug).
+
+**5.7** Open services/emotion_service.py (or equivalent).
+Verify SpeechBrain SER returns: emotion_label, raw_emotion_scores dict,
+behavioral_score (0-100), frustration_score (0.0-1.0).
+EXPECTED: All 4 outputs. Missing frustration_score = FAIL.
+frustration_score > 0.40 triggers DROP override regardless of accuracy_score.
+
+**5.8** Verify Behavioral Score formula:
+  RL_score: 0-1s=100, 1-2.5s=80, 2.5-5s=60, 5-10s=30, >10s=0
+  TC = (words_spoken / words_required) × 100
+  AQ = 100 if topic relevance >= 0.60, else 50 if partial, else 0
+  BehavioralScore = 0.40×RL_score + 0.35×TC + 0.25×AQ
+EXPECTED: Exact formula. Missing RL_score banding = PARTIAL.
+
+**5.9** Verify Engagement Score formula:
+  EngagementScore = 0.65×EmotionScore + 0.35×BehavioralScore
+  NOT 0.70/0.30 — this was the v1 value. The correct v2 value is 0.65/0.35.
+EXPECTED: 0.65/0.35 split. Using 0.70/0.30 = FAIL (v1 bug).
+
+**5.10** Verify NLP service runs ONLY for free_speech and roleplay task_modes.
+It must NOT run for word_drill, sentence_read, paragraph_read, or stuttering.
+If NLP runs on all modes = FAIL (unnecessary computation + wrong scoring).
 
 ---
 
-## Validation Checklist (verify before finalising output)
+## SECTION 6 — Backend: Score Fusion and Rule Engine
 
-- [ ] All 22 tables present in DDL
-- [ ] All 15 enum types defined before first table
-- [ ] All tables created in FK dependency order
-- [ ] All 14 seed tables have INSERT blocks in `migrate.py`
-- [ ] `ON CONFLICT DO NOTHING` present on every INSERT
-- [ ] All JSONB fields wrapped with `Json()`
-- [ ] `adaptive_threshold` inserts only for exercise prompts (90 rows, not 180)
-- [ ] Row counts match the expected table above
-- [ ] All indexes present
-- [ ] All unique and check constraints present
-- [ ] `DATA_DIR` is configurable at top of `migrate.py`
-- [ ] IPA characters preserved (UTF-8 connection encoding set explicitly)
+**6.1** Open analysis_service.py.
+Verify SpeechScore is calculated as:
+  SpeechScore = sum(formula_weights[component] × component_score for each component)
+  All weights must be read from formula_weights dict (from DB row for baseline,
+  from FORMULA_CONFIG lookup for adult tasks).
+EXPECTED: Dynamic weights, not hardcoded per-component values. Hardcoded = FAIL.
+
+**6.2** Verify FinalScore fusion:
+  FinalScore = fusion_weights["speech"] × SpeechScore
+             + fusion_weights["engagement"] × EngagementScore
+  Weights must come from fusion_weights (DB row or FORMULA_CONFIG).
+  Fixed 0.75/0.25 split for all modes = FAIL (v1 bug).
+
+**6.3** Verify Rule-Based Adjustments are applied AFTER fusion:
+  Rule 1: FinalEngagement < 35 → FinalScore -= 5
+  Rule 2: FinalEngagement > 85 → FinalScore += 5
+  Rule 3: PhonemeAccuracy < 35 → FinalScore = min(FinalScore, 45)
+  Rule 4: ConfidenceScore < 50 → flag as "low confidence, review recommended",
+           do NOT use this score for adaptive difficulty decision
+  Rule 5: warmup prompt → skip rules entirely, only behavioural check
+EXPECTED: All 5 rules applied in order. Missing Rule 4 = FAIL.
+Rule 4 is the confidence gate — low-confidence attempts must not drive level changes.
+
+**6.4** Verify Adaptive Decision logic reads from adaptive_threshold DB row:
+  score >= advance_to_next_level → consecutive_passes += 1, consecutive_fails = 0
+    if consecutive_passes >= consecutive_to_advance → action = ADVANCE
+    else → action = STAY
+  score < drop_to_easier_level → consecutive_fails += 1, consecutive_passes = 0
+    if consecutive_fails >= consecutive_to_drop → action = DROP
+    else → action = STAY
+  else (in stay range) → action = STAY
+EXPECTED: Reads from DB row. Hardcoded 75/55 thresholds = FAIL.
+Different tasks have different thresholds (advance ranges from 68 to 75 in your data).
+
+**6.5** Verify frustration override:
+  IF frustration_score > 0.40 AND consecutive_fails >= 2 → action = DROP immediately
+  This override runs BEFORE the threshold comparison above.
+EXPECTED: Frustration check before threshold check. Missing entirely = FAIL.
+
+**6.6** Verify clinician alert logic:
+  After every exercise attempt:
+    baseline_accuracy = first recorded overall_accuracy for this patient+task
+    progress_delta = baseline_accuracy − new_overall_accuracy
+    IF progress_delta > 15.0 → clinician_alert = True, progress_delta stored
+    IF clinician_alert == True → action cannot be ADVANCE (freeze upgrades)
+EXPECTED: Alert computed and written to patient_task_progress.
+Missing clinician_alert column or logic = FAIL.
+
+**6.7** Verify feedback message selection:
+  result == "pass"    → feedback_rule.pass_message
+  result == "partial" → feedback_rule.partial_message
+  result == "fail" AND action == STAY → feedback_rule.retry_message
+  result == "fail" AND action == DROP → feedback_rule.fail_message
+EXPECTED: 4 distinct cases. Using only pass/fail (2 messages) = PARTIAL.
+retry_message must be distinct from fail_message.
+
+---
+
+## SECTION 7 — Backend: Baseline Item Scoring
+
+**7.1** Verify baseline item scoring reads formula_weights directly from the
+baseline_item DB row (NOT from FORMULA_CONFIG lookup table).
+The baseline_item table has formula_weights, wpm_range, fusion_weights stored per row.
+EXPECTED: DB read. Using FORMULA_CONFIG for baseline = FAIL.
+
+**7.2** Verify baseline item scoring result is written to baseline_item_result:
+  result_id (FK to patient_baseline_result), item_id (FK to baseline_item),
+  score_given, error_noted, clinician_note
+EXPECTED: All fields written. Missing error_noted = PARTIAL.
+error_noted stores the specific substitution error (e.g. "/w/ substitution on /r/ onset").
+
+**7.3** Verify that after all baseline items are scored, the system aggregates
+scores by defect_codes and writes to patient_baseline_result with severity_rating.
+EXPECTED: Aggregation query runs. No aggregation = FAIL.
+Without this, defect profile cannot be built and therapy plan cannot be generated.
+
+**7.4** Verify baseline scoring does NOT trigger adaptive_threshold logic.
+Baseline items have no adaptive_threshold rows. The scoring function must not
+attempt to read or use adaptive thresholds for baseline items.
+EXPECTED: No adaptive logic on baseline path. Using task adaptive thresholds
+for baseline = FAIL (wrong clinical behavior).
+
+---
+
+## SECTION 8 — Backend: API Routes
+
+**8.1** Verify these routes exist and return correct HTTP methods:
+  GET  /api/v1/baselines/{baseline_id}/sections    → nested sections + items
+  POST /api/v1/baseline-results                    → opens assessment session
+  POST /api/v1/item-results                        → records one item score
+  POST /api/v1/baseline-results/{id}/complete      → finalises + returns defect_profile
+  GET  /api/v1/defects/{id}/recommended-tasks      → queries task_defect_mapping
+  POST /api/v1/plans/{id}/assignments              → adds task to plan
+  PATCH /api/v1/assignments/{id}/approve           → therapist approval gate
+  GET  /api/v1/sessions/{id}/queue                 → full prompt payload for session
+  POST /api/v1/sessions/{id}/submit-attempt        → multipart audio + metadata
+  GET  /api/v1/patients/{id}/progress              → progress per task
+  GET  /api/v1/clinician/alerts                    → lists clinician_alert patients
+  PATCH /api/v1/progress/{id}/dismiss-alert        → clears clinician_alert flag
+EXPECTED: All 12 routes present. Missing submit-attempt = CRITICAL FAIL.
+
+**8.2** Verify submit-attempt accepts multipart/form-data with:
+  audio (File, .webm), prompt_id (string), attempt_number (int),
+  response_latency_sec (int)
+EXPECTED: All 4 fields. Missing response_latency_sec = FAIL.
+Latency is required for Behavioral Score RL_score calculation.
+
+**8.3** Verify submit-attempt response includes:
+  attempt_id, result (pass/partial/fail), accuracy_score, feedback_message,
+  adaptive_action (advance/stay/drop/clinician_alert),
+  breakdown: { asr: {transcript, wpm, disfluency_count},
+               phoneme: {accuracy, per_word: [{word, status, expected_phoneme}]},
+               emotion: {label, behavioral_score},
+               nlp: {topic_score, who_score, outcome_score} or null }
+EXPECTED: Full breakdown in response. Missing per_word phoneme breakdown = PARTIAL.
+
+---
+
+## SECTION 9 — Frontend Verification
+
+**9.1** Open the SessionRunner component (or equivalent).
+Verify it reads prompt_type from the prompt queue response.
+For warmup prompts: display instruction + content, record audio, submit.
+For exercise prompts: same, but additionally show FeedbackPanel with score breakdown.
+EXPECTED: prompt_type drives UI behavior. Same UI for both = FAIL.
+
+**9.2** Verify the AudioRecorder component:
+  Records start time when mic activates (not when button clicked)
+  Records end time when stop triggered
+  Computes response_latency_sec = time_from_mic_activation_to_first_speech
+  Sends latency_sec with the multipart form submission
+EXPECTED: Latency measured from mic activation. Missing or wrong = FAIL.
+Latency is used for RL_score in BehavioralScore.
+
+**9.3** Verify FeedbackPanel displays:
+  accuracy_score as animated gauge (0-100)
+  result badge: PASS (green) / PARTIAL (yellow) / FAIL (red)
+  feedback_message text from backend response
+  adaptive_action indicator: advance / stay / drop / clinician_alert
+  breakdown accordion with ASR, Phoneme, Emotion, NLP tabs
+EXPECTED: All 5 elements. Missing adaptive_action indicator = PARTIAL.
+
+**9.4** Verify BaselineRunner component:
+  Renders different input UI per response_type:
+    picture_naming → shows image from /images/{image_keyword}.png, no word label visible
+    sentence_reading → shows full sentence text
+    word_repetition → shows word + speaker button triggering speechSynthesis.speak()
+    minimal_pairs → shows two words side by side with separator
+    syllable_repetition → shows syllable in large monospace + repeat count instruction
+  EXPECTED: response_type-specific rendering. Hardcoded "STIMULUS 1/1" = FAIL.
+
+**9.5** Verify picture_naming items do NOT show the word alongside the image.
+The word is in display_content but must NOT be rendered when image loads successfully.
+It should only appear as a fallback when image fails to load (onError handler).
+EXPECTED: Word hidden when image visible. Word visible alongside image = FAIL (ruins task validity).
+
+---
+
+## SECTION 10 — Integration Test
+
+Run this end-to-end scenario manually and verify each step:
+
+**Step 1:** Create patient → run GFTA-3 baseline (section: initial consonants)
+  → score "rabbit" item (patient says "wabbit") → score_given should be ~28
+  → complete baseline → defect_profile should include ART-001 (Rhotacism)
+
+**Step 2:** Create therapy plan → recommended-tasks for ART-001 should include
+  task "Minimal Pairs Contrast" (source_id=1) → approve assignment
+
+**Step 3:** Create session → GET queue → first prompt should be warmup
+  (prompt_type=warmup, scoring.active=false) for the easy level
+
+**Step 4:** Submit warmup audio → response should NOT include accuracy_score number
+  → patient_task_progress should NOT change
+
+**Step 5:** Submit exercise audio (patient says "ban" for "pan") →
+  Layer 1 should detect "pan" missing → Layer 2 should flag /b/ on "pan" onset →
+  result = "partial" or "fail" → adaptive_action = "stay" (first fail) →
+  feedback_message = retry_message text → consecutive_fails = 1
+
+**Step 6:** Submit exercise audio again (fails again) → consecutive_fails = 2
+
+**Step 7:** Submit exercise audio again (fails again) → consecutive_fails = 3
+  → adaptive_action = "drop" → current_level_id unchanged (already easy)
+  → clinician_alert = True if at easy level with 3 fails
+
+**Step 8:** GET /clinician/alerts → patient should appear in list
+
+EXPECTED: All 8 steps produce correct outputs.
+Any step failing reveals an integration gap between DB, scoring, and API layers.
+
+---
+
+## AUDIT SCORING
+
+After completing all checkpoints, score your implementation:
+
+| Section | Checkpoints | Status |
+|---|---|---|
+| 1. DB Schema | 1.1–1.5 | |
+| 2. Data Migration | 2.1–2.5 | |
+| 3. Formula Config | 3.1–3.4 | |
+| 4. Warmup Gate | 4.1–4.4 | |
+| 5. AI Pipeline | 5.1–5.10 | |
+| 6. Score Fusion | 6.1–6.7 | |
+| 7. Baseline Scoring | 7.1–7.4 | |
+| 8. API Routes | 8.1–8.3 | |
+| 9. Frontend | 9.1–9.5 | |
+| 10. Integration | Steps 1–8 | |
+
+CRITICAL FAILs (any of these = system cannot produce valid clinical scores):
+- 1.2 missing clinician_alert / progress_delta columns
+- 3.1 FORMULA_CONFIG missing from analysis_service.py
+- 4.1 warmup gate not first check in scoring function
+- 5.4 HuBERT aligning against Whisper transcript instead of target_phonemes
+- 5.9 EngagementScore using 0.70/0.30 instead of 0.65/0.35
+- 6.4 adaptive thresholds hardcoded instead of read from DB
+- 6.5 frustration override missing
+- 8.1 submit-attempt route missing
+- 9.4 BaselineRunner showing hardcoded stimulus placeholder

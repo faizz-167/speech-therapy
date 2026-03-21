@@ -70,16 +70,47 @@ def migrate(conn):
         )
         print(f"  baseline_section: {len(rows)} rows processed.")
 
-    # 5. baseline_item
-    rows = load("baseline_item.json")
+    # 5. baseline_item (v2.1 — 19 columns, skip legacy fields)
+    rows = load("baseline_item_v2.1.json")
     if rows:
+        values = []
+        for r in rows:
+            ref = r.get("reference_text")
+            dpf = r.get("defect_phoneme_focus")
+            values.append((
+                r["item_id"],
+                r["section_id"],
+                r["order_index"],
+                r["task_name"],
+                r["instruction"],
+                r["display_content"],
+                r["response_type"],
+                r["expected_output"],
+                r.get("target_phoneme"),
+                r.get("image_keyword"),
+                r["scoring_method"],
+                r["max_score"],
+                r["scope"],
+                r["formula_mode"],
+                Json(ref) if ref is not None else None,
+                Json(r["wpm_range"]),
+                Json(r["formula_weights"]),
+                Json(r["fusion_weights"]),
+                Json(r["defect_codes"]),
+                Json(dpf) if dpf is not None else None,
+            ))
         execute_values(cur,
             """
-            INSERT INTO baseline_item (item_id, section_id, item_label, stimulus_content, target_phoneme, "position", response_type, scoring_method, max_score, order_index)
-            VALUES %s
+            INSERT INTO baseline_item (
+                item_id, section_id, order_index, task_name, instruction,
+                display_content, response_type, expected_output, target_phoneme,
+                image_keyword, scoring_method, max_score, scope, formula_mode,
+                reference_text, wpm_range, formula_weights, fusion_weights,
+                defect_codes, defect_phoneme_focus
+            ) VALUES %s
             ON CONFLICT (item_id) DO NOTHING
             """,
-            [(r["item_id"], r["section_id"], r["item_label"], r.get("stimulus_content"), r.get("target_phoneme"), r.get("position"), r.get("response_type"), r.get("scoring_method"), r.get("max_score"), r["order_index"]) for r in rows]
+            values
         )
         print(f"  baseline_item: {len(rows)} rows processed.")
 

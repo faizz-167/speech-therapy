@@ -5,12 +5,15 @@
 -- 2. CREATE EXTENSION
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
--- 3. DROP TYPE IF EXISTS + CREATE TYPE (all 15 enums)
+-- 3. DROP TYPE IF EXISTS + CREATE TYPE (all enums)
 DROP TYPE IF EXISTS defect_category_enum CASCADE;
 DROP TYPE IF EXISTS baseline_domain_enum CASCADE;
 DROP TYPE IF EXISTS admin_method_enum CASCADE;
 DROP TYPE IF EXISTS relevance_enum CASCADE;
 DROP TYPE IF EXISTS item_position_enum CASCADE;
+DROP TYPE IF EXISTS response_type_enum CASCADE;
+DROP TYPE IF EXISTS formula_mode_enum CASCADE;
+DROP TYPE IF EXISTS scope_enum CASCADE;
 DROP TYPE IF EXISTS task_type_enum CASCADE;
 DROP TYPE IF EXISTS level_name_enum CASCADE;
 DROP TYPE IF EXISTS prompt_type_enum CASCADE;
@@ -27,6 +30,9 @@ CREATE TYPE baseline_domain_enum      AS ENUM ('articulation','fluency','cogniti
 CREATE TYPE admin_method_enum         AS ENUM ('clinician-administered','clinician-rated','self-report','software-assisted');
 CREATE TYPE relevance_enum            AS ENUM ('primary','secondary');
 CREATE TYPE item_position_enum        AS ENUM ('initial','medial','final');
+CREATE TYPE response_type_enum        AS ENUM ('picture_naming','word_repetition','minimal_pairs','syllable_repetition','sentence_reading','paragraph_reading','sequence_recitation','free_description');
+CREATE TYPE formula_mode_enum         AS ENUM ('word_drill','sentence_read','paragraph_read','free_speech');
+CREATE TYPE scope_enum                AS ENUM ('word_onset','full_word','full_sentence','rate_only','distribution');
 CREATE TYPE task_type_enum            AS ENUM ('articulation','fluency','cognition');
 CREATE TYPE level_name_enum           AS ENUM ('easy','medium','advanced');
 CREATE TYPE prompt_type_enum          AS ENUM ('warmup','exercise');
@@ -102,15 +108,27 @@ CREATE TABLE baseline_section (
 
 CREATE TABLE baseline_item (
     item_id TEXT PRIMARY KEY,
-    section_id TEXT REFERENCES baseline_section(section_id) ON DELETE CASCADE,
-    item_label TEXT NOT NULL,
-    stimulus_content TEXT,
+    section_id TEXT NOT NULL REFERENCES baseline_section(section_id) ON DELETE CASCADE,
+    order_index INTEGER NOT NULL,
+    task_name TEXT NOT NULL,
+    instruction TEXT NOT NULL,
+    display_content TEXT NOT NULL,
+    response_type response_type_enum NOT NULL,
+    expected_output TEXT NOT NULL,
     target_phoneme TEXT,
-    position item_position_enum,
-    response_type TEXT,
-    scoring_method TEXT,
-    max_score INTEGER,
-    order_index INTEGER NOT NULL
+    image_keyword TEXT,
+    scoring_method TEXT NOT NULL,
+    max_score INTEGER NOT NULL,
+    scope scope_enum NOT NULL,
+    formula_mode formula_mode_enum NOT NULL,
+    reference_text JSONB,
+    wpm_range JSONB NOT NULL,
+    formula_weights JSONB NOT NULL,
+    fusion_weights JSONB NOT NULL,
+    defect_codes JSONB NOT NULL,
+    defect_phoneme_focus JSONB,
+    CONSTRAINT chk_max_score CHECK (max_score > 0),
+    CONSTRAINT chk_order_index CHECK (order_index > 0)
 );
 
 CREATE TABLE task (
@@ -313,6 +331,9 @@ CREATE TABLE patient_task_progress (
 CREATE INDEX ON baseline_section(baseline_id);
 CREATE INDEX ON baseline_section(target_defect_id);
 CREATE INDEX ON baseline_item(section_id);
+CREATE INDEX ON baseline_item(response_type);
+CREATE INDEX ON baseline_item(formula_mode);
+CREATE INDEX ON baseline_item USING gin(defect_codes);
 CREATE INDEX ON baseline_defect_mapping(defect_id);
 CREATE INDEX ON baseline_defect_mapping(baseline_id);
 

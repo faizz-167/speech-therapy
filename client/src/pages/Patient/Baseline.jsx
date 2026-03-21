@@ -5,6 +5,7 @@ import { FiCheck, FiArrowRight } from 'react-icons/fi';
 import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import AudioRecorder from '../../components/AudioRecorder';
+import StimulusCard from '../../components/StimulusCard';
 
 import { useAuth } from '../../context/AuthContext';
 export default function Baseline() {
@@ -29,9 +30,12 @@ export default function Baseline() {
           for (const section of sections) {
             const baseTasks = (section.items || []).map((item) => ({
               id: item.item_id,
-              name: section.name,
-              instructions: section.description || 'Complete the following task.',
-              stimuli: [item.target_text || item.item_type]
+              name: item.display_content || item.task_name || section.section_name || 'Assessment Item',
+              instructions: item.instruction || section.instructions || 'Complete the following task.',
+              stimuli: [item.display_content || 'No stimulus associated with this item.'],
+              response_type: item.response_type || 'read_aloud',
+              scoring_method: item.scoring_method || 'ai_speech_analysis',
+              itemData: item
             }));
             mappedTasks = [...mappedTasks, ...baseTasks];
           }
@@ -47,7 +51,17 @@ export default function Baseline() {
 
   const handleRecordingComplete = async (blob) => {
     if (!blob) {
-       setHasRecorded(false);
+       // Non-audio item (e.g. picture_naming) — add fallback scores and advance
+       const taskScores = scores[currentTask.id] || { accuracy: [], fluency: [], emotional: [], phoneme_accuracy: [], speech_rate: [], engagement: [], speech_score: [] };
+       taskScores.accuracy.push(0);
+       taskScores.fluency.push(0);
+       taskScores.emotional.push(0);
+       taskScores.phoneme_accuracy.push(0);
+       taskScores.speech_rate.push(0);
+       taskScores.engagement.push(0);
+       taskScores.speech_score.push(0);
+       setScores({ ...scores, [currentTask.id]: taskScores });
+       setHasRecorded(true);
        return;
     }
     
@@ -107,27 +121,38 @@ export default function Baseline() {
   };
 
   const handleComplete = async () => {
-    // Collect all item results according to the new schema
-    const itemResults = Object.keys(scores).map(itemId => {
-      const s = scores[itemId];
-      const avgSpeech = s.speech_score.length ? s.speech_score.reduce((a, b) => a + b, 0) / s.speech_score.length : 0;
-      return {
-        item_id: itemId,
-        score_given: parseFloat(avgSpeech.toFixed(1)),
-        error_noted: [],
-        clinician_note: null
-      };
-    });
-
+    // Aggregate all per-item scores into the format the backend expects
+    const allAccuracy = Object.values(scores).flatMap(s => s.accuracy || []);
+    const allFluency = Object.values(scores).flatMap(s => s.fluency || []);
+    const allEmotional = Object.values(scores).flatMap(s => s.emotional || []);
+    const allPhoneme = Object.values(scores).flatMap(s => s.phoneme_accuracy || []);
+    const allSpeechRate = Object.values(scores).flatMap(s => s.speech_rate || []);
+    const allEngagement = Object.values(scores).flatMap(s => s.engagement || []);
     const allSpeechScore = Object.values(scores).flatMap(s => s.speech_score || []);
-    const finalAvg = allSpeechScore.length ? allSpeechScore.reduce((a, b) => a + b, 0) / allSpeechScore.length : 0;
+
+    const avg = (arr) => arr.length ? arr.reduce((a, b) => a + b, 0) / arr.length : 0;
+
+    // Build per-task breakdown for reference
+    const tasksData = {};
+    for (const [itemId, s] of Object.entries(scores)) {
+      tasksData[itemId] = {
+        accuracy: avg(s.accuracy),
+        fluency: avg(s.fluency),
+        emotional: avg(s.emotional),
+        speech_score: avg(s.speech_score),
+      };
+    }
 
     try {
-      await post(`/patients/${user.id}/baseline-results`, {
-        patient_id: user.id,
-        baseline_id: "b1_aphasia", // fallback static for now
-        final_score: parseFloat(finalAvg.toFixed(1)),
-        items: itemResults
+      await post('/patients/baseline-results', {
+        accuracy: parseFloat(avg(allAccuracy).toFixed(1)),
+        fluency: parseFloat(avg(allFluency).toFixed(1)),
+        emotional_tone: parseFloat(avg(allEmotional).toFixed(1)),
+        phoneme_accuracy: parseFloat(avg(allPhoneme).toFixed(1)),
+        speech_rate: parseFloat(avg(allSpeechRate).toFixed(1)),
+        engagement_score: parseFloat(avg(allEngagement).toFixed(1)),
+        speech_score: parseFloat(avg(allSpeechScore).toFixed(1)),
+        tasks_data: tasksData,
       });
       setCompleted(true);
     } catch (err) {
@@ -187,16 +212,31 @@ export default function Baseline() {
           <p className="font-bold text-sm text-black/60 mt-1">{currentTask.instructions}</p>
         </CardHeader>
         <CardContent>
-          <div className="bg-neo-secondary border-4 border-black shadow-[4px_4px_0px_0px_#000] p-8 text-center mb-10 -rotate-[0.5deg]">
-            <p className="text-xs font-black uppercase tracking-widest text-black/50 mb-2">Stimulus {stimulusIdx + 1}/{stimuli.length}</p>
-            <p className="text-3xl font-black text-black leading-relaxed uppercase">{displayStimulus()}</p>
-          </div>
+          <StimulusCard 
+            response_type={currentTask.response_type}
+            display_content={displayStimulus()}
+            image_keyword={currentTask.itemData?.image_keyword}
+            instruction={`Stimulus ${stimulusIdx + 1}/${stimuli.length}`}
+          />
 
           <div className="flex flex-col items-center justify-center max-w-sm mx-auto">
             {!hasRecorded ? (
                <div className="w-full">
-                  <AudioRecorder onRecordingComplete={handleRecordingComplete} />
-                  <p className="text-center font-black text-xs uppercase text-black/50 mt-4 tracking-widest">Read the prompt aloud and record</p>
+                  {currentTask?.response_type === 'read_aloud' ? (
+                    <>
+                      <AudioRecorder onRecordingComplete={handleRecordingComplete} />
+                      <p className="text-center font-black text-xs uppercase text-black/50 mt-4 tracking-widest">Read the prompt aloud and record</p>
+                    </>
+                  ) : (
+                    <div className="flex flex-col gap-3">
+                      <p className="text-center font-bold text-sm text-black mb-2 uppercase">
+                        Requires action: {currentTask?.response_type?.replace('_', ' ')}
+                      </p>
+                      <Button onClick={() => handleRecordingComplete(null)} size="lg" className="w-full shadow-[4px_4px_0px_0px_#000] border-4 border-black hover:-translate-y-1">
+                        Acknowledge & Continue
+                      </Button>
+                    </div>
+                  )}
                </div>
             ) : isAnalyzing ? (
                <div className="text-center py-8">

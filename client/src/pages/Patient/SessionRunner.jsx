@@ -5,6 +5,7 @@ import AudioRecorder from '../../components/AudioRecorder';
 import { FiCheckCircle, FiArrowRight, FiActivity, FiRefreshCcw, FiMessageSquare } from 'react-icons/fi';
 import { Card, CardContent } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
+import StimulusCard from '../../components/StimulusCard';
 
 export default function SessionRunner() {
   const { id } = useParams();
@@ -92,19 +93,12 @@ export default function SessionRunner() {
         <div className="md:col-span-2 space-y-6">
           <Card className="border-4 border-black shadow-[8px_8px_0px_0px_#000] rounded-none">
             <CardContent className="p-8">
-              <div className="bg-neo-bg border-4 border-black p-6 mb-8 text-center -rotate-1 relative">
-                <span className="absolute -top-3 left-4 bg-neo-accent px-2 py-0.5 border-2 border-black text-[10px] font-black tracking-widest uppercase">
-                  {currentPrompt?.task_mode.replace('_', ' ')}
-                </span>
-                <p className="text-4xl font-black text-black leading-snug mt-4">
-                  {currentPrompt?.display_content}
-                </p>
-                {currentPrompt?.task_mode === 'word_drill' && currentPrompt.target_phonemes && (
-                    <p className="text-sm font-bold text-black/50 mt-4 tracking-widest uppercase">
-                        Focus Area: /{currentPrompt.target_phonemes.join('/')}/
-                    </p>
-                )}
-              </div>
+              <StimulusCard 
+                response_type={currentPrompt?.task_mode}
+                display_content={currentPrompt?.display_content}
+                image_keyword={null} // Session prompt format might need mapping to image_keyword if applicable 
+                instruction={currentPrompt?.task_mode.replace('_', ' ')}
+              />
 
               {!result && !isAnalyzing && (
                 <div className="flex flex-col items-center">

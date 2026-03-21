@@ -22,12 +22,34 @@ async def get_patient_progress(patient_id: uuid.UUID, db: AsyncSession = Depends
     return result.scalars().all()
 
 @router.get("/clinician/alerts", response_model=List[PatientTaskProgressSchema])
-async def get_clinician_alerts(therapist_id: uuid.UUID, db: AsyncSession = Depends(get_db)):
-    # Find all patients belonging to therapist who have an active clinician_alert
+async def get_clinician_alerts(therapist_id: str, db: AsyncSession = Depends(get_db)):
+    """Find patients with active alerts for a therapist.
+    
+    The therapist_id param is actually the auth user.id — we need to look up
+    their patients via the old therapists table.
+    """
+    from models.models import Therapist as OldTherapist, Patient as OldPatient
+
+    # Step 1: Find old therapist by user_id
+    t_result = await db.execute(
+        select(OldTherapist).where(OldTherapist.user_id == therapist_id)
+    )
+    therapist = t_result.scalars().first()
+    if not therapist:
+        return []  # No therapist record → no alerts
+
+    # Step 2: Find all patients for this therapist
+    p_result = await db.execute(
+        select(OldPatient.id).where(OldPatient.therapist_id == therapist.id)
+    )
+    patient_ids = [row[0] for row in p_result.all()]
+    if not patient_ids:
+        return []
+
+    # Step 3: Find progress rows with clinician_alert for those patients
     stmt = (
         select(PatientTaskProgress)
-        .join(Patient)
-        .where(Patient.assigned_therapist_id == therapist_id)
+        .where(PatientTaskProgress.patient_id.in_(patient_ids))
         .where(PatientTaskProgress.clinician_alert == True)
         .order_by(PatientTaskProgress.last_attempted_at.desc())
     )
