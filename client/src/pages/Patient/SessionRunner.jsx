@@ -1,194 +1,287 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useApi } from '../../hooks/useApi';
-import AudioRecorder from '../../components/AudioRecorder';
-import { FiCheckCircle, FiArrowRight, FiActivity, FiRefreshCcw, FiMessageSquare } from 'react-icons/fi';
-import { Card, CardContent } from '../../components/ui/card';
-import { Button } from '../../components/ui/button';
-import StimulusCard from '../../components/StimulusCard';
+import { useSessionQueue } from '../../hooks/useSessionQueue';
+import { useAudioRecorder } from '../../hooks/useAudioRecorder';
+import { submitAttempt, completeSession } from '../../api/sessions';
+import toast from 'react-hot-toast';
 
-export default function SessionRunner() {
-  const { id } = useParams();
+import PromptCard from '../../components/session/PromptCard';
+import AudioRecorder from '../../components/assessment/AudioRecorder';
+import FeedbackPanel from '../../components/session/FeedbackPanel';
+import AdaptiveAction from '../../components/session/AdaptiveAction';
+import LoadingState from '../../components/shared/LoadingState';
+
+const PROCESSING_LABELS = [
+  'Checking pronunciation...',
+  'Measuring fluency...',
+  'Computing your score...',
+];
+
+const SessionRunner = () => {
+  const { sessionId } = useParams();
   const navigate = useNavigate();
-  const { get, upload } = useApi();
-  
-  const [queue, setQueue] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [loading, setLoading] = useState(true);
-  
-  // Attempt State
-  const [attemptNumber, setAttemptNumber] = useState(1);
-  const [isAnalyzing, setIsAnalyzing] = useState(false);
+
+  const {
+    currentPrompt, currentIndex, totalPrompts, isComplete,
+    loading: queueLoading, prompts, fetchQueue, nextPrompt
+  } = useSessionQueue(sessionId);
+
+  const {
+    isRecording, audioBlob, responseLatencySec,
+    startRecording, stopRecording, buildFormData
+  } = useAudioRecorder();
+
+  // ── 7-state machine ──
+  const [state, setState] = useState('loading');
   const [result, setResult] = useState(null);
-  
+  const [processingLabel, setProcessingLabel] = useState(0);
+  const [results, setResults] = useState([]); // all exercise results for summary
+  const [sessionSummary, setSessionSummary] = useState(null); // from /complete
+  const [taskSwitchOverlay, setTaskSwitchOverlay] = useState(null); // task switch transition
+
+  // Adaptive threshold data from queue payload
+  const [thresholdData, setThresholdData] = useState({ advance: 75, drop: 50 });
+
+  // ── Init: fetch queue ──
+  useEffect(() => { fetchQueue(); }, [fetchQueue]);
+
+  // ── Transition from loading to warmup/recording when queue loads ──
   useEffect(() => {
-    get(`/sessions/${id}/queue`)
-      .then(data => {
-        setQueue(data);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, [id]);
+    if (!queueLoading && state === 'loading' && prompts?.length > 0) {
+      const first = prompts[0];
+      setState(first?.prompt_type === 'warmup' ? 'warmup' : 'recording');
+    }
+  }, [queueLoading, prompts, state]);
 
-  const currentPrompt = queue[currentIndex];
+  // ── Processing label cycling ──
+  useEffect(() => {
+    if (state !== 'processing') return;
+    const interval = setInterval(() => {
+      setProcessingLabel(prev => (prev + 1) % PROCESSING_LABELS.length);
+    }, 1800);
+    return () => clearInterval(interval);
+  }, [state]);
 
-  const handleRecordingComplete = async (blob) => {
-    if (!blob) return;
-    setIsAnalyzing(true);
+  // ── Audio blob submission ──
+  useEffect(() => {
+    if (state !== 'processing' || !audioBlob) return;
+
+    const submit = async () => {
+      try {
+        const formData = buildFormData();
+        const isWarmup = currentPrompt?.prompt_type === 'warmup';
+
+        if (isWarmup) {
+          // Still submit to backend but don't show feedback
+          try {
+            await submitAttempt(sessionId, currentPrompt.prompt_id || currentPrompt.id, formData);
+          } catch (_) { /* warmup failure is non-blocking */ }
+          toast.success('Good practice! Now let\'s try the real one.', { duration: 2000 });
+
+          // Advance to exercise
+          const hasNext = nextPrompt();
+          setState(hasNext ? 'recording' : 'complete');
+          return;
+        }
+
+        // Exercise submission
+        const res = await submitAttempt(sessionId, currentPrompt.prompt_id || currentPrompt.id, formData);
+        setResult(res);
+        setResults(prev => [...prev, res]);
+
+        // Extract thresholds from response
+        if (res.advance_threshold || res.adaptive_threshold) {
+          setThresholdData({
+            advance: res.advance_threshold || res.adaptive_threshold?.advance_to_next_level || 75,
+            drop: res.drop_threshold || res.adaptive_threshold?.drop_to_easier_level || 50,
+          });
+        }
+
+        setState('feedback');
+
+        // Check for task switch
+        if (res.adaptive_action === 'switched_task') {
+          setTaskSwitchOverlay({
+            message: res.feedback_message || 'Switching to a related exercise...',
+          });
+        }
+      } catch (err) {
+        console.error(err);
+        toast.error("Failed to process audio.");
+        setState('recording');
+      }
+    };
+
+    submit();
+  }, [state, audioBlob]);
+
+  // ── Recording controls ──
+  const handleToggleRecording = useCallback(() => {
+    if (state === 'warmup' || state === 'recording') {
+      if (!isRecording) {
+        startRecording();
+      } else {
+        stopRecording();
+        setState('processing');
+      }
+    }
+  }, [state, isRecording, startRecording, stopRecording]);
+
+  // ── Next prompt ──
+  const handleNext = useCallback(() => {
     setResult(null);
-
-    try {
-      const formData = new FormData();
-      formData.append('audio', blob, 'attempt.webm');
-      formData.append('attempt_number', attemptNumber);
-
-      const res = await upload(`/sessions/${id}/prompts/${currentPrompt.prompt_id}/submit`, formData);
-      setResult(res);
-    } catch (err) {
-      console.error(err);
+    const hasNext = nextPrompt();
+    if (!hasNext) {
+      setState('complete');
+      return;
     }
-    setIsAnalyzing(false);
-  };
+    // Check next prompt type
+    const next = prompts?.[currentIndex + 1];
+    setState(next?.prompt_type === 'warmup' ? 'warmup' : 'recording');
+    setTaskSwitchOverlay(null); // clear overlay
+  }, [nextPrompt, prompts, currentIndex]);
 
-  const handleNext = () => {
-    // Check adaptive decision
-    const decision = result?.adaptive_decision || 'stay';
-    
-    if (result && result.result === 'fail' && attemptNumber < 3) {
-        setAttemptNumber(attemptNumber + 1);
-        setResult(null);
-        return;
-    }
-    
-    // Proceed to next prompt
-    setAttemptNumber(1);
+  // ── Retry (for low confidence) ──
+  const handleRetry = useCallback(() => {
     setResult(null);
-    if (currentIndex < queue.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-    } else {
-      // Finished
-      navigate('/patient/home');
+    setState('recording');
+  }, []);
+
+  // ── Session summary stats ──
+  const summary = useMemo(() => {
+    const exerciseResults = results.filter(r => r && r.accuracy_score !== null && r.accuracy_score !== undefined);
+    const total = results.length;
+    const avgScore = exerciseResults.length > 0
+      ? Math.round(exerciseResults.reduce((a, r) => a + (r.accuracy_score || 0), 0) / exerciseResults.length)
+      : 0;
+    const passes = results.filter(r => r?.result === 'pass').length;
+    const partials = results.filter(r => r?.result === 'partial').length;
+    const fails = results.filter(r => r?.result === 'fail').length;
+    return { total, avgScore, passes, partials, fails };
+  }, [results]);
+
+  // ── RENDER BY STATE ──
+
+  if (state === 'loading' || queueLoading) {
+    return <LoadingState message="PREPARING SESSION..." />;
+  }
+
+  // ── COMPLETE ──
+  if (state === 'complete' || isComplete) {
+    // Fire session complete API call on mount
+    if (!sessionSummary) {
+      completeSession(sessionId)
+        .then(data => setSessionSummary(data))
+        .catch(err => console.error('Session complete failed', err));
     }
-  };
 
-  if (loading) return <div className="text-center py-12"><div className="neo-badge bg-neo-accent animate-spin inline-block">LOADING...</div></div>;
-  if (!queue.length) return <div className="text-center py-12">No tasks available in this session.</div>;
+    return (
+      <div className="flex flex-col items-center justify-center p-8 md:p-12 mt-16 max-w-2xl mx-auto bg-neo-bg border-4 border-neo-border shadow-[12px_12px_0px_0px_#000] gap-8 relative z-10 -rotate-1">
+        <h2 className="text-5xl md:text-7xl font-sans font-black uppercase text-neo-text tracking-tighter text-center leading-[0.9] text-stroke-2 drop-shadow-[2px_2px_0px_var(--color-neo-accent)]" style={{ WebkitTextStrokeColor: 'black', color: 'var(--color-neo-bg)' }}>Session<br/>Complete</h2>
 
-  return (
-    <div className="max-w-4xl mx-auto py-8">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-8">
-        <div>
-          <h1 className="text-3xl font-black uppercase text-black">Therapy Session</h1>
-          <p className="font-bold text-black/50 text-sm mt-1">Prompt {currentIndex + 1} of {queue.length}</p>
+        <div className="w-full grid grid-cols-2 gap-6 z-10">
+          <div className="border-4 border-neo-border p-6 text-center bg-neo-surface shadow-[4px_4px_0px_0px_#000]">
+            <span className="font-sans text-5xl md:text-6xl font-black text-neo-text">{summary.total}</span>
+            <p className="font-sans font-black text-xs md:text-sm text-neo-text/80 uppercase tracking-widest mt-2 border-t-4 border-neo-border pt-2 bg-neo-bg border-4 border-neo-border inline-block px-2">Prompts</p>
+          </div>
+          <div className="border-4 border-neo-border p-6 text-center bg-neo-bg shadow-[4px_4px_0px_0px_#000]">
+            <span className="font-sans text-5xl md:text-6xl font-black text-neo-text">{summary.avgScore}%</span>
+            <p className="font-sans font-black text-xs md:text-sm text-neo-text/80 uppercase tracking-widest mt-2 border-t-4 border-neo-border pt-2 bg-neo-bg border-4 border-neo-border inline-block px-2">Avg Score</p>
+          </div>
+          <div className="border-4 border-neo-border p-6 text-center bg-neo-text shadow-[4px_4px_0px_0px_var(--color-neo-accent)]">
+            <span className="font-sans text-5xl md:text-6xl font-black text-neo-bg">{summary.passes}</span>
+            <p className="font-sans font-black text-xs md:text-sm text-neo-bg/80 uppercase tracking-widest mt-2 border-t-4 border-neo-bg pt-2 bg-neo-text border-4 border-neo-bg inline-block px-2">Passes</p>
+          </div>
+          <div className="border-4 border-neo-border p-6 text-center bg-[#FF2E2E] shadow-[4px_4px_0px_0px_#000]">
+            <span className="font-sans text-5xl md:text-6xl font-black text-neo-text">{summary.fails}</span>
+            <p className="font-sans font-black text-xs md:text-sm text-neo-text/80 uppercase tracking-widest mt-2 border-t-4 border-neo-text pt-2 bg-[#FF2E2E] border-4 border-neo-text inline-block px-2">Fails</p>
+          </div>
         </div>
-        <div className="neo-badge bg-neo-secondary rotate-2">
-            ATTEMPT {attemptNumber}
+
+        {/* Streak Update */}
+        {sessionSummary?.streak_updated && (
+          <div className="w-full p-4 border-4 border-neo-border bg-neo-text text-neo-bg flex items-center justify-center gap-4 rotate-2 shadow-[4px_4px_0px_0px_#000]">
+            <span className="text-4xl">🔥</span>
+            <span className="font-sans font-black text-2xl uppercase tracking-widest">{sessionSummary.current_streak} Day Streak!</span>
+          </div>
+        )}
+
+        {/* Emotion Summary */}
+        {sessionSummary?.emotion_summary && (
+          <div className="w-full p-4 border-4 border-neo-border bg-neo-surface text-center shadow-[4px_4px_0px_0px_#000] -rotate-1 mt-4">
+            <span className="font-sans text-sm font-black uppercase tracking-widest block mb-1 text-neo-text/80 bg-neo-bg border-2 border-neo-border inline-block px-2">Session Mood</span>
+            <span className="font-sans text-2xl font-black uppercase text-neo-text drop-shadow-[2px_2px_0px_var(--color-neo-accent)]">{sessionSummary.emotion_summary.dominant_emotion || 'Neutral'}</span>
+          </div>
+        )}
+
+        <div className="flex flex-col sm:flex-row gap-8 w-full z-10 mt-8">
+          <button onClick={() => navigate(-1)} className="flex-1 bh-button bg-neo-surface text-neo-text border-4 border-neo-border py-4 font-sans font-black tracking-widest uppercase">
+            End Session
+          </button>
+          <button onClick={() => navigate(-1)} className="flex-1 bh-button bg-neo-accent text-neo-text border-4 border-neo-border py-4 font-sans uppercase font-black tracking-widest">
+            View Progress
+          </button>
         </div>
       </div>
+    );
+  }
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        
-        {/* Main Interface */}
-        <div className="md:col-span-2 space-y-6">
-          <Card className="border-4 border-black shadow-[8px_8px_0px_0px_#000] rounded-none">
-            <CardContent className="p-8">
-              <StimulusCard 
-                response_type={currentPrompt?.task_mode}
-                display_content={currentPrompt?.display_content}
-                image_keyword={null} // Session prompt format might need mapping to image_keyword if applicable 
-                instruction={currentPrompt?.task_mode.replace('_', ' ')}
-              />
-
-              {!result && !isAnalyzing && (
-                <div className="flex flex-col items-center">
-                  <AudioRecorder onRecordingComplete={handleRecordingComplete} />
-                  <p className="mt-4 font-black uppercase tracking-widest text-xs text-black/50">Press to Record</p>
-                </div>
-              )}
-
-              {isAnalyzing && (
-                <div className="text-center py-12">
-                  <div className="w-16 h-16 border-4 border-black bg-neo-accent flex items-center justify-center mx-auto mb-4 animate-spin shadow-[4px_4px_0px_0px_#000]">
-                    <div className="w-4 h-4 bg-black"></div>
-                  </div>
-                  <h3 className="text-xl font-black uppercase animate-pulse">Running AI Analysis...</h3>
-                  <p className="font-bold text-black/50 text-sm mt-2">Checking Speech, Emotion, and Fluency...</p>
-                </div>
-              )}
-
-              {result && (
-                <div className="text-center py-6 animate-fade-in">
-                  <div className={`w-20 h-20 border-4 border-black flex items-center justify-center mx-auto mb-6 shadow-[6px_6px_0px_0px_#000] rotate-3 ${
-                    result.result === 'pass' ? 'bg-[#86EFAC]' : 
-                    result.result === 'partial' ? 'bg-[#FFE373]' : 'bg-[#FF6B6B]'
-                  }`}>
-                    {result.result === 'pass' ? <FiCheckCircle className="w-10 h-10" strokeWidth={3} /> : <FiRefreshCcw className="w-10 h-10" strokeWidth={3} />}
-                  </div>
-                  <h2 className="text-4xl font-black uppercase mb-4">
-                    {result.result === 'pass' ? 'Great Job!' : result.result === 'partial' ? 'Almost There!' : 'Let\'s Try Again'}
-                  </h2>
-                  <Button size="lg" onClick={handleNext} className="w-full text-xl shadow-[4px_4px_0px_0px_#000]">
-                    {result.result === 'pass' || attemptNumber >= 3 ? 'CONTINUE' : 'RETRY ATTEMPT'} <FiArrowRight className="w-5 h-5 ml-2" strokeWidth={3} />
-                  </Button>
-                </div>
-              )}
-            </CardContent>
-          </Card>
+  // ── PROCESSING ──
+  if (state === 'processing') {
+    return (
+      <div className="fixed inset-0 bg-neo-surface z-50 flex flex-col items-center justify-center gap-12">
+        <div className="relative w-40 h-40 flex items-center justify-center">
+           <div className="absolute w-full h-full border-8 border-neo-border rounded-full border-t-neo-accent border-r-neo-accent animate-spin duration-1000" />
+           <div className="w-20 h-20 bg-neo-text rotate-12 animate-pulse" />
         </div>
-
-        {/* Feedback Panel */}
-        <div className="space-y-6">
-           <Card className="border-4 border-black shadow-[8px_8px_0px_0px_#000] rounded-none bg-neo-muted/20">
-             <CardContent className="p-6">
-                <h3 className="text-xl font-black uppercase tracking-tight mb-4 flex items-center gap-2">
-                    <FiActivity strokeWidth={3} /> AI Feedback
-                </h3>
-                
-                {!result ? (
-                    <div className="bg-white border-4 border-black p-4 rotate-1 text-center py-10 opacity-50">
-                        <FiMessageSquare className="w-8 h-8 mx-auto mb-2 text-black/50" />
-                        <p className="font-bold text-sm uppercase">Waiting for input...</p>
-                    </div>
-                ) : (
-                    <div className="space-y-4">
-                        <div className="bg-white border-4 border-black p-4 shadow-[4px_4px_0px_0px_#000]">
-                             <p className="text-[10px] font-black uppercase tracking-widest text-black/50 mb-1">Final Score</p>
-                             <p className="text-4xl font-black text-neo-accent">{result.accuracy_score}%</p>
-                        </div>
-                        
-                        <div className="grid grid-cols-2 gap-3">
-                            <div className="bg-white border-4 border-black p-3 text-center">
-                                <p className="text-[10px] font-black uppercase tracking-widest text-black/50 mb-1">Phoneme</p>
-                                <p className="text-xl font-black">{result.phoneme_accuracy.toFixed(0)}%</p>
-                            </div>
-                            <div className="bg-white border-4 border-black p-3 text-center">
-                                <p className="text-[10px] font-black uppercase tracking-widest text-black/50 mb-1">Speed</p>
-                                <p className="text-xl font-black">{result.wpm.toFixed(0)} WPM</p>
-                            </div>
-                        </div>
-
-                        {result.nlp_score > 0 && (
-                            <div className="bg-[#93C5FD] border-4 border-black p-3 text-center shadow-[4px_4px_0px_0px_#000]">
-                                <p className="text-[10px] font-black uppercase tracking-widest text-black/50 mb-1">Content Score</p>
-                                <p className="text-2xl font-black">{result.nlp_score.toFixed(0)}%</p>
-                            </div>
-                        )}
-
-                        <div className="bg-neo-secondary border-4 border-black p-4 rotate-1 shadow-[4px_4px_0px_0px_#000]">
-                             <p className="text-[10px] font-black uppercase tracking-widest text-black/50 mb-1">Clinical Insight</p>
-                             <p className="font-bold text-sm leading-snug">
-                                Emotion detected as <span className="uppercase bg-white px-1 border-2 border-black font-black">{result.emotion_label}</span> 
-                                with a behavioral engagement score of {result.behavioral_score}.
-                             </p>
-                        </div>
-                    </div>
-                )}
-             </CardContent>
-           </Card>
+        <div className="bg-neo-bg border-4 border-neo-border p-6 text-center max-w-sm w-full mx-4 shadow-[8px_8px_0px_0px_#000] rotate-2">
+          <p className="font-sans font-black text-neo-text text-2xl uppercase tracking-widest">{PROCESSING_LABELS[processingLabel]}</p>
         </div>
+      </div>
+    );
+  }
 
+  // ── FEEDBACK ──
+  if (state === 'feedback' && result) {
+    return (
+      <div className="w-full flex flex-col pt-8 max-w-3xl mx-auto gap-6">
+        <FeedbackPanel
+          result={result}
+          prompt={currentPrompt}
+          advanceThreshold={thresholdData.advance}
+          dropThreshold={thresholdData.drop}
+          onNext={result?.low_confidence_flag ? handleRetry : handleNext}
+          onRetry={handleRetry}
+        />
+      </div>
+    );
+  }
+
+  // ── WARMUP / RECORDING ──
+  return (
+    <div className="w-full flex flex-col pt-4 md:pt-8 min-h-[80vh] px-4 pb-16">
+      {/* Progress Header */}
+      <div className="w-full max-w-3xl mx-auto flex justify-between items-center mb-12 font-sans font-black text-sm uppercase tracking-widest text-neo-text bg-neo-bg border-4 border-neo-border p-4 shadow-[8px_8px_0px_0px_#000] -rotate-1">
+        <div className="flex items-center gap-4">
+          <div className="w-6 h-6 bg-neo-text rounded-full shadow-[2px_2px_0px_0px_var(--color-neo-accent)]" />
+          <span className="bg-white px-2 border-2 border-neo-border">Exercise {currentIndex + 1} of {totalPrompts}</span>
+        </div>
+        {state === 'warmup' && (
+          <span className="bg-neo-accent text-neo-text border-4 border-neo-border px-4 py-2 font-black shadow-[2px_2px_0px_0px_#000] rotate-3">PRACTICE</span>
+        )}
+      </div>
+
+      <PromptCard prompt={currentPrompt} />
+
+      <div className="w-full max-w-3xl mx-auto mt-6">
+        <AudioRecorder
+          isRecording={isRecording}
+          isProcessing={false}
+          onToggleRecording={handleToggleRecording}
+        />
       </div>
     </div>
   );
-}
+};
+
+export default SessionRunner;

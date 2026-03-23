@@ -1,9 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useApi } from '../../hooks/useApi';
 import { useSearchParams } from 'react-router-dom';
-import { FiCheck, FiX, FiCpu, FiTrash2, FiEdit2, FiPlus, FiSave, FiChevronDown, FiList } from 'react-icons/fi';
-import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
-import { Button } from '../../components/ui/button';
+import { Check, X, Cpu, Trash2, Pencil, Plus, Save, ChevronDown, List } from 'lucide-react';
 
 export default function WeeklyPlanner() {
   const { get, put, del } = useApi();
@@ -14,13 +12,11 @@ export default function WeeklyPlanner() {
   const [activePlan, setActivePlan] = useState(null);
   const [planDetail, setPlanDetail] = useState(null);
 
-  // Editable state
   const [editableTasks, setEditableTasks] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [editingTaskIdx, setEditingTaskIdx] = useState(null);
   const [saving, setSaving] = useState(false);
 
-  // Add Task Modal state
   const [showAddModal, setShowAddModal] = useState(false);
   const [addingToDay, setAddingToDay] = useState(null);
   const [predefinedTasks, setPredefinedTasks] = useState([]);
@@ -48,19 +44,12 @@ export default function WeeklyPlanner() {
     }
   }, [selectedPatient]);
 
-  // Fetch predefined tasks when patient changes
   useEffect(() => {
     if (selectedPatient) {
       setLoadingTasks(true);
       get(`/defects/tasks-for-patient/${selectedPatient}`)
-        .then(data => {
-          setPredefinedTasks(data.tasks || []);
-          setLoadingTasks(false);
-        })
-        .catch(() => {
-          setPredefinedTasks([]);
-          setLoadingTasks(false);
-        });
+        .then(data => { setPredefinedTasks(data.tasks || []); setLoadingTasks(false); })
+        .catch(() => { setPredefinedTasks([]); setLoadingTasks(false); });
     }
   }, [selectedPatient]);
 
@@ -90,10 +79,8 @@ export default function WeeklyPlanner() {
     setPlans(await get(`/plans/patient/${selectedPatient}`));
   };
 
-  // --- Task CRUD ---
   const deleteTask = (idx) => {
-    const updated = editableTasks.filter((_, i) => i !== idx);
-    setEditableTasks(updated);
+    setEditableTasks(editableTasks.filter((_, i) => i !== idx));
     setEditingTaskIdx(null);
   };
 
@@ -103,27 +90,22 @@ export default function WeeklyPlanner() {
     setEditableTasks(updated);
   };
 
-  // Selected task object from predefined list
   const selectedTaskObj = useMemo(() => {
     if (!selectedTaskId) return null;
     return predefinedTasks.find(t => String(t.task_id) === String(selectedTaskId)) || null;
   }, [selectedTaskId, predefinedTasks]);
 
-  // Available levels for the selected task
   const availableLevels = useMemo(() => {
     if (!selectedTaskObj) return [];
     return selectedTaskObj.available_levels || Object.keys(selectedTaskObj.levels || {});
   }, [selectedTaskObj]);
 
-  // Prompts for the selected task + level
   const selectedPrompts = useMemo(() => {
     if (!selectedTaskObj || !selectedLevel) return [];
     const levelData = selectedTaskObj.levels?.[selectedLevel];
-    if (!levelData) return [];
-    return levelData.prompts || [];
+    return levelData?.prompts || [];
   }, [selectedTaskObj, selectedLevel]);
 
-  // Open add modal for a specific day
   const openAddModal = (day) => {
     setAddingToDay(day);
     setSelectedTaskId('');
@@ -133,46 +115,32 @@ export default function WeeklyPlanner() {
     setEditingTaskIdx(null);
   };
 
-  // Add the selected predefined task
   const addPredefinedTask = () => {
     if (!selectedTaskObj || !addingToDay) return;
-
     const levelData = selectedTaskObj.levels?.[selectedLevel] || {};
-    const prompts = levelData.prompts || [];
-
     const task = {
       therapy_task_id: selectedTaskObj.task_id,
       task_name: selectedTaskObj.task_name,
       category: selectedTaskObj.task_type || '',
       difficulty: selectedLevel,
       interaction_type: selectedTaskObj.task_type || '',
-      prompts,
+      prompts: levelData.prompts || [],
       difficulty_score: levelData.difficulty_score || (selectedLevel === 'easy' ? 1 : selectedLevel === 'medium' ? 2 : 3),
       reason: `Predefined: ${selectedTaskObj.task_name} (${selectedLevel})`,
       day: addingToDay,
       repetitions: reps
     };
-
     setEditableTasks([...editableTasks, task]);
     setShowAddModal(false);
     setAddingToDay(null);
     setSelectedTaskId('');
   };
 
-  // Handle level change in inline edit — dynamically update exercises
   const handleEditLevelChange = (idx, newLevel) => {
     const task = editableTasks[idx];
-    if (!task.therapy_task_id) {
-      updateTask(idx, 'difficulty', newLevel);
-      return;
-    }
-
+    if (!task.therapy_task_id) { updateTask(idx, 'difficulty', newLevel); return; }
     const taskDef = predefinedTasks.find(t => String(t.task_id) === String(task.therapy_task_id));
-    if (!taskDef) {
-      updateTask(idx, 'difficulty', newLevel);
-      return;
-    }
-
+    if (!taskDef) { updateTask(idx, 'difficulty', newLevel); return; }
     const levelData = taskDef.levels?.[newLevel] || {};
     const updated = [...editableTasks];
     updated[idx] = {
@@ -198,8 +166,7 @@ export default function WeeklyPlanner() {
 
   const deletePlan = async () => {
     if (!activePlan) return;
-    if (!window.confirm("Are you sure you want to delete this entire weekly plan? This action cannot be undone.")) return;
-    
+    if (!window.confirm("Delete this entire weekly plan? This cannot be undone.")) return;
     setSaving(true);
     try {
       await del(`/plans/${activePlan}`);
@@ -207,34 +174,20 @@ export default function WeeklyPlanner() {
       setEditableTasks([]);
       setActivePlan(null);
       setPlans(await get(`/plans/patient/${selectedPatient}`));
-    } catch {
-      alert("Failed to delete plan.");
-    }
+    } catch { alert("Failed to delete plan."); }
     setSaving(false);
   };
 
-  const handleDragStart = (e, taskIdx) => {
-    if (!isEditing) return;
-    e.dataTransfer.setData('taskIdx', taskIdx);
-  };
-
+  const handleDragStart = (e, taskIdx) => { if (!isEditing) return; e.dataTransfer.setData('taskIdx', taskIdx); };
   const handleDrop = (e, targetDay) => {
     if (!isEditing) return;
     e.preventDefault();
-    const taskIdxStr = e.dataTransfer.getData('taskIdx');
-    if (taskIdxStr !== null && taskIdxStr !== '') {
-      const idx = parseInt(taskIdxStr, 10);
-      updateTask(idx, 'day', targetDay);
-    }
+    const idx = parseInt(e.dataTransfer.getData('taskIdx'), 10);
+    if (!isNaN(idx)) updateTask(idx, 'day', targetDay);
   };
-
-  const handleDragOver = (e) => {
-    if (!isEditing) return;
-    e.preventDefault();
-  };
+  const handleDragOver = (e) => { if (isEditing) e.preventDefault(); };
 
   const hasChanges = planDetail && JSON.stringify(editableTasks) !== JSON.stringify(planDetail.plan_data || []);
-
   const dayNames = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
   const groupedByDay = {};
   editableTasks.forEach((t, idx) => {
@@ -243,7 +196,6 @@ export default function WeeklyPlanner() {
     groupedByDay[d].push({ ...t, _idx: idx });
   });
 
-  // Get available levels for a task in the inline editor
   const getTaskLevels = (task) => {
     if (!task.therapy_task_id) return ['easy', 'medium', 'advanced'];
     const taskDef = predefinedTasks.find(t => String(t.task_id) === String(task.therapy_task_id));
@@ -251,102 +203,105 @@ export default function WeeklyPlanner() {
     return taskDef.available_levels || Object.keys(taskDef.levels || {});
   };
 
+  const statusStyle = (s) => s === 'approved' ? 'bg-[#FFD93D] text-neo-text border-neo-border' : s === 'rejected' ? 'bg-[#FF6B6B] text-white border-neo-border' : 'bg-neo-bg text-neo-text border-neo-border';
+
   return (
-    <div>
-      <div className="flex items-center gap-4 mb-6">
-        <h1 className="text-4xl font-black uppercase tracking-tight text-black">Weekly Plans</h1>
-        <div className="neo-badge bg-neo-secondary -rotate-1">PLANNER</div>
+    <div className="w-full max-w-7xl mx-auto flex flex-col gap-8 pt-8 px-4 pb-16">
+      {/* HEADER */}
+      <div className="flex items-center gap-6 border-b-8 border-neo-border pb-8">
+        <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-neo-text leading-none drop-shadow-[4px_4px_0px_var(--color-neo-accent)]">Weekly Plans</h1>
+        <span className="bg-neo-text text-neo-bg font-sans text-sm font-black px-4 py-2 uppercase tracking-widest border-4 border-neo-border shadow-[4px_4px_0px_#000] rotate-2">Planner</span>
       </div>
 
-      <div className="grid grid-cols-12 gap-6">
-        {/* Left panel */}
-        <div className="col-span-3 space-y-4">
-          <Card>
-            <CardHeader><CardTitle className="text-sm">Patient</CardTitle></CardHeader>
-            <CardContent className="p-2">
-              <div className="max-h-48 overflow-y-auto space-y-1">
-                {patients.map(p => (
-                  <button key={p.id} onClick={() => setSelectedPatient(p.id)}
-                    className={`w-full text-left px-3 py-2.5 text-sm font-black uppercase transition-all duration-100 border-2 ${
-                      selectedPatient === p.id ? 'border-black bg-neo-accent shadow-[3px_3px_0px_0px_#000]' : 'border-transparent text-black/60 hover:border-black hover:bg-neo-muted'
+      <div className="grid grid-cols-12 gap-8">
+        {/* LEFT SIDEBAR */}
+        <div className="col-span-12 md:col-span-3 flex flex-col gap-8">
+          {/* Patient selector */}
+          <div className="bg-neo-surface border-4 border-neo-border p-6 shadow-[8px_8px_0px_0px_#000]">
+            <p className="font-mono text-sm text-neo-text/60 uppercase font-black tracking-widest mb-4 border-b-4 border-neo-border pb-2 inline-block">Patient</p>
+            <div className="max-h-48 overflow-y-auto flex flex-col gap-2 p-1">
+              {patients.map(p => (
+                <button key={p.id} onClick={() => setSelectedPatient(p.id)}
+                  className={`w-full text-left px-4 py-3 font-sans text-sm font-black uppercase tracking-tight transition-all border-4 shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:-translate-y-1 active:translate-y-1 active:shadow-none ${
+                    selectedPatient === p.id ? 'border-neo-border bg-[#FFD93D] text-neo-text -rotate-1' : 'border-neo-border bg-neo-bg text-neo-text hover:bg-[#C4B5FD]'
+                  }`}>
+                  {p.name}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Plans list */}
+          <div className="bg-neo-surface border-4 border-neo-border p-6 shadow-[8px_8px_0px_0px_#000]">
+            <p className="font-mono text-sm text-neo-text/60 uppercase font-black tracking-widest mb-4 border-b-4 border-neo-border pb-2 inline-block">Plans</p>
+            {plans.length === 0 ? (
+              <p className="font-black text-sm text-neo-text/40 uppercase py-4">No plans</p>
+            ) : (
+              <div className="flex flex-col gap-3 p-1">
+                {plans.map(p => (
+                  <button key={p.id} onClick={() => loadPlan(p.id)}
+                    className={`w-full text-left px-4 py-3 text-sm transition-all border-4 flex justify-between items-center shadow-[4px_4px_0px_#000] hover:-translate-y-1 hover:shadow-[6px_6px_0px_#000] active:translate-y-1 active:shadow-none ${
+                      activePlan === p.id ? 'border-neo-border bg-neo-accent font-black text-neo-text rotate-1' : 'border-neo-border bg-neo-bg font-black text-neo-text hover:bg-neo-surface'
                     }`}>
-                    {p.name}
+                    <span className="uppercase font-black text-sm tracking-widest">Plan #{p.id}</span>
+                    <span className={`text-[10px] font-black uppercase px-2 py-1 border-2 ${statusStyle(p.status)} shadow-[2px_2px_0px_#000]`}>{p.status}</span>
                   </button>
                 ))}
               </div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader><CardTitle className="text-sm">Plans</CardTitle></CardHeader>
-            <CardContent className="p-2">
-              {plans.length === 0 ? (
-                <p className="font-bold text-xs text-black/40 px-3 py-2 uppercase">No plans</p>
-              ) : (
-                <div className="space-y-1">
-                  {plans.map(p => (
-                    <button key={p.id} onClick={() => loadPlan(p.id)}
-                      className={`w-full text-left px-3 py-2.5 text-sm transition-all duration-100 border-2 flex justify-between items-center ${
-                        activePlan === p.id ? 'border-black bg-neo-secondary shadow-[3px_3px_0px_0px_#000] font-black' : 'border-transparent font-bold text-black/60 hover:border-black hover:bg-neo-muted'
-                      }`}>
-                      <span className="uppercase">Week Plan</span>
-                      <span className={`neo-badge text-[9px] px-1.5 py-0.5 border-2 shadow-[2px_2px_0px_0px_#000] ${
-                        p.status === 'approved' ? 'neo-badge-approved' :
-                        p.status === 'rejected' ? 'neo-badge-rejected' : 'neo-badge-pending'
-                      }`}>{p.status}</span>
-                    </button>
-                  ))}
-                </div>
-              )}
-            </CardContent>
-          </Card>
+            )}
+          </div>
         </div>
 
-        {/* Right: Plan detail */}
-        <div className="col-span-9">
+        {/* RIGHT: PLAN DETAIL */}
+        <div className="col-span-12 md:col-span-9">
           {!planDetail ? (
-            <Card>
-              <CardContent className="p-12 text-center">
-                <div className="w-16 h-16 border-4 border-black bg-neo-muted flex items-center justify-center mx-auto mb-4">
-                  <FiCpu className="w-8 h-8 text-black" strokeWidth={3} />
-                </div>
-                <p className="font-bold text-black/40 uppercase">Select a patient and generate an AI plan</p>
-              </CardContent>
-            </Card>
+            <div className="bg-neo-bg border-4 border-neo-border p-16 text-center shadow-[12px_12px_0px_0px_#000] flex flex-col items-center justify-center">
+              <div className="w-24 h-24 border-4 border-neo-border bg-neo-surface flex items-center justify-center mx-auto mb-8 shadow-[6px_6px_0px_#000] rotate-3 hover:-rotate-3 transition-transform">
+                <Cpu size={48} strokeWidth={3} className="text-neo-text" />
+              </div>
+              <p className="font-black text-neo-text/60 uppercase tracking-widest text-xl">Select a patient to view their therapy plan</p>
+            </div>
           ) : (
             <>
               {/* Actions Bar */}
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-3">
-                  <p className="font-black uppercase text-black">Status: <span className={`neo-badge ${
-                    planDetail.status === 'approved' ? 'neo-badge-approved' :
-                    planDetail.status === 'rejected' ? 'neo-badge-rejected' : 'neo-badge-pending'
-                  }`}>{planDetail.status}</span></p>
-                  {hasChanges && (
-                    <span className="neo-badge bg-neo-accent animate-pulse text-[10px]">UNSAVED</span>
-                  )}
+              <div className="flex flex-wrap items-center justify-between mb-8 pb-6 border-b-8 border-neo-border border-dashed gap-6">
+                <div className="flex items-center gap-4">
+                  <span className="font-black uppercase text-neo-text text-lg">Status:</span>
+                  <span className={`text-sm font-black uppercase px-4 py-2 border-4 bg-neo-surface shadow-[4px_4px_0px_#000] -rotate-2 ${statusStyle(planDetail.status)}`}>{planDetail.status}</span>
+                  {hasChanges && <span className="bg-[#FF6B6B] text-white text-[12px] font-black uppercase px-4 py-2 border-4 border-neo-border shadow-[4px_4px_0px_#000] rotate-2 animate-pulse">Unsaved Changes</span>}
                 </div>
-                <div className="flex gap-2">
-                  <Button onClick={deletePlan} disabled={saving} variant="destructive" size="sm" className="mr-8 border-2 border-black shadow-[2px_2px_0px_0px_#000]">
-                    <FiTrash2 className="w-4 h-4 mr-1" strokeWidth={3} /> Delete Plan
-                  </Button>
+                <div className="flex gap-4 flex-wrap">
+                  <button onClick={deletePlan} disabled={saving}
+                    className="bg-[#FF6B6B] text-white hover:bg-neo-text hover:text-white border-4 border-neo-border px-6 py-3 text-sm font-black uppercase tracking-widest flex items-center gap-3 disabled:opacity-50 shadow-[4px_4px_0px_#000] hover:-translate-y-1 hover:shadow-[6px_6px_0px_#000] active:translate-y-1 active:shadow-none transition-all">
+                    <Trash2 size={18} strokeWidth={3} /> Delete
+                  </button>
                   {hasChanges && (
-                    <Button onClick={saveChanges} disabled={saving} size="sm">
-                      <FiSave className="w-4 h-4" strokeWidth={3} /> {saving ? 'Saving...' : 'Save'}
-                    </Button>
+                    <button onClick={saveChanges} disabled={saving}
+                      className="bg-[#FFD93D] text-neo-text hover:bg-neo-text hover:text-white border-4 border-neo-border px-6 py-3 text-sm font-black uppercase tracking-widest flex items-center gap-3 disabled:opacity-50 shadow-[4px_4px_0px_#000] hover:-translate-y-1 hover:shadow-[6px_6px_0px_#000] active:translate-y-1 active:shadow-none transition-all -rotate-1">
+                      <Save size={18} strokeWidth={3} /> {saving ? 'Saving...' : 'Save Plan'}
+                    </button>
                   )}
                   {!isEditing ? (
-                    <Button onClick={() => setIsEditing(true)} variant="outline" size="sm">
-                      <FiEdit2 className="w-4 h-4" strokeWidth={3} /> Edit Plan
-                    </Button>
+                    <button onClick={() => setIsEditing(true)}
+                      className="bg-neo-bg text-neo-text hover:bg-neo-surface hover:text-neo-text border-4 border-neo-border px-6 py-3 text-sm font-black uppercase tracking-widest flex items-center gap-3 shadow-[4px_4px_0px_#000] hover:-translate-y-1 hover:shadow-[6px_6px_0px_#000] active:translate-y-1 active:shadow-none transition-all">
+                      <Pencil size={18} strokeWidth={3} /> Edit Mode
+                    </button>
                   ) : (
-                    <Button onClick={() => { setIsEditing(false); setEditingTaskIdx(null); setShowAddModal(false); }} variant="outline" size="sm">
-                      <FiX className="w-4 h-4" strokeWidth={3} /> Done Editing
-                    </Button>
+                    <button onClick={() => { setIsEditing(false); setEditingTaskIdx(null); setShowAddModal(false); }}
+                      className="bg-neo-text text-neo-bg hover:bg-[#FFD93D] hover:text-neo-text border-4 border-neo-text px-6 py-3 text-sm font-black uppercase tracking-widest flex items-center gap-3 shadow-[4px_4px_0px_var(--color-neo-accent)] hover:-translate-y-1 hover:shadow-[6px_6px_0px_var(--color-neo-accent)] active:translate-y-1 active:shadow-none transition-all rotate-1">
+                      <X size={18} strokeWidth={3} /> Finish Editing
+                    </button>
                   )}
                   {planDetail.status === 'pending' && (
                     <>
-                      <Button onClick={handleReject} variant="destructive" size="sm"><FiX className="w-4 h-4" strokeWidth={3} /> Reject</Button>
-                      <Button onClick={handleApprove} variant="secondary" size="sm"><FiCheck className="w-4 h-4" strokeWidth={3} /> Approve</Button>
+                      <button onClick={handleReject}
+                        className="bg-neo-bg text-[#FF6B6B] hover:bg-[#FF6B6B] hover:text-white border-4 border-neo-border px-6 py-3 text-sm font-black uppercase tracking-widest flex items-center gap-3 shadow-[4px_4px_0px_#000] hover:-translate-y-1 hover:shadow-[6px_6px_0px_#000] active:translate-y-1 active:shadow-none transition-all">
+                        <X size={18} strokeWidth={3} /> Reject
+                      </button>
+                      <button onClick={handleApprove}
+                        className="bg-[#FFD93D] text-neo-text hover:bg-neo-text hover:text-white border-4 border-neo-border px-6 py-3 text-sm font-black uppercase tracking-widest flex items-center gap-3 shadow-[4px_4px_0px_#000] hover:-translate-y-1 hover:shadow-[6px_6px_0px_#000] active:translate-y-1 active:shadow-none transition-all">
+                        <Check size={18} strokeWidth={3} /> Approve
+                      </button>
                     </>
                   )}
                 </div>
@@ -354,108 +309,82 @@ export default function WeeklyPlanner() {
 
               {/* AI Reasoning */}
               {planDetail.ai_reasoning && (
-                <div className="bg-neo-muted/30 border-4 border-black shadow-[4px_4px_0px_0px_#000] p-4 mb-4">
-                  <p className="text-xs font-black uppercase tracking-widest text-black/60 mb-1">AI Reasoning</p>
-                  <p className="font-bold text-sm text-black leading-relaxed">{planDetail.ai_reasoning}</p>
+                <div className="bg-neo-surface border-4 border-neo-border shadow-[8px_8px_0px_#000] p-8 md:p-10 mb-10 -rotate-1 relative">
+                  <div className="absolute -top-4 -left-4 bg-neo-bg border-4 border-neo-border px-4 py-2 font-black uppercase shadow-[4px_4px_0px_#000] rotate-[-5deg] tracking-widest">
+                    AI Agent Note
+                  </div>
+                  <p className="font-serif italic font-bold text-lg text-neo-text leading-relaxed pt-2 ml-4 border-l-4 border-neo-accent pl-6">{planDetail.ai_reasoning}</p>
                 </div>
               )}
 
-              {/* 7-day grid */}
-              <div className="grid grid-cols-7 gap-2">
+              {/* 7-DAY GRID */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 lg:grid-cols-[repeat(7,minmax(0,1fr))] gap-4">
                 {[1,2,3,4,5,6,7].map(day => (
-                  <div key={day} className="space-y-2 min-h-[100px] pb-8"
-                    onDragOver={handleDragOver}
-                    onDrop={(e) => handleDrop(e, day)}
-                  >
-                    <div className="text-center text-xs font-black uppercase tracking-widest py-2 border-4 border-black bg-neo-secondary flex items-center justify-center gap-1">
+                  <div key={day} className="flex flex-col gap-4 min-h-[160px] pb-8 bg-neo-bg border-4 border-neo-border p-2 shadow-[8px_8px_0px_0px_#000]"
+                    onDragOver={handleDragOver} onDrop={(e) => handleDrop(e, day)}>
+                    {/* Day header */}
+                    <div className="text-center text-sm font-black uppercase tracking-widest py-3 border-4 border-neo-border bg-neo-text text-neo-bg flex items-center justify-center gap-3 shadow-[4px_4px_0px_#000] -translate-y-4 -mx-4 bg-neo-accent text-neo-text rotate-1">
                       {dayNames[day - 1]}
                       {isEditing && (
                         <button onClick={() => openAddModal(day)}
-                          className="w-5 h-5 border-2 border-black bg-neo-accent flex items-center justify-center hover:scale-110 transition-transform"
-                          title="Add predefined task">
-                          <FiPlus className="w-3 h-3" strokeWidth={3} />
+                          className="w-6 h-6 border-2 border-neo-text bg-neo-text text-neo-bg flex items-center justify-center hover:scale-110 transition-transform shadow-[2px_2px_0px_#fff]">
+                          <Plus size={16} strokeWidth={4} />
                         </button>
                       )}
                     </div>
 
                     {/* Task cards */}
                     {(groupedByDay[day] || []).map(task => (
-                      <div key={task._idx} className="relative group">
+                      <div key={task._idx} className="relative mt-2">
                         {editingTaskIdx === task._idx ? (
-                          /* Inline edit form */
-                          <div className="bg-neo-secondary/30 border-3 border-black shadow-[3px_3px_0px_0px_#000] p-2 space-y-1.5">
-                            <p className="text-[11px] font-black uppercase text-black truncate border-2 border-black px-1.5 py-1 bg-white">{task.task_name}</p>
-                            <select
-                              value={task.difficulty}
-                              onChange={e => handleEditLevelChange(task._idx, e.target.value)}
-                              className="w-full text-[10px] font-bold border-2 border-black px-1 py-0.5 bg-white uppercase"
-                            >
-                              {getTaskLevels(task).map(lvl => (
-                                <option key={lvl} value={lvl}>{lvl}</option>
-                              ))}
+                          /* INLINE EDIT */
+                          <div className="bg-neo-surface border-4 border-neo-border p-4 flex flex-col gap-3 shadow-[4px_4px_0px_#000] -rotate-1 z-20 absolute top-0 left-0 right-0 w-[200%] md:w-[150%] max-w-sm rounded-none">
+                            <p className="text-sm font-black uppercase text-neo-text truncate border-b-4 border-neo-border pb-2 bg-neo-surface">{task.task_name}</p>
+                            <select value={task.difficulty} onChange={e => handleEditLevelChange(task._idx, e.target.value)}
+                              className="w-full text-xs font-black border-4 border-neo-border px-3 py-2 bg-neo-bg uppercase focus:outline-none shadow-[2px_2px_0px_#000]">
+                              {getTaskLevels(task).map(lvl => <option key={lvl} value={lvl}>{lvl}</option>)}
                             </select>
-                            <div className="flex items-center gap-1">
-                              <span className="text-[9px] font-black uppercase text-black/60">Reps:</span>
-                              <input
-                                type="number"
-                                value={task.repetitions || 3}
-                                onChange={e => updateTask(task._idx, 'repetitions', parseInt(e.target.value) || 1)}
-                                min={1}
-                                max={10}
-                                className="flex-1 text-[10px] font-bold border-2 border-black px-1 py-0.5 bg-white"
-                              />
+                            <div className="flex items-center gap-2">
+                              <span className="text-[10px] font-black uppercase text-neo-text/70 shrink-0">Reps:</span>
+                              <input type="number" value={task.repetitions || 3} onChange={e => updateTask(task._idx, 'repetitions', parseInt(e.target.value) || 1)}
+                                min={1} max={10} className="w-full text-xs font-black border-4 border-neo-border px-3 py-2 bg-neo-bg focus:outline-none shadow-[2px_2px_0px_#000]" />
                             </div>
-                            {/* Move to different day */}
-                            <div className="flex items-center gap-1">
-                              <span className="text-[9px] font-black uppercase text-black/60">Day:</span>
-                              <select
-                                value={task.day || day}
-                                onChange={e => updateTask(task._idx, 'day', parseInt(e.target.value))}
-                                className="flex-1 text-[10px] font-bold border-2 border-black px-1 py-0.5 bg-white uppercase"
-                              >
-                                {[1,2,3,4,5,6,7].map(d => (
-                                  <option key={d} value={d}>{dayNames[d-1]}</option>
-                                ))}
+                            <div className="flex items-center gap-2">
+                              <span className="text-[10px] font-black uppercase text-neo-text/70 shrink-0">Day:</span>
+                              <select value={task.day || day} onChange={e => updateTask(task._idx, 'day', parseInt(e.target.value))}
+                                className="w-full text-xs font-black border-4 border-neo-border px-3 py-2 bg-neo-bg uppercase focus:outline-none shadow-[2px_2px_0px_#000]">
+                                {[1,2,3,4,5,6,7].map(d => <option key={d} value={d}>{dayNames[d-1]}</option>)}
                               </select>
                             </div>
-                            {/* Preview exercises for current level */}
-                            {task.prompts && task.prompts.length > 0 && (
-                              <div className="bg-white/60 border border-black/20 p-1.5 mt-1">
-                                <p className="text-[8px] font-black uppercase text-black/50 mb-1">Exercises ({task.prompts.length})</p>
+                            {task.prompts?.length > 0 && (
+                              <div className="bg-neo-bg border-4 border-neo-border p-3 mt-2">
+                                <p className="text-[10px] font-black uppercase text-neo-text mb-2 border-b-2 border-neo-border pb-1">Exercises ({task.prompts.length})</p>
                                 {task.prompts.slice(0, 2).map((pr, pi) => (
-                                  <p key={pi} className="text-[8px] font-bold text-black/60 truncate">
-                                    {pr.prompt_type === 'warmup' ? '🔥' : '📝'} {pr.display_content || pr.prompt_text || pr.text || `Prompt ${pi + 1}`}
-                                  </p>
+                                  <p key={pi} className="text-[10px] font-bold text-neo-text/80 truncate mb-1 border-l-2 border-neo-accent pl-2">{pr.display_content || pr.prompt_text || `Prompt ${pi + 1}`}</p>
                                 ))}
                               </div>
                             )}
                             <button onClick={() => setEditingTaskIdx(null)}
-                              className="w-full text-[10px] font-black uppercase bg-neo-accent border-2 border-black py-1 mt-1 hover:shadow-[2px_2px_0px_0px_#000] transition-all">
-                              Done
+                              className="w-full text-xs font-black uppercase bg-[#FFD93D] border-4 border-neo-border py-3 mt-2 hover:-translate-y-1 hover:shadow-[4px_4px_0px_#000] transition-all shadow-[2px_2px_0px_#000]">
+                              Save Updates
                             </button>
                           </div>
                         ) : (
-                          /* Normal task card */
-                          <div 
-                            draggable={isEditing}
-                            onDragStart={(e) => handleDragStart(e, task._idx)}
-                            className={`bg-white border-3 border-black p-2.5 ${isEditing ? 'neo-lift cursor-grab hover:-translate-y-1 active:scale-95 shadow-[4px_4px_0px_0px_#000] transition-all' : 'neo-lift shadow-[3px_3px_0px_0px_#000]'}`}
-                          >
-                            <p className="text-black text-[11px] font-black uppercase leading-tight">{task.task_name}</p>
-                            <p className="text-black/50 text-[9px] font-bold mt-1 uppercase">{task.difficulty} · {task.repetitions || 3}x</p>
-                            {task.reason && (
-                              <p className="text-black/35 text-[8px] font-bold mt-0.5 leading-snug">{task.reason}</p>
-                            )}
-                            {/* Edit/Delete buttons */}
+                          /* NORMAL CARD */
+                          <div draggable={isEditing} onDragStart={(e) => handleDragStart(e, task._idx)}
+                            className={`bg-[#fffff0] border-4 border-neo-border p-4 shadow-[4px_4px_0px_#000] rotate-1 hover:-rotate-1 relative ${isEditing ? 'cursor-grab hover:-translate-y-1 hover:shadow-[6px_6px_0px_#000] transition-all' : ''}`}>
+                            <div className="w-full h-3 bg-[#FFD93D] border-b-4 border-neo-border absolute top-0 left-0 right-0 mix-blend-multiply opacity-50"></div>
+                            <p className="text-neo-text text-sm font-black uppercase leading-tight mt-2 break-words">{task.task_name}</p>
+                            <p className="text-neo-text/70 text-xs font-black mt-3 uppercase border-t-2 border-neo-text/10 pt-2">{task.difficulty} <span className="text-neo-accent">•</span> {task.repetitions || 3}x</p>
                             {isEditing && (
-                              <div className="flex gap-1 mt-2 pt-1.5 border-t-2 border-black/10">
+                              <div className="flex gap-2 mt-4 pt-3 border-t-4 border-neo-border border-dashed">
                                 <button onClick={() => { setEditingTaskIdx(task._idx); setShowAddModal(false); }}
-                                  className="flex-1 flex items-center justify-center gap-0.5 text-[9px] font-black uppercase text-black/70 bg-neo-muted border-2 border-black py-0.5 hover:bg-neo-secondary transition-all">
-                                  <FiEdit2 className="w-2.5 h-2.5" /> Edit
+                                  className="flex-1 flex items-center justify-center gap-1 text-[10px] font-black uppercase text-neo-text bg-[#C4B5FD] border-2 border-neo-border py-2 hover:bg-neo-surface transition-all shadow-[2px_2px_0px_#000]">
+                                  <Pencil size={12} strokeWidth={3} />
                                 </button>
                                 <button onClick={() => deleteTask(task._idx)}
-                                  className="flex-1 flex items-center justify-center gap-0.5 text-[9px] font-black uppercase text-red-700 bg-red-50 border-2 border-red-800 py-0.5 hover:bg-red-100 transition-all">
-                                  <FiTrash2 className="w-2.5 h-2.5" /> Del
+                                  className="flex-1 flex items-center justify-center gap-1 text-[10px] font-black uppercase text-white bg-[#FF6B6B] border-2 border-neo-border py-2 hover:bg-neo-text transition-all shadow-[2px_2px_0px_#000]">
+                                  <Trash2 size={12} strokeWidth={3} />
                                 </button>
                               </div>
                             )}
@@ -464,12 +393,14 @@ export default function WeeklyPlanner() {
                       </div>
                     ))}
                     {!groupedByDay[day] && !isEditing && (
-                      <p className="text-black/30 text-[10px] text-center py-4 font-bold uppercase">Rest</p>
+                      <div className="flex-1 flex items-center justify-center">
+                        <p className="text-neo-text/30 text-xs text-center py-6 font-black uppercase tracking-widest border-4 border-dashed border-neo-border/20 p-4 -rotate-2">Rest Day</p>
+                      </div>
                     )}
                     {!groupedByDay[day] && isEditing && (
                       <button onClick={() => openAddModal(day)}
-                        className="w-full border-3 border-dashed border-black/30 py-4 text-black/30 text-[10px] font-bold uppercase hover:border-black hover:text-black hover:bg-neo-muted/30 transition-all flex items-center justify-center gap-1">
-                        <FiPlus className="w-3 h-3" /> Add
+                        className="w-full h-full min-h-[100px] border-4 border-dashed border-neo-text/20 py-6 text-neo-text/40 text-sm font-black uppercase tracking-widest hover:border-neo-text hover:text-neo-text hover:bg-[#FFD93D] hover:shadow-[4px_4px_0px_#000] transition-all flex items-center justify-center gap-2">
+                        <Plus size={16} strokeWidth={4} /> Add Task
                       </button>
                     )}
                   </div>
@@ -482,33 +413,33 @@ export default function WeeklyPlanner() {
 
       {/* ADD TASK MODAL */}
       {showAddModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
-          <div className="bg-white border-4 border-black shadow-[8px_8px_0px_0px_#000] w-full max-w-lg mx-4">
-            {/* Modal Header */}
-            <div className="bg-neo-secondary border-b-4 border-black px-6 py-4 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <FiList className="w-5 h-5" strokeWidth={3} />
-                <h2 className="font-black uppercase text-lg tracking-tight">Add Task — {dayNames[(addingToDay || 1) - 1]}</h2>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+          <div className="bg-white border-2 border-neo-border w-full max-w-lg mx-4 bh-panel">
+            {/* Header */}
+            <div className="bg-black text-white border-b-2 border-neo-border px-6 py-4 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <List size={20} strokeWidth={3} />
+                <h2 className="font-sans font-black uppercase text-lg tracking-tight">Add Task — {dayNames[(addingToDay || 1) - 1]}</h2>
               </div>
-              <button onClick={() => setShowAddModal(false)} className="w-8 h-8 border-2 border-black bg-white flex items-center justify-center hover:bg-red-50 transition-colors">
-                <FiX className="w-4 h-4" strokeWidth={3} />
+              <button onClick={() => setShowAddModal(false)}
+                className="w-8 h-8 border-2 border-white/30 bg-white text-black flex items-center justify-center hover:bg-[#FF2E2E] hover:text-white transition-all">
+                <X size={16} strokeWidth={3} />
               </button>
             </div>
 
-            {/* Modal Body */}
-            <div className="px-6 py-5 space-y-4">
+            {/* Body */}
+            <div className="px-6 py-6 flex flex-col gap-5">
               {loadingTasks ? (
-                <p className="font-bold text-black/40 uppercase text-center py-8">Loading tasks...</p>
+                <p className="font-bold text-black/40 uppercase text-center py-8 tracking-widest">Loading tasks...</p>
               ) : predefinedTasks.length === 0 ? (
-                <p className="font-bold text-black/40 uppercase text-center py-8">No predefined tasks available for this patient</p>
+                <p className="font-bold text-black/40 uppercase text-center py-8 tracking-widest">No predefined tasks available</p>
               ) : (
                 <>
-                  {/* Task Name Dropdown */}
+                  {/* Task dropdown */}
                   <div>
-                    <label className="text-[10px] font-black uppercase tracking-widest text-black/60 mb-1 block">Task Name</label>
+                    <label className="text-[10px] font-black uppercase tracking-widest text-black/50 mb-1.5 block">Task Name</label>
                     <div className="relative">
-                      <select
-                        value={selectedTaskId}
+                      <select value={selectedTaskId}
                         onChange={(e) => {
                           setSelectedTaskId(e.target.value);
                           const task = predefinedTasks.find(t => String(t.task_id) === e.target.value);
@@ -517,34 +448,26 @@ export default function WeeklyPlanner() {
                             setSelectedLevel(levels[0] || 'easy');
                           }
                         }}
-                        className="w-full text-sm font-bold border-3 border-black px-3 py-2.5 bg-white focus:outline-none focus:shadow-[3px_3px_0px_0px_#000] transition-shadow appearance-none cursor-pointer uppercase"
-                      >
+                        className="w-full text-sm font-bold border-2 border-neo-border px-4 py-3 bg-white focus:outline-none appearance-none cursor-pointer uppercase">
                         <option value="">— Select a task —</option>
                         {predefinedTasks.map(t => (
-                          <option key={t.task_id} value={String(t.task_id)}>
-                            {t.task_name} ({t.task_type})
-                          </option>
+                          <option key={t.task_id} value={String(t.task_id)}>{t.task_name} ({t.task_type})</option>
                         ))}
                       </select>
-                      <FiChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-black/40 pointer-events-none" />
+                      <ChevronDown size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-black/40 pointer-events-none" />
                     </div>
                   </div>
 
-                  {/* Level Selection */}
+                  {/* Level buttons */}
                   {selectedTaskObj && (
                     <div>
-                      <label className="text-[10px] font-black uppercase tracking-widest text-black/60 mb-1 block">Difficulty Level</label>
+                      <label className="text-[10px] font-black uppercase tracking-widest text-black/50 mb-1.5 block">Difficulty Level</label>
                       <div className="flex gap-2">
                         {availableLevels.map(lvl => (
-                          <button
-                            key={lvl}
-                            onClick={() => setSelectedLevel(lvl)}
-                            className={`flex-1 py-2.5 text-xs font-black uppercase tracking-wider border-3 border-black transition-all ${
-                              selectedLevel === lvl
-                                ? 'bg-neo-accent shadow-[3px_3px_0px_0px_#000] -translate-y-0.5'
-                                : 'bg-white hover:bg-neo-muted'
-                            }`}
-                          >
+                          <button key={lvl} onClick={() => setSelectedLevel(lvl)}
+                            className={`flex-1 py-3 text-xs font-black uppercase tracking-wider border-2 border-neo-border transition-all ${
+                              selectedLevel === lvl ? 'bg-[#CCFF00] text-black' : 'bg-white hover:bg-neo-surface'
+                            }`}>
                             {lvl}
                           </button>
                         ))}
@@ -554,42 +477,30 @@ export default function WeeklyPlanner() {
 
                   {/* Reps */}
                   <div>
-                    <label className="text-[10px] font-black uppercase tracking-widest text-black/60 mb-1 block">Repetitions</label>
-                    <input
-                      type="number"
-                      value={reps}
-                      onChange={e => setReps(parseInt(e.target.value) || 1)}
-                      min={1}
-                      max={10}
-                      className="w-24 text-sm font-bold border-3 border-black px-3 py-2 bg-white focus:outline-none focus:shadow-[3px_3px_0px_0px_#000] transition-shadow"
-                    />
+                    <label className="text-[10px] font-black uppercase tracking-widest text-black/50 mb-1.5 block">Repetitions</label>
+                    <input type="number" value={reps} onChange={e => setReps(parseInt(e.target.value) || 1)} min={1} max={10}
+                      className="w-24 text-sm font-bold border-2 border-neo-border px-4 py-2 bg-white focus:outline-none" />
                   </div>
 
-                  {/* Exercise Preview */}
+                  {/* Prompt preview */}
                   {selectedPrompts.length > 0 && (
                     <div>
-                      <label className="text-[10px] font-black uppercase tracking-widest text-black/60 mb-2 block">
+                      <label className="text-[10px] font-black uppercase tracking-widest text-black/50 mb-2 block">
                         Exercises Preview ({selectedPrompts.length} prompts)
                       </label>
-                      <div className="max-h-48 overflow-y-auto space-y-2 border-3 border-black/20 p-3 bg-neo-muted/20">
+                      <div className="max-h-48 overflow-y-auto flex flex-col gap-2 border-2 border-neo-border p-3 bg-neo-surface">
                         {selectedPrompts.map((pr, pi) => (
-                          <div key={pi} className="bg-white border-2 border-black/15 p-2.5">
+                          <div key={pi} className="bg-white border border-neo-border p-3">
                             <div className="flex items-center gap-2 mb-1">
-                              <span className={`text-[9px] font-black uppercase px-1.5 py-0.5 border ${
-                                pr.prompt_type === 'warmup' ? 'bg-[#FEF3C7] border-[#F59E0B] text-[#92400E]' : 'bg-[#DBEAFE] border-[#3B82F6] text-[#1E40AF]'
-                              }`}>
-                                {pr.prompt_type || 'exercise'}
-                              </span>
-                              {pr.task_mode && (
-                                <span className="text-[8px] font-bold text-black/40 uppercase">{pr.task_mode}</span>
-                              )}
+                              <span className={`text-[9px] font-black uppercase px-2 py-0.5 border ${
+                                pr.prompt_type === 'warmup' ? 'bg-[#CCFF00] border-neo-border text-black' : 'bg-neo-surface border-neo-border text-black'
+                              }`}>{pr.prompt_type || 'exercise'}</span>
+                              {pr.task_mode && <span className="text-[8px] font-bold text-black/40 uppercase">{pr.task_mode}</span>}
                             </div>
                             <p className="text-[11px] font-bold text-black leading-snug">
                               {pr.display_content || pr.prompt_text || pr.text || `Prompt ${pi + 1}`}
                             </p>
-                            {pr.target_response && (
-                              <p className="text-[9px] font-bold text-black/40 mt-1">Target: {pr.target_response}</p>
-                            )}
+                            {pr.target_response && <p className="text-[9px] font-bold text-black/40 mt-1">Target: {pr.target_response}</p>}
                           </div>
                         ))}
                       </div>
@@ -599,14 +510,16 @@ export default function WeeklyPlanner() {
               )}
             </div>
 
-            {/* Modal Footer */}
-            <div className="px-6 py-4 border-t-4 border-black flex gap-3 justify-end bg-neo-muted/20">
-              <Button onClick={() => setShowAddModal(false)} variant="outline" size="sm">
+            {/* Footer */}
+            <div className="px-6 py-4 border-t-2 border-neo-border flex gap-3 justify-end bg-neo-surface">
+              <button onClick={() => setShowAddModal(false)}
+                className="bh-btn bg-white text-black hover:bg-black hover:text-white border-2 border-neo-border px-6 py-2 text-xs font-black uppercase tracking-widest">
                 Cancel
-              </Button>
-              <Button onClick={addPredefinedTask} disabled={!selectedTaskObj} size="sm">
-                <FiPlus className="w-4 h-4" strokeWidth={3} /> Add Task
-              </Button>
+              </button>
+              <button onClick={addPredefinedTask} disabled={!selectedTaskObj}
+                className="bh-btn bg-[#CCFF00] text-black hover:bg-black hover:text-[#CCFF00] border-2 border-neo-border px-6 py-2 text-xs font-black uppercase tracking-widest flex items-center gap-2 disabled:opacity-40">
+                <Plus size={14} strokeWidth={3} /> Add Task
+              </button>
             </div>
           </div>
         </div>

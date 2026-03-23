@@ -2,95 +2,54 @@ import { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext(null);
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+function decodeJwt(token) {
+  try {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+    return JSON.parse(jsonPayload);
+  } catch (e) {
+    return null;
+  }
+}
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem('token'));
+  const [token, setToken] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (token) {
-      fetchMe();
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      login(storedToken);
     } else {
       setLoading(false);
     }
   }, []);
 
-  const fetchMe = async () => {
-    try {
-      const res = await fetch(`${API_URL}/auth/me`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      if (res.ok) {
-        const data = await res.json();
-        setUser(data);
-      } else {
-        logout();
-      }
-    } catch {
+  const login = (newToken) => {
+    localStorage.setItem('token', newToken);
+    setToken(newToken);
+    const decoded = decodeJwt(newToken);
+    if (decoded) {
+      setUser({ id: decoded.sub, role: decoded.role, name: decoded.name });
+    } else {
       logout();
-    } finally {
-      setLoading(false);
     }
-  };
-
-  const login = async (email, password) => {
-    const res = await fetch(`${API_URL}/auth/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password })
-    });
-    if (!res.ok) {
-      const err = await res.json();
-      throw new Error(err.detail || 'Login failed');
-    }
-    const data = await res.json();
-    localStorage.setItem('token', data.token);
-    setToken(data.token);
-    setUser(data.user);
-    return data.user;
-  };
-
-  const registerTherapist = async (formData) => {
-    const res = await fetch(`${API_URL}/auth/register/therapist`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
-    });
-    if (!res.ok) {
-      const err = await res.json();
-      throw new Error(err.detail || 'Registration failed');
-    }
-    const data = await res.json();
-    localStorage.setItem('token', data.token);
-    setToken(data.token);
-    setUser(data.user);
-    return data.user;
-  };
-
-  const registerPatient = async (formData) => {
-    const res = await fetch(`${API_URL}/auth/register/patient`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
-    });
-    if (!res.ok) {
-      const err = await res.json();
-      throw new Error(err.detail || 'Registration failed');
-    }
-    const data = await res.json();
-    localStorage.setItem('token', data.token);
-    setToken(data.token);
-    setUser(data.user);
-    return data.user;
+    setLoading(false);
   };
 
   const logout = () => {
     localStorage.removeItem('token');
     setToken(null);
     setUser(null);
+    setLoading(false);
   };
+
+  const isTherapist = () => user?.role === 'therapist';
+  const isPatient = () => user?.role === 'patient';
 
   const value = {
     user,
@@ -98,10 +57,9 @@ export function AuthProvider({ children }) {
     loading,
     isAuthenticated: !!user,
     login,
-    registerTherapist,
-    registerPatient,
     logout,
-    fetchMe
+    isTherapist,
+    isPatient
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

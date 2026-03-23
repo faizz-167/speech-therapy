@@ -8,12 +8,13 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-neo-accent text-black shadow-[4px_4px_0px_0px_#000] hover:brightness-110 active:translate-x-[4px] active:translate-y-[4px] active:shadow-none",
-        secondary: "bg-neo-secondary text-black shadow-[4px_4px_0px_0px_#000] hover:brightness-110 active:translate-x-[4px] active:translate-y-[4px] active:shadow-none",
-        outline: "bg-white text-black shadow-[4px_4px_0px_0px_#000] hover:bg-neo-secondary active:translate-x-[4px] active:translate-y-[4px] active:shadow-none",
-        ghost: "border-transparent hover:border-black hover:bg-neo-muted hover:shadow-[4px_4px_0px_0px_#000] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none",
-        destructive: "bg-neo-accent text-black shadow-[4px_4px_0px_0px_#000] hover:bg-red-500 active:translate-x-[4px] active:translate-y-[4px] active:shadow-none",
-        link: "border-0 text-black underline-offset-4 hover:underline font-bold",
+        default: "bg-[#D02020] text-white font-black shadow-[4px_4px_0px_0px_#121212] hover:bg-[#A01010] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none",
+        secondary: "bg-[#1040C0] text-white font-black shadow-[4px_4px_0px_0px_#121212] hover:bg-[#082080] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none",
+        accent: "bg-[#F0C020] text-[#121212] font-black shadow-[4px_4px_0px_0px_#121212] hover:bg-[#D0A010] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none",
+        outline: "bg-white text-[#121212] font-black shadow-[4px_4px_0px_0px_#121212] hover:bg-[#F0F0F0] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none",
+        ghost: "border-transparent text-[#121212] font-black hover:border-black hover:bg-[#F0F0F0] hover:shadow-[4px_4px_0px_0px_#121212] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none",
+        destructive: "bg-[#121212] text-white font-black shadow-[4px_4px_0px_0px_#121212] hover:bg-[#333333] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none",
+        link: "border-0 text-[#121212] underline-offset-4 hover:text-[#1040C0] hover:underline font-black",
       },
       size: {
         default: "h-12 gap-2 px-6",

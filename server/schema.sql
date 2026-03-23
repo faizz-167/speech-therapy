@@ -39,7 +39,7 @@ CREATE TYPE prompt_type_enum          AS ENUM ('warmup','exercise');
 CREATE TYPE task_mode_enum            AS ENUM ('word_drill','sentence_read','paragraph_read','free_speech','roleplay','stuttering');
 CREATE TYPE eval_criteria_enum        AS ENUM ('pronunciation','fluency','accuracy','memory');
 CREATE TYPE severity_enum             AS ENUM ('mild','moderate','severe','profound');
-CREATE TYPE plan_status_enum          AS ENUM ('draft','active','completed','paused','cancelled');
+CREATE TYPE plan_status_enum          AS ENUM ('draft','pending','active','completed','paused','cancelled','expired');
 CREATE TYPE assignment_status_enum    AS ENUM ('pending','approved','active','completed');
 CREATE TYPE session_type_enum         AS ENUM ('initial_assessment','therapy','review','discharge');
 CREATE TYPE attempt_result_enum       AS ENUM ('pass','partial','fail','skipped');
@@ -47,6 +47,7 @@ CREATE TYPE attempt_result_enum       AS ENUM ('pass','partial','fail','skipped'
 -- 4. DROP TABLE IF EXISTS in reverse FK order (for clean re-runs)
 DROP TABLE IF EXISTS patient_task_progress CASCADE;
 DROP TABLE IF EXISTS session_prompt_attempt CASCADE;
+DROP TABLE IF EXISTS session_emotion_summary CASCADE;
 DROP TABLE IF EXISTS session CASCADE;
 DROP TABLE IF EXISTS plan_task_assignment CASCADE;
 DROP TABLE IF EXISTS therapy_plan CASCADE;
@@ -226,19 +227,30 @@ CREATE TABLE task_defect_mapping (
 
 CREATE TABLE therapist (
     therapist_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    therapist_code TEXT UNIQUE,
     full_name TEXT NOT NULL,
     license_number TEXT UNIQUE NOT NULL,
     specialization TEXT,
     email TEXT UNIQUE NOT NULL,
+    password_hash TEXT,
+    role TEXT NOT NULL DEFAULT 'therapist',
+    years_of_experience INTEGER,
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
 CREATE TABLE patient (
     patient_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    pin_hash TEXT,
+    password_hash TEXT,
     full_name TEXT NOT NULL,
     date_of_birth DATE NOT NULL,
     gender TEXT,
     primary_diagnosis TEXT,
+    role TEXT NOT NULL DEFAULT 'patient',
+    clinical_notes TEXT,
+    pre_assigned_defect_ids JSONB,
+    current_streak INTEGER NOT NULL DEFAULT 0,
+    longest_streak INTEGER NOT NULL DEFAULT 0,
     assigned_therapist_id UUID REFERENCES therapist(therapist_id) ON DELETE SET NULL,
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -283,6 +295,9 @@ CREATE TABLE plan_task_assignment (
     task_id TEXT REFERENCES task(task_id) ON DELETE RESTRICT,
     therapist_id UUID REFERENCES therapist(therapist_id) ON DELETE RESTRICT,
     status assignment_status_enum,
+    priority_order INTEGER NOT NULL DEFAULT 0,
+    day_index INTEGER NOT NULL DEFAULT 1,
+    paused BOOLEAN NOT NULL DEFAULT FALSE,
     clinical_rationale TEXT,
     assigned_on DATE DEFAULT CURRENT_DATE,
     created_at TIMESTAMPTZ DEFAULT NOW()
@@ -326,6 +341,18 @@ CREATE TABLE patient_task_progress (
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
+CREATE TABLE session_emotion_summary (
+    summary_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    session_id UUID REFERENCES session(session_id) ON DELETE CASCADE,
+    patient_id UUID REFERENCES patient(patient_id) ON DELETE CASCADE,
+    session_date DATE NOT NULL,
+    dominant_emotion TEXT,
+    avg_frustration NUMERIC(4,3),
+    avg_engagement NUMERIC(5,2),
+    drop_count INTEGER NOT NULL DEFAULT 0,
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
 -- 6. All index DDL
 -- Domain 1
 CREATE INDEX ON baseline_section(baseline_id);
@@ -353,6 +380,7 @@ CREATE INDEX ON baseline_item_result(result_id);
 CREATE INDEX ON therapy_plan(patient_id, status);
 CREATE INDEX ON plan_task_assignment(plan_id);
 CREATE INDEX ON plan_task_assignment(task_id);
+CREATE INDEX ON plan_task_assignment(plan_id, priority_order);
 
 -- Domain 4 (high-volume)
 CREATE INDEX ON session(plan_id);
@@ -364,6 +392,7 @@ CREATE INDEX ON session_prompt_attempt(result);
 CREATE INDEX ON session_prompt_attempt(attempted_at DESC);
 CREATE INDEX ON patient_task_progress(patient_id);
 CREATE INDEX ON patient_task_progress(last_attempted_at DESC);
+CREATE INDEX ON session_emotion_summary(patient_id, session_date);
 
 -- 7. All unique constraint DDL
 ALTER TABLE patient_task_progress ADD CONSTRAINT uq_patient_task UNIQUE (patient_id, task_id);

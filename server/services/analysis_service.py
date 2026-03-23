@@ -18,29 +18,55 @@ import re
 from difflib import SequenceMatcher
 
 
-# ── Scoring Formulas by Task Mode ───────────────────────────────
-# { task_mode: { metric: weight } }
-SPEECH_FORMULAS = {
-    "word_drill":     {"PA": 0.65, "WA": 0.25, "CS": 0.10},
-    "sentence_read":  {"PA": 0.45, "WA": 0.25, "FS": 0.20, "SRS": 0.10},
-    "paragraph_read": {"PA": 0.35, "WA": 0.25, "FS": 0.25, "SRS": 0.15},
-    "free_speech":    {"PA": 0.40, "FS": 0.35, "SRS": 0.15, "CS": 0.10},
-    "stuttering":     {"FS": 0.55, "PA": 0.25, "SRS": 0.20},
-    "roleplay":       {"FS": 0.30, "PA": 0.30, "SRS": 0.25, "CS": 0.15},
-    "debate":         {"FS": 0.30, "PA": 0.30, "SRS": 0.25, "CS": 0.15},
+import math
+
+FORMULA_CONFIG = {
+    "word_drill": {
+        "formula_weights": {"phoneme_accuracy": 0.65, "word_accuracy": 0.25, "confidence_score": 0.10, "fluency_score": 0.00, "speech_rate": 0.00},
+        "wpm_range": {"min": 60, "max": 90, "tolerance": 15},
+        "fusion_weights": {"speech": 0.95, "engagement": 0.05}
+    },
+    "sentence_read": {
+        "formula_weights": {"phoneme_accuracy": 0.45, "word_accuracy": 0.25, "fluency_score": 0.20, "speech_rate": 0.10, "confidence_score": 0.00},
+        "wpm_range": {"min": 80, "max": 100, "tolerance": 15},
+        "fusion_weights": {"speech": 0.90, "engagement": 0.10}
+    },
+    "paragraph_read": {
+        "formula_weights": {"phoneme_accuracy": 0.35, "word_accuracy": 0.25, "fluency_score": 0.25, "speech_rate": 0.15, "confidence_score": 0.00},
+        "wpm_range": {"min": 130, "max": 150, "tolerance": 20},
+        "fusion_weights": {"speech": 0.85, "engagement": 0.15}
+    },
+    "free_speech": {
+        "formula_weights": {"phoneme_accuracy": 0.40, "fluency_score": 0.35, "speech_rate": 0.15, "confidence_score": 0.10, "word_accuracy": 0.00},
+        "wpm_range": {"min": 130, "max": 160, "tolerance": 25},
+        "fusion_weights": {"speech": 0.75, "engagement": 0.25}
+    },
+    "stuttering": {
+        "formula_weights": {"fluency_score": 0.55, "phoneme_accuracy": 0.25, "speech_rate": 0.20, "word_accuracy": 0.00, "confidence_score": 0.00},
+        "wpm_range": {"min": 80, "max": 120, "tolerance": 20},
+        "fusion_weights": {"speech": 0.60, "engagement": 0.40}
+    },
+    "roleplay": {
+        "formula_weights": {"phoneme_accuracy": 0.25, "fluency_score": 0.35, "speech_rate": 0.15, "nlp_score": 0.25, "word_accuracy": 0.00},
+        "wpm_range": {"min": 110, "max": 150, "tolerance": 25},
+        "fusion_weights": {"speech": 0.70, "engagement": 0.30}
+    }
 }
 
-# ── Multimodal Fusion Weights ───────────────────────────────────
-FUSION_WEIGHTS = {
-    "word_drill":     {"speech": 0.95, "engagement": 0.05},
-    "sentence_read":  {"speech": 0.90, "engagement": 0.10},
-    "paragraph_read": {"speech": 0.85, "engagement": 0.15},
-    "free_speech":    {"speech": 0.75, "engagement": 0.25},
-    "stuttering":     {"speech": 0.60, "engagement": 0.40},
-    "roleplay":       {"speech": 0.70, "engagement": 0.30},
-    "debate":         {"speech": 0.70, "engagement": 0.30},
-}
-DEFAULT_FUSION = {"speech": 0.80, "engagement": 0.20}
+def _validate_formulas():
+    import math
+    for mode, config in FORMULA_CONFIG.items():
+        fw_sum = sum(config["formula_weights"].values())
+        fu_sum = sum(config["fusion_weights"].values())
+        assert math.isclose(fw_sum, 1.0), f"Formula weights for {mode} don't sum to 1.0 (sum is {fw_sum})"
+        assert math.isclose(fu_sum, 1.0), f"Fusion weights for {mode} don't sum to 1.0 (sum is {fu_sum})"
+
+_validate_formulas()
+
+def get_formula_config(task_mode: str) -> dict:
+    if task_mode not in FORMULA_CONFIG:
+        raise ValueError(f"Unknown task_mode: {task_mode}")
+    return FORMULA_CONFIG[task_mode]
 
 # ── Performance Levels ──────────────────────────────────────────
 CHILD_LEVELS = [(85, "Excellent"), (70, "Well Performing"), (50, "Good"), (0, "Needs Improvement")]
@@ -214,32 +240,54 @@ class AnalysisService:
             transcript_percentage = int(min((word_count / max(1, expected_words_len)) * 100, 100))
 
         # ── Speech Score (task-mode formula) ─────────────────────
-        metrics = {"PA": phoneme_accuracy, "WA": word_accuracy, "FS": fluency, "SRS": speech_rate, "CS": confidence_score}
-        formula = SPEECH_FORMULAS.get(task_mode, SPEECH_FORMULAS["sentence_read"])
-        speech_score = int(sum(metrics.get(m, 0) * w for m, w in formula.items()))
+        source = prompt_obj.get("source", "task")
+        
+        if source == "baseline":
+            # For baselines, backend should explicitly pass the baseline item formula configurations.
+            # But baseline evaluation itself is skipped here per Fix 6 instructions (should be natively in `/item-results`)
+            # For now, safely fallback or raise for baseline items going through here.
+            baseline_formula = prompt_obj.get("formula_weights", {})
+            baseline_fusion = prompt_obj.get("fusion_weights", {})
+            f_weights = baseline_formula
+            fu_weights = baseline_fusion
+        else:
+            config = get_formula_config(task_mode)
+            f_weights = config["formula_weights"]
+            fu_weights = config["fusion_weights"]
+
+        metrics = {
+            "phoneme_accuracy": phoneme_accuracy, 
+            "word_accuracy": word_accuracy, 
+            "fluency_score": fluency, 
+            "speech_rate": speech_rate, 
+            "confidence_score": confidence_score,
+            "nlp_score": content_score
+        }
+        
+        speech_score = sum(metrics.get(k, 0) * w for k, w in f_weights.items())
 
         # Articulation
         articulation = self.compute_articulation(phoneme_accuracy, word_accuracy)
 
         # ── Multimodal Fusion ────────────────────────────────────
-        fusion = FUSION_WEIGHTS.get(task_mode, DEFAULT_FUSION)
+        final_score = (fu_weights.get("speech", 1.0) * speech_score) + (fu_weights.get("engagement", 0.0) * engagement)
 
-        if task_mode in ("free_speech", "roleplay", "debate") and content_score > 0:
-            # Free speech: 0.60 × SpeechScore + 0.40 × ContentScore
-            final_score = int(0.60 * speech_score + 0.40 * content_score)
-        else:
-            final_score = int(fusion["speech"] * speech_score + fusion["engagement"] * engagement)
-
+        # ── Confidence Gate ──────────────────────────────────────
+        low_confidence_flag = False
+        review_recommended = False
+        
+        if confidence_score < 50.0:
+            low_confidence_flag = True
+            review_recommended = True
+            
         # ── Rule-Based Adjustments ───────────────────────────────
-        # PA < 35 → cap at 45
-        if phoneme_accuracy < 35:
-            final_score = min(final_score, 45)
-
-        # Engagement adjustments
         if engagement < 35:
             final_score -= 5
         elif engagement > 85:
             final_score += 5
+
+        if phoneme_accuracy < 35:
+            final_score = min(final_score, 45)
 
         final_score = max(0, min(100, final_score))
         performance_level = self.classify_performance(final_score, patient_category)
@@ -249,60 +297,77 @@ class AnalysisService:
         new_consecutive_pass = consecutive_pass
         new_consecutive_fail = consecutive_fail
         feedback_text = ""
+        progress_delta = 0.0
+        clinician_alert = False
 
-        if not is_warmup:
-            # Get thresholds from prompt JSON
-            thresholds = prompt_obj.get("adaptive_thresholds", {})
-            advance_threshold = thresholds.get("advance", 80)
-            drop_threshold = thresholds.get("drop", 40)
+        if not is_warmup and not low_confidence_flag and source != "baseline":
+            thresholds = prompt_obj.get("adaptive_thresholds")
+            
+            if not thresholds:
+                raise ValueError("Expected adaptive_thresholds for exercise prompt, none found.")
 
-            # Frustration auto-drop
-            if frustration_score > 0.40:
-                adaptive_decision = "auto_drop"
+            at_advance = thresholds.get("advance_to_next_level")
+            at_stay = thresholds.get("stay_at_current_level")
+            at_drop = thresholds.get("drop_to_easier_level", 55)
+            at_c_advance = thresholds.get("consecutive_to_advance", 2)
+            at_c_drop = thresholds.get("consecutive_to_drop", 3)
+            
+            if at_advance is None:
+                raise ValueError("adaptive_thresholds row is missing valid thresholds.")
+
+            # Step 1: Frustration override
+            detected_emotion = ser_result.get("emotion", "neutral")
+            if frustration_score > 0.40 or (detected_emotion in ("angry", "sad") and frustration_score > 0.30):
+                adaptive_decision = "drop"
                 new_consecutive_pass = 0
                 new_consecutive_fail = consecutive_fail + 1
-            elif final_score >= advance_threshold:
-                new_consecutive_pass = consecutive_pass + 1
-                new_consecutive_fail = 0
-                if new_consecutive_pass >= 2:
-                    adaptive_decision = "advance"
-                else:
-                    adaptive_decision = "stay"
-            elif final_score < drop_threshold:
-                new_consecutive_fail = consecutive_fail + 1
-                new_consecutive_pass = 0
-                if new_consecutive_fail >= 3:
-                    adaptive_decision = "drop"
-                else:
-                    adaptive_decision = "stay"
             else:
-                # Between thresholds
-                adaptive_decision = "stay"
-                new_consecutive_pass = 0
-                new_consecutive_fail = 0
+                # Step 2: Threshold comparison
+                if final_score >= at_advance:
+                    new_consecutive_pass = consecutive_pass + 1
+                    new_consecutive_fail = 0
+                    if new_consecutive_pass >= at_c_advance:
+                        adaptive_decision = "advance"
+                    else:
+                        adaptive_decision = "stay"
+                elif final_score < at_drop:
+                    new_consecutive_fail = consecutive_fail + 1
+                    new_consecutive_pass = 0
+                    if new_consecutive_fail >= at_c_drop:
+                        adaptive_decision = "drop"
+                    else:
+                        adaptive_decision = "stay"
+                else:
+                    adaptive_decision = "stay"
+
+            # Step 3: Clinician alert check
+            if baseline_score is not None:
+                progress_delta = round(final_score - baseline_score, 2)
+                if progress_delta < -15.0:
+                    clinician_alert = True
+                    if adaptive_decision == "advance":
+                        adaptive_decision = "stay"
 
             # ── Feedback Selection ───────────────────────────────
             feedback_rules = prompt_obj.get("feedback_rules", {})
-            if adaptive_decision == "advance":
-                feedback_text = feedback_rules.get("pass", "Great job! Moving to the next level.")
-            elif adaptive_decision in ("drop", "auto_drop"):
-                feedback_text = feedback_rules.get("fail", "Let's try an easier level to build confidence.")
-            else:
-                if final_score >= advance_threshold:
-                    feedback_text = feedback_rules.get("pass", "Well done! Keep it up.")
-                elif final_score >= drop_threshold:
-                    feedback_text = feedback_rules.get("partial", "Good effort. Let's practice more.")
-                else:
-                    feedback_text = feedback_rules.get("fail", "This is challenging. Let's try again.")
-
-        # ── Progress Delta ───────────────────────────────────────
-        progress_delta = 0.0
-        clinician_alert = False
-        if baseline_score is not None and baseline_score > 0:
-            progress_delta = round(final_score - baseline_score, 2)
-            # Flag regression > 15 points
-            if progress_delta < -15:
-                clinician_alert = True
+            
+            result = "fail"
+            if final_score >= at_advance:
+                result = "pass"
+            elif final_score >= at_drop:
+                result = "partial" if getattr(prompt_obj.get("evaluation_target", object), "partial_pass", None) is not None else "fail"
+            
+            if result == "pass":
+                feedback_text = feedback_rules.get("pass_message", "Great job!")
+            elif result == "partial":
+                feedback_text = feedback_rules.get("partial_message") or feedback_rules.get("pass_message", "Good effort.")
+            elif result == "fail" and adaptive_decision == "stay":
+                feedback_text = feedback_rules.get("retry_message") or feedback_rules.get("fail_message", "Let's try again.")
+            elif result == "fail" and (adaptive_decision == "drop" or adaptive_decision == "auto_drop"):
+                feedback_text = feedback_rules.get("fail_message", "Let's review this.")
+                
+            if result == "fail" and (adaptive_decision == "drop" or adaptive_decision == "auto_drop") and clinician_alert:
+                feedback_text += " Your therapist has been notified and will review your recent progress."
 
         return {
             # Primary metrics
@@ -318,13 +383,15 @@ class AnalysisService:
             "performance_level": performance_level,
             "content_score": content_score,
             # Adaptive
-            "adaptive_decision": adaptive_decision,
+            "adaptive_decision": adaptive_decision if not low_confidence_flag else None,
             "feedback": feedback_text,
             "consecutive_pass_count": new_consecutive_pass,
             "consecutive_fail_count": new_consecutive_fail,
             "progress_delta": progress_delta,
             "clinician_alert": clinician_alert,
             "frustration_flag": frustration_score > 0.40,
+            "low_confidence_flag": low_confidence_flag,
+            "review_recommended": review_recommended,
             # Secondary
             "pause_rate": pause_rate,
             "transcript_percentage": transcript_percentage,

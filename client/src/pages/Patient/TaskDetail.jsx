@@ -148,7 +148,7 @@ export default function TaskDetail() {
   if (loading) {
     return (
       <div className="max-w-4xl mx-auto py-8 text-center">
-         <h2 className="text-2xl font-black uppercase inline-block animate-pulse bg-neo-accent px-4 py-2 border-4 border-black shadow-[4px_4px_0px_0px_#000]">Loading Task...</h2>
+         <h2 className="text-2xl font-black uppercase inline-block animate-pulse bg-[#F0C020] px-4 py-2 border-4 border-[#121212] shadow-[4px_4px_0px_0px_#121212]">Loading Task...</h2>
       </div>
     );
   }
@@ -156,7 +156,7 @@ export default function TaskDetail() {
   if (!task) {
     return (
       <div className="max-w-4xl mx-auto py-8">
-        <h2 className="text-2xl font-black uppercase text-red-500 mb-4 bg-white border-4 border-black p-4 inline-block shadow-[4px_4px_0px_0px_#000]">Task not found</h2>
+        <h2 className="text-2xl font-black uppercase text-[#D02020] mb-4 bg-white border-4 border-[#121212] p-4 inline-block shadow-[4px_4px_0px_0px_#121212]">Task not found</h2>
         <br/>
         <Button onClick={() => navigate('/patient/tasks')} className="mt-4">Back to Tasks</Button>
       </div>
@@ -171,24 +171,24 @@ export default function TaskDetail() {
                <FiArrowLeft strokeWidth={3} /> BACK TO TASKS
             </Button>
             
-            <div className="bg-white border-4 border-black shadow-[8px_8px_0px_0px_#000] p-10 neo-lift text-center max-w-3xl mx-auto">
-               <span className="neo-badge bg-neo-secondary uppercase mb-6 inline-block">{task.difficulty}</span>
+            <div className="bg-white border-4 border-[#121212] shadow-[12px_12px_0px_0px_#121212] p-10 text-center max-w-3xl mx-auto">
+               <span className="font-sans font-black text-sm uppercase px-3 py-1 bg-[#F0F0F0] border-4 border-[#121212] shadow-[4px_4px_0px_0px_#121212] mb-6 inline-block tracking-widest">{task.difficulty}</span>
                
-               <h1 className="text-5xl font-black uppercase text-black mb-4 leading-tight">{task.task_name}</h1>
-               <p className="font-bold text-xl text-black/70 mb-8 max-w-2xl mx-auto">{task.reason}</p>
+               <h1 className="text-5xl md:text-6xl font-black uppercase text-[#121212] mb-4 leading-none tracking-tighter">{task.task_name}</h1>
+               <p className="font-bold text-xl text-[#121212] mb-8 max-w-2xl mx-auto tracking-widest">{task.reason}</p>
 
-               <div className="bg-neo-bg border-4 border-black p-8 mb-10 text-left">
-                  <h3 className="text-sm font-black uppercase tracking-widest text-black/50 mb-3 flex items-center gap-2">
-                     <FiActivity strokeWidth={3} /> Instructions
+               <div className="bg-[#F0F0F0] border-4 border-[#121212] p-8 mb-10 text-left shadow-[6px_6px_0px_0px_#121212]">
+                  <h3 className="text-sm font-black uppercase tracking-widest text-[#1040C0] mb-3 flex items-center gap-2 border-b-4 border-[#121212] pb-2">
+                     <FiActivity strokeWidth={3} size={20} /> Instructions
                   </h3>
-                  <p className="font-bold text-black text-xl leading-relaxed">{task.instructions || 'You will be shown prompts one by one. Read them aloud clearly and record your voice.'}</p>
+                  <p className="font-bold text-[#121212] text-xl md:text-2xl leading-tight">{task.instructions || 'You will be shown prompts one by one. Read them aloud clearly and record your voice.'}</p>
                </div>
 
                <Button 
                   onClick={handleStartTask}
-                  className="bg-neo-accent text-black border-4 border-black border-b-8 hover:bg-[#FFE373] hover:-translate-y-1 transition-transform text-2xl py-8 px-12 shadow-[4px_4px_0px_0px_#000]"
+                  className="bg-[#1040C0] text-white border-4 border-[#121212] hover:bg-[#082080] hover:-translate-y-1 transition-transform text-2xl py-8 px-12 shadow-[6px_6px_0px_0px_#121212] font-black uppercase tracking-widest"
                >
-                  START TASK <FiPlay className="ml-3 w-8 h-8 fill-black" />
+                  START TASK <FiPlay className="ml-3 w-8 h-8 fill-white" />
                </Button>
             </div>
         </div>
@@ -202,13 +202,13 @@ export default function TaskDetail() {
             <Button onClick={() => navigate('/patient/tasks')} variant="outline" className="gap-2 mb-8">
                <FiArrowLeft strokeWidth={3} /> BACK TO TASKS
             </Button>
-            <div className="bg-[#86EFAC] border-4 border-black shadow-[8px_8px_0px_0px_#000] p-16 text-center rotate-[0.5deg] max-w-2xl mx-auto">
-               <div className="w-24 h-24 border-4 border-black bg-white flex items-center justify-center mx-auto mb-6 -rotate-3">
-               <FiCheck strokeWidth={3} className="w-12 h-12 text-black" />
+            <div className="bg-[#1040C0] border-4 border-[#121212] shadow-[12px_12px_0px_0px_#121212] p-16 text-center max-w-2xl mx-auto mt-8">
+               <div className="w-24 h-24 border-8 border-[#121212] bg-[#F0C020] flex items-center justify-center mx-auto mb-6 shadow-[6px_6px_0px_0px_#121212]">
+               <FiCheck strokeWidth={4} className="w-12 h-12 text-[#121212]" />
                </div>
-               <h3 className="text-4xl font-black uppercase text-black mb-4">Task Complete!</h3>
-               <p className="font-bold text-black/70 text-xl mb-8">You finished all prompts for this category.</p>
-               <Button onClick={() => navigate('/patient/tasks')} className="bg-black text-white text-lg py-6 px-8 hover:-translate-y-1 transition-transform shadow-[4px_4px_0px_0px_#000]">
+               <h3 className="text-5xl font-black uppercase text-white mb-4 tracking-tighter">Task Complete!</h3>
+               <p className="font-bold text-white text-xl mb-8 tracking-widest">You finished all prompts for this category.</p>
+               <Button onClick={() => navigate('/patient/tasks')} className="bg-white text-[#121212] text-xl font-black tracking-widest uppercase py-6 px-10 border-4 border-[#121212] hover:-translate-y-1 transition-transform shadow-[6px_6px_0px_0px_#121212]">
                   Return to Dashboard
                </Button>
             </div>
@@ -338,34 +338,36 @@ export default function TaskDetail() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
          {/* Main Prompt Display */}
          <div className="space-y-6">
-            <div className="bg-white border-4 border-black shadow-[8px_8px_0px_0px_#000] p-8 neo-lift h-full flex flex-col justify-center text-center">
+            <div className="bg-white border-4 border-[#121212] shadow-[12px_12px_0px_0px_#121212] p-8 md:p-12 h-full flex flex-col justify-center text-center">
                
                {renderTaskPrompt(task.task_type || 'read_aloud', currentStimulus)}
 
                {attempt > 1 && (
-                  <span className="neo-badge bg-neo-secondary uppercase mx-auto mt-8 inline-block">Attempt {attempt}</span>
+                  <span className="font-sans font-black text-sm uppercase px-3 py-1 bg-[#D02020] text-white border-4 border-[#121212] shadow-[4px_4px_0px_0px_#121212] mx-auto mt-8 inline-block tracking-widest">Attempt {attempt}</span>
                )}
             </div>
          </div>
 
          {/* Recording / Feedback Sidebar */}
          <div className="space-y-6">
-            <div className="bg-neo-muted border-4 border-black shadow-[8px_8px_0px_0px_#000] p-8 h-full">
+            <div className="bg-[#F0F0F0] border-4 border-[#121212] shadow-[12px_12px_0px_0px_#121212] p-8 h-full">
                
                {viewState === 'recording' ? (
-                  <div className="flex flex-col h-full bg-white border-4 border-black p-6 relative">
-                     <h3 className="text-3xl font-black uppercase mb-2">Record</h3>
-                     <p className="font-bold text-sm text-black/60 mb-8 border-b-4 border-black pb-4">Speak clearly into your microphone.</p>
+                  <div className="flex flex-col h-full bg-white border-4 border-[#121212] p-6 md:p-8 relative shadow-[6px_6px_0px_0px_#121212]">
+                     <h3 className="text-4xl font-black uppercase mb-2 text-[#121212] tracking-tighter">Record</h3>
+                     <p className="font-bold text-sm md:text-base text-[#121212] mb-8 border-b-4 border-[#1040C0] pb-4 uppercase tracking-widest">Speak clearly into your microphone.</p>
                      
                      <div className="flex-1 flex flex-col items-center justify-center py-8">
                         <AudioRecorder onRecordingComplete={handleRecordingComplete} />
                      </div>
 
-                     <div className="mt-8 pt-6 border-t-4 border-black">
+                     <div className="mt-8 pt-6 border-t-4 border-[#121212]">
                         <Button 
                            onClick={handleSubmit} 
                            disabled={!audioBlob || isSubmitting}
-                           className={`w-full text-xl py-8 uppercase font-black tracking-wider ${!audioBlob ? 'opacity-50' : 'bg-neo-accent text-black border-4 border-black hover:-translate-y-1 transition-transform shadow-[4px_4px_0px_0px_#000]'}`}
+                           className={`w-full text-xl md:text-2xl py-8 uppercase font-black tracking-widest border-4 border-[#121212] shadow-[6px_6px_0px_0px_#121212] transition-all
+                              ${!audioBlob ? 'opacity-50 bg-[#F0F0F0] text-[#121212]' : 'bg-[#1040C0] text-white hover:bg-[#082080] hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_#121212]'}
+                           `}
                         >
                            {isSubmitting ? 'ANALYZING...' : 'SUBMIT RECORDING'}
                         </Button>
@@ -373,28 +375,28 @@ export default function TaskDetail() {
                   </div>
                ) : (
                   // Feedback View
-                  <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 bg-white border-4 border-black p-6 relative">
-                     <h3 className="text-2xl font-black uppercase mb-4">Results</h3>
+                  <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 bg-white border-4 border-[#121212] p-6 relative shadow-[6px_6px_0px_0px_#121212]">
+                     <h3 className="text-3xl font-black uppercase mb-4 text-[#121212]">Results</h3>
                      
                      {/* Transcription Block */}
-                     <div className="bg-neo-bg border-4 border-black p-4 mb-6 relative">
-                        <span className="absolute -top-3 left-4 bg-white border-2 border-black text-[10px] font-black uppercase px-2 py-0.5 tracking-widest">Transcription</span>
-                        <p className="font-bold text-lg text-black pt-2">
-                           {result.transcription}
+                     <div className="bg-[#F0F0F0] border-4 border-[#121212] p-6 mb-8 relative shadow-[4px_4px_0px_0px_#121212]">
+                        <span className="absolute -top-4 left-4 bg-[#1040C0] text-white border-4 border-[#121212] shadow-[2px_2px_0px_0px_#121212] text-[10px] md:text-sm font-black uppercase px-3 py-1 tracking-widest">Transcription</span>
+                        <p className="font-bold text-xl text-[#121212] pt-2 italic">
+                           "{result.transcription}"
                         </p>
                      </div>
 
-                     <div className="space-y-3 mb-8">
+                     <div className="space-y-4 mb-8">
                         {/* Final Score Hero */}
-                        <div className="bg-neo-bg border-4 border-black p-4 mb-2 relative">
-                           <span className="absolute -top-3 left-4 bg-white border-2 border-black text-[10px] font-black uppercase px-2 py-0.5 tracking-widest">Final Score</span>
+                        <div className="bg-white border-4 border-[#121212] p-6 mb-4 relative shadow-[4px_4px_0px_0px_#121212]">
+                           <span className="absolute -top-4 left-4 bg-[#121212] text-white border-4 border-[#121212] shadow-[2px_2px_0px_0px_#121212] text-[10px] md:text-sm font-black uppercase px-3 py-1 tracking-widest">Final Score</span>
                            <div className="flex items-center justify-between pt-1">
-                              <span className="font-black text-4xl">{result.finalScore}%</span>
+                              <span className="font-black text-5xl text-[#121212]">{result.finalScore}%</span>
                               {result.performanceLevel && (
-                                <span className={`neo-badge text-xs uppercase px-2 py-1 border-2 border-black shadow-[2px_2px_0px_0px_#000] ${
-                                  result.performanceLevel === 'Excellent' ? 'bg-[#86EFAC]' :
-                                  result.performanceLevel === 'Well Performing' ? 'bg-neo-accent' :
-                                  result.performanceLevel === 'Good' ? 'bg-[#FDE047]' : 'bg-neo-secondary'
+                                <span className={`font-sans text-xs md:text-sm font-black uppercase px-3 py-1 border-4 border-[#121212] shadow-[4px_4px_0px_0px_#121212] ${
+                                  result.performanceLevel === 'Excellent' ? 'bg-[#1040C0] text-white' :
+                                  result.performanceLevel === 'Well Performing' ? 'bg-[#F0C020] text-[#121212]' :
+                                  result.performanceLevel === 'Good' ? 'bg-[#F0F0F0] text-[#121212]' : 'bg-[#D02020] text-white'
                                 }`}>{result.performanceLevel}</span>
                               )}
                            </div>
@@ -402,54 +404,54 @@ export default function TaskDetail() {
 
                         {/* Metric bars */}
                         {[
-                          { label: 'Speech Score', value: result.speechScore, color: 'bg-[#86EFAC]' },
-                          { label: 'Phoneme Accuracy', value: result.phonemeAccuracy, color: 'bg-[#93C5FD]' },
-                          { label: 'Word Accuracy', value: result.wordAccuracy, color: 'bg-[#86EFAC]' },
-                          { label: 'Fluency', value: result.fluency, color: 'bg-[#FDE047]' },
-                          { label: 'Speech Rate', value: result.speechRate, color: 'bg-[#C4B5FD]' },
-                          { label: 'Engagement', value: result.engagement, color: 'bg-[#FCA5A5]' },
-                          { label: 'Articulation', value: result.articulation, color: 'bg-[#93C5FD]' },
+                          { label: 'Speech Score', value: result.speechScore, color: 'bg-[#1040C0]' },
+                          { label: 'Phoneme Accuracy', value: result.phonemeAccuracy, color: 'bg-[#D02020]' },
+                          { label: 'Word Accuracy', value: result.wordAccuracy, color: 'bg-[#F0C020]' },
+                          { label: 'Fluency', value: result.fluency, color: 'bg-[#121212]' },
+                          { label: 'Speech Rate', value: result.speechRate, color: 'bg-[#1040C0]' },
+                          { label: 'Engagement', value: result.engagement, color: 'bg-[#F0C020]' },
+                          { label: 'Articulation', value: result.articulation, color: 'bg-[#D02020]' },
                         ].map(metric => (
                           <div key={metric.label}>
-                            <div className="flex justify-between font-black uppercase text-xs mb-1 tracking-widest">
+                            <div className="flex justify-between font-black uppercase text-xs md:text-sm border-b-2 border-[#121212] pb-1 mb-1 tracking-widest text-[#121212]">
                               <span>{metric.label}</span>
                               <span>{metric.value}%</span>
                             </div>
-                            <div className="h-5 border-4 border-black bg-neo-bg w-full">
-                              <div className={`h-full border-r-4 border-black transition-all duration-1000 ${metric.color}`} style={{ width: `${Math.min(100, metric.value)}%` }}></div>
+                            <div className="h-6 border-4 border-[#121212] bg-[#F0F0F0] w-full">
+                              <div className={`h-full border-r-4 border-[#121212] transition-all duration-1000 ${metric.color}`} style={{ width: `${Math.min(100, metric.value)}%` }}></div>
                             </div>
                           </div>
                         ))}
 
                         {/* Secondary stats */}
-                        <div className="mt-3 pt-3 border-t-4 border-black flex justify-between text-xs font-black uppercase tracking-widest text-black/60">
+                        <div className="mt-6 pt-4 border-t-4 border-[#121212] flex justify-between text-xs md:text-sm font-black uppercase tracking-widest text-[#121212]">
                            <span>Emotion: {result.emotion_label}</span>
                            <span>Pause Rate: {result.pauseRate}/word</span>
                         </div>
                      </div>
 
                      {/* Feedback Action Box */}
-                     <div className={`border-4 border-black p-6 shadow-[4px_4px_0px_0px_#000] ${result.should_retry || attempt >= 3 || result.suggest_break ? 'bg-neo-secondary' : 'bg-[#86EFAC]'}`}>
-                        <p className="font-bold text-black text-lg mb-6 leading-tight">
+                     <div className={`border-4 border-[#121212] p-8 shadow-[6px_6px_0px_0px_#121212] ${result.should_retry || attempt >= 3 || result.suggest_break ? 'bg-[#D02020]' : 'bg-[#1040C0]'}`}>
+                        <p className="font-bold text-white text-xl md:text-2xl mb-8 leading-tight tracking-widest">
                            {result.break_message || result.retry_message}
                         </p>
                         
                         {(result.should_retry && attempt < 3 && !result.suggest_break) ? (
-                           <Button onClick={handleRetry} className="w-full bg-black text-white gap-2 py-6 text-lg">
-                              <FiRefreshCw strokeWidth={3} /> RETRY (ATTEMPT {attempt + 1})   
+                           <Button onClick={handleRetry} className="w-full bg-white text-[#121212] font-black uppercase tracking-widest border-4 border-[#121212] hover:-translate-y-1 hover:bg-[#F0F0F0] shadow-[6px_6px_0px_0px_#121212] gap-2 py-8 text-xl">
+                              <FiRefreshCw strokeWidth={3} size={24} /> RETRY (ATTEMPT {attempt + 1})   
                            </Button>
                         ) : (result.should_retry && attempt >= 3) || result.suggest_break ? (
                            <div>
-                              <p className="font-black text-xs uppercase mb-2 text-black/60">Skipping to easier task/prompt</p>
-                              <Button onClick={handleLowerDifficulty} className="w-full bg-black text-white gap-2 py-6 text-lg">
-                                 CONTINUE <FiArrowRight strokeWidth={3} />
+                              <p className="font-black text-sm uppercase mb-3 text-white tracking-widest border-b-4 border-[#121212] pb-1 inline-block">Skipping to easier task/prompt</p>
+                              <Button onClick={handleLowerDifficulty} className="w-full bg-white text-[#121212] font-black uppercase tracking-widest border-4 border-[#121212] hover:-translate-y-1 hover:bg-[#F0F0F0] shadow-[6px_6px_0px_0px_#121212] gap-2 py-8 text-xl">
+                                 CONTINUE <FiArrowRight strokeWidth={3} size={24} />
                               </Button>
                            </div>
                         ) : (
                            <div>
-                              <p className="font-black text-xs uppercase mb-2 text-black/60">Auto-advancing...</p>
-                              <Button onClick={handleNextPrompt} className="w-full bg-black text-white gap-2 py-6 text-lg">
-                                 NEXT PROMPT <FiArrowRight strokeWidth={3} />
+                              <p className="font-black text-sm uppercase mb-3 text-white tracking-widest border-b-4 border-[#121212] pb-1 inline-block">Auto-advancing...</p>
+                              <Button onClick={handleNextPrompt} className="w-full bg-white text-[#121212] font-black uppercase tracking-widest border-4 border-[#121212] hover:-translate-y-1 hover:bg-[#F0F0F0] shadow-[6px_6px_0px_0px_#121212] gap-2 py-8 text-xl">
+                                 NEXT PROMPT <FiArrowRight strokeWidth={3} size={24} />
                               </Button>
                            </div>
                         )}

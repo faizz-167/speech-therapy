@@ -1,110 +1,116 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-import { useAuth } from './context/AuthContext';
+import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
-
-import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
 
-import Login from './pages/Auth/Login';
-import Register from './pages/Auth/Register';
+// Public Pages
+import LandingPage from './pages/Public/LandingPage';
+import TherapistLogin from './pages/Public/TherapistLogin';
+import TherapistRegister from './pages/Public/TherapistRegister';
+import PatientLogin from './pages/Public/PatientLogin';
+import PatientRegister from './pages/Public/PatientRegister';
 
-import DashboardHome from './pages/Therapist/DashboardHome';
+// Therapist Pages
+import TherapistDashboard from './pages/Therapist/TherapistDashboard';
 import PatientsList from './pages/Therapist/PatientsList';
-import PatientDetails from './pages/Therapist/PatientDetails';
+import PatientPage from './pages/Therapist/PatientPage';
+import TherapistProfile from './pages/Therapist/TherapistProfile';
+import PlanBuilder from './pages/Therapist/PlanBuilder';
+import PatientIntake from './pages/Therapist/PatientIntake';
 import WeeklyPlanner from './pages/Therapist/WeeklyPlanner';
-import Reports from './pages/Therapist/Reports';
-import Profile from './pages/Therapist/Profile';
 
-import PatientHome from './pages/Patient/Home';
-import Baseline from './pages/Patient/Baseline';
-import Tasks from './pages/Patient/Tasks';
+// Patient Pages
+import PatientHome from './pages/Patient/PatientHome';
+import PatientTasks from './pages/Patient/PatientTasks';
+import PatientProgress from './pages/Patient/PatientProgress';
+import PatientProfile from './pages/Patient/PatientProfile';
 import SessionRunner from './pages/Patient/SessionRunner';
-import Progress from './pages/Patient/Progress';
-import Settings from './pages/Patient/Settings';
+import Baseline from './pages/Patient/Baseline';
+import BaselineRunner from './pages/Patient/BaselineRunner';
 
-const TherapistLayout = ({ children }) => (
-  <div className="flex bg-neo-bg min-h-screen">
-    <Sidebar />
-    <div className="flex-1 flex flex-col ml-64">
-      <Navbar variant="therapist" />
-      <main className="flex-1 p-8 overflow-y-auto pattern-grid">
-        {children}
-      </main>
-    </div>
-  </div>
-);
-
-const PatientLayout = ({ children }) => (
-  <div className="bg-neo-bg min-h-screen">
-    <Navbar variant="patient" />
-    <main className="max-w-7xl mx-auto px-6 py-8">
+const AppLayout = ({ children, hideNav = false }) => (
+  <div className="bg-neo-bg bg-halftone text-neo-text min-h-screen flex flex-col selection:bg-neo-secondary selection:text-black font-sans">
+    {!hideNav && <Navbar />}
+    <main className="flex-1 w-full px-4 md:px-8 py-6 mb-16">
       {children}
     </main>
   </div>
 );
 
-function RootRedirect() {
-  const { user, loading, isAuthenticated } = useAuth();
-  if (loading) return (
-    <div className="min-h-screen bg-neo-bg flex items-center justify-center">
-      <div className="border-4 border-black bg-neo-secondary shadow-[8px_8px_0px_0px_#000] px-8 py-4 font-black text-xl uppercase animate-bounce-subtle">
-        Loading...
-      </div>
-    </div>
-  );
-  if (isAuthenticated) {
-    return <Navigate to={user.role === 'therapist' ? '/therapist/dashboard' : '/patient/home'} replace />;
-  }
-  return <Navigate to="/login" replace />;
-}
-
 function App() {
   return (
-    <BrowserRouter>
-      <Toaster position="top-right" toastOptions={{
-        className: 'border-4 border-black bg-white text-black font-bold shadow-[4px_4px_0px_0px_#000]',
-        style: { borderRadius: '0px' }
-      }} />
-      <Routes>
-        {/* Public */}
-        <Route path="/" element={<RootRedirect />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+    <AuthProvider>
+      <BrowserRouter>
+        <Toaster position="top-right" toastOptions={{
+          className: 'border-4 border-neo-border bg-neo-surface text-black font-sans font-black uppercase shadow-[8px_8px_0px_0px_#000]',
+          style: { borderRadius: '0px' }
+        }} />
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<AppLayout hideNav><LandingPage /></AppLayout>} />
+          <Route path="/therapist/login" element={<AppLayout hideNav><TherapistLogin /></AppLayout>} />
+          <Route path="/therapist/register" element={<AppLayout hideNav><TherapistRegister /></AppLayout>} />
+          <Route path="/patient/login" element={<AppLayout hideNav><PatientLogin /></AppLayout>} />
+          <Route path="/patient/register" element={<AppLayout hideNav><PatientRegister /></AppLayout>} />
 
-        {/* Therapist Routes */}
-        <Route path="/therapist/*" element={
-          <ProtectedRoute allowedRoles={['therapist']}>
-            <TherapistLayout>
-              <Routes>
-                <Route path="dashboard" element={<DashboardHome />} />
-                <Route path="patients" element={<PatientsList />} />
-                <Route path="patients/:id" element={<PatientDetails />} />
-                <Route path="planner" element={<WeeklyPlanner />} />
-                <Route path="reports" element={<Reports />} />
-                <Route path="profile" element={<Profile />} />
-              </Routes>
-            </TherapistLayout>
-          </ProtectedRoute>
-        } />
+          {/* Therapist Protected Routes */}
+          <Route path="/therapist/dashboard" element={
+            <ProtectedRoute requiredRole="therapist"><AppLayout><TherapistDashboard /></AppLayout></ProtectedRoute>
+          } />
+          <Route path="/therapist/patients" element={
+            <ProtectedRoute requiredRole="therapist"><AppLayout><PatientsList /></AppLayout></ProtectedRoute>
+          } />
+          <Route path="/therapist/patients/:patientId" element={
+            <ProtectedRoute requiredRole="therapist"><AppLayout><PatientPage /></AppLayout></ProtectedRoute>
+          } />
+          <Route path="/therapist/patients/:patientId/plan" element={
+            <ProtectedRoute requiredRole="therapist"><AppLayout><PlanBuilder /></AppLayout></ProtectedRoute>
+          } />
+          <Route path="/therapist/profile" element={
+            <ProtectedRoute requiredRole="therapist"><AppLayout><TherapistProfile /></AppLayout></ProtectedRoute>
+          } />
+          <Route path="/intake" element={
+            <ProtectedRoute requiredRole="therapist"><AppLayout><PatientIntake /></AppLayout></ProtectedRoute>
+          } />
+          <Route path="/therapist/planner" element={
+            <ProtectedRoute requiredRole="therapist"><AppLayout><WeeklyPlanner /></AppLayout></ProtectedRoute>
+          } />
+          {/* Redirect /therapist to /therapist/dashboard */}
+          <Route path="/therapist" element={<Navigate to="/therapist/dashboard" replace />} />
 
-        {/* Patient Routes */}
-        <Route path="/patient/*" element={
-          <ProtectedRoute allowedRoles={['patient']}>
-            <PatientLayout>
-              <Routes>
-                <Route path="home" element={<PatientHome />} />
-                <Route path="baseline" element={<Baseline />} />
-                <Route path="tasks" element={<Tasks />} />
-                <Route path="session/:id" element={<SessionRunner />} />
-                <Route path="progress" element={<Progress />} />
-                <Route path="settings" element={<Settings />} />
-              </Routes>
-            </PatientLayout>
-          </ProtectedRoute>
-        } />
-      </Routes>
-    </BrowserRouter>
+          {/* Patient Protected Routes */}
+          <Route path="/patient/home" element={
+            <ProtectedRoute requiredRole="patient"><AppLayout><PatientHome /></AppLayout></ProtectedRoute>
+          } />
+          <Route path="/patient/tasks" element={
+            <ProtectedRoute requiredRole="patient"><AppLayout><PatientTasks /></AppLayout></ProtectedRoute>
+          } />
+          <Route path="/patient/progress" element={
+            <ProtectedRoute requiredRole="patient"><AppLayout><PatientProgress /></AppLayout></ProtectedRoute>
+          } />
+          <Route path="/patient/profile" element={
+            <ProtectedRoute requiredRole="patient"><AppLayout><PatientProfile /></AppLayout></ProtectedRoute>
+          } />
+          
+          {/* Runners */}
+          <Route path="/patient/session/:sessionId" element={
+            <ProtectedRoute requiredRole="patient"><AppLayout hideNav><SessionRunner /></AppLayout></ProtectedRoute>
+          } />
+          <Route path="/patient/baseline" element={
+            <ProtectedRoute requiredRole="patient"><AppLayout hideNav><Baseline /></AppLayout></ProtectedRoute>
+          } />
+          <Route path="/patient/baseline/:resultId" element={
+            <ProtectedRoute requiredRole="patient"><AppLayout hideNav><BaselineRunner /></AppLayout></ProtectedRoute>
+          } />
+
+          {/* Fallbacks */}
+          <Route path="/login" element={<Navigate to="/" replace />} />
+          <Route path="/register" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 

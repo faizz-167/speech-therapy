@@ -1,125 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
 @theme {
-  /* Neo-brutalism palette */
-  --color-neo-bg: #FFFDF5;
-  --color-neo-fg: #000000;
-  --color-neo-accent: #FF6B6B;
-  --color-neo-secondary: #FFD93D;
-  --color-neo-muted: #67E8F9;
-  --color-neo-white: #FFFFFF;
+  /* Neo-Brutalism High-Saturation Palette */
+  --color-neo-bg: #FFFDF5;     /* Cream background */
+  --color-neo-surface: #FFFFFF; /* True white for contrast */
+  --color-neo-border: #000000;  /* Structural black */
+  --color-neo-text: #000000;
+  
+  --color-neo-accent: #FF6B6B; /* Hot Red */
+  --color-neo-secondary: #FFD93D; /* Vivid Yellow */
+  --color-neo-muted: #C4B5FD; /* Soft Violet */
 
-  /* Semantic status colors */
-  --color-neo-success: #86EFAC;
-  --color-neo-warning: #FDE047;
-  --color-neo-pink: #FF90E8;
-  --color-neo-highlight: #FFE373;
-
-  /* Shadcn mappings */
-  --color-background: #FFFDF5;
-  --color-foreground: #000000;
-  --color-card: #FFFFFF;
-  --color-card-foreground: #000000;
   --color-primary: #FF6B6B;
   --color-primary-foreground: #000000;
-  --color-secondary: #FFD93D;
-  --color-secondary-foreground: #000000;
-  --color-muted: #67E8F9;
-  --color-muted-foreground: #000000;
-  --color-border: #000000;
-  --color-ring: #000000;
 
-  /* Neo shadow color */
-  --color-neo-shadow: #000000;
+  --font-sans: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'Space Grotesk', monospace;
 
+  /* Binary border radius */
   --radius-sm: 0px;
   --radius-md: 0px;
   --radius-lg: 0px;
   --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-full: 9999px;
 }
-
-/* ================================================
-   DARK THEME OVERRIDES
-   ================================================ */
-
-.dark {
-  --color-neo-bg: #1A1A2E;
-  --color-neo-fg: #F0EDE6;
-  --color-neo-accent: #FF8A8A;
-  --color-neo-secondary: #FFE066;
-  --color-neo-muted: #22D3EE;
-  --color-neo-white: #2A2A40;
-
-  --color-neo-success: #6EE7A0;
-  --color-neo-warning: #FACC15;
-  --color-neo-pink: #FF7AD8;
-  --color-neo-highlight: #FFD54F;
-
-  --color-background: #1A1A2E;
-  --color-foreground: #F0EDE6;
-  --color-card: #2A2A40;
-  --color-card-foreground: #F0EDE6;
-  --color-primary: #FF8A8A;
-  --color-primary-foreground: #1A1A2E;
-  --color-secondary: #FFE066;
-  --color-secondary-foreground: #1A1A2E;
-  --color-muted: #22D3EE;
-  --color-muted-foreground: #F0EDE6;
-  --color-border: #F0EDE6;
-  --color-ring: #F0EDE6;
-
-  --color-neo-shadow: #F0EDE6;
-}
-
-/* ================================================
-   GLOBAL DARK — HARDCODED CLASS OVERRIDES
-   These rules make existing bg-white, text-black,
-   border-black classes dark-mode aware without
-   touching any JSX files.
-   ================================================ */
-
-.dark .bg-white { background-color: var(--color-neo-white) !important; }
-.dark .bg-black { background-color: var(--color-neo-fg) !important; }
-.dark .text-white { color: var(--color-neo-bg) !important; }
-.dark .text-black { color: var(--color-neo-fg) !important; }
-.dark .text-black\/60 { color: color-mix(in srgb, var(--color-neo-fg) 60%, transparent) !important; }
-.dark .text-black\/50 { color: color-mix(in srgb, var(--color-neo-fg) 50%, transparent) !important; }
-.dark .text-black\/70 { color: color-mix(in srgb, var(--color-neo-fg) 70%, transparent) !important; }
-.dark .text-black\/30 { color: color-mix(in srgb, var(--color-neo-fg) 30%, transparent) !important; }
-.dark .border-black { border-color: var(--color-neo-fg) !important; }
-.dark .border-black\/15 { border-color: color-mix(in srgb, var(--color-neo-fg) 15%, transparent) !important; }
-.dark .bg-black\/5 { background-color: color-mix(in srgb, var(--color-neo-fg) 5%, transparent) !important; }
-.dark .bg-black\/50 { background-color: color-mix(in srgb, var(--color-neo-fg) 50%, transparent) !important; }
-.dark .bg-white\/50 { background-color: color-mix(in srgb, var(--color-neo-white) 50%, transparent) !important; }
-.dark .border-b-8 { border-bottom-color: var(--color-neo-fg); }
-
-/* Dark shadow overrides — neo-brutalist shadows in dark mode */
-.dark [class*="shadow-["][class*="#000]"] {
-  --tw-shadow-color: var(--color-neo-shadow) !important;
-}
-.dark .neo-shadow-sm { box-shadow: 4px 4px 0px 0px var(--color-neo-shadow); }
-.dark .neo-shadow-md { box-shadow: 8px 8px 0px 0px var(--color-neo-shadow); }
-.dark .neo-shadow-lg { box-shadow: 12px 12px 0px 0px var(--color-neo-shadow); }
-.dark .neo-shadow-xl { box-shadow: 16px 16px 0px 0px var(--color-neo-shadow); }
-
-.dark .neo-lift:hover { box-shadow: 12px 12px 0px 0px var(--color-neo-shadow); }
-
-/* Inline hex color overrides for dark mode */
-.dark .bg-\[\#86EFAC\] { background-color: var(--color-neo-success) !important; }
-.dark .bg-\[\#FDE047\] { background-color: var(--color-neo-warning) !important; }
-.dark .bg-\[\#FF90E8\] { background-color: var(--color-neo-pink) !important; }
-.dark .bg-\[\#FFE373\] { background-color: var(--color-neo-highlight) !important; }
-.dark .text-\[\#FDE047\] { color: var(--color-neo-warning) !important; }
-.dark .text-\[\#86EFAC\] { color: var(--color-neo-success) !important; }
-.dark .text-\[\#FF90E8\] { color: var(--color-neo-pink) !important; }
-
-/* ================================================
-   GLOBAL STYLES
-   ================================================ */
 
 * {
   box-sizing: border-box;
@@ -127,108 +35,161 @@
 
 body {
   background-color: var(--color-neo-bg);
-  color: var(--color-neo-fg);
-  font-family: 'Space Grotesk', system-ui, sans-serif;
-  font-weight: 700;
+  color: var(--color-neo-text);
+  font-family: var(--font-sans);
   margin: 0;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
-  transition: background-color 300ms ease, color 300ms ease;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 900;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  line-height: 0.9;
 }
 
 /* ================================================
-   NEO-BRUTALIST SHADOW UTILITIES
+   NEO-BRUTALISM UTILITIES
    ================================================ */
 
-.neo-shadow-sm {
-  box-shadow: 4px 4px 0px 0px var(--color-neo-shadow);
-}
-.neo-shadow-md {
-  box-shadow: 8px 8px 0px 0px var(--color-neo-shadow);
-}
-.neo-shadow-lg {
-  box-shadow: 12px 12px 0px 0px var(--color-neo-shadow);
-}
-.neo-shadow-xl {
-  box-shadow: 16px 16px 0px 0px var(--color-neo-shadow);
+.neo-panel, .bh-panel {
+  background-color: var(--color-neo-surface);
+  border: 4px solid var(--color-neo-border);
+  box-shadow: 8px 8px 0px 0px var(--color-neo-border);
+  transition: transform 200ms ease, box-shadow 200ms ease;
 }
 
-/* ================================================
-   INTERACTIVE EFFECTS
-   ================================================ */
-
-/* Button push effect */
-.neo-push {
-  transition: transform 100ms ease-out, box-shadow 100ms ease-out;
+.neo-panel:hover, .bh-panel:hover {
+  transform: translateY(-8px);
+  box-shadow: 16px 16px 0px 0px var(--color-neo-border);
 }
-.neo-push:active {
-  transform: translate(4px, 4px);
-  box-shadow: 0px 0px 0px 0px var(--color-neo-shadow) !important;
-}
-
-/* Card lift effect */
-.neo-lift {
-  transition: transform 200ms ease-out, box-shadow 200ms ease-out;
-}
-.neo-lift:hover {
-  transform: translateY(-4px);
-  box-shadow: 12px 12px 0px 0px var(--color-neo-shadow);
-}
-
-/* ================================================
-   INPUT STYLES
-   ================================================ */
 
 .neo-input {
-  border: 4px solid var(--color-neo-fg);
-  background: var(--color-neo-white);
-  color: var(--color-neo-fg);
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-  font-size: 1rem;
-  padding: 0.75rem 1rem;
+  background-color: var(--color-neo-surface);
+  border: 4px solid var(--color-neo-border);
+  color: var(--color-neo-text);
+  padding: 1.25rem 1.5rem;
   outline: none;
-  transition: background 100ms, box-shadow 100ms;
+  font-weight: 700;
+  font-size: 1.125rem;
+  transition: background-color 150ms ease, box-shadow 150ms ease;
 }
+
+.neo-input:focus-visible {
+  background-color: var(--color-neo-secondary);
+  box-shadow: 6px 6px 0px 0px var(--color-neo-border);
+  outline: none;
+  border-width: 4px;
+}
+
 .neo-input::placeholder {
-  color: color-mix(in srgb, var(--color-neo-fg) 35%, transparent);
-  font-weight: 500;
-}
-.neo-input:focus {
-  background: var(--color-neo-secondary);
-  box-shadow: 4px 4px 0px 0px var(--color-neo-shadow);
+  color: #000000;
+  opacity: 0.4;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-/* ================================================
-   BACKGROUND PATTERNS
-   ================================================ */
+.neo-btn, .bh-button {
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  border: 4px solid var(--color-neo-border);
+  padding: 1rem 2.5rem;
+  cursor: pointer;
+  background-color: var(--color-neo-surface);
+  color: var(--color-neo-text);
+  box-shadow: 6px 6px 0px 0px var(--color-neo-border);
+  transition: transform 100ms ease, box-shadow 100ms ease, background-color 100ms ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
 
-.pattern-halftone {
-  background-image: radial-gradient(var(--color-neo-fg) 1.5px, transparent 1.5px);
+.neo-btn:hover, .bh-button:hover {
+  background-color: var(--color-neo-secondary);
+  transform: translateY(-2px);
+  box-shadow: 8px 8px 0px 0px var(--color-neo-border);
+}
+
+.neo-btn:active, .bh-button:active {
+  transform: translate(6px, 6px);
+  box-shadow: 0px 0px 0px 0px var(--color-neo-border);
+}
+
+.neo-btn-primary {
+  background-color: var(--color-neo-accent);
+}
+
+.neo-btn-primary:hover {
+  background-color: var(--color-neo-secondary);
+}
+
+/* Text utility for massive scale */
+.text-massive {
+  font-size: clamp(3rem, 10vw + 1rem, 9rem);
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+}
+
+/* Background Textures */
+.bg-halftone {
+  background-color: var(--color-neo-bg);
+  background-image: radial-gradient(var(--color-neo-border) 1.5px, transparent 1.5px);
   background-size: 20px 20px;
 }
 
-.pattern-grid {
+.bg-grid {
   background-size: 40px 40px;
-  background-image:
-    linear-gradient(to right, color-mix(in srgb, var(--color-neo-fg) 6%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in srgb, var(--color-neo-fg) 6%, transparent) 1px, transparent 1px);
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
 }
 
-.pattern-dots {
-  background-image: radial-gradient(circle, var(--color-neo-fg) 1.5px, transparent 2px);
-  background-size: 30px 30px;
+.text-stroke-2 {
+  -webkit-text-stroke: 2px black;
+  color: transparent;
 }
 
-/* ================================================
-   ANIMATIONS
-   ================================================ */
+/* Scrollbar styling */
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: var(--color-neo-bg); border-left: 4px solid black; }
+::-webkit-scrollbar-thumb { background: var(--color-neo-border); }
+::-webkit-scrollbar-thumb:hover { background: var(--color-neo-secondary); border: 2px solid black; }
 
+/* Keep these aliases functional */
+
+.bh-input {
+  background-color: var(--color-neo-surface);
+  border: 4px solid var(--color-neo-border);
+  color: var(--color-neo-text);
+  padding: 1.25rem 1.5rem;
+  outline: none;
+  font-weight: 700;
+  font-size: 1.125rem;
+  width: 100%;
+  transition: background-color 150ms ease, box-shadow 150ms ease;
+}
+
+.bh-input:focus-visible {
+  background-color: var(--color-neo-secondary);
+  box-shadow: 6px 6px 0px 0px var(--color-neo-border);
+  outline: none;
+  border-width: 4px;
+}
+
+.bh-input::placeholder {
+  color: #000000;
+  opacity: 0.4;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Slow spin for decorative elements */
 @keyframes spin-slow {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -237,52 +198,7 @@ h1, h2, h3, h4, h5, h6 {
   animation: spin-slow 10s linear infinite;
 }
 
-@keyframes bounce-subtle {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-.animate-bounce-subtle {
-  animation: bounce-subtle 2s ease-in-out infinite;
-}
-
-/* ================================================
-   SCROLLBAR (Neo-brutal style)
-   ================================================ */
-
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--color-neo-bg); border-left: 2px solid var(--color-neo-fg); }
-::-webkit-scrollbar-thumb { background: var(--color-neo-fg); }
-
-/* ================================================
-   BADGES
-   ================================================ */
-
-.neo-badge {
-  display: inline-flex;
-  align-items: center;
-  font-weight: 900;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 0.25rem 0.75rem;
-  border: 3px solid var(--color-neo-fg);
-  box-shadow: 3px 3px 0px 0px var(--color-neo-shadow);
-}
-
-/* Severity badges */
-.neo-badge-severe { background: var(--color-neo-accent); }
-.neo-badge-moderate { background: var(--color-neo-secondary); }
-.neo-badge-mild { background: var(--color-neo-success); }
-.neo-badge-done { background: var(--color-neo-success); }
-.neo-badge-pending { background: var(--color-neo-secondary); }
-.neo-badge-approved { background: var(--color-neo-success); }
-.neo-badge-rejected { background: var(--color-neo-accent); }
-
-/* ================================================
-   REDUCED MOTION
-   ================================================ */
-
-@media (prefers-reduced-motion: reduce) {
-  .neo-push, .neo-lift { transition: none; }
-  .animate-spin-slow, .animate-bounce-subtle { animation: none; }
+/* Neo shadow utilities */
+.neo-shadow-xl {
+  box-shadow: 12px 12px 0px 0px var(--color-neo-border);
 }

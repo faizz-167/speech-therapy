@@ -10,7 +10,7 @@ export default function ThemeToggle({ compact = false }) {
       <button
         onClick={toggleTheme}
         aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-        className="w-10 h-10 border-3 border-black flex items-center justify-center hover:bg-neo-secondary hover:shadow-[3px_3px_0px_0px_#000] transition-all duration-100 neo-push active:translate-x-[3px] active:translate-y-[3px] active:shadow-none"
+        className="w-10 h-10 border-4 border-[#121212] bg-white flex items-center justify-center hover:bg-[#F0F0F0] hover:shadow-[4px_4px_0px_0px_#121212] transition-all duration-100 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
       >
         {isDark ? <FiSun className="w-4 h-4" strokeWidth={3} /> : <FiMoon className="w-4 h-4" strokeWidth={3} />}
       </button>
@@ -21,7 +21,7 @@ export default function ThemeToggle({ compact = false }) {
     <button
       onClick={toggleTheme}
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-      className="w-full flex items-center gap-2 px-4 py-2.5 text-sm font-black uppercase tracking-wide border-4 border-transparent text-black/60 hover:border-black hover:bg-neo-secondary hover:shadow-[4px_4px_0px_0px_#000] hover:text-black transition-all duration-100 neo-push active:translate-x-[4px] active:translate-y-[4px] active:shadow-none"
+      className="w-full flex items-center gap-2 px-4 py-3 bg-white text-sm font-black uppercase tracking-widest border-4 border-[#121212] text-[#121212] hover:bg-[#F0F0F0] hover:shadow-[4px_4px_0px_0px_#121212] transition-all duration-100 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none mt-4"
     >
       {isDark ? <FiSun className="w-4 h-4" strokeWidth={3} /> : <FiMoon className="w-4 h-4" strokeWidth={3} />}
       {isDark ? 'Light mode' : 'Dark mode'}

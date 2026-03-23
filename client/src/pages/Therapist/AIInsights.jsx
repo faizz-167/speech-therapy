@@ -48,7 +48,7 @@ const AIInsights = () => {
       <Card className="bg-dark-surface border-gray-800">
         <CardHeader>
           <CardTitle className="text-white flex items-center">
-            <FiCpu className="text-purple-400 mr-2" />
+            <FiCpu className="text-cyan-400 mr-2" />
             Global Model Statistics
           </CardTitle>
         </CardHeader>

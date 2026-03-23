@@ -53,3 +53,20 @@ class PatientTaskProgressSchema(PatientTaskProgressCreate):
     clinician_alert: bool
     progress_delta: Optional[float] = None
     model_config = ConfigDict(from_attributes=True)
+
+class SessionEmotionSummarySchema(BaseModel):
+    summary_id: uuid.UUID
+    session_id: uuid.UUID
+    patient_id: uuid.UUID
+    session_date: datetime
+    dominant_emotion: Optional[str] = None
+    avg_frustration: Optional[float] = None
+    avg_engagement: Optional[float] = None
+    drop_count: int = 0
+    model_config = ConfigDict(from_attributes=True)
+
+class SessionCompleteResponse(BaseModel):
+    message: str
+    emotion_summary: SessionEmotionSummarySchema
+    streak_updated: bool
+    current_streak: int

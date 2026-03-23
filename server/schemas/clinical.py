@@ -47,4 +47,5 @@ class BaselineAssessmentSchema(BaseModel):
     domain: str
     description: Optional[str] = None
     administration_method: Optional[str] = None
+    recommended: Optional[bool] = False
     model_config = ConfigDict(from_attributes=True)

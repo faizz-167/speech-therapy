@@ -24,7 +24,8 @@ export default function Reports() {
 
       {/* Patient selector */}
       <div className="mb-6">
-        <select value={selectedId} onChange={e => setSelectedId(e.target.value)} className="neo-input min-w-[350px]">
+        <label htmlFor="patient-select" className="sr-only">Select Patient</label>
+        <select id="patient-select" value={selectedId} onChange={e => setSelectedId(e.target.value)} className="neo-input min-w-[350px]">
           <option value="">SELECT A PATIENT...</option>
           {patients.map(p => <option key={p.id} value={p.id}>{p.name} — {p.disorder_type || 'No diagnosis'}</option>)}
         </select>

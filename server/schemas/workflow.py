@@ -20,7 +20,43 @@ class PatientCreate(BaseModel):
 
 class PatientSchema(PatientCreate):
     patient_id: uuid.UUID
+    current_streak: int = 0
+    longest_streak: int = 0
+    pre_assigned_defect_ids: Optional[List[str]] = None
     model_config = ConfigDict(from_attributes=True)
+
+class PatientRegistration(BaseModel):
+    full_name: str
+    email: Optional[EmailStr] = None
+    age: Optional[int] = None
+    date_of_birth: Optional[str] = None
+    gender: Optional[str] = None
+    primary_language: Optional[str] = None
+    therapist_code: str
+    pre_assigned_defect_codes: List[str] = []
+
+class PatientLogin(BaseModel):
+    full_name: str
+    pin: str
+
+class EmotionTrendSchema(BaseModel):
+    session_date: date
+    dominant_emotion: Optional[str] = None
+    avg_frustration: Optional[float] = None
+    avg_engagement: Optional[float] = None
+    drop_count: int = 0
+    model_config = ConfigDict(from_attributes=True)
+
+class EmotionTrendsResponse(BaseModel):
+    patient_id: uuid.UUID
+    trends: List[EmotionTrendSchema]
+    chronic_frustration_flag: bool
+    avg_frustration_last_3_sessions: float
+
+class PatientStreakResponse(BaseModel):
+    current_streak: int
+    longest_streak: int
+    last_session_date: Optional[date] = None
 
 class BaselineItemResultCreate(BaseModel):
     item_id: str
@@ -69,6 +105,8 @@ class TherapyPlanCreate(BaseModel):
     end_date: Optional[date] = None
     goals: Optional[str] = None
     assignments: List[PlanTaskAssignmentCreate] = []
+    generate: Optional[bool] = False
+    clinical_notes: Optional[str] = None
 
 class PlanTaskAssignmentSchema(BaseModel):
     assignment_id: uuid.UUID
@@ -78,6 +116,7 @@ class PlanTaskAssignmentSchema(BaseModel):
     status: str
     clinical_rationale: Optional[str] = None
     assigned_on: datetime
+    day_index: int = 0
     model_config = ConfigDict(from_attributes=True)
 
 class TherapyPlanSchema(BaseModel):

@@ -63,17 +63,75 @@ class PhonemeService:
         raw = self.g2p(text)
         return [p.lower().rstrip("012") for p in raw if p.strip() and p.isalpha()]
 
-    def _audio_to_phonemes(self, audio: np.ndarray) -> list[str]:
-        """Run CTC decoding on audio, then G2P on the decoded text."""
-        inputs = self.processor(audio, sampling_rate=16000, return_tensors="pt", padding=True)
-        input_values = inputs.input_values.to(self.device)
+    def _forced_alignment_score(self, logits: torch.Tensor, target_text: str) -> dict:
+        """
+        Perform a dynamic programming forced alignment of the target_text
+        against the CTC logits. Returns a per-character probability which
+        we aggregate into a per-word probability.
+        """
+        # Get log probabilities: (T, C)
+        log_probs = torch.nn.functional.log_softmax(logits[0], dim=-1).cpu().numpy()
+        T, C = log_probs.shape
+        
+        # Prepare target sequence of token IDs
+        target_text = target_text.upper()
+        # Handle word boundaries (spaces are usually replaced by `|` in Wav2Vec2 tokenizer)
+        vocab = self.processor.tokenizer.get_vocab()
+        blank_id = vocab.get("<pad>", 0)
+        word_delimiter = vocab.get("|", vocab.get(" ", 3))
+        
+        target_ids = []
+        chars = []
+        for char in target_text:
+            if char == " ":
+                target_ids.append(word_delimiter)
+                chars.append(" ")
+            else:
+                tid = vocab.get(char)
+                if tid is not None:
+                    target_ids.append(tid)
+                    chars.append(char)
+        
+        if not target_ids:
+            return {}
 
-        with torch.no_grad():
-            logits = self.model(input_values).logits
-
-        predicted_ids = torch.argmax(logits, dim=-1)
-        transcription = self.processor.batch_decode(predicted_ids)[0]
-        return self._text_to_phonemes(transcription), transcription
+        L = len(target_ids)
+        # DP matrix for Viterbi alignment
+        dp = np.full((T, L), -np.inf)
+        
+        # Init
+        dp[0, 0] = log_probs[0, target_ids[0]]
+        
+        for t in range(1, T):
+            for s in range(L):
+                # Transition from same token (duration)
+                p1 = dp[t-1, s]
+                # Transition from previous token
+                p2 = dp[t-1, s-1] if s > 0 else -np.inf
+                
+                dp[t, s] = max(p1, p2) + log_probs[t, target_ids[s]]
+                
+        # Backtrack to find max probability per token
+        scores = []
+        for s in range(L):
+            max_log_prob = np.max(dp[:, s])
+            # normalize roughly
+            prob = np.exp(max_log_prob / T) 
+            scores.append(prob)
+            
+        # Aggregate per word
+        words_scores = []
+        current_word_score = []
+        for char, score in zip(chars, scores):
+            if char == " " and current_word_score:
+                words_scores.append(float(np.mean(current_word_score)))
+                current_word_score = []
+            elif char != " ":
+                current_word_score.append(score)
+        if current_word_score:
+            words_scores.append(float(np.mean(current_word_score)))
+            
+        return dict(zip(target_text.lower().split(), words_scores))
 
     def compute_phoneme_accuracy(
         self,
@@ -129,91 +187,76 @@ class PhonemeService:
             else:
                 expected_ph = self._text_to_phonemes(expected_text)
 
-            predicted_ph, decoded_text = self._audio_to_phonemes(y)
+            # Get model emissions
+            inputs = self.processor(y, sampling_rate=16000, return_tensors="pt", padding=True)
+            input_values = inputs.input_values.to(self.device)
+            with torch.no_grad():
+                logits = self.model(input_values).logits
+            
+            # Predict transcript just for fallback logging
+            predicted_ids = torch.argmax(logits, dim=-1)
+            decoded_text = self.processor.batch_decode(predicted_ids)[0]
 
-            if not expected_ph:
-                return {
-                    "phoneme_accuracy": 0, "mode": mode, "model": self.active_model_id,
-                    "target_results": {}, "details": "G2P returned no phonemes",
+            # ── Forced CTC Alignment ────────────────────────────────  
+            # We align the expected words and get acoustic confidences mapped to target_phonemes
+            word_confidences = self._forced_alignment_score(logits, expected_text)
+            
+            target_results = {}
+            expected_words = expected_text.lower().split()
+            matched_phoneme_count = 0
+            total_target_phonemes = len(expected_ph)
+            
+            # Apportion word scores to phonemes
+            ph_idx = 0
+            for i, ew in enumerate(expected_words):
+                w_ph = self._text_to_phonemes(ew)
+                c_score = word_confidences.get(ew, 0.0)
+                # Convert log-like output mapping to a 0-1.0 scale using a sigmoid-like curve or scaling
+                scaled_score = min(1.0, max(0.0, c_score * 1.5)) 
+                
+                status = "correct" if scaled_score >= 0.7 else ("distortion" if scaled_score >= 0.4 else "substitution")
+                
+                target_results[ew] = {
+                    "score": round(scaled_score, 2),
+                    "status": status,
+                    "expected_phonemes": w_ph,
+                    "produced_phonemes": w_ph if status == "correct" else [],
+                    "acoustic_confidence": round(scaled_score, 2)
                 }
-
-            # ── Per-word scoring ──────────────────────────────────
-            target_results = self._score_per_word(expected_text, decoded_text)
-
-            # ── Overall phoneme accuracy ──────────────────────────
-            ratio = SequenceMatcher(None, expected_ph, predicted_ph).ratio()
-            accuracy = min(100, int(ratio * 100))
-
+                
+                # Apply strictly to the phoneme array
+                for p in w_ph:
+                    if scaled_score >= 0.4:
+                        matched_phoneme_count += 1
+                        
+            # Overall Accuracy
+            accuracy = int((matched_phoneme_count / max(1, total_target_phonemes)) * 100)
+            
+            # Low Accuracy Gate (Fix 5 rule)
+            if matched_phoneme_count == 0 or accuracy < 40:
+                accuracy = min(accuracy, 39) # Force flag
+                
             return {
                 "phoneme_accuracy": accuracy,
-                "mode": "accurate",
+                "mode": mode,
                 "model": self.active_model_id,
                 "expected_phonemes": expected_ph[:30],
-                "predicted_phonemes": predicted_ph[:30],
+                "predicted_phonemes": [],
                 "target_results": target_results,
-                "details": f"Matched {accuracy}% of {len(expected_ph)} expected phonemes",
+                "details": f"Forced Alignment computed {accuracy}% phoneme match",
             }
 
         except Exception as e:
-            print(f"Error in phoneme analysis: {e}")
+            print(f"Phoneme alignment error: {e}")
             return {
-                "phoneme_accuracy": 0, "mode": "error", "model": self.active_model_id or "none",
-                "target_results": {}, "details": f"Error: {str(e)}",
+                "phoneme_accuracy": 0,
+                "mode": mode,
+                "model": "error",
+                "expected_phonemes": [],
+                "predicted_phonemes": [],
+                "target_results": {},
+                "details": f"Failed to process phonemes: {str(e)}"
             }
-
-    def _score_per_word(self, expected_text: str, decoded_text: str) -> dict:
-        """
-        Score each target word: correct=1.0, substitution=0.0, distortion=0.5.
-
-        Returns dict keyed by word with score and details.
-        """
-        self._load_g2p()
-
-        expected_words = expected_text.lower().split()
-        decoded_words = decoded_text.lower().split()
-
-        results = {}
-        matcher = SequenceMatcher(None, expected_words, decoded_words)
-
-        matched_decoded = set()
-        for block in matcher.get_matching_blocks():
-            for i in range(block.size):
-                ew = expected_words[block.a + i]
-                matched_decoded.add(block.b + i)
-                results[ew] = {"score": 1.0, "status": "correct", "expected": ew, "produced": ew}
-
-        # Score unmatched expected words
-        for i, ew in enumerate(expected_words):
-            if ew in results:
-                continue
-
-            # Find closest decoded word
-            best_ratio = 0
-            best_word = None
-            for j, dw in enumerate(decoded_words):
-                if j in matched_decoded:
-                    continue
-                r = SequenceMatcher(None, ew, dw).ratio()
-                if r > best_ratio:
-                    best_ratio = r
-                    best_word = dw
-
-            if best_ratio >= 0.7:
-                # Distortion: close but not exact
-                results[ew] = {"score": 0.5, "status": "distortion", "expected": ew, "produced": best_word}
-            elif best_word:
-                # Substitution: different word entirely
-                exp_ph = self._text_to_phonemes(ew)
-                prod_ph = self._text_to_phonemes(best_word) if best_word else []
-                results[ew] = {
-                    "score": 0.0, "status": "substitution",
-                    "expected": ew, "produced": best_word,
-                    "expected_phonemes": exp_ph[:5], "produced_phonemes": prod_ph[:5],
-                }
-            else:
-                results[ew] = {"score": 0.0, "status": "omission", "expected": ew, "produced": None}
-
-        return results
 
 
 phoneme_service = PhonemeService()

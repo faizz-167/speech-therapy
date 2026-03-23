@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from routes import auth, therapists, reports, notes, defects, patients as old_patients, tasks as old_tasks, plans as old_plans
-from routers import baseline, tasks as new_tasks, patients as v3_patients, plans as v3_plans, sessions, progress
+from routers import baseline, tasks as new_tasks, patients as v3_patients, plans as v3_plans, sessions, progress, therapists as v3_therapists, auth as v3_auth
 from contextlib import asynccontextmanager
 from services.asr_service import asr_service
 from services.ser_service import ser_service
@@ -42,9 +42,12 @@ app.include_router(defects.router)
 app.include_router(v3_patients.router, prefix="/api/v1")
 app.include_router(v3_plans.router, prefix="/api/v1")
 app.include_router(new_tasks.router, prefix="/api/v1")
-app.include_router(sessions.router)
-app.include_router(progress.router)
-app.include_router(baseline.router)
+app.include_router(sessions.router, prefix="/api/v1")
+app.include_router(progress.router, prefix="/api/v1")
+app.include_router(baseline.router, prefix="/api/v1")
+app.include_router(v3_therapists.router, prefix="/api/v1")
+app.include_router(v3_therapists.router_therapists, prefix="/api/v1")
+app.include_router(v3_auth.router, prefix="/api/v1")
 
 @app.get("/health")
 async def health_check():

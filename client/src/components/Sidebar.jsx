@@ -17,17 +17,17 @@ export default function Sidebar() {
   const { user, logout } = useAuth();
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-64 bg-neo-bg border-r-4 border-black flex flex-col z-20">
+    <aside className="fixed left-0 top-0 h-screen w-64 bg-white border-r-4 border-[#121212] flex flex-col z-20 shadow-[8px_0px_0px_0px_#121212]">
       {/* Brand */}
-      <div className="px-4 py-5 border-b-4 border-black">
-        <div className="bg-neo-secondary border-4 border-black shadow-[4px_4px_0px_0px_#000] px-4 py-3 -rotate-1">
+      <div className="px-6 py-8 border-b-4 border-[#121212] bg-[#F0F0F0]">
+        <div className="bg-white border-4 border-[#121212] shadow-[6px_6px_0px_0px_#121212] px-4 py-3 -rotate-2">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 border-4 border-black bg-neo-accent flex items-center justify-center">
-              <FiActivity className="w-5 h-5 text-black" strokeWidth={3} />
+            <div className="w-10 h-10 border-4 border-[#121212] bg-[#F0C020] flex items-center justify-center">
+              <FiActivity className="w-6 h-6 text-[#121212]" strokeWidth={3} />
             </div>
             <div>
-              <h2 className="text-black font-black text-base uppercase tracking-tight leading-tight">SpeechAI</h2>
-              <p className="text-black/60 text-[10px] font-bold uppercase tracking-widest">Therapist</p>
+              <h2 className="text-[#121212] font-black text-xl uppercase tracking-tighter leading-none">SpeechAI</h2>
+              <p className="text-[#1040C0] text-[10px] font-black uppercase tracking-widest mt-1">Therapist</p>
             </div>
           </div>
         </div>
@@ -40,10 +40,10 @@ export default function Sidebar() {
             key={to}
             to={to}
             className={({ isActive }) =>
-              `flex items-center gap-3 px-4 py-3 text-sm font-black uppercase tracking-wide transition-all duration-100 border-4 ${
+              `flex items-center gap-4 px-4 py-4 text-sm font-black uppercase tracking-widest transition-all duration-100 border-4 ${
                 isActive
-                  ? 'bg-neo-accent border-black shadow-[4px_4px_0px_0px_#000] text-black'
-                  : 'border-transparent text-black/60 hover:border-black hover:bg-neo-muted hover:shadow-[4px_4px_0px_0px_#000] hover:text-black'
+                  ? 'bg-[#1040C0] border-[#121212] shadow-[4px_4px_0px_0px_#121212] text-white'
+                  : 'bg-white border-transparent text-[#121212] hover:border-[#121212] hover:bg-[#F0F0F0] hover:shadow-[4px_4px_0px_0px_#121212]'
               }`
             }
           >
@@ -54,22 +54,22 @@ export default function Sidebar() {
       </nav>
 
       {/* User / Logout */}
-      <div className="px-4 py-4 border-t-4 border-black">
-        <div className="flex items-center gap-3 mb-3">
-          <div className="w-10 h-10 border-4 border-black bg-neo-secondary flex items-center justify-center text-black font-black text-sm uppercase">
+      <div className="p-4 border-t-4 border-[#121212] bg-[#F0F0F0]">
+        <div className="flex items-center gap-3 mb-4 bg-white border-4 border-[#121212] p-3 shadow-[4px_4px_0px_0px_#121212]">
+          <div className="w-10 h-10 border-4 border-[#121212] bg-[#F0F0F0] flex items-center justify-center text-[#121212] font-black text-xl uppercase">
             {user?.name?.charAt(0)?.toUpperCase() || 'T'}
           </div>
-          <div className="min-w-0">
-            <p className="text-black text-sm font-black truncate uppercase">{user?.name || 'Therapist'}</p>
-            <p className="text-black/50 text-xs font-bold truncate">{user?.email || ''}</p>
+          <div className="min-w-0 flex-1">
+            <p className="text-[#121212] text-sm font-black truncate uppercase tracking-widest leading-tight">{user?.name || 'Therapist'}</p>
+            <p className="text-[#121212] opacity-70 text-[10px] font-black uppercase tracking-widest truncate mt-1">{user?.email || ''}</p>
           </div>
         </div>
         <ThemeToggle />
         <button
           onClick={logout}
-          className="w-full flex items-center gap-2 px-4 py-2.5 text-sm font-black uppercase tracking-wide border-4 border-transparent text-black/60 hover:border-black hover:bg-neo-accent hover:shadow-[4px_4px_0px_0px_#000] hover:text-black transition-all duration-100 neo-push active:translate-x-[4px] active:translate-y-[4px] active:shadow-none"
+          className="w-full flex items-center justify-center gap-3 mt-4 px-4 py-3 bg-[#D02020] text-white text-sm font-black uppercase tracking-widest border-4 border-[#121212] hover:bg-[#A01818] hover:shadow-[4px_4px_0px_0px_#121212] transition-all duration-100 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
         >
-          <FiLogOut className="w-4 h-4" strokeWidth={3} /> Sign out
+          <FiLogOut className="w-5 h-5 flex-shrink-0" strokeWidth={3} /> Sign out
         </button>
       </div>
     </aside>

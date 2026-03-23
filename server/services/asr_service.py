@@ -77,8 +77,9 @@ class ASRService:
         # ── Disfluency Detection ─────────────────────────────────
         disfluency_data = self._detect_disfluencies(text, words)
 
-        # ── Speech Rate ──────────────────────────────────────────
-        speech_rate_data = self._compute_speech_rate(words, duration, task_mode)
+        # ── Speech Rate & Fluency Score ──────────────────────────
+        total_disfluencies = disfluency_data.get("total_disfluencies", 0)
+        speech_rate_data = self._compute_speech_rate(words, duration, task_mode, total_disfluencies)
 
         return {
             "text": text,
@@ -154,27 +155,35 @@ class ASRService:
         }
 
     @staticmethod
-    def _compute_speech_rate(words: list, duration: float, task_mode: str) -> dict:
-        """Calculate WPM and score against task-mode ideal range."""
+    def _compute_speech_rate(words: list, duration: float, task_mode: str, total_disfluencies: int) -> dict:
+        """Calculate WPM, Disfluency Rate (DR), Pacing Score (PS) and overall Fluency."""
         word_count = len(words)
         if duration <= 0 or word_count <= 0:
-            return {"wpm": 0, "score": 50, "ideal_range": DEFAULT_WPM}
+            return {"wpm": 0, "score": 50, "ideal_range": DEFAULT_WPM, "dr": 0, "ps": 50}
 
         wpm = (word_count / duration) * 60
         low, high = IDEAL_WPM.get(task_mode, DEFAULT_WPM)
         mid = (low + high) / 2
 
-        # Score: 100 at midpoint, decreasing outward
+        # Pacing Score (PS)
         if low <= wpm <= high:
-            score = 100
+            ps = 100.0
         else:
             distance = min(abs(wpm - low), abs(wpm - high))
-            score = max(0, 100 - distance * 1.0)
+            ps = 100.0 - (distance * 0.5)
+
+        # Disfluency Rate (DR)
+        dr = (total_disfluencies / word_count) * 100.0
+
+        # Overall Fluency Score
+        fluency_score = max(0.0, ps - (dr * 2))
 
         return {
             "wpm": round(wpm, 1),
-            "score": int(score),
+            "score": int(fluency_score),
             "ideal_range": (low, high),
+            "dr": round(dr, 1),
+            "ps": round(ps, 1)
         }
 
 

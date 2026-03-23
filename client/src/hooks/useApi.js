@@ -15,9 +15,9 @@ export function useApi() {
         ...options.headers,
       }
     });
-    if (res.status === 401) {
+    if (res.status === 401 || res.status === 403) {
       logout();
-      throw new Error('Session expired');
+      throw new Error('Session expired or unauthorized');
     }
     return res;
   }, [token, logout]);
@@ -51,9 +51,9 @@ export function useApi() {
         ...(token ? { Authorization: `Bearer ${token}` } : {})
       }
     });
-    if (res.status === 401) {
+    if (res.status === 401 || res.status === 403) {
       logout();
-      throw new Error('Session expired');
+      throw new Error('Session expired or unauthorized');
     }
     if (!res.ok) throw new Error('Request failed');
     return res.json();

@@ -37,11 +37,11 @@ export default function Tasks() {
       {/* Upcoming Tasks Section */}
       <div className="mb-12">
         <div className="flex items-center gap-3 mb-6">
-          <div className="w-10 h-10 border-4 border-black bg-neo-accent flex items-center justify-center rotate-3 shadow-[4px_4px_0px_0px_#000]">
-            <FiTarget className="w-6 h-6 text-black" strokeWidth={3} />
+          <div className="w-10 h-10 border-4 border-[#121212] bg-[#F0C020] flex items-center justify-center rotate-3 shadow-[4px_4px_0px_0px_#121212]">
+            <FiTarget className="w-6 h-6 text-[#121212]" strokeWidth={3} />
           </div>
-          <h2 className="text-2xl font-black uppercase tracking-tight text-black">Upcoming Tasks</h2>
-          <span className="neo-badge bg-black text-white ml-2">{upcomingTasks.length}</span>
+          <h2 className="text-2xl font-black uppercase tracking-tight text-[#121212]">Upcoming Tasks</h2>
+          <span className="font-sans font-black text-sm uppercase px-2 py-0.5 bg-[#121212] text-white border-4 border-[#121212] shadow-[4px_4px_0px_0px_#121212] ml-2 tracking-widest">{upcomingTasks.length}</span>
         </div>
 
         {upcomingTasks.length === 0 ? (
@@ -52,24 +52,24 @@ export default function Tasks() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {upcomingTasks.map(task => (
-              <div key={task.id} className="neo-lift flex flex-col h-full">
-                 <div className="bg-white border-4 border-black shadow-[6px_6px_0px_0px_#000] p-6 h-full flex flex-col justify-between">
+              <div key={task.id} className="flex flex-col h-full hover:-translate-y-1 transition-transform">
+                 <div className="bg-white border-4 border-[#121212] shadow-[8px_8px_0px_0px_#121212] p-6 h-full flex flex-col justify-between">
                     <div>
                       <div className="flex justify-between items-start mb-4">
-                         <span className="neo-badge bg-neo-secondary uppercase">{task.difficulty}</span>
-                         <span className={`neo-badge text-[10px] px-2 py-0.5 border-2 shadow-[2px_2px_0px_0px_#000] font-black tracking-widest ${task.status === 'in_progress' ? 'bg-[#FFE373]' : 'bg-white'}`}>
+                         <span className="font-sans font-black text-xs uppercase px-2 py-1 bg-[#F0F0F0] border-2 border-[#121212] shadow-[2px_2px_0px_0px_#121212] tracking-widest">{task.difficulty}</span>
+                         <span className={`font-sans font-black text-[10px] uppercase px-2 py-0.5 border-2 border-[#121212] shadow-[2px_2px_0px_0px_#121212] tracking-widest ${task.status === 'in_progress' ? 'bg-[#FFE373] text-[#121212]' : 'bg-white text-[#121212]'}`}>
                             {task.status.replace('_', ' ')}
                          </span>
                       </div>
-                      <h3 className="font-black text-2xl uppercase leading-tight mb-2">{task.task_name}</h3>
-                      <p className="font-bold text-sm text-black/60 line-clamp-2">{task.reason}</p>
+                      <h3 className="font-black text-2xl uppercase leading-tight mb-2 tracking-tighter text-[#121212]">{task.task_name}</h3>
+                      <p className="font-bold text-sm text-[#121212] opacity-80 line-clamp-2">{task.reason}</p>
                     </div>
                     
-                    <div className="mt-6 pt-4 border-t-4 border-black flex items-center justify-between">
-                      <p className="font-black uppercase text-xs tracking-widest text-black">Reps: {task.repetitions}</p>
+                    <div className="mt-6 pt-4 border-t-4 border-[#121212] flex items-center justify-between">
+                      <p className="font-black uppercase text-xs tracking-widest text-[#121212]">Reps: {task.repetitions}</p>
                       <button 
                          onClick={() => navigate(`/patient/tasks/${task.id}`)}
-                         className="bg-black text-white hover:bg-neo-accent hover:text-black hover:border-black border-2 border-transparent px-4 py-2 font-black uppercase tracking-wider text-sm transition-colors shadow-[2px_2px_0px_0px_#000]"
+                         className="bg-[#121212] text-white hover:bg-[#1040C0] hover:text-white border-2 border-[#121212] px-4 py-2 font-black uppercase tracking-widest text-sm transition-colors shadow-[4px_4px_0px_0px_#121212]"
                       >
                          Start Task
                       </button>
@@ -84,25 +84,25 @@ export default function Tasks() {
       {/* Completed Tasks Section */}
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-6">
-          <div className="w-10 h-10 border-4 border-black bg-neo-muted flex items-center justify-center -rotate-3 shadow-[4px_4px_0px_0px_#000]">
-            <FiCheckCircle className="w-6 h-6 text-black" strokeWidth={3} />
+          <div className="w-10 h-10 border-4 border-[#121212] bg-[#F0F0F0] flex items-center justify-center -rotate-3 shadow-[4px_4px_0px_0px_#121212]">
+            <FiCheckCircle className="w-6 h-6 text-[#121212]" strokeWidth={3} />
           </div>
-          <h2 className="text-2xl font-black uppercase tracking-tight text-black">All Completed Tasks</h2>
-          <span className="neo-badge bg-black text-white ml-2">{completedTasks.length}</span>
+          <h2 className="text-2xl font-black uppercase tracking-tight text-[#121212]">All Completed Tasks</h2>
+          <span className="font-sans font-black text-sm uppercase px-2 py-0.5 bg-[#121212] text-white border-4 border-[#121212] shadow-[4px_4px_0px_0px_#121212] ml-2 tracking-widest">{completedTasks.length}</span>
         </div>
 
         {completedTasks.length === 0 ? (
-          <p className="font-bold text-black/40 uppercase pl-14">No completed tasks yet.</p>
+          <p className="font-bold text-[#121212] opacity-60 uppercase pl-14">No completed tasks yet.</p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {completedTasks.map(task => (
-               <div key={task.id} className="bg-neo-bg border-4 border-black shadow-[4px_4px_0px_0px_#000] p-5 opacity-70 grayscale cursor-not-allowed">
+               <div key={task.id} className="bg-white border-4 border-[#121212] shadow-[4px_4px_0px_0px_#121212] p-5 opacity-70 grayscale cursor-not-allowed">
                   <div className="flex justify-between items-start mb-3">
-                     <span className="neo-badge bg-neo-secondary uppercase">{task.difficulty}</span>
-                     <span className="neo-badge bg-[#86EFAC] uppercase">DONE</span>
+                     <span className="font-sans font-black text-xs uppercase px-2 py-1 bg-[#F0F0F0] border-2 border-[#121212] shadow-[2px_2px_0px_0px_#121212] tracking-widest">{task.difficulty}</span>
+                     <span className="font-sans font-black text-xs uppercase px-2 py-1 bg-[#1040C0] text-white border-2 border-[#121212] shadow-[2px_2px_0px_0px_#121212] tracking-widest">DONE</span>
                   </div>
-                  <h3 className="font-black text-xl uppercase leading-tight mb-2 strikethrough decoration-4">{task.task_name}</h3>
-                  <p className="font-bold text-sm text-black/60 line-clamp-1">{task.reason}</p>
+                  <h3 className="font-black text-xl uppercase leading-tight mb-2 strikethrough decoration-4 text-[#121212]">{task.task_name}</h3>
+                  <p className="font-bold text-sm text-[#121212] opacity-80 line-clamp-1">{task.reason}</p>
                </div>
             ))}
           </div>
